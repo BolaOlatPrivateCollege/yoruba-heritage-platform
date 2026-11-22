@@ -1,0 +1,30 @@
+[data-ifa] [hidden]{display:none!important}
+.ifa-intro{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.ifa-intro h2,#ifa-explore{margin-bottom:1rem}
+.ifa-caveat{margin:0 0 2rem;padding:1.5rem}
+.ifa-caveat p{margin-top:.8rem}
+.ifa-workbench{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:2rem;margin-block:1.5rem}
+.ifa-selectors{display:grid;align-content:start;gap:1rem}
+.ifa-selectors label{margin:0;min-width:0}
+.ifa-selectors select{display:block;min-height:48px;width:100%;max-width:100%;margin-top:.5rem;padding:.5rem;font:inherit;background:var(--panel);color:var(--cream);border:1px solid var(--bronze);border-radius:3px}
+.ifa-detail{padding:1.5rem;border:1px solid var(--bronze);background:var(--panel)}
+.ifa-detail h3{margin-block:.5rem 1rem;line-height:1.6}
+.ifa-codes{display:flex;flex-wrap:wrap;gap:1rem 2rem;margin-block:1rem}
+.ifa-codes dt{font-size:.8rem;color:var(--muted)}
+.ifa-codes dd{margin:0;font-size:1.1rem}
+#ifa-status{margin-bottom:1rem}
+#ifa-help{font-size:.85rem;color:var(--muted)}
+.ifa-scroll{max-width:100%;overflow:auto;margin-block:1rem 2rem;border:1px solid var(--line);scroll-padding:8px}
+.ifa-scroll table{border-collapse:separate;border-spacing:0;width:max-content;isolation:isolate}
+.ifa-scroll caption{text-align:left;max-width:75vw;padding:1rem;font-size:.85rem}
+.ifa-scroll th,.ifa-scroll td{padding:.25rem;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:center}
+.ifa-scroll th{min-width:64px;font-size:.75rem;font-weight:500;background:var(--panel2)}
+.ifa-scroll th span{display:block}
+.ifa-scroll tbody th{min-width:120px;position:sticky;left:0;z-index:1;border-right:2px solid var(--bronze)}
+.ifa-scroll button{width:56px;min-height:48px;padding:.25rem;font:inherit;background:var(--panel);color:var(--cream);border:2px solid var(--line);border-radius:3px}
+.ifa-scroll button[aria-pressed=true]{background:var(--bronze);color:var(--ink);border-color:var(--cream);font-weight:700}
+.ifa-check{display:none}
+[aria-pressed=true] .ifa-check{display:inline}
+.ifa-scroll button:focus-visible,.ifa-selectors select:focus-visible,.ifa-scroll:focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+@media(max-width:760px){.ifa-intro,.ifa-workbench{grid-template-columns:1fr;gap:1rem}.ifa-detail{padding:1rem}.ifa-selectors{gap:1rem}.ifa-scroll tbody th{min-width:90px}}
+@media(forced-colors:active){.ifa-scroll button[aria-pressed=true]{border:3px solid Highlight}.ifa-scroll button:focus-visible{outline-color:Highlight}}

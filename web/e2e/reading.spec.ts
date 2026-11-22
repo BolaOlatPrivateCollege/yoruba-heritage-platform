@@ -48,7 +48,7 @@ test('mobile native navigation, Escape focus return and narrow-screen article',a
 test('read-only learning boundaries, sacred taxonomy and real not-found route',async({page})=>{
   await page.goto('/collections/sacred/');await expect(page.locator('.profile')).toHaveCount(24);
   await expect(page.locator('.profile').first()).toContainText('Supreme source');
-  await page.goto('/learning/');await expect(page.getByText(/Interactive 256-cell model: legacy-only/)).toBeVisible();
+  await page.goto('/learning/');await expect(page.getByRole('link',{name:'explore the illustrative mathematical pairings'})).toHaveAttribute('href','/learning/ifa-matrix/');
   await expect(page.locator('audio')).toHaveCount(0);await expect(page.locator('form')).toHaveCount(0);
   const response=await page.goto('/does-not-exist/');expect(response?.status()).toBe(404);
   await expect(page.getByRole('heading',{level:1})).toContainText('This reading isn’t here.');
