@@ -1730,4 +1730,3 @@ Priority is a six-factor editorial judgement, not a claim that high-ranked mater
 - Trace: [author-wande-abimbola/section-2](../../web/src/pages/articles/[id].astro), source IDs authors-abi-poems, authors-abi-cv; [author-wande-abimbola/section-6](../../web/src/pages/articles/[id].astro), source IDs authors-oluw-book, authors-abi-cv.
 - Priority 41: thinness=3, readerInterest=3, significance=4, evidenceReadiness=1, regionalCoverage=4, communityReviewPriority=5; phase P4-editions-and-language.
 - Community source leads: none linked; seek appropriate local provenance.
-
