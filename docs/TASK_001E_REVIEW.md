@@ -89,7 +89,7 @@ npx playwright install --with-deps chromium
 npm run test:browser
 ```
 
-Expected suite: 116 tests = 12 legacy + 24 preservation + 9 security revision +
+Verified suite: 116 tests = 12 legacy + 24 preservation + 9 security revision +
 13 HTTP security + 29 web unit/static + 29 Chromium tests. All original 98 tests
 are retained; 8 unit/static and 10 browser tests are added. New checks cover every
 pair through buttons and mobile selectors, exact Unicode/per-record/full hashes,
@@ -100,6 +100,25 @@ Screenshot evidence is captured by Chromium at 1440, 320 and 390px as
 `ifa-1440.png`, `ifa-320.png`, `ifa-390.png` in the existing private Actions
 `reading-screenshots` artifact (14-day retention). Final-head workflow links,
 actual counts and artifact evidence are recorded on the PR after checks finish.
+
+Verified implementation head: `f9d6eb7a40350c9310b87745f81cc11a4a4323a9`.
+All 116 tests passed with zero failures/skips; Astro reported zero errors,
+warnings or hints. Both locked installs, the static build and all Chromium tests
+passed. The exhaustive 256-click test took 36.1 seconds; it has a bounded 90-second
+budget without retries or reduced assertions. All 256 mobile selector combinations
+also passed. The three widths had no document-level horizontal overflow.
+
+- [Archive quality — passed](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125150)
+- [Reading interface — passed](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125261)
+- [Desktop/mobile screenshot artifact](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125261/artifacts/14752369029)
+- [PR #14 and current final-head checks](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/pull/14/checks)
+
+The linked run evidence precedes this documentation-only update. Final-head runs
+and its exact SHA are reported on PR #14 after the complete checks rerun. The
+artifact contains `ifa-1440.png`, `ifa-320.png` and `ifa-390.png` alongside existing
+feature screenshots; it expires 6 December 2026 under the unchanged retention
+policy. Screenshot capture is automated; no manual visual or screen-reader audit
+is claimed. No tests or required workflow gates are disabled or silently skipped.
 
 Local checkout note: the existing downloaded copy was not a Git checkout and had
 trailing-byte differences. It and the earlier drafts were preserved. A separate

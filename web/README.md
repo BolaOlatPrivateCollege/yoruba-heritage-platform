@@ -128,11 +128,17 @@ With JavaScript unavailable, inactive controls stay hidden and the labels, maths
 cultural limits and source links remain readable. Selection is page-memory only.
 No new dependency, storage, media, external request, API or infrastructure is added.
 
-Eight unit/static and ten browser tests extend the original 98 to an expected 116.
+Eight unit/static and ten browser tests extend the original 98 to 116, all passing
+with no failures or skips on the verified implementation head.
 The unchanged workflows run locked installs, strict Astro/TypeScript checks, build,
 unit tests, preservation/security checks and Chromium; screenshots at 1440/320/390px
 are in the private reading-screenshots artifact. See ../docs/TASK_001E_REVIEW.md
 and the PR for actual final-head CI results, commands, evidence and limitations.
+Verified implementation CI: [Archive quality](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125150),
+[Reading interface](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125261),
+and [1440/320/390px screenshots](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125261/artifacts/14752369029).
+See [PR #14 checks](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/pull/14/checks)
+for the complete rerun on the final documentation head.
 Manual screen-reader/zoom/RTL and cultural/practitioner review remain outstanding;
 no WCAG or ritual authenticity certification is claimed. Rollback: revert only
 001E changes or reopen the untouched root prototype locally. Nothing is merged
