@@ -1,0 +1,6 @@
+---
+import {articleHref,type ArticleRecord} from '../lib/archive';
+interface Props {articles:ArticleRecord[]}
+const {articles}=Astro.props;
+---
+<div class="card-grid">{articles.map((a,index)=><article class="reading-card"><div class="kicker">{String(index+1).padStart(2,'0')} / {a.category}</div><h2><a href={articleHref(a.id)}>{a.title}</a></h2><p>{a.deck}</p><div class="card-bottom"><span>{a.sections.length} sections · {a.sourceIds.length} source leads</span><span aria-hidden="true">↗</span></div></article>)}</div>
