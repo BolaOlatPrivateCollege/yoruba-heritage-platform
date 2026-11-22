@@ -15,6 +15,7 @@ export function initializeQuiz(root:HTMLElement):void {
   const progress=required<HTMLProgressElement>('#quiz-progress'),summary=required<HTMLElement>('#quiz-summary');
   const summaryHeading=required<HTMLElement>('#quiz-summary-heading'),summaryScore=required<HTMLElement>('#quiz-summary-score');
   const help=required<HTMLElement>('#quiz-next-help');
+  const fallback=required<HTMLElement>('#quiz-fallback');
   const quiz:QuizQuestion[]=cards.map((card,index)=>{
     const q=card.querySelector<HTMLElement>('h2')?.textContent??'';
     const a=Array.from(card.querySelectorAll<HTMLElement>('.option-text')).map(el=>el.textContent??'');
@@ -55,7 +56,7 @@ export function initializeQuiz(root:HTMLElement):void {
   })));
   next.addEventListener('click',()=>{const updated=nextQuestion(state);if(updated===state)return;state=updated;render(true);});
   restart.addEventListener('click',()=>{state=startQuiz(quiz.length);render(true);});
-  start.hidden=false;
+  fallback.hidden=true;start.hidden=false;
 }
 const root=document.querySelector<HTMLElement>('[data-quiz]');
 if(root){try{initializeQuiz(root);}catch{

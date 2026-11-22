@@ -11,11 +11,11 @@ test('quiz navigation, keyboard feedback, locked answers and source-linked expla
  await expect(page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Quiz',exact:true})).toHaveAttribute('aria-current','page');
  await page.getByRole('button',{name:'Start 15-question review'}).focus();await page.keyboard.press('Enter');
  await expect(card(page).getByRole('heading')).toBeFocused();await expect(card(page).getByRole('group')).toHaveAccessibleName(quiz[0]!.q);
- const next=page.getByRole('button',{name:'Next question'});await next.click();await expect(page.locator('#quiz-progress-text')).toHaveText('Question 1 of 15 · 0 answered');
+ const next=page.getByRole('button',{name:'Next question'});await expect(next).toBeDisabled();await next.focus();await page.keyboard.press('Enter');await expect(page.locator('#quiz-progress-text')).toHaveText('Question 1 of 15 · 0 answered');
  await card(page).getByRole('heading').focus();await page.keyboard.press('Tab');const first=card(page).getByRole('button').first();await expect(first).toBeFocused();await page.keyboard.press('Space');await expect(first).toBeFocused();
  await expect(page.getByRole('status')).toContainText('Does not match the archived key.');await expect(page.locator('#quiz-explanation')).toHaveText(quiz[0]!.why);await expect(page.locator('#quiz-score')).toHaveText('Archive-key score: 0 / 15');
  await expect(first).toHaveAttribute('aria-disabled','true');await expect(first).toHaveAttribute('aria-pressed','true');await expect(card(page).getByText('Archive key',{exact:true})).toBeVisible();
- await card(page).getByRole('button').nth(quiz[0]!.correct).click();await first.press('Enter');await expect(page.locator('#quiz-score')).toHaveText('Archive-key score: 0 / 15');
+ const locked=card(page).getByRole('button').nth(quiz[0]!.correct);await expect(locked).toBeDisabled();await locked.focus();await page.keyboard.press('Enter');await first.press('Enter');await expect(page.locator('#quiz-score')).toHaveText('Archive-key score: 0 / 15');
  await page.screenshot({path:'screenshots/desktop-quiz-feedback.png',fullPage:true});
  const related=card(page).getByRole('link',{name:'Read related source-linked article'});await related.focus();await page.keyboard.press('Enter');await expect(page).toHaveURL('/articles/'+quiz[0]!.link+'/');await expect(page.locator('.section-sources a').first()).toBeVisible();
 });

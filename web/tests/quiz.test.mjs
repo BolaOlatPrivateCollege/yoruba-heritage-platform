@@ -34,7 +34,7 @@ test('escaped static quiz payload retains every original field and no-JS control
  const $=markup();assert.equal($('.quiz-question').length,15);
  archive.quiz.forEach((q,i)=>{const card=$('#'+quizDisplayId(i));assert.equal(card.attr('data-original-index'),String(i));assert.equal(card.attr('data-correct'),String(q.correct));assert.equal(card.find('h2').text(),q.q);assert.deepEqual(card.find('.option-text').map((_,el)=>$(el).text()).get(),q.a);assert.equal(card.find('[data-original-explanation]').text(),q.why);assert.ok(card.is('[hidden]'));});
  assert.ok($('#quiz-stage').is('[hidden]'));assert.ok($('#quiz-start').is('[hidden]'));
- assert.match($('noscript').text(),/requires JavaScript/);assert.match($('#quiz-caveat').text(),/does not establish independently verified historical facts/);
+ assert.match($('#quiz-fallback').text(),/requires JavaScript/);assert.equal($('#quiz-fallback').is('[hidden]'),false);assert.match($('#quiz-caveat').text(),/does not establish independently verified historical facts/);
  assert.equal($('#quiz-readings a').length,new Set(archive.quiz.map(q=>q.link)).size);
 });
 test('answer transitions prevent zero-answer advance, invalid choices, changes and double scoring',()=>{
