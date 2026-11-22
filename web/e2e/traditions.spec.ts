@@ -25,3 +25,16 @@ test('context browsing is local, stateless and readable with enlarged text',asyn
   await page.setViewportSize({width:720,height:900});await page.goto('/articles/know-adire/');await page.locator('.context-card summary').click();await page.evaluate(()=>{document.documentElement.style.fontSize='32px';});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.locator('.context-summary')).toBeVisible();
   expect(external).toEqual([]);expect(mutations).toEqual([]);expect(await page.evaluate(()=>[localStorage.length,sessionStorage.length,document.cookie])).toEqual([0,0,'']);await expect(page.locator('.article-context form,.article-context input,.article-context iframe')).toHaveCount(0);
 });
+
+test('corrected pilot classifications remain accurate before and after keyboard disclosure',async({page})=>{
+  for(const [id,heading,status,label] of [
+    ['ile-ife','Unresolved object interpretations','Unresolved object interpretation','no documented historical dispute'],
+    ['know-adire','Museum-mediated reports','Museum-mediated report','intermediary']
+  ] as const){
+    await page.goto('/articles/'+id+'/');const module=page.locator('.article-context');
+    await expect(module.getByRole('heading',{level:3,name:heading,exact:true})).toBeVisible();
+    await expect(module.getByRole('heading',{name:'Disputed histories',exact:true})).toHaveCount(0);await expect(module.getByRole('heading',{name:'Community traditions',exact:true})).toHaveCount(0);
+    await expect(module.locator('.context-card-label')).toContainText(label);await module.locator('summary').focus();await page.keyboard.press('Enter');
+    await expect(module.locator('.context-status')).toContainText(status);await expect(module.locator('.context-status')).toContainText('Version 2');await expect(module.locator('.context-provenance')).toContainText('unknown');
+  }
+});

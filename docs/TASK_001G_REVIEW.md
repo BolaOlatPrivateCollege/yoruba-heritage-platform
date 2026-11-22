@@ -29,8 +29,8 @@ review**, not public publication:
 
 | Article | Category and actual scope | Important limitation |
 | --- | --- | --- |
-| `ile-ife` | Attributed alternative readings of object perforations | One curatorial source proposes alternatives; this is not two independently corroborating sources, two opposing schools, or a newly invented historical dispute. No ritual explanation or origin narrative is adopted. |
-| `know-adire` | A museum-mediated account of a purchase-time fashion judgement | Speaker, original words and language are unknown. This is an indirect oral record, not authenticated direct testimony or universal community consensus. |
+| `ile-ife` | Unresolved object interpretations; `unresolved` status | One curatorial source proposes alternatives; this is not two independently corroborating sources, two opposing schools, or a newly invented historical dispute. No ritual explanation or origin narrative is adopted. |
+| `know-adire` | Museum-mediated report; `reported-account` status | Speaker, original words and language are unknown. This is an indirect oral record, not authenticated direct testimony or universal community consensus. |
 
 The second entry deliberately preserves an anonymous source gap rather than
 inventing the maker, trader or elder. Its identity/provenance caveats remain
@@ -86,7 +86,9 @@ Claim status is distinct from release, consent and source safety:
 | Claim status | Meaning |
 | --- | --- |
 | `recorded-tradition` | The attributed account is recorded; its narrated events are not thereby independently corroborated. |
-| `contested` | Sourced interpretations differ or alternatives remain unresolved; weigh evidence and do not invent a dispute. |
+| `contested` | A cited source establishes actual historical disagreement; possible object uses alone do not qualify. |
+| `unresolved` | An object interpretation remains open; no documented historical controversy is implied. |
+| `reported-account` | A report reached the record through an intermediary; this does not establish inherited oral tradition or authenticate original testimony. |
 | `uncorroborated` | Available evidence cannot corroborate the stated claim; not a judgement on a community's worth. |
 | `contradicted` | Cite the evidence against this version and the scope of the conclusion. |
 | `reviewed` | Reviewed only within explicitly recorded scope; not universal historical or scientific certainty. |
@@ -103,8 +105,15 @@ summary of a public source, not permission to copy a contributor's words or
 publish private testimony. No new testimony was collected. Public access is
 not blanket rights clearance; separate public publication remains unapproved.
 
-Contested items require at least two passage-cited perspectives and explicit
-evidence weights. Folklore requires a named attested variant, scoped cultural
+Disputed histories require at least two passage-cited perspectives, explicit
+evidence weights and a separately cited `disputeBasis` establishing actual
+disagreement. Oral-tradition classification requires a separately cited
+`traditionBasis` for attribution/transmission. These citation fields are resolved
+and dependency-checked alongside every other passage. Presence of metadata is
+not proof that a source supports its classification; editorial review remains
+necessary. Unresolved object readings and museum-mediated reports have their
+own category, status and card labels; they cannot reuse contested or
+recorded-tradition status. Folklore requires a named attested variant, scoped cultural
 meaning and recorded community review before private display. A circulating
 claim additionally needs independently documented circulation with citations,
 independent review, community review, a dated specific editorial decision and a
@@ -152,8 +161,10 @@ cannot mark harmful material safe to circumvent the flags.
 
 ## Automated verification and limitations
 
-All original 135 tests are retained. Added 12 unit/static tests and seven
-Chromium tests: expected **154 total**. Tests cover schema negatives, category
+All original 135 tests and the initial Task 001G tests are retained (154 baseline).
+The editorial correction adds three unit/static regression tests and one
+Chromium test: expected **158 total** (54 web unit/static, 46 Chromium,
+58 legacy/preservation/security). Tests cover schema negatives, category
 semantics, consent/source/release gates, every sensitive flag, independent
 circulation gates, correction/withdrawal, exact parity for all 113 articles and
 bibliographies, no empty modules, static internal-data exclusion, safe native
@@ -193,3 +204,35 @@ authorised later merge: revert only Task 001G's optional component/import,
 typed collection/schema, stylesheet, tests and documentation changes. No database,
 schema, data migration, infrastructure or dependencies added. No Cloudflare,
 DNS, hosting, Codespaces, workflow or deployment change. Nothing merged or deployed.
+
+## PR #18 editorial classification correction
+
+Addresses [review 6012518079](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/pull/18#pullrequestreview-6012518079).
+The initial heading/status choices overclassified both pilot entries. Fine-print
+caveats did not make those category labels accurate. The corrections are:
+
+| Entry | Correct category / reader heading | Correct claim status |
+| --- | --- | --- |
+| Ilé-Ifẹ̀ object | `object-interpretation` / Unresolved object interpretations | `unresolved`: no documented historical dispute |
+| Àdìrẹ fashion report | `mediated-report` / Museum-mediated reports | `reported-account`: original testimony not authenticated |
+
+Both keep their stable IDs, summaries, original source passages, narrator/language
+unknowns, safety/consent/release states and other provenance unchanged. Version 2
+appends a dated `corrected` event; version 1 remains in the history and Git.
+The source register and internal Òṣogbo entry remain unchanged. Regression
+fingerprints check all pilot fields except category/status/version/history, plus
+the original source records. This directly guards against incidental prose,
+provenance or safety changes during the classification correction.
+
+Native disclosure labels now come from a complete typed category map. The UI
+does not assume every mediated account is an oral tradition, or every alternative
+reading is a disputed history. Positive heading/status checks and negative
+disputed/tradition checks run against the built pilot pages and keyboard-opened
+cards. Existing responsive tests recapture both corrected pilots at 1440, 320
+and 390px. Final correction-head SHA, CI runs and fresh screenshot artifact are
+recorded on PR #18 for re-review; earlier-head screenshots are not final evidence.
+
+This correction does not approve public release, resolve outstanding cultural or
+language review, merge the PR or deploy anything. Rollback can revert just the
+classification-correction commit, or the whole Task 001G change as described
+above; neither changes the protected historical archive or SEC-01-v1.

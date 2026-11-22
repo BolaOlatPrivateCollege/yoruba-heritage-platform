@@ -8,14 +8,26 @@ export const ContextSource=z.object({id:Id,title:Text,author:Text,type:Text,url:
   version:z.number().int().positive(),recordStatus:z.literal('inspected-passage-record'),
   dependencyReview:z.enum(['bounded-passages-checked','unchecked','excluded']),dependencyNote:Text,
   passages:z.array(z.object({id:Id,locator:Text,support:Text,limit:Text}).strict()).min(1)}).strict();
-export const categories=['community-tradition','folklore','contested-interpretation','circulating-claim'] as const;
+export const categories=['community-tradition','mediated-report','folklore','object-interpretation','contested-interpretation','circulating-claim'] as const;
 export const categoryLabels={
+  'mediated-report':'Museum-mediated reports',
+  'object-interpretation':'Unresolved object interpretations',
   'community-tradition':'Community traditions','folklore':'Folklore & legends',
   'contested-interpretation':'Disputed histories','circulating-claim':'Circulating claims & what we know'
 };
+export const categoryDescriptions={
+  'community-tradition':'Attributed oral tradition — transmission context recorded',
+  'mediated-report':'Reported local account — an intermediary’s record',
+  'folklore':'Attested narrative variant — scope matters',
+  'object-interpretation':'Alternative object readings — no documented historical dispute',
+  'contested-interpretation':'Documented historical disagreement — compare the evidence',
+  'circulating-claim':'Individually reviewed claim — see the fact-check outcome'
+};
 export const claimLabels={
+  unresolved:'Unresolved object interpretation — no documented historical dispute',
+  'reported-account':'Museum-mediated report — original testimony not authenticated',
   'recorded-tradition':'Recorded tradition — events not independently corroborated',
-  contested:'Contested interpretation — alternatives remain open',
+  contested:'Documented disagreement — historical interpretations remain contested',
   uncorroborated:'Uncorroborated — evidence is insufficient',
   contradicted:'Contradicted — the cited evidence weighs against this version',
   reviewed:'Reviewed within the stated scope — not universal verification'
@@ -28,7 +40,9 @@ export const ContextEntry=z.object({
   primaryLanguage:Text,translationReview:z.enum(['not-applicable-original-english-paraphrase','pending','reviewed']),translationNote:Text,period:Text,
   known:z.array(Text).min(1),unknown:z.array(Text).min(1),counterevidence:Text,
   citations:z.array(Citation).min(1),perspectives:z.array(Perspective),variant:Text.optional(),culturalMeaning:Text.optional(),
-  claimStatus:z.enum(['recorded-tradition','contested','uncorroborated','contradicted','reviewed']),
+  disputeBasis:z.object({description:Text,citations:z.array(Citation).min(1)}).strict().optional(),
+  traditionBasis:z.object({description:Text,citations:z.array(Citation).min(1)}).strict().optional(),
+  claimStatus:z.enum(['recorded-tradition','reported-account','unresolved','contested','uncorroborated','contradicted','reviewed']),
   sensitivityFlags:z.array(z.enum(['restricted-sacred','living-person-allegation','witchcraft-identification','medical','ethnic-tension','children','private-property','sexual-allegation','criminal-allegation','private-testimony'])),
   provenanceReview:z.enum(['bounded-source-checked','pending']),safety:z.enum(['reviewed-for-safety','pending','blocked']),
   rights:z.enum(['original-paraphrase-no-media','permission-recorded','unknown','restricted']),
@@ -40,9 +54,13 @@ export const ContextEntry=z.object({
   withdrawal:z.object({date:DateText,reason:Text}).strict().nullable()
 }).strict().superRefine((e,ctx)=>{
   const fail=(message:string)=>ctx.addIssue({code:'custom',message});
-  if(e.category==='contested-interpretation'&&(e.perspectives.length<2||e.claimStatus!=='contested'))fail('Contested entries require two sourced perspectives and contested status');
+  if(e.category==='contested-interpretation'&&(e.perspectives.length<2||e.claimStatus!=='contested'||!e.disputeBasis))fail('Disputed histories require cited evidence of actual disagreement, two sourced perspectives and contested status');
+  if(e.category==='object-interpretation'&&(e.claimStatus!=='unresolved'||!e.perspectives.length))fail('Open object readings require unresolved status and a sourced interpretation');
+  if(e.category==='mediated-report'&&e.claimStatus!=='reported-account')fail('Intermediary reports must not be labelled inherited traditions');
   if(e.category==='folklore'&&(!e.variant||!e.culturalMeaning))fail('Folklore requires an attested variant and scoped cultural meaning');
-  if(e.category==='community-tradition'&&e.claimStatus!=='recorded-tradition')fail('Oral attestation must not become event verification');
+  if(e.category==='community-tradition'&&(e.claimStatus!=='recorded-tradition'||!e.traditionBasis))fail('Oral traditions require cited attribution/transmission context, not merely a mediated remark');
+  if(e.disputeBasis&&e.category!=='contested-interpretation')fail('Disagreement evidence belongs to an explicitly disputed history');
+  if(e.traditionBasis&&e.category!=='community-tradition')fail('Transmission evidence belongs to an explicitly attributed oral tradition');
   if(e.category==='circulating-claim'&&!e.circulation)fail('Circulating claims require a circulation record');
   if(new Set(e.history.map(h=>h.version)).size!==e.history.length||e.history.at(-1)?.version!==e.version||e.history.at(-1)?.date!==e.updated)fail('Revision history must end at current version/date');
   if(e.history.some((h,i)=>h.version!==i+1))fail('Revision history must be consecutive');
@@ -65,7 +83,7 @@ function eligibleState(e:{safety:string;provenanceReview:string;rights:string;co
   }
   return true;
 }
-export const entryCitations=(e:Entry)=>[...e.citations,...e.perspectives.flatMap(p=>p.citations),...(e.circulation?.evidence??[])];
+export const entryCitations=(e:Entry)=>[...e.citations,...e.perspectives.flatMap(p=>p.citations),...(e.disputeBasis?.citations??[]),...(e.traditionBasis?.citations??[]),...(e.circulation?.evidence??[])];
 export function validateContext(rawEntries:unknown[],rawSources:unknown[]){
   const entries=ContextEntry.array().parse(rawEntries),sources=ContextSource.array().parse(rawSources);
   if(new Set(entries.map(e=>e.id)).size!==entries.length||new Set(sources.map(s=>s.id)).size!==sources.length)throw new Error('Duplicate context ID');
