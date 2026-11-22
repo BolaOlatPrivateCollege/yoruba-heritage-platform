@@ -8,6 +8,7 @@ const begin=async(page:import('@playwright/test').Page)=>{await page.goto('/lear
 
 test('quiz navigation, keyboard feedback, locked answers and source-linked explanation',async({page})=>{
  await page.setViewportSize({width:1440,height:1000});await page.goto('/learning/');await page.getByRole('link',{name:'Knowledge quiz · 15 questions'}).click();
+ await expect(page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Quiz',exact:true})).toHaveAttribute('aria-current','page');
  await page.getByRole('button',{name:'Start 15-question review'}).focus();await page.keyboard.press('Enter');
  await expect(card(page).getByRole('heading')).toBeFocused();await expect(card(page).getByRole('group')).toHaveAccessibleName(quiz[0]!.q);
  const next=page.getByRole('button',{name:'Next question'});await next.click();await expect(page.locator('#quiz-progress-text')).toHaveText('Question 1 of 15 · 0 answered');
