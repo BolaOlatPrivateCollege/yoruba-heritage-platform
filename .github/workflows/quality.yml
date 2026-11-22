@@ -27,3 +27,5 @@ jobs:
       - run: npm run verify
       - run: npm run verify:preservation
       - run: python -m py_compile server.py
+      - run: npm run test:security-revision
+      - run: npm run test:security

@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
 """Àṣà & Ìtàn community server. Python 3.10+, no third-party packages.
 
-Local/start-up deployment only: for public exposure, use a TLS reverse proxy,
-strong ADMIN_PASSWORD and a production security and privacy review. All public
-community contributions are moderated. Uploaded files are NOT accepted.
+Local pilot only. Do not expose this server to the public Internet. Basic Auth,
+CSRF, consent and moderation governance still need a separate security review.
+Community contributions are moderated. Uploaded files are NOT accepted.
 """
 import base64
 import hmac
 import hashlib
 import html
 import json
+import ipaddress
 import os
+import re
 import secrets
 import sqlite3
+import stat
 import sys
 import time
 import urllib.parse
 from datetime import datetime, timezone
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
@@ -27,6 +30,73 @@ PORT=int(os.getenv('PORT','8765'))
 HOST=os.getenv('HOST','127.0.0.1')
 SALT=os.getenv('RATE_LIMIT_SALT') or secrets.token_hex(24)
 MAX_BODY=12000
+
+# No filesystem fallback, directory listing, globbing or URL-to-path translation.
+PUBLIC_FILES={
+    '/':('index.html','text/html; charset=utf-8'),
+    '/index.html':('index.html','text/html; charset=utf-8'),
+    '/styles.css':('styles.css','text/css; charset=utf-8'),
+    '/assets/favicon.svg':('assets/favicon.svg','image/svg+xml'),
+    **{'/'+name:(name,'text/javascript; charset=utf-8') for name in (
+        'content.js','knowledge.js','extended-sacred-arts.js','sacred-atlas.js',
+        'deep-heritage.js','names-etymology.js','research-authors.js',
+        'sacred-atlas-ui.js','deep-heritage-ui.js','community.js','app.js')}
+}
+
+def canonical_request_path(target):
+    # Reject encodings rather than decoding/normalizing them into allowed paths.
+    if not target.startswith('/') or target.startswith('//') or '#' in target:
+        raise ValueError('Non-canonical target')
+    path=target.split('?',1)[0]
+    if not re.fullmatch(r'/[A-Za-z0-9_./-]*',path):
+        raise ValueError('Non-canonical path')
+    if '//' in path or any(p in ('.','..') for p in path.split('/')):
+        raise ValueError('Non-canonical path')
+    return path
+
+def open_public_file(relative):
+    """Open a fixed allowlisted file without following symlinks outside ROOT.
+
+    POSIX walks directories via no-follow descriptors. Windows validates the
+    final opened handle path before any bytes are read. Unknown platforms fail
+    closed. Local processes able to edit trusted site files are not sandboxed.
+    """
+    if relative not in {entry[0] for entry in PUBLIC_FILES.values()}:
+        raise OSError('Not allowlisted')
+    parts=relative.split('/')
+    descriptors=[]
+    fd=None
+    try:
+        if os.name=='posix' and os.open in os.supports_dir_fd:
+            flags=os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW
+            parent=os.open(ROOT,flags);descriptors.append(parent)
+            for part in parts[:-1]:
+                parent=os.open(part,flags,dir_fd=parent);descriptors.append(parent)
+            fd=os.open(parts[-1],os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK,dir_fd=parent)
+        elif os.name=='nt':
+            import ctypes
+            import msvcrt
+            candidate=ROOT.joinpath(*parts)
+            for node in [candidate,*list(candidate.parents)[:len(parts)-1]]:
+                if os.lstat(node).st_file_attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT:
+                    raise OSError('Link denied')
+            fd=os.open(candidate,os.O_RDONLY|os.O_BINARY)
+            get_path=ctypes.WinDLL('kernel32',use_last_error=True).GetFinalPathNameByHandleW
+            get_path.argtypes=[ctypes.c_void_p,ctypes.c_wchar_p,ctypes.c_ulong,ctypes.c_ulong]
+            get_path.restype=ctypes.c_ulong
+            buf=ctypes.create_unicode_buffer(32768)
+            size=get_path(msvcrt.get_osfhandle(fd),buf,len(buf),0)
+            if not size or size>=len(buf):raise OSError('Handle path unavailable')
+            final=buf.value.removeprefix('\\\\?\\')
+            if os.path.normcase(final)!=os.path.normcase(str(candidate)):
+                raise OSError('Resolved path denied')
+        else:raise OSError('Secure file opening unavailable')
+        if not stat.S_ISREG(os.fstat(fd).st_mode):raise OSError('Not a regular file')
+        result=os.fdopen(fd,'rb');fd=None
+        return result
+    finally:
+        if fd is not None:os.close(fd)
+        for descriptor in reversed(descriptors):os.close(descriptor)
 
 SCHEMA='''
 CREATE TABLE IF NOT EXISTS threads (
@@ -81,12 +151,32 @@ def valid_url(s):
     if u.scheme not in ('http','https') or not u.netloc:raise ValueError('Use a valid http(s) source URL')
     return s
 
-class Handler(SimpleHTTPRequestHandler):
+class Handler(BaseHTTPRequestHandler):
     server_version='YorubaHeritage/1.0'
-    def __init__(self,*a,**kw):super().__init__(*a,directory=str(ROOT),**kw)
     def log_message(self,fmt,*args):
-        # No user-post content in access logs; only route, method, status.
-        super().log_message(fmt,*args)
+        # No raw target/query, credentials, filesystem contents or user text.
+        pass
+    def request_path(self):
+        # BaseHTTPRequestHandler normalizes a leading // in self.path. Inspect
+        # the original request target so normalization cannot bypass this gate.
+        words=self.requestline.split(' ')
+        if len(words)!=3:raise ValueError('Invalid request line')
+        return canonical_request_path(words[1])
+    def do_HEAD(self):
+        self.do_GET()
+    def serve_public_file(self,path):
+        entry=PUBLIC_FILES.get(path)
+        if entry is None:return self.send_error(404,'Not found')
+        try:source=open_public_file(entry[0])
+        except OSError:return self.send_error(404,'Not found')
+        with source:
+            size=os.fstat(source.fileno()).st_size
+            self.send_response(200)
+            self.send_header('Content-Type',entry[1])
+            self.send_header('Content-Length',str(size))
+            self.end_headers()
+            if self.command!='HEAD':
+                while chunk:=source.read(65536):self.wfile.write(chunk)
     def end_headers(self):
         self.send_header('X-Content-Type-Options','nosniff')
         self.send_header('X-Frame-Options','DENY')
@@ -99,14 +189,16 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_response(status)
         self.send_header('Content-Type','application/json; charset=utf-8')
         self.send_header('Content-Length',str(len(body)))
-        self.end_headers();self.wfile.write(body)
+        self.end_headers()
+        if self.command!='HEAD':self.wfile.write(body)
     def page(self,status,body,auth=False):
         b=body.encode('utf-8')
         self.send_response(status)
         self.send_header('Content-Type','text/html; charset=utf-8')
         self.send_header('Content-Length',str(len(b)))
         if auth:self.send_header('WWW-Authenticate','Basic realm="Yoruba Heritage Editors"')
-        self.end_headers();self.wfile.write(b)
+        self.end_headers()
+        if self.command!='HEAD':self.wfile.write(b)
     def authenticated(self):
         if not PASSWORD:return False
         auth=self.headers.get('Authorization','')
@@ -152,7 +244,8 @@ class Handler(SimpleHTTPRequestHandler):
         db.execute('INSERT INTO limits(ip_hash,action,created_at) VALUES(?,?,?)',(ip_hash,action,stamp))
         return True
     def do_GET(self):
-        path=urllib.parse.urlparse(self.path).path
+        try:path=self.request_path()
+        except ValueError:return self.send_error(404,'Not found')
         query=urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
         if path=='/api/health':return self.reply(200,{'service':'yoruba-community','status':'moderated','version':1})
         if path=='/api/threads':
@@ -178,11 +271,10 @@ class Handler(SimpleHTTPRequestHandler):
             return self.render_admin()
         if path.startswith('/api/') or path.startswith('/admin/'):
             return self.reply(404,{'error':'Not found'})
-        if path in ('/server.py','/knowledge.js.map','/private_data') or path.startswith('/private_data/') or path.endswith('.sqlite3') or path.endswith('-wal') or path.endswith('-shm') or path.endswith('.py'):
-            return self.send_error(404,'Not found')
-        return super().do_GET()
+        return self.serve_public_file(path)
     def do_POST(self):
-        path=urllib.parse.urlparse(self.path).path
+        try:path=self.request_path()
+        except ValueError:return self.send_error(404,'Not found')
         if not self.same_origin():return self.reply(403,{'error':'Cross-origin request blocked'})
         if path=='/admin/moderate':
             if not self.admin_guard():return
@@ -245,11 +337,13 @@ class Handler(SimpleHTTPRequestHandler):
         return self.page(200,page)
 
 def main():
+    if HOST!='localhost' and not ipaddress.ip_address(HOST).is_loopback:
+        raise ValueError('Local pilot must bind to loopback only')
     init()
     if not PASSWORD:print('WARNING: ADMIN_PASSWORD not set; admin moderation dashboard disabled.',file=sys.stderr)
     print(f'Yoruba heritage site: http://{HOST}:{PORT}/')
     print(f'Editor dashboard: http://{HOST}:{PORT}/admin')
-    print('Keep this address behind HTTPS and an appropriate security layer for public use.')
+    print('Local pilot only. Do not expose this server to the public Internet.')
     server=ThreadingHTTPServer((HOST,PORT),Handler)
     try:server.serve_forever()
     except KeyboardInterrupt:pass

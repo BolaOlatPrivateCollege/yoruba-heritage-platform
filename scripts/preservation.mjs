@@ -80,13 +80,43 @@ export function sourceFiles(root = ROOT) {
   return PROTECTED_FILES.map(path => ({ path, sha256: sha256(readFileSync(resolve(root, path))) }));
 }
 export function makeManifest(a, root = ROOT) {
+  // The historical manifest must never absorb a later security-code revision.
+  assert.deepEqual(sourceFiles(root), readManifest().files,
+    'Original manifest generation requires original protected bytes; security revisions stay separate');
   return { formatVersion: 1, sourceCommit: BASE_COMMIT, algorithm: 'SHA-256',
     canonicalization: 'Sorted object keys; original array order and UTF-8 strings; no Unicode normalization',
     files: sourceFiles(root), ...describeArchive(a) };
 }
-export function readManifest() { return JSON.parse(readFileSync(MANIFEST, 'utf8')); }
+export const ORIGINAL_BASELINE_SHA256 = '80dd12a96f7ed804bb2602f85edbaef5c3371fa9799dc97633d8349297571a33';
+export function readManifest() {
+  const bytes=readFileSync(MANIFEST);
+  assert.equal(sha256(bytes),ORIGINAL_BASELINE_SHA256,'Original baseline must remain byte-identical');
+  return JSON.parse(bytes.toString('utf8'));
+}
+export const SECURITY_REVISION_PATH = 'preservation/security-revisions/sec-01-v1.json';
+export function securityRevision() {
+  return JSON.parse(readFileSync(resolve(ROOT,SECURITY_REVISION_PATH),'utf8'));
+}
+export function revisedFiles(manifest, revision = securityRevision()) {
+  assert.equal(revision.formatVersion,1,'Unknown security revision format');
+  assert.equal(revision.revision,'SEC-01-v1','Unknown security revision');
+  assert.equal(revision.issue,2);
+  assert.equal(revision.foundationCommit,'aefae5e9995ee2288688606ea7d877e03cf55caf');
+  assert.equal(revision.baselineSha256,ORIGINAL_BASELINE_SHA256, 'Original baseline changed');
+  assert.equal(sha256(readFileSync(MANIFEST)),ORIGINAL_BASELINE_SHA256, 'Original baseline changed');
+  assert.equal(revision.archiveSha256,manifest.archiveSha256,'Security revision cannot revise archive');
+  assert.equal(revision.changes.length,1,'Only server.py may be revised');
+  const change=revision.changes[0];
+  assert.equal(change.path,'server.py','Security revision cannot revise content');
+  assert.equal(change.oldSha256,manifest.files.find(f=>f.path==='server.py').sha256,'Revision chain mismatch');
+  assert.match(change.newSha256,/^[a-f0-9]{64}$/);
+  assert.equal(change.newSha256,'6bcaa826444a7ab81b141636510f5fb94487ca79d9cc7e3f579f2b7ad142ad10',
+    'SEC-01-v1 is immutable: a different server requires a new reviewed revision');
+  assert.notEqual(change.newSha256,change.oldSha256);
+  return manifest.files.map(f=>f.path==='server.py'?{path:f.path,sha256:change.newSha256}:f);
+}
 export function verifyFiles(manifest, root = ROOT) {
-  assert.deepEqual(sourceFiles(root), manifest.files, 'Protected legacy bytes changed');
+  assert.deepEqual(sourceFiles(root), revisedFiles(manifest), 'Protected legacy bytes changed');
 }
 export function verifyArchive(a, manifest) {
   assert.ok(canonical(describeArchive(a)) === canonical({
