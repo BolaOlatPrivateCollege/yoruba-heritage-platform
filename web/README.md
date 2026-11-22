@@ -54,8 +54,10 @@ Sacred Names and author-study records. History is the original 18-article subset
 Language is a derived title/category filter and may overlap other collections.
 Sacred profiles keep their original taxonomy and community scope. Ten research
 pathways, six community leads, glossary and 15 pronunciation entries are visible.
-The illustrative 16×16 Ifá tool, alphabet/quiz/map/timeline/bookmark interactions
-remain clearly marked legacy-only. No verse interpretations or audio are added.
+Alphabet/tone learning and text pronunciation references are available at
+/learning/alphabet/ and /learning/pronunciation/. Task 001D adds the full original
+15-question knowledge review at /learning/quiz/. Map/timeline/bookmark interactions
+and the illustrative 16×16 Ifá model remain legacy-only. No verses or audio are added.
 
 The search index contains only article IDs, titles, decks, categories and derived
 normalized title/deck/section-heading keys. It is fetched lazily on the search
@@ -108,5 +110,9 @@ Task 001C adds six unit/static and six browser tests, including 320/390px screen
 no-JavaScript fallback and text-only media/network boundaries. The existing workflow
 automatically runs them. See ../docs/TASK_001C_REVIEW.md and the Task 001C PR for
 final-head results, remaining manual accessibility/linguistic review and rollback.
-General quiz and Ifá model work remain separate. No automatic continuation, merge
-or deployment is authorized.
+Task 001D adds seven quiz unit/static and seven browser tests, retaining all 84
+existing tests. See ../docs/TASK_001D_REVIEW.md for exact quiz provenance/hash,
+validation, keyboard/session behavior, no-JS fallback, CI links and rollback.
+Quiz progress is page-memory only, with no storage or backend; the archived key
+is not independent historical verification. The separately scoped Ifá model
+remains pending. No automatic continuation, merge or deployment is authorized.
