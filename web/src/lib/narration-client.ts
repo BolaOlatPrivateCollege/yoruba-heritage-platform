@@ -36,7 +36,7 @@ if(root){
         return Array.from(group.querySelectorAll<HTMLElement>('h2,.story-prose,[data-narration-text]')).filter(el=>!el.closest('[hidden]')&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden').flatMap(el=>splitSpeech(el.textContent??'').map(text=>({text,section:option.value,label:option.textContent??'Story'} satisfies SpeechUnit)));
       });
     }
-    controls.hidden=false;refresh();
+    controls.classList.remove('narrator-pending');controls.inert=false;refresh();
     button('play').addEventListener('click',()=>{
       const voice=available[Number(voices.value)];if(!voice)return;
       document.querySelectorAll<HTMLMediaElement>('audio,video').forEach(media=>media.pause());
