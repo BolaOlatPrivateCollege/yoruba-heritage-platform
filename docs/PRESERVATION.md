@@ -1,5 +1,21 @@
 # Task 001A — exact baseline and offline import
 
+## SEC-01 follow-up: versioned code-only revision
+
+The original `preservation/baseline.json` remains byte-identical. The separate
+`preservation/security-revisions/sec-01-v1.json` proposes one reviewed exception
+for server.py only, with exact old/new hashes, original-manifest hash and the
+unchanged archive hash. Verification pins both the historical manifest and this
+specific revised server hash. Content files and every archive record still match
+the original baseline; no wording, source link, rights or review state changes.
+
+The rest of this document records Task 001A's original implementation. After
+SEC-01, the original-manifest candidate command intentionally refuses current
+server bytes; it cannot fold a security revision into the original baseline.
+Any further server change requires a new separately reviewed version, not editing
+SEC-01-v1 in place or regenerating baseline.json. See docs/SEC_01_REVIEW.md for
+the effective preservation contract, tests, security limits and rollback.
+
 Issue #3; branch `codex/001a-ci-preservation-import`. The starting main commit is
 `587d9969b43a1cf302381568fb9e3aa3f5c1afe9`. Audit PR #1 remains separate;
 its report was read from `codex/000-baseline-audit` without assuming it was merged.

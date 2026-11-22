@@ -1,0 +1,16 @@
+{
+  "formatVersion": 1,
+  "revision": "SEC-01-v1",
+  "issue": 2,
+  "foundationCommit": "aefae5e9995ee2288688606ea7d877e03cf55caf",
+  "baselineSha256": "80dd12a96f7ed804bb2602f85edbaef5c3371fa9799dc97633d8349297571a33",
+  "archiveSha256": "89f33fa4699955155ad42d16159999b74d74e9b5c1119bd976e81b634c6212c2",
+  "changes": [
+    {
+      "path": "server.py",
+      "oldSha256": "0d19f5daa71916d77fe7a9cc2a7eead3e5a0edc26bdf831ed06cc558fa30b5ba",
+      "newSha256": "6bcaa826444a7ab81b141636510f5fb94487ca79d9cc7e3f579f2b7ad142ad10"
+    }
+  ],
+  "reason": "Strict public allowlist, canonical paths, GET/HEAD parity and no-follow file opening. Proposed for separate technical review; not public deployment approval."
+}
