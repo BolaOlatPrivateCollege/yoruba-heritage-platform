@@ -14,7 +14,8 @@ if(alphabet){
   cards.forEach(card=>card.querySelector<HTMLButtonElement>('[data-select]')!.addEventListener('click',()=>{
     cards.forEach(c=>c.querySelector('[data-select]')!.setAttribute('aria-pressed',String(c===card)));
     const text=`${card.dataset.letter} · ${card.dataset.kind} · ${card.querySelector('.letter-guidance')!.textContent}`;
-    document.querySelector<HTMLElement>('#letter-detail')!.textContent=text;
+    document.querySelector<HTMLElement>('#selected-letter')!.textContent=card.dataset.letter??'';
+    document.querySelector<HTMLElement>('#selected-guidance')!.textContent=` · ${card.dataset.kind} · ${card.querySelector('.letter-guidance')!.textContent}`;
     status.textContent=`Selected ${text}.`;
   }));
 }
