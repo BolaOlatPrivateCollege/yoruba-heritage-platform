@@ -1,19 +1,17 @@
-# Technical project status — 22 November 2026
+# Engineering status — Task 001A
 
-| Workstream | Status | Verified notes |
-| --- | --- | --- |
-| Heritage website | Local prototype retained | Original HTML, CSS, content and Python pilot server remain present |
-| Codex engineering instructions | Complete | `AGENTS.md` and `docs/CODEX_TASK_001.md` |
-| Baseline integrity tests | Complete | Node's built-in test runner checks coverage, references and source exclusions |
-| Pull request quality CI | Prepared | Will run in GitHub Actions after files are pushed |
-| Private GitHub repository | **Blocked pending one-time creation** | Connected GitHub account is readable but this integration cannot create repositories |
-| Astro application | Not started | First scoped Codex PR, should not touch original app |
-| Managed backend | Not started | No public accounts, database, uploads or production infrastructure |
-| Public hosting | Not started | No public deployment performed |
+| Workstream | Status |
+| --- | --- |
+| GitHub repository | Exists; main inspected at 587d9969b43a1cf302381568fb9e3aa3f5c1afe9 |
+| Task 000 audit | PR #1 is separate; read from its branch, not assumed merged |
+| Legacy prototype | Unchanged; 113 chapters / 128 sources / six community leads / 24 sacred profiles |
+| Task 001A | CI, frozen manifest, offline importer and negative tests proposed for review |
+| GitHub CI | Workflow added in this branch; see task PR for exact run/check results |
+| Astro interface | Not started; explicitly outside Task 001A |
+| Hosting / backend / production | Not connected or deployed |
+| Security Issue #2 | Open, unchanged; blocks public deployment of the pilot |
 
-## Next action
-Owner creates `BolaOlatPrivateCollege/yoruba-heritage-platform` as a private empty repository; then upload/push the foundation files and start Codex task 001. Do not report CI as green until it has actually run on GitHub.
+Reproduce with `docs/PRESERVATION.md`. No merge or deployment is authorized.
+Main reports no branch protection; required reviews/check enforcement remains an owner administrative decision.
 
-
-## Sacred World local research expansion
-24 new source-linked editorial research profiles and a searchable Sacred World directory have been added to the local foundation. These are not final scholarly certification, new live website publishing or a GitHub PR. Repository creation still requires an owner action.
+Historical setup notes describing repository creation as blocked predate its actual creation. Read older reports as milestone records, not proof of current CI, scholarly review or release readiness.

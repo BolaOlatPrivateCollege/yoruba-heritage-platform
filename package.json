@@ -7,7 +7,11 @@
     "check:syntax": "node --check app.js && node --check content.js && node --check knowledge.js && node --check extended-sacred-arts.js && node --check sacred-atlas.js && node --check sacred-atlas-ui.js && node --check deep-heritage.js && node --check names-etymology.js && node --check research-authors.js && node --check deep-heritage-ui.js && node --check community.js",
     "test:content": "node --test tests/content.test.mjs",
     "verify": "npm run check:syntax && npm run test:content",
-    "test": "npm run verify"
+    "test": "npm run verify && npm run verify:preservation",
+    "archive:verify": "node scripts/verify-preservation.mjs",
+    "archive:import": "node scripts/import-archive.mjs",
+    "test:preservation": "node --test tests/preservation.test.mjs",
+    "verify:preservation": "npm run archive:verify && npm run test:preservation && npm run archive:import && node scripts/check-tracked-files.mjs"
   },
   "engines": {
     "node": ">=22"
