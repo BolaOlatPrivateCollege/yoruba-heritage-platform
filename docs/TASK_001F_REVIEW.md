@@ -34,7 +34,10 @@ and story IDs with explanations and reading times. Archive links remain marked
 as preserved drafts rather than newly verified readings. Original article routes,
 section order, body wording and source catalogue are unchanged. The three home
 archive suggestions are now selected explicitly rather than taking the first
-three records. Existing overview heading and library access are preserved.
+three records. Existing overview heading and library access are preserved. The
+original homepage is retained byte-for-byte as the internal reference
+`docs/editorial/001e-home-reference.astro.txt`, with a Git-blob hash test. A new
+illustrated Àdìrẹ cover links directly to the featured story from the hero.
 
 ## Claim-to-passage provenance
 
@@ -170,3 +173,38 @@ root prototype remain available. No Cloudflare, DNS, Codespaces, production
 service, hosting or deployment setting changed. **Nothing merged or deployed.**
 Technical review, explicit owner merge authorisation and public editorial release
 are separate gates; public deployment requires its own decision.
+
+
+## Verified implementation evidence
+
+Implementation head `902b9416ce48c8c69416486b91dfa517021251b9` passed both
+workflows: 135 tests, zero failures/skips; Astro/TypeScript reported zero errors,
+warnings or hints. Totals: 12 legacy + 24 preservation + 9 security revision +
+13 HTTP security + 39 web unit/static + 38 Chromium. Both locked installs, the
+static build, canonical output parity and audit reproducibility passed.
+
+| Story | Estimated reading words | At 200 words/minute |
+| --- | ---: | ---: |
+| Ilé-Ifẹ̀ | 986 | 5 min |
+| Àdìrẹ | 920 | 5 min |
+| Gẹ̀lẹ̀dẹ́ | 1,010 | 6 min |
+| Ọ̀ṣun–Òṣogbo | 1,042 | 6 min |
+
+- [Archive quality — passed](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45024622154)
+- [Reading interface — passed](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45024622159)
+- [Desktop/mobile screenshot artifact](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45024622159/artifacts/14754734117)
+- [PR #16 current final-head checks](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/pull/16/checks)
+
+These run links record the initial verified implementation. The final homepage
+cover/reference-test and documentation update is fully rerun; exact final-head
+SHA, workflow links and artifact evidence are recorded on PR #16. No tests or
+workflow steps are disabled. This avoids a self-referential documentation commit
+while retaining verifiable final-head results on the PR.
+
+Screenshots include home, Stories index and Àdìrẹ at 1440/320/390px, Ilé-Ifẹ̀ at
+1440px, and Gẹ̀lẹ̀dẹ́ / Ọ̀ṣun–Òṣogbo at 390px, alongside all existing feature
+evidence. The private screenshot artifact has the unchanged 14-day retention,
+expiring 6 December 2026. Capture is automated, not a claim of manual visual audit.
+Astro generated responsive indigo WebP variants of approximately 8/28/57/105 KB
+from the source illustration in this run; the final homepage adds another
+appropriately sized variant through the same existing pipeline.

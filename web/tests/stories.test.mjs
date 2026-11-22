@@ -91,6 +91,9 @@ test('machine and human audits reproduce byte-for-byte and remain internal repos
   execFileSync(process.execPath,['scripts/editorial-audit.mjs','--check'],{cwd:resolve('..'),stdio:'pipe'});
   const md=readFileSync('../docs/editorial/001f-article-audit.md','utf8');
   for(const a of archive.articles)assert.ok(md.includes(a.id));
+  const originalHome=readFileSync('../docs/editorial/001e-home-reference.astro.txt');
+  const blob=createHash('sha1').update(`blob ${originalHome.length}\0`).update(originalHome).digest('hex');
+  assert.equal(blob,'c8f6fcb0e404fb3b66b1c97449a2b1e6a9e41fb5','Exact original homepage retained as internal reference');
   for(const file of walk(dist))assert.doesNotMatch(file.replaceAll('\\','/'),/001f-article-audit|editorial-notes\.json/);
 });
 
