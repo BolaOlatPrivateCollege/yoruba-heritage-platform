@@ -1,27 +1,30 @@
 import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { z } from 'zod';
 
 export const Id = z.string().regex(/^[a-z0-9-]+$/);
 const Text = z.string();
-export const Section = z.object({h:Text,p:Text,sourceIds:z.array(Id).min(1)}).passthrough();
+export const Section = z.object({h:Text,p:Text,sourceIds:z.array(Id).min(1)}).catchall(z.unknown());
 export const Article = z.object({id:Id,title:Text,deck:Text,category:Text,
   sections:z.array(Section).min(1),sourceIds:z.array(Id).min(1),evidenceType:Text,
-  evidenceNote:Text,era:Text.optional(),question:Text.optional(),regions:z.array(Text).optional()}).passthrough();
+  evidenceNote:Text,era:Text.optional(),question:Text.optional(),regions:z.array(Text).optional()}).catchall(z.unknown());
 export const Source = z.object({id:Id,institution:Text,title:Text,kind:Text,detail:Text,
-  url:z.string().url().refine(value=>new URL(value).protocol==='https:')}).passthrough();
+  url:z.url().refine(value=>new URL(value).protocol==='https:')}).catchall(z.unknown());
 const Profile=z.object({id:Id,name:Text,kind:Text,scope:Text,summary:Text,confidence:Text,
-  communityNeeded:Text,misconceptions:z.array(Text),sourceIds:z.array(Id),articleId:Id}).passthrough();
+  communityNeeded:Text,misconceptions:z.array(Text),sourceIds:z.array(Id),articleId:Id}).catchall(z.unknown());
 const Voice=z.object({id:Id,community:Text,type:Text,title:Text,summary:Text,context:Text,
-  status:Text,sourceIds:z.array(Id),readUrl:z.string().url()}).passthrough();
+  status:Text,sourceIds:z.array(Id),readUrl:z.url()}).catchall(z.unknown());
 export const Archive=z.object({articles:z.array(Article),sources:z.array(Source),
   knowledgeChapters:z.array(Article),sacredProfiles:z.array(Profile),communityVoices:z.array(Voice),
   sacredArticles:z.array(Article),deepHeritageArticles:z.array(Article),
   nameOriginArticles:z.array(Article),researchAuthorArticles:z.array(Article),
-  deepTracks:z.array(z.object({title:Text,desc:Text,ids:z.array(Id)}).passthrough()),
-  oduMainNames:z.array(Text),pronunciationEntries:z.array(z.object({text:Text,meaning:Text,note:Text}).passthrough()),
-  glossary:z.array(z.object({term:Text,meaning:Text}).passthrough())}).passthrough();
+  deepTracks:z.array(z.object({title:Text,desc:Text,ids:z.array(Id)}).catchall(z.unknown())),
+  oduMainNames:z.array(Text),pronunciationEntries:z.array(z.object({text:Text,meaning:Text,note:Text}).catchall(z.unknown())),
+  glossary:z.array(z.object({term:Text,meaning:Text}).catchall(z.unknown()))}).catchall(z.unknown());
 export type ArticleRecord=z.infer<typeof Article>;
-const input:unknown=JSON.parse(readFileSync(new URL('../../.generated/archive.json',import.meta.url),'utf8'));
+// Build and tests run from web/. A bundled import.meta.url moves during
+// prerendering; keep this server-only build input anchored to the package cwd.
+const input:unknown=JSON.parse(readFileSync(resolve(process.cwd(),'.generated/archive.json'),'utf8'));
 export const archive=Archive.parse(input);
 export function validateReferences(data:z.infer<typeof Archive>){
   const ids=new Set(data.articles.map(a=>a.id)),sources=new Set(data.sources.map(s=>s.id));
