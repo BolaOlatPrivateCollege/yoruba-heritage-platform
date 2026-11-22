@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync, rmSync, mkdirSync, copyFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { loadArchive } from '../scripts/load-archive.mjs';
 import { importDocument, writeImport } from '../scripts/import-archive.mjs';
-import { ROOT, canonical, digest, readManifest, describeArchive, verifyArchive, verifyFiles, loadPreservedArchive } from '../scripts/preservation.mjs';
+import { ROOT, PROTECTED_FILES, canonical, digest, readManifest, describeArchive, verifyArchive, verifyFiles, loadPreservedArchive } from '../scripts/preservation.mjs';
 
 const manifest = readManifest();
 const copy = () => JSON.parse(canonical(loadArchive(ROOT)));
@@ -74,7 +74,12 @@ for (const [label, mutate] of Object.entries(mutations)) test(`fails closed: ${l
 });
 test('protected bytes are checked before any altered module can execute', () => {
   const dir = mkdtempSync(join(tmpdir(), 'heritage-hash-'));
-  try {writeFileSync(join(dir,'content.js'), 'throw new Error("untrusted")'); assert.throws(() => verifyFiles(manifest,dir));}
+  try {
+    for (const path of PROTECTED_FILES) {mkdirSync(dirname(join(dir,path)),{recursive:true}); copyFileSync(join(ROOT,path),join(dir,path));}
+    verifyFiles(manifest,dir);
+    writeFileSync(join(dir,'content.js'), 'throw new Error("untrusted")');
+    assert.throws(() => verifyFiles(manifest,dir), /Protected legacy bytes changed/);
+  }
   finally {rmSync(dir,{recursive:true,force:true});}
 });
 test('all relationships validate independent of the frozen hash', () => {
