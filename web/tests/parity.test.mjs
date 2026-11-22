@@ -91,6 +91,7 @@ test('diacritic-insensitive search preserves display and handles names, partial 
   const index=JSON.parse(readFileSync(join(dist,'search-index.json'),'utf8'));
   assert.equal(normalize('Ọ̀ṢUN'),normalize('osun'));
   assert.ok(matches(index,'Olodumare').some(e=>e.title.includes('Olódùmarè')));
+  assert.ok(matches(index,'Olodumare')[0].title.includes('Olódùmarè'),'Title matches precede incidental heading matches');
   assert.ok(matches(index,'orisa').length>0);assert.ok(matches(index,'ifa').length>0);
   assert.equal(matches(index,'').length,0);
   assert.equal(matches(index,'<script>alert(1)</script>').length,0);

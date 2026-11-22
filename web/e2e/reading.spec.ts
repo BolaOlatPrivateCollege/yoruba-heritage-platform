@@ -39,6 +39,9 @@ test('mobile native navigation, Escape focus return and narrow-screen article',a
   await summary.press('Enter');await page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Sources',exact:true}).click();
   await expect(page.getByRole('heading',{level:1})).toContainText('Sources');
   await page.goto('/articles/deep-name-olodumare/');await expect(page.locator('.canonical-title')).toBeVisible();
+  await page.locator('.mobile-toc summary').focus();await page.keyboard.press('Enter');
+  await expect(page.getByRole('navigation',{name:'Article sections'})).toBeVisible();
+  await page.locator('.mobile-toc summary').press('Enter');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:'screenshots/mobile-article.png',fullPage:true});
 });
