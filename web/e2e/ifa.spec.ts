@@ -3,6 +3,8 @@ import {mkdir} from 'node:fs/promises';
 const route = '/learning/ifa-matrix/';
 
 test('all 256 buttons select exact names, addresses and four-bit codes without errors', async ({page}) => {
+  // Exhaustive real-pointer interaction and assertions for every cell, not a smoke test.
+  test.setTimeout(90_000);
   const errors:string[]=[]; page.on('pageerror',e=>errors.push(e.message));
   await page.goto(route);
   const names=await page.locator('#ifa-row option').allTextContents();
