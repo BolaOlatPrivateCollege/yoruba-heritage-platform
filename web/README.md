@@ -56,8 +56,8 @@ Sacred profiles keep their original taxonomy and community scope. Ten research
 pathways, six community leads, glossary and 15 pronunciation entries are visible.
 Alphabet/tone learning and text pronunciation references are available at
 /learning/alphabet/ and /learning/pronunciation/. Task 001D adds the full original
-15-question knowledge review at /learning/quiz/. Map/timeline/bookmark interactions
-and the illustrative 16×16 Ifá model remain legacy-only. No verses or audio are added.
+15-question knowledge review at /learning/quiz/. Map/timeline/bookmark interactions remain legacy-only. Task 001E adds the illustrative
+16×16 Ifá mathematical explorer at /learning/ifa-matrix/. No verses or audio are added.
 
 The search index contains only article IDs, titles, decks, categories and derived
 normalized title/deck/section-heading keys. It is fetched lazily on the search
@@ -114,5 +114,32 @@ Task 001D adds seven quiz unit/static and seven browser tests, retaining all 84
 existing tests. See ../docs/TASK_001D_REVIEW.md for exact quiz provenance/hash,
 validation, keyboard/session behavior, no-JS fallback, CI links and rollback.
 Quiz progress is page-memory only, with no storage or backend; the archived key
-is not independent historical verification. The separately scoped Ifá model
-remains pending. No automatic continuation, merge or deployment is authorized.
+is not independent historical verification. The separately scoped Ifá model is implemented in Task 001E. No automatic continuation, merge or deployment is authorized.
+
+
+Task 001E adds the illustrative 256-pair classroom explorer, linked from Learning
+and desktop/mobile navigation. Exact original labels/order come only from the
+approved build-time archive adapter. Binary codes encode zero-based positions,
+not authenticated sacred signs, liturgical ranking or computer-invention priority.
+The semantic table has native buttons, roving focus, arrow/Home/End navigation,
+Enter/Space selection, a polite live region and visible non-colour feedback.
+Native row/column selectors expose every pair on narrow screens without scrolling.
+With JavaScript unavailable, inactive controls stay hidden and the labels, maths,
+cultural limits and source links remain readable. Selection is page-memory only.
+No new dependency, storage, media, external request, API or infrastructure is added.
+
+Eight unit/static and ten browser tests extend the original 98 to 116, all passing
+with no failures or skips on the verified implementation head.
+The unchanged workflows run locked installs, strict Astro/TypeScript checks, build,
+unit tests, preservation/security checks and Chromium; screenshots at 1440/320/390px
+are in the private reading-screenshots artifact. See ../docs/TASK_001E_REVIEW.md
+and the PR for actual final-head CI results, commands, evidence and limitations.
+Verified implementation CI: [Archive quality](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125150),
+[Reading interface](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125261),
+and [1440/320/390px screenshots](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions/runs/45019125261/artifacts/14752369029).
+See [PR #14 checks](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/pull/14/checks)
+for the complete rerun on the final documentation head.
+Manual screen-reader/zoom/RTL and cultural/practitioner review remain outstanding;
+no WCAG or ritual authenticity certification is claimed. Rollback: revert only
+001E changes or reopen the untouched root prototype locally. Nothing is merged
+or deployed; hosting and automatic deployment are unchanged.

@@ -1,0 +1,75 @@
+---
+import Site from '../../layouts/Site.astro';
+import { archive } from '../../lib/archive';
+import { pairing } from '../../lib/ifa-matrix';
+import '../../styles/ifa.css';
+const names = archive.oduMainNames;
+if (names.length !== 16) throw new Error('Expected exactly 16 preserved teaching labels');
+---
+<Site title="Illustrative Ifá mathematical explorer" active="Ifá explorer">
+  <section class="wrap page-head">
+    <p class="kicker">MATHEMATICS · MODERN TEACHING MODEL</p>
+    <h1><span lang="yo">Ifá</span>: 16 × 16 pairings.</h1>
+    <p class="lead">Explore 256 ordered pairs using the archive’s original 16 teaching labels. A classroom comparison with clear cultural limits.</p>
+    <p><a href="/learning/">Return to learning overview</a></p>
+  </section>
+  <div class="wrap" data-ifa>
+    <section class="ifa-intro" aria-labelledby="ifa-maths">
+      <div>
+        <h2 id="ifa-maths">Four positions. Two choices.</h2>
+        <p>Each of four positions can hold 0 or 1, giving 2⁴ = 16 possible four-bit codes. Two independent codes give 16 × 16 = 2⁸ = 256 ordered pairs.</p>
+        <p>Indices run from 0 to 15 on each axis. Pair numbers run from 1 to 256: <code>row × 16 + column + 1</code>. The same name may appear on both axes; reversing two different names gives a different ordered pair.</p>
+      </div>
+      <aside class="notice ifa-caveat" id="ifa-caveat" aria-label="Cultural and historical limits">
+        <strong>Modern educational encodings only.</strong>
+        <p>These arbitrary positional codes are not authenticated ritual sign mappings. The preserved sequence establishes no liturgical ranking or authenticated pairing/sign-to-binary correspondence.</p>
+        <p>No complete verse texts, divination or predictions are provided. Mathematical similarity is not evidence that Ifá invented modern computers.</p>
+      </aside>
+    </section>
+    <p id="ifa-fallback" class="notice">Interaction requires JavaScript. The 16 original labels, mathematics and source-linked explanation remain readable below. No working selection controls are available while scripts are disabled or have not loaded.</p>
+    <section id="ifa-controls" hidden aria-labelledby="ifa-explore">
+      <h2 id="ifa-explore">Choose a pairing</h2>
+      <p>Use the row and column selectors for the same 256 choices without scrolling the matrix.</p>
+      <div class="ifa-workbench">
+        <div class="ifa-selectors">
+          <label for="ifa-row">Row name (index 0–15)
+            <select id="ifa-row" aria-describedby="ifa-caveat">{names.map((name, i) => <option value={i} lang="yo">{name}</option>)}</select>
+          </label>
+          <label for="ifa-column">Column name (index 0–15)
+            <select id="ifa-column" aria-describedby="ifa-caveat">{names.map((name, i) => <option value={i} lang="yo">{name}</option>)}</select>
+          </label>
+        </div>
+        <div class="ifa-detail" aria-labelledby="ifa-selected-heading">
+          <p class="kicker">SELECTED PAIRING · CLASSROOM ADDRESS</p>
+          <h3 id="ifa-selected-heading"><span id="ifa-row-name" lang="yo"></span> / <span id="ifa-column-name" lang="yo"></span></h3>
+          <dl class="ifa-codes"><div><dt>Row positional code</dt><dd><code id="ifa-row-code"></code></dd></div><div><dt>Column positional code</dt><dd><code id="ifa-column-code"></code></dd></div></dl>
+          <p id="ifa-status" role="status" aria-live="polite" aria-atomic="true"></p>
+          <p class="fine">Illustrative position only — not an authentic sacred sign or spiritual interpretation.</p>
+        </div>
+      </div>
+      <p id="ifa-help">Matrix keyboard: Tab enters once. Arrow keys move focus without changing the selected pair; Enter or Space selects. Home/End move to the first/last column in the row. Control + Home/End reach the first/last pair. Tab leaves the matrix. Scroll sideways to see more columns.</p>
+      <div class="ifa-scroll" role="region" aria-label="Scrollable pairing matrix" tabindex="0" aria-describedby="ifa-help">
+        <table aria-describedby="ifa-help ifa-caveat">
+          <caption>256 illustrative ordered pairs. Row and column headings show zero-based indices and original teaching labels.</caption>
+          <thead><tr><th scope="col">Row ↓ / column →</th>{names.map((name, i) => <th scope="col"><span>{i}</span><span lang="yo">{name}</span></th>)}</tr></thead>
+          <tbody>{names.map((name, r) => <tr><th scope="row"><span>{r}</span><span lang="yo">{name}</span></th>{names.map((column, c) => {
+            const p = pairing(r, c);
+            return <td><button type="button" data-pair={p.number} tabindex={p.number === 1 ? 0 : -1} aria-pressed={p.number === 1 ? 'true' : 'false'} aria-label={`Pair ${p.number}: row ${name}, column ${column}`}><span>{p.number}</span><span class="ifa-check" aria-hidden="true"> ✓</span></button></td>;
+          })}</tr>)}</tbody>
+        </table>
+      </div>
+    </section>
+    <section class="article-section" aria-labelledby="ifa-labels">
+      <h2 id="ifa-labels">The preserved teaching labels</h2>
+      <p>The original sequence is retained on both axes without renaming, translations or a claim of ritual ordering.</p>
+      <ol class="odu-list">{names.map(name => <li lang="yo">{name}</li>)}</ol>
+    </section>
+    <section class="article-section" aria-labelledby="ifa-research">
+      <h2 id="ifa-research">Read the evidence and its limits</h2>
+      <p>These existing research chapters carry their preserved evidence categories, source links and review limitations. Community traditions, religious beliefs and scholarly interpretations need their own provenance; this mathematical explorer does not authenticate them.</p>
+      <ul><li><a href="/articles/deep-ifa-odu-binary/">Ifá, Odù and mathematical comparisons</a></li><li><a href="/articles/deep-ifa-tradition/">Ifá tradition and source context</a></li></ul>
+      <p>Authentic sacred interpretations, lineage-specific sign patterns, ordering and verse translations require appropriate practitioners, documented provenance and a separate cultural and scholarly editorial review.</p>
+    </section>
+  </div>
+</Site>
+<script>import '../../lib/ifa-client';</script>
