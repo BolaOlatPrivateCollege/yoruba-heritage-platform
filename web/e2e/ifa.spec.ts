@@ -6,11 +6,14 @@ test('all 256 buttons select exact names, addresses and four-bit codes without e
   const errors:string[]=[]; page.on('pageerror',e=>errors.push(e.message));
   await page.goto(route);
   const names=await page.locator('#ifa-row option').allTextContents();
+  expect(names).toHaveLength(16);
   for (let i=0;i<256;i++) {
-    const button=page.locator(`[data-pair="${i+1}"]`); await button.click();
+    const button=page.locator(`[data-pair="${i+1}"]`);
+    await button.evaluate(el=>el.scrollIntoView({block:'nearest',inline:'center'}));
+    await button.click();
     await expect(page.locator('#ifa-status')).toContainText(`Pair ${i+1} of 256.`);
-    await expect(page.locator('#ifa-row-name')).toHaveText(names[Math.floor(i/16)]);
-    await expect(page.locator('#ifa-column-name')).toHaveText(names[i%16]);
+    await expect(page.locator('#ifa-row-name')).toHaveText(names[Math.floor(i/16)]!);
+    await expect(page.locator('#ifa-column-name')).toHaveText(names[i%16]!);
     await expect(page.locator('#ifa-row-code')).toHaveText(`${Math.floor(i/16).toString(2).padStart(4,'0')} (index ${Math.floor(i/16)})`);
     await expect(page.locator('#ifa-column-code')).toHaveText(`${(i%16).toString(2).padStart(4,'0')} (index ${i%16})`);
     await expect(button).toBeFocused();

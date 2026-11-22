@@ -21,7 +21,7 @@
 .ifa-scroll th{min-width:64px;font-size:.75rem;font-weight:500;background:var(--panel2)}
 .ifa-scroll th span{display:block}
 .ifa-scroll tbody th{min-width:120px;position:sticky;left:0;z-index:1;border-right:2px solid var(--bronze)}
-.ifa-scroll button{width:56px;min-height:48px;padding:.25rem;font:inherit;background:var(--panel);color:var(--cream);border:2px solid var(--line);border-radius:3px}
+.ifa-scroll button{width:56px;min-height:48px;padding:.25rem;font:inherit;background:var(--panel);color:var(--cream);border:2px solid var(--line);border-radius:3px;scroll-margin-inline:130px 8px}
 .ifa-scroll button[aria-pressed=true]{background:var(--bronze);color:var(--ink);border-color:var(--cream);font-weight:700}
 .ifa-check{display:none}
 [aria-pressed=true] .ifa-check{display:inline}

@@ -19,8 +19,10 @@ if (root) {
     });
     row.value = String(p.row);
     column.value = String(p.column);
-    rowName.textContent = row.options[p.row].text;
-    columnName.textContent = column.options[p.column].text;
+    const rowOption = row.options.item(p.row), columnOption = column.options.item(p.column);
+    if (!rowOption || !columnOption) throw new RangeError('Missing teaching label');
+    rowName.textContent = rowOption.text;
+    columnName.textContent = columnOption.text;
     rowCode.textContent = `${p.rowCode} (index ${p.row})`;
     columnCode.textContent = `${p.columnCode} (index ${p.column})`;
     // Preserve Yoruba language metadata within the live announcement too.
@@ -39,9 +41,11 @@ if (root) {
       event.preventDefault();
       const next = movedIndex(index, event.key, event.ctrlKey);
       buttons.forEach((b, i) => { b.tabIndex = i === next ? 0 : -1; });
-      buttons[next].focus();
+      const target = buttons[next];
+      if (!target) throw new RangeError('Missing matrix cell');
+      target.focus();
       // Instant scrolling also respects reduced-motion preferences.
-      buttons[next].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+      target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
     });
   });
   for (const selector of [row, column]) {
