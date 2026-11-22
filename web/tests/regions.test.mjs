@@ -13,6 +13,19 @@ const clone=()=>structuredClone(regions[0]);
 const html=route=>load(readFileSync(resolve('dist',route,'index.html'),'utf8'));
 const walk=dir=>readdirSync(dir).flatMap(n=>{const p=join(dir,n);return statSync(p).isDirectory()?walk(p):[p];});
 
+test('biography petition locator maps printed page 78 to PDF page 106 without changing historical prose or other sources',()=>{
+  const source=regionalSources.find(s=>s.id==='region-women-biography');
+  const locator='Printed pp.73–75 and 78 (PDF pp.101–103,106); notes 21,22,31 on printed p.95 (PDF p.123); preface p.x';
+  assert.equal(source.locator,locator);assert.equal(source.version,2);
+  const paragraph=regionalParagraphs(regions[0]).find(p=>p.id==='organisation-record');
+  assert.match(paragraph.text,/petition/);assert.deepEqual(paragraph.citations,[{sourceId:source.id,passageId:'record'}]);
+  const $=html('places/'+regions[0].id),evidence=$('#evidence-region-women-biography-record');
+  assert.equal(evidence.find('dt').filter((_,e)=>$(e).text()==='Exact inspected passage').next('dd').text(),locator);
+  assert.match(evidence.text(),/source version 2/);assert.doesNotMatch(evidence.text(),/and 77 \(PDF/);
+  assert.equal(digest(regions),'4d0402257032c8feace4f92aec87e0c806a7205b488a8698cc7ac7e100ec7f15');
+  assert.equal(digest(regionalSources.filter(s=>s.id!==source.id)),'a63db4610e50342a7947e0439c539bc4ffed30c1b64695f77b297c9f4084e744');
+});
+
 test('one substantive bounded regional draft resolves every factual passage and versioned source',()=>{
   assert.equal(regions.length,1);assert.equal(regionalSources.length,6);validateRegions(regions,regionalSources);
   for(const p of regionalParagraphs(regions[0]))assert.equal(p.citations.length>0,p.kind!=='editorial-reflection');

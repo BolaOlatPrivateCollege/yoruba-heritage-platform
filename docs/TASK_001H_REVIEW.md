@@ -72,12 +72,12 @@ source paragraph, image, interview, letter or song is copied.
 | `region-rate-1952` | Hansard, 30 April 1952, vol.499 c83W, Q44 and answer | Contemporary proposal/approval distinction. The record supports what the minister reported; not collection receipts, council minutes or lived experience. Modern and historical Hansard URLs are the same source, not independent confirmation. |
 | `region-council-1949` | Hansard, 2 March 1949, vol.462 c44W, Q63 and answer | Dated administrative account of temporary authority and budget. Ministerial assessment of support is attributed, not accepted as a poll or general political truth. |
 | `region-rate-1953` | Hansard, 29 April 1953, vol.514 cc2134–2135, Q29 and supplementary exchange | Explicitly distinguish a question from a ministerial response. No independent case-file or exact punishment-count claim. No named private allegation reproduced. |
-| `region-women-biography` | Johnson-Odim / Mba, For Women and the Nation, printed pp.73–75,77 and notes 21,22,31 p.95; preface p.x | Inspected scan identifies 1997 Illinois publication and 1998 Nigerian reprint. Used constitution, representation and budget discussion; note21 identifies AWU Constitution, note22 Analysis of the Audit, note31 Charter Rules in FRK Papers. Petition paragraph identifies Daily Service, 8 July 1946. The original papers/newspaper were not independently read. Author-mediated material, not newly authenticated testimony. |
+| `region-women-biography` | Johnson-Odim / Mba, For Women and the Nation, printed pp.73–75,78 (PDF pp.101–103,106) and notes 21,22,31 p.95; preface p.x | Inspected scan identifies 1997 Illinois publication and 1998 Nigerian reprint. Used constitution, representation and budget discussion; note21 identifies AWU Constitution, note22 Analysis of the Audit, note31 Charter Rules in FRK Papers. Petition paragraph identifies Daily Service, 8 July 1946. The original papers/newspaper were not independently read. Author-mediated material, not newly authenticated testimony. |
 | `region-abba` | Immaculata Abba, Time and the 1947 Abeokuta Women’s Revolt, opening interpretation and Visions of the Future | Nigerian researcher’s attributed analytical argument only. Exclude broad chronology, sexualised song, unexamined pamphlet quotations and identifying allegations. Her Walter Johnson reference is not Samuel Johnson. |
 | `region-byfield-report` | Linda B. Glaser, Cornell report, 23 March 2017, main paragraphs on Judith Byfield’s research | Mediated report of scholarship, not the original article. Broad wealth/tax generalisations excluded. Abba also draws on Byfield; these reports cannot become independent corroboration by appearing on different websites. |
 
 Book PDF page numbers in the source record are one-based; screenshots inspected
-zero-based pages 105 (printed77) and122 (printed95). Text from PDF pages100–105
+zero-based pages 105 (printed78; one-based PDF106) and122 (printed95). Text from zero-based PDF pages100–105
 and121–124 was opened; a requested screenshot of page100 timed out. The scan has
 OCR defects and some reading-order problems. Used claims were restricted to
 clearly readable paragraphs and notes. Broad historical background, private
@@ -193,3 +193,19 @@ integration, revert only Task001H additions and two discovery links, preserving
 unrelated subsequent work. No migration, database, auth, service or dependency
 change. Cloudflare, DNS, Codespaces, hosting and deployment workflows untouched.
 **Nothing merged, deployed or publicly published.**
+
+## Bibliography locator correction for re-review
+
+Addresses independent review #6014077589 on PR #20. The petition paragraph
+referencing Daily Service, 8 July 1946 is on **printed page78, one-based PDF
+page106 (zero-based screenshot105)**. Printed page77 is not the petition
+locator. Corrected `region-women-biography` to printed pp.73–75 and78,
+PDF pp.101–103,106; source revision is now2. The source URL, supported claims,
+provenance boundaries, story and other five source records remain unchanged.
+
+An exact regression checks this source locator, its reference from the petition
+paragraph and its rendered evidence detail; preservation fingerprints freeze the
+story and other source records. All174 existing tests are retained, with one
+added regression (expected175 total). Full final-head CI and fresh evidence,
+story, discovery and mobile screenshots are recorded on PR #20. No merge,
+deployment, public release or new editorial clearance is authorised.
