@@ -1,0 +1,11 @@
+---
+import Site from '../../layouts/Site.astro';
+import {archive} from '../../lib/archive';
+import '../../styles/learning.css';
+---
+<Site title="Yoruba pronunciation references" active="Learning"><header class="wrap page-head"><p class="kicker">LANGUAGE LAB · TEXT ONLY</p><h1>Read with <em>care.</em></h1><p class="lead">15 preserved pronunciation references, with their original spelling, meaning and guidance. Native recording pending.</p><nav class="pills" aria-label="Language learning"><a href="/learning/">Learning overview</a><a href="/learning/alphabet/">Alphabet & tone practice</a><a href="/collections/language/">Language readings</a></nav></header>
+<section class="wrap section" aria-labelledby="references-heading"><h2 id="references-heading">Pronunciation references</h2><p>These text notes do not replace reviewed native-speaker recordings. No audio or microphone is used.</p>
+<div hidden data-enhanced><label for="pronunciation-query">Find a reference (tone marks optional)</label><input type="search" id="pronunciation-query" autocomplete="off"/><button type="button" id="pronunciation-reset">Show all references</button></div><p class="learning-status" role="status" aria-atomic="true" id="pronunciation-status"></p>
+<div class="profile-grid">{archive.pronunciationEntries.map((entry,index)=><article class="profile pronunciation-reference" id={`reference-${index+1}`}><h3 lang="yo">{entry.text}</h3><p class="reference-meaning">{entry.meaning}</p><p class="fine reference-note">{entry.note}</p><span class="label">Native recording pending</span></article>)}</div>
+<noscript><p>All 15 references are available without JavaScript. Enable it to filter the list.</p></noscript><p><a href="/articles/know-alphabet/">Alphabet reading and sources</a> · <a href="/articles/know-tones/">Tone reading and sources</a></p></section></Site>
+<script>import '../../lib/learning-client';</script>

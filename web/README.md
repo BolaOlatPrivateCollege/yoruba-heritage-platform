@@ -32,8 +32,9 @@ Chromium; Linux CI installs its system dependencies explicitly.
 ## Data flow and boundaries
 
 `scripts/prepare.mjs` calls the **approved root importer**. It writes only the
-verified archive object into ignored `web/.generated/archive.json`. It explicitly
-does not copy `supplementarySourceText` into the new app. The canonical raw archive
+verified archive object into ignored `web/.generated/archive.json`. It does not copy full `supplementarySourceText` into the new app. Task 001C also
+extracts only the verified alphabet literals into ignored `.generated/alphabet.json`;
+see ../docs/TASK_001C_REVIEW.md for extraction boundaries and exact provenance. The canonical raw archive
 includes all supplementary arrays unchanged and remains outside `public/`.
 
 `src/lib/archive.ts` is a server/build-only typed Zod adapter. This is an intentional
@@ -103,6 +104,9 @@ notes, author/edition limits, Samuel Johnson exclusion, regional voices and
 community permission restrictions are preserved. No Supabase, live submissions,
 accounts, private testimony, uploaded recordings or hosting are introduced.
 
-Recommended Task 001C: separately scoped interactive learning parity and a deeper
-keyboard/screen-reader review, with approved native-audio rights handled as its
-own editorial process. No automatic continuation, merge or deployment is authorized.
+Task 001C adds six unit/static and six browser tests, including 320/390px screenshots,
+no-JavaScript fallback and text-only media/network boundaries. The existing workflow
+automatically runs them. See ../docs/TASK_001C_REVIEW.md and the Task 001C PR for
+final-head results, remaining manual accessibility/linguistic review and rollback.
+General quiz and Ifá model work remain separate. No automatic continuation, merge
+or deployment is authorized.

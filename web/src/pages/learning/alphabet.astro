@@ -1,0 +1,28 @@
+---
+import Site from '../../layouts/Site.astro';
+import {alphabet} from '../../lib/alphabet';
+import {toneExamples} from '../../lib/tones';
+import '../../styles/learning.css';
+---
+<Site title="Yoruba alphabet & tone marks" active="Learning">
+  <header class="wrap page-head"><p class="kicker">LANGUAGE LAB · TEXT ONLY</p><h1>Letters, marks<br/>and <em>meaning.</em></h1><p class="lead">Explore the 25 letters of Standard Nigerian Yorùbá. Keep the letter’s sound and its tone distinct.</p><nav class="pills" aria-label="Language learning"><a href="/learning/">Learning overview</a><a href="#tones">Tone marks & practice</a><a href="/learning/pronunciation/">15 pronunciation references</a></nav></header>
+  <section class="wrap section" aria-labelledby="alphabet-heading" data-alphabet>
+    <h2 id="alphabet-heading">The alphabet</h2><p>7 oral vowels · 18 consonants · GB counts as one letter.</p>
+    <div class="learning-controls" hidden data-enhanced role="group" aria-label="Filter letters"><button type="button" data-filter="all" aria-pressed="true">All 25</button><button type="button" data-filter="vowel" aria-pressed="false">Vowels 7</button><button type="button" data-filter="consonant" aria-pressed="false">Consonants 18</button></div>
+    <p class="learning-status" role="status" aria-atomic="true" id="alphabet-status"></p>
+    <div class="letter-grid">{alphabet.map(row=><article class="letter-card" data-kind={row.kind} data-letter={row.letter}><h3 lang="yo">{row.letter}</h3><p class="letter-kind">{row.kind}</p><p class="letter-guidance">{row.guidance}</p><button type="button" hidden data-enhanced data-select aria-pressed="false" aria-label={`Select ${row.letter}`}><span lang="yo">Select {row.letter}</span></button></article>)}</div>
+    <aside class="notice" hidden data-enhanced aria-labelledby="selected-heading"><h3 id="selected-heading">Selected letter</h3><p id="letter-detail"><span id="selected-letter" lang="yo"></span><span id="selected-guidance">Choose a letter. Its original guidance stays visible on each card.</span></p></aside>
+    <p class="notice">Ẹ, Ọ and Ṣ carry an underdot to mark the letter’s sound. An acute or grave accent placed above a tone-bearing vowel marks high or low tone. In standard writing mid tone is usually unmarked. Nasal-vowel sequences such as an, ẹn, in, ọn and un are written with combinations; they are not five extra alphabet letters.</p>
+    <a href="/articles/know-alphabet/">Read the full alphabet chapter and citations</a>
+  </section>
+  <section class="wrap section" id="tones" aria-labelledby="tone-heading"><p class="kicker">LEARNING BY COMPARING</p><h2 id="tone-heading">Writing and tone</h2><p>Tone marks affect pronunciation and meaning. Underdots distinguish letters; they are not tone marks.</p>
+    <div class="tone-grid">{toneExamples.map(example=><article class="profile"><h3>{example.answer} tone</h3><p class="tone-character" lang="yo">{example.character}</p><p>{example.explanation}</p></article>)}</div>
+    <p class="fine">Illustrative characters from the preserved alphabet lesson, not word translations or listening assessment. Pronunciation notes are approximations; dialects vary. Competent Yoruba-speaking educators should review teaching guidance.</p>
+    <section class="practice notice" hidden data-enhanced data-practice aria-labelledby="practice-heading"><h3 id="practice-heading">Recognise the written tone</h3><p>Look at the character, then choose its conventional tone label. No score is recorded.</p><p id="practice-progress"></p><p class="tone-character" lang="yo" id="practice-character"></p><div class="learning-controls" role="group" aria-label="Tone choices"><button type="button" data-answer="high">High</button><button type="button" data-answer="mid">Mid</button><button type="button" data-answer="low">Low</button></div><p class="learning-status" role="status" aria-atomic="true" id="practice-feedback"></p><div class="learning-controls"><button type="button" id="practice-next">Next character</button><button type="button" id="practice-reset">Reset practice</button></div></section>
+    <noscript><p class="notice">The alphabet, guidance and tone comparison are available above. Enable JavaScript for filters and visual tone practice.</p></noscript>
+    <ul class="link-list"><li><a href="/articles/know-tones/">Read the tone chapter and evidence limits</a></li><li><a href="/sources/orthography/">University of Wisconsin language reference</a></li><li><a href="/sources/texas/">University of Texas teaching reference</a></li></ul>
+  </section>
+</Site>
+<script>
+  import '../../lib/learning-client';
+</script>
