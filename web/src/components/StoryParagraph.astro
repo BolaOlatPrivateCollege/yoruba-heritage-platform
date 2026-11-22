@@ -1,0 +1,9 @@
+---
+import {evidenceFor,paragraphLabels,type ParagraphRecord} from '../lib/stories';
+interface Props {paragraph:ParagraphRecord;lead?:boolean}
+const {paragraph:p,lead=false}=Astro.props;
+---
+<div class:list={['story-paragraph',{'story-opening':lead}]} id={p.id} data-evidence-kind={p.kind}>
+  <p class="story-prose">{p.text}</p>
+  <div class="story-trace"><span>{paragraphLabels[p.kind]}</span>{p.citations.map(c=><a href={`#evidence-${c.sourceId}-${c.passageId}`} aria-label={`Evidence for ${p.id}: ${evidenceFor(c.sourceId).title}, ${c.passageId}`}>{evidenceFor(c.sourceId).publisher} <span aria-hidden="true">↗</span></a>)}</div>
+</div>

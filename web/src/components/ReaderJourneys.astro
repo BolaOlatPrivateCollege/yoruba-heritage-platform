@@ -1,0 +1,8 @@
+---
+import {journeys,journeyStep} from '../lib/stories';
+---
+<div class="journey-grid">{journeys.map((journey,i)=><article class="reader-journey" id={`journey-${journey.id}`}>
+  <p class="kicker">READING JOURNEY / 0{i+1}</p><h3>{journey.title}</h3><p>{journey.intro}</p>
+  <p class="fine">About {journey.steps.reduce((n,s)=>n+journeyStep(s).minutes,0)} minutes · five connected readings</p>
+  <ol>{journey.steps.map(step=>{const reading=journeyStep(step);return <li><a href={reading.href}>{reading.title}</a><span class="fine">{reading.draft?'Editorial draft':'Preserved archive'} · {reading.minutes} min</span><p>{step.why}</p></li>;})}</ol>
+</article>)}</div>

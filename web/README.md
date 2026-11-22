@@ -143,3 +143,43 @@ Manual screen-reader/zoom/RTL and cultural/practitioner review remain outstandin
 no WCAG or ritual authenticity certification is claimed. Rollback: revert only
 001E changes or reopen the untouched root prototype locally. Nothing is merged
 or deployed; hosting and automatic deployment are unchanged.
+
+
+## Task 001F — editorial stories and reading journeys
+
+Four optional, substantial research-draft features are at `/stories/`; each
+keeps claims unreviewed, rights unknown and publication approval not granted.
+The home page foregrounds stories and four five-reading journeys. No canonical
+article/source wording, original prototype or security revision is changed.
+
+`src/data/story-content.ts` contains original prose with paragraph-to-source/
+passage citations; `story-sources.ts` holds the separate 25-source draft register.
+`src/lib/stories.ts` validates status, evidence scope, section anchors, glossary
+citations, journeys and reading times. No new client script, remote request,
+tracking, form, account or storage is introduced. Static reading, evidence and
+related links work with scripts disabled.
+
+Four original SVG teaching diagrams and one original AI-generated indigo study
+are explicitly illustrative, never documentary photographs or authentic ritual
+charts. Astro's existing image pipeline creates responsive WebP variants. Media
+provenance and file hashes are in `src/data/story-media.json`. No external media
+was copied; public-release permission and cultural review remain separate.
+
+The internal 113-article audit and plan live in `../docs/editorial/`, outside
+public output. Reproduce with `node scripts/editorial-audit.mjs` at repository
+root; verify without writing via `node scripts/editorial-audit.mjs --check`.
+The audit is metadata/metric triage plus topic-specific recommendations, not
+113 independently fact-checked or publication-cleared articles.
+
+Ten added unit/static and nine added Chromium tests extend the existing 116
+(expected total 135). They include exact canonical parity, passage/status
+resolution, negative inputs, word counts, audit reproducibility, image provenance,
+no-JS reading, keyboard paths, privacy, 320/390/1440px and screenshot evidence.
+Use the existing commands and unchanged workflows above. Final-head results,
+word counts and screenshots are recorded in the Task 001F PR and
+`../docs/TASK_001F_REVIEW.md`. Tests establish engineering properties, not
+scholarly, linguistic, custodial, consent or WCAG certification.
+
+Rollback: revert only the Task 001F story/assets/discovery/tests/audit/docs
+changes; the original archive routes and local root prototype remain intact.
+No data/schema migration, merge, hosting change or deployment is performed.

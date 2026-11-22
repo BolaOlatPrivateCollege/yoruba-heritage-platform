@@ -1,0 +1,15 @@
+---
+import Site from '../../layouts/Site.astro';
+import StoryCards from '../../components/StoryCards.astro';
+import ReaderJourneys from '../../components/ReaderJourneys.astro';
+import {Image} from 'astro:assets';
+import indigoStudy from '../../assets/indigo-study.png';
+import '../../styles/stories.css';
+---
+<Site title="Stories & reading journeys" active="Stories">
+  <header class="wrap page-head editorial-intro"><p class="kicker">OBJECTS · PEOPLE · PLACES · QUESTIONS</p><h1>Stay for<br/><em>the story.</em></h1><p class="lead">Four longer readings. Many ways to look closer. Follow the details that make a history worth returning to.</p><p class="draft-banner">Editorial research drafts · not reviewed for public release</p><a class="text-link" href="/articles/">Return to all 113 preserved readings →</a></header>
+  <section class="wrap section" aria-labelledby="features"><div class="section-title"><div><p class="kicker">THE EDITORIAL PILOT</p><h2 id="features">Begin with a detail.</h2></div><p class="muted">New editorial prose sits beside the original archive. Source passages, interpretation and questions remain traceable.</p></div><StoryCards featured/></section>
+  <figure class="wrap editorial-image"><Image src={indigoStudy} alt="Original gouache-style illustration of folded blue cloth and loose cream threads; an invented textile study, not a documented Àdìrẹ design." width={1200} widths={[320,640,900,1200]} sizes="(max-width:650px) calc(100vw - 40px), (max-width:1280px) calc(100vw - 80px), 1200px" format="webp" quality={75} loading="lazy"/><figcaption>Original AI-generated editorial illustration · invented textile study, not a historical cloth, photograph or named design.</figcaption></figure>
+  <section class="wrap section" aria-labelledby="journeys"><div class="section-title"><div><p class="kicker">LET ONE READING OPEN ANOTHER</p><h2 id="journeys">Choose a thread to follow.</h2></div><p class="muted">Each route connects five real readings. Archive entries remain the original research drafts; links are reading suggestions, not new verification.</p></div><ReaderJourneys/></section>
+  <aside class="wrap notice"><h2>There is more than one kind of evidence.</h2><p>A museum record, a named organisation’s account and a scholarly interpretation each have a scope. The stories let you read the passages used, see what remains unknown and return to the preserved library.</p><p class="fine">Reading times use estimated prose word counts at 200 words per minute. They exclude source registers and navigation.</p><a href="/about/">Read the editorial limits →</a></aside>
+</Site>

@@ -1,0 +1,67 @@
+[
+  {
+    "path": "src/assets/indigo-study.png",
+    "sha256": "2184e2b57d43074e8cc72959f54f98859a9b27824d1007ac512a0eb047f3a6fe",
+    "bytes": 3202808,
+    "created": "2026-11-22",
+    "kind": "original-ai-illustration",
+    "documentary": false,
+    "rightsStatus": "unknown",
+    "publicationApproval": "not-granted",
+    "externalMediaCopied": false,
+    "captionRequirement": "Original illustration; not a photograph, historic object, site map or authenticated sacred diagram.",
+    "generationNote": "Generated gouache/cut-paper indigo textile study, no copied motif or named historical design."
+  },
+  {
+    "path": "public/editorial/ife-evidence.svg",
+    "sha256": "d24d9a26324b5d7309785d6bdf92f54826a279e05b526605d97701fe43f86b4d",
+    "bytes": 1583,
+    "created": "2026-11-22",
+    "kind": "original-educational-svg",
+    "documentary": false,
+    "rightsStatus": "unknown",
+    "publicationApproval": "not-granted",
+    "externalMediaCopied": false,
+    "captionRequirement": "Original illustration; not a photograph, historic object, site map or authenticated sacred diagram.",
+    "generationNote": "Project-drawn schematic; conceptual only. Labels and prose supply the accessible explanation."
+  },
+  {
+    "path": "public/editorial/adire-resist.svg",
+    "sha256": "abbbcbb07b785ec5cfc1dc4ebb5cbd49d8ebdfd220c59e7362d687be5ff3f6f4",
+    "bytes": 1314,
+    "created": "2026-11-22",
+    "kind": "original-educational-svg",
+    "documentary": false,
+    "rightsStatus": "unknown",
+    "publicationApproval": "not-granted",
+    "externalMediaCopied": false,
+    "captionRequirement": "Original illustration; not a photograph, historic object, site map or authenticated sacred diagram.",
+    "generationNote": "Project-drawn schematic; conceptual only. Labels and prose supply the accessible explanation."
+  },
+  {
+    "path": "public/editorial/gelede-context.svg",
+    "sha256": "ec4f97e9bcff3065b1244e364c2c0a1ea59efaac14e5a150996b3d16367508a4",
+    "bytes": 1239,
+    "created": "2026-11-22",
+    "kind": "original-educational-svg",
+    "documentary": false,
+    "rightsStatus": "unknown",
+    "publicationApproval": "not-granted",
+    "externalMediaCopied": false,
+    "captionRequirement": "Original illustration; not a photograph, historic object, site map or authenticated sacred diagram.",
+    "generationNote": "Project-drawn schematic; conceptual only. Labels and prose supply the accessible explanation."
+  },
+  {
+    "path": "public/editorial/osun-landscape.svg",
+    "sha256": "5a4fd895978e01414a1d10f85a840cd09c50043fd378097a2aa469c90b8fba52",
+    "bytes": 1353,
+    "created": "2026-11-22",
+    "kind": "original-educational-svg",
+    "documentary": false,
+    "rightsStatus": "unknown",
+    "publicationApproval": "not-granted",
+    "externalMediaCopied": false,
+    "captionRequirement": "Original illustration; not a photograph, historic object, site map or authenticated sacred diagram.",
+    "generationNote": "Project-drawn schematic; conceptual only. Labels and prose supply the accessible explanation."
+  }
+]

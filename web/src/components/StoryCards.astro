@@ -1,0 +1,11 @@
+---
+import {stories,storyHref,storyWordCount,readingMinutes} from '../lib/stories';
+interface Props {featured?:boolean}
+const {featured=false}=Astro.props;
+---
+<div class:list={['story-cards',{'story-cards-featured':featured}]}>
+{stories.map((s,i)=><article class:list={['story-card',`theme-${s.theme}`]}>
+  <div class="story-card-art" aria-hidden="true"><span class="story-art-orbit"></span><span class="story-art-line"></span><span class="story-art-number">0{i+1}</span></div>
+  <div class="story-card-copy"><p class="kicker">{s.place}</p><h3><a href={storyHref(s.id)}>{s.title}</a></h3><p>{s.deck}</p><p class="story-card-meta">Editorial research draft · {readingMinutes(storyWordCount(s))} min read</p><a class="story-card-link" href={storyHref(s.id)} aria-label={`Read ${s.title}`}>Read the story <span aria-hidden="true">→</span></a></div>
+</article>)}
+</div>
