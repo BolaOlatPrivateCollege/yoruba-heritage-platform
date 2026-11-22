@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101d21" />
+  <meta name="description" content="Àṣà & Ìtàn — Explore Yoruba history, alphabet, religion, deities, medicine, education, culture, mathematics, innovation and moderated community discussions." />
+  <meta property="og:title" content="Àṣà & Ìtàn — The Yorùbá Heritage Encyclopaedia" />
+  <meta property="og:description" content="Explore Yorùbá language, religious life, knowledge, history, science, medicine and cultural innovation with sourced deep readings." />
+  <title>Àṣà & Ìtàn — The Yorùbá Heritage Encyclopaedia</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="content.js"></script>
+  <script defer src="knowledge.js"></script>
+  <script defer src="extended-sacred-arts.js"></script>
+  <script defer src="sacred-atlas.js"></script>
+  <script defer src="deep-heritage.js"></script>
+  <script defer src="names-etymology.js"></script>
+  <script defer src="research-authors.js"></script>
+  <script defer src="sacred-atlas-ui.js"></script>
+  <script defer src="deep-heritage-ui.js"></script>
+  <script defer src="community.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement"><span class="announcement-star">✦</span> A digital archive of people, places and memory <span class="announcement-divider">/</span> <span lang="yo">Ìtàn ni ìpìlẹ̀ ìmọ̀</span></div>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner container">
+      <a href="#home" class="brand" aria-label="Àṣà & Ìtàn home"><span class="brand-symbol" aria-hidden="true">✳</span><span class="brand-copy"><strong>Àṣà <i>&</i> Ìtàn</strong><small>THE YORÙBÁ KNOWLEDGE ATLAS</small></span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#library" data-nav="library">Knowledge library</a><a href="#sacred" data-nav="sacred">Sacred world</a><a href="#alphabet" data-nav="alphabet">Alphabet</a><a href="#research" data-nav="research">Deep research</a><a href="#discover" data-nav="discover">History</a><a href="#voices" data-nav="voices">Native voices</a><a href="#forum" data-nav="forum">Community</a>
+      </nav>
+      <div class="header-actions"><button class="icon-btn search-trigger" id="searchButton" aria-label="Search the archive" title="Search (/)" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"/><path d="m16 16 5 5"/></svg></button><button class="icon-btn" id="bookmarkButton" aria-label="Open saved readings" title="Saved readings" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span class="saved-dot" id="savedDot"></span></button><button class="menu-btn" id="menuButton" aria-controls="mobileNav" aria-expanded="false" aria-label="Open menu" type="button"><span></span><span></span><span></span></button></div>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden><a href="#home">Home</a><a href="#library">Knowledge library</a><a href="#sacred">Sacred world</a><a href="#research">Deep research centre</a><a href="#alphabet">Yoruba alphabet</a><a href="#connections">Innovation and today</a><a href="#forum">Community room</a><a href="#discover">History chapters</a><a href="#voices">Native voices</a><a href="#timeline">Timeline</a><a href="#atlas">The atlas</a><a href="#people">Historical figures</a><a href="#learning">Learning room</a><a href="#sources">Sources & methods</a></nav>
+  </header>
+  <main id="main" tabindex="-1"><noscript><div class="container noscript">JavaScript is required for the interactive atlas. The site contains all its history content locally, so it can be viewed without an internet connection once opened.</div></noscript></main>
+  <footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="#home">✳ <span lang="yo">Àṣà & Ìtàn</span></a><p>History is not one voice. It is a conversation between memory, material evidence and the questions we ask.</p></div><div class="footer-links"><a href="#library">Knowledge library</a><a href="#sacred">Sacred world</a><a href="#research">Research centre</a><a href="#alphabet">Alphabet lab</a><a href="#connections">Innovation map</a><a href="#forum">Community room</a><a href="#voices">Community voices</a><a href="#sources">Sources & methodology</a></div><div class="footer-meta"><small>SOURCE-TRANSPARENT DIGITAL HERITAGE</small><p>Expanded educational edition • 22 November 2026<br/>For education and cultural exploration.</p><p><span lang="yo">Kí a má bà a gbàgbé.</span> — Lest we forget.</p></div></div><div class="container footer-bottom"><span>© 2026 Àṣà & Ìtàn. Research-led educational prototype.</span><span>Built with care for language, nuance and source transparency.</span></div></footer>
+  <div class="dialog-backdrop" id="searchBackdrop" hidden><div class="search-modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle"><div class="search-head"><h2 id="searchTitle">Search the archive</h2><button class="close-btn" id="closeSearch" type="button" aria-label="Close search">×</button></div><div class="search-input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"/><path d="m16 16 5 5"/></svg><input id="globalSearchInput" placeholder="Try ‘Ọ̀yọ́’, ‘Moremi’, ‘diaspora’…" aria-label="Search history" autocomplete="off"/><kbd>ESC</kbd></div><div id="globalSearchResults" class="search-results"></div></div></div>
+</body>
+</html>

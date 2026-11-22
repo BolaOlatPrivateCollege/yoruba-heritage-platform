@@ -1,0 +1,15 @@
+{
+  "name": "yoruba-heritage-platform-foundation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Àṣà & Ìtàn source-preserving baseline and Codex engineering checks",
+  "scripts": {
+    "check:syntax": "node --check app.js && node --check content.js && node --check knowledge.js && node --check extended-sacred-arts.js && node --check sacred-atlas.js && node --check sacred-atlas-ui.js && node --check deep-heritage.js && node --check names-etymology.js && node --check research-authors.js && node --check deep-heritage-ui.js && node --check community.js",
+    "test:content": "node --test tests/content.test.mjs",
+    "verify": "npm run check:syntax && npm run test:content",
+    "test": "npm run verify"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

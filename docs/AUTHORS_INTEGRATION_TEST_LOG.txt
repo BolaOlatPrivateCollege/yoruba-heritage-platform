@@ -1,0 +1,94 @@
+
+> yoruba-heritage-platform-foundation@0.1.0 verify
+> npm run check:syntax && npm run test:content
+
+
+> yoruba-heritage-platform-foundation@0.1.0 check:syntax
+> node --check app.js && node --check content.js && node --check knowledge.js && node --check extended-sacred-arts.js && node --check sacred-atlas.js && node --check sacred-atlas-ui.js && node --check deep-heritage.js && node --check names-etymology.js && node --check research-authors.js && node --check deep-heritage-ui.js && node --check community.js
+
+
+> yoruba-heritage-platform-foundation@0.1.0 test:content
+> node --test tests/content.test.mjs
+
+TAP version 13
+# Subtest: preserves the complete signed-off 2026-11-22 source baseline
+ok 1 - preserves the complete signed-off 2026-11-22 source baseline
+  ---
+  duration_ms: 0.731592
+  type: 'test'
+  ...
+# Subtest: source and article IDs are non-empty and unique
+ok 2 - source and article IDs are non-empty and unique
+  ---
+  duration_ms: 0.377528
+  type: 'test'
+  ...
+# Subtest: every article and community history points to registered source records
+ok 3 - every article and community history points to registered source records
+  ---
+  duration_ms: 2.183598
+  type: 'test'
+  ...
+# Subtest: sources are secure HTTP references and no excluded authored works are cited
+ok 4 - sources are secure HTTP references and no excluded authored works are cited
+  ---
+  duration_ms: 0.667295
+  type: 'test'
+  ...
+# Subtest: timeline, atlas and figure links remain resolvable
+ok 5 - timeline, atlas and figure links remain resolvable
+  ---
+  duration_ms: 0.211248
+  type: 'test'
+  ...
+# Subtest: Yoruba orthography remains present in canonical data
+ok 6 - Yoruba orthography remains present in canonical data
+  ---
+  duration_ms: 0.165028
+  type: 'test'
+  ...
+# Subtest: quiz answers are in bounds and legacy entry points remain present
+ok 7 - quiz answers are in bounds and legacy entry points remain present
+  ---
+  duration_ms: 0.387173
+  type: 'test'
+  ...
+# Subtest: Sacred World taxonomy and corrections are transparent and navigable
+ok 8 - Sacred World taxonomy and corrections are transparent and navigable
+  ---
+  duration_ms: 0.645252
+  type: 'test'
+  ...
+# Subtest: all requested deep-research disciplines are integrated with working source links
+ok 9 - all requested deep-research disciplines are integrated with working source links
+  ---
+  duration_ms: 0.637079
+  type: 'test'
+  ...
+# Subtest: the 256 Odù grid is explicitly illustrative and audibly honest
+ok 10 - the 256 Odù grid is explicitly illustrative and audibly honest
+  ---
+  duration_ms: 0.538811
+  type: 'test'
+  ...
+# Subtest: the sacred name studies distinguish linguistic hypotheses from secure meaning
+ok 11 - the sacred name studies distinguish linguistic hypotheses from secure meaning
+  ---
+  duration_ms: 0.48446
+  type: 'test'
+  ...
+# Subtest: three author dossiers are integrated with source-critical book notes
+ok 12 - three author dossiers are integrated with source-critical book notes
+  ---
+  duration_ms: 0.323468
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 118.002257
