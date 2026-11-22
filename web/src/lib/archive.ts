@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { z } from 'zod';
+import { QuizSet } from './quiz.ts';
 
 export const Id = z.string().regex(/^[a-z0-9-]+$/);
 const Text = z.string();
@@ -14,7 +15,7 @@ const Profile=z.object({id:Id,name:Text,kind:Text,scope:Text,summary:Text,confid
   communityNeeded:Text,misconceptions:z.array(Text),sourceIds:z.array(Id),articleId:Id}).catchall(z.unknown());
 const Voice=z.object({id:Id,community:Text,type:Text,title:Text,summary:Text,context:Text,
   status:Text,sourceIds:z.array(Id),readUrl:z.url()}).catchall(z.unknown());
-export const Archive=z.object({articles:z.array(Article),sources:z.array(Source),
+export const Archive=z.object({articles:z.array(Article),sources:z.array(Source),quiz:QuizSet,
   knowledgeChapters:z.array(Article),sacredProfiles:z.array(Profile),communityVoices:z.array(Voice),
   sacredArticles:z.array(Article),deepHeritageArticles:z.array(Article),
   nameOriginArticles:z.array(Article),researchAuthorArticles:z.array(Article),
@@ -29,6 +30,7 @@ export const archive=Archive.parse(input);
 export function validateReferences(data:z.infer<typeof Archive>){
   const ids=new Set(data.articles.map(a=>a.id)),sources=new Set(data.sources.map(s=>s.id));
   if(ids.size!==data.articles.length||sources.size!==data.sources.length)throw new Error('Duplicate canonical ID');
+  for(const question of data.quiz)if(!ids.has(question.link))throw new Error('Unresolved quiz article');
   for(const a of data.articles)for(const id of [...a.sourceIds,...a.sections.flatMap(s=>s.sourceIds)])if(!sources.has(id))throw new Error('Unresolved source ID');
   for(const p of data.sacredProfiles){if(!ids.has(p.articleId))throw new Error('Unresolved sacred article');for(const id of p.sourceIds)if(!sources.has(id))throw new Error('Unresolved profile source');}
   for(const v of data.communityVoices)for(const id of v.sourceIds)if(!sources.has(id))throw new Error('Unresolved community source');

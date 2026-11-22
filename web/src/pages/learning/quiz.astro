@@ -1,0 +1,31 @@
+---
+import Site from '../../layouts/Site.astro';
+import {archive,articleHref} from '../../lib/archive';
+import {quizDisplayId} from '../../lib/quiz';
+import '../../styles/quiz.css';
+const readings=[...new Set(archive.quiz.map(question=>question.link))].map(id=>archive.articles.find(article=>article.id===id)!);
+---
+<Site title="Source-linked knowledge quiz" active="Learning">
+<header class="wrap page-head"><p class="kicker">KNOWLEDGE PRACTICE · ARCHIVED ANSWERS</p><h1>Question.<br/>Read. <em>Reflect.</em></h1><p class="lead">Review all 15 original questions, one at a time. Explore the explanations and return to the source-linked readings.</p><nav class="pills" aria-label="Learning tools"><a href="/learning/">Learning overview</a><a href="/learning/alphabet/">Alphabet & tone practice</a><a href="/learning/pronunciation/">Pronunciation references</a></nav></header>
+<div class="wrap quiz-layout" data-quiz>
+<div>
+  <aside class="notice quiz-caveat" id="quiz-caveat"><h2>A preserved educational draft</h2><p>The original answers and associated articles require scholarly and community verification. A correct score means agreement with the archived answer key; it does not establish independently verified historical facts or expert certification.</p></aside>
+  <section class="quiz-intro" aria-labelledby="quiz-intro-heading"><h2 id="quiz-intro-heading">Full 15-question review</h2><p>Choose one answer to see immediate feedback and the original explanation. Answers are locked after selection. Then read the related article or move to the next question.</p><p>Progress stays in this page’s memory only. Restart or reload clears it; leaving this page starts a new review on return.</p><button class="button" type="button" id="quiz-start" hidden>Start 15-question review</button><noscript><p class="notice">The interactive quiz requires JavaScript. The original source-linked readings below remain available without it.</p></noscript><p role="alert" id="quiz-error"></p></section>
+  <section class="quiz-stage" id="quiz-stage" hidden aria-label="Knowledge quiz" aria-describedby="quiz-caveat">
+    <div class="quiz-progress"><p id="quiz-progress-text"></p><p id="quiz-score"></p></div><progress id="quiz-progress" max="15" value="0" aria-label="Answered questions"></progress>
+    {archive.quiz.map((question,index)=><section class="quiz-question" id={quizDisplayId(index)} data-original-index={index} data-correct={question.correct} hidden>
+      <h2 id={`${quizDisplayId(index)}-heading`} tabindex="-1" class="quiz-question-heading">{question.q}</h2>
+      <div class="quiz-answers" role="group" aria-labelledby={`${quizDisplayId(index)}-heading`}>{question.a.map((option,choice)=><button type="button" data-choice={choice} aria-disabled="false" aria-pressed="false"><span class="option-letter" aria-hidden="true">{String.fromCharCode(65+choice)}</span><span class="option-text">{option}</span><span class="option-status"></span></button>)}</div>
+      <p data-original-explanation hidden>{question.why}</p>
+      <a data-related href={articleHref(question.link)} hidden>Read related source-linked article</a>
+    </section>)}
+    <div class="quiz-feedback" role="status" aria-atomic="true" id="quiz-feedback"><p id="quiz-verdict"></p><p id="quiz-explanation"></p></div>
+    <section id="quiz-summary" hidden aria-labelledby="quiz-summary-heading"><h2 id="quiz-summary-heading" tabindex="-1">Review complete</h2><p id="quiz-summary-score"></p><p>This score records agreement with the original answer key. Keep reading the evidence, uncertainty and community context in the linked articles.</p><a href="#quiz-readings">Return to related readings</a></section>
+    <p class="fine" id="quiz-next-help">Select an answer before continuing. Your first answer counts once.</p>
+    <div class="quiz-actions"><button type="button" class="button" id="quiz-next" aria-disabled="true" aria-describedby="quiz-next-help">Next question</button><button type="button" class="button secondary" id="quiz-restart">Restart quiz</button></div>
+  </section>
+</div>
+<aside class="quiz-readings" id="quiz-readings" aria-labelledby="quiz-readings-heading"><p class="kicker">FOLLOW THE EVIDENCE</p><h2 id="quiz-readings-heading">Related readings</h2><p>Original quiz links lead to these articles and their preserved citations. A link is a research starting point, not independent verification.</p><ul>{readings.map(article=><li><a href={articleHref(article.id)}>{article.title}</a></li>)}</ul></aside>
+</div>
+</Site>
+<script>import '../../lib/quiz-client';</script>
