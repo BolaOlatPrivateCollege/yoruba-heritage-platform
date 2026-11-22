@@ -1,0 +1,6 @@
+---
+import Site from '../../layouts/Site.astro';
+import ArticleCards from '../../components/ArticleCards.astro';
+import {archive,collections} from '../../lib/archive';
+---
+<Site title="Reading library" active="Library"><section class="wrap page-head"><p class="kicker">THE COMPLETE COLLECTION</p><h1>Reading library.</h1><p class="lead">113 original articles, with their full text and research citations.</p><div class="pills">{collections.map(c=><a href={`/collections/${c.id}/`}>{c.title}</a>)}<a href="/search/">Search articles ↗</a></div></section><section class="wrap section"><ArticleCards articles={archive.articles}/></section></Site>

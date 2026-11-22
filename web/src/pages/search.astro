@@ -1,0 +1,33 @@
+---
+import Site from '../layouts/Site.astro';
+---
+<Site title="Search the readings" active="Search"><section class="wrap narrow page-head"><p class="kicker">FIND A THREAD</p><h1>Search the readings.</h1><p class="lead">Search titles, introductions, categories and section headings. You can type without tone marks or underdots.</p><form id="search-form" role="search"><label for="query">Words, place or subject</label><div class="search-row"><input id="query" name="q" type="search" autocomplete="off" placeholder="Try Ifa, Olodumare, language…"/><button class="button" type="submit">Search</button></div></form><p id="search-status" role="status" aria-live="polite">Enter words to search the 113 readings.</p><ul id="search-results" class="search-results"></ul><noscript><p>Interactive search needs JavaScript. <a href="/articles/">Browse the complete static library instead.</a></p></noscript></section></Site>
+<script>
+import {matches,type SearchEntry} from '../lib/search';
+const form=document.querySelector<HTMLFormElement>('#search-form');
+const input=document.querySelector<HTMLInputElement>('#query');
+const status=document.querySelector<HTMLElement>('#search-status');
+const results=document.querySelector<HTMLUListElement>('#search-results');
+let index:Promise<SearchEntry[]>|undefined;
+let generation=0;
+async function search(){
+  if(!input||!status||!results)return;
+  const current=++generation,query=input.value;
+  if(!query.trim()){results.replaceChildren();status.textContent='Enter words to search the 113 readings.';return;}
+  status.textContent='Searching…';
+  try{
+    index??=fetch('/search-index.json').then(async r=>{if(!r.ok)throw new Error('Search unavailable');return await r.json() as SearchEntry[];});
+    const found=matches(await index,query);
+    if(current!==generation)return;
+    results.replaceChildren();
+    for(const item of found){
+      const li=document.createElement('li'),a=document.createElement('a'),p=document.createElement('p');
+      a.href='/articles/'+encodeURIComponent(item.id)+'/';a.textContent=item.title;
+      p.textContent=item.deck;li.append(a,p);results.append(li);
+    }
+    status.textContent=`${found.length} ${found.length===1?'reading':'readings'} found.`;
+  }catch{if(current===generation)status.textContent='Search could not load. Please use the reading library.';index=undefined;}
+}
+form?.addEventListener('submit',event=>{event.preventDefault();void search();});
+input?.addEventListener('input',()=>{void search();});
+</script>

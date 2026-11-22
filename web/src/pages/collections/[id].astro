@@ -1,0 +1,12 @@
+---
+import Site from '../../layouts/Site.astro';
+import ArticleCards from '../../components/ArticleCards.astro';
+import {archive,collections,articleHref} from '../../lib/archive';
+export function getStaticPaths(){return collections.map(collection=>({params:{id:collection.id},props:{collection}}));}
+interface Props {collection:(typeof collections)[number]}
+const {collection:c}=Astro.props;
+---
+<Site title={c.title} active={c.id==='sacred'?'Sacred World':c.id==='research'?'Research':'Library'}><section class="wrap page-head"><p class="kicker">EXPLORE A COLLECTION</p><h1>{c.title}.</h1><p class="lead">{c.intro}</p><div class="pills">{collections.map(item=><a href={`/collections/${item.id}/`} aria-current={item.id===c.id?'page':undefined}>{item.title}</a>)}</div></section>
+{c.id==='sacred'&&<section class="wrap section"><h2>24 profiles, with their original scope.</h2><p class="muted">The original taxonomy distinguishes Supreme source, òrìṣà, regional òrìṣà, ancestral traditions and spiritual concepts.</p><div class="profile-grid">{archive.sacredProfiles.map(p=><article class="profile"><p class="kicker">{p.kind}</p><h3 lang="yo"><a href={articleHref(p.articleId)}>{p.name}</a></h3><p>{p.summary}</p><p class="fine">{p.scope}</p></article>)}</div></section>}
+{c.id==='research'&&<section class="wrap section"><h2>Ten research pathways.</h2><div class="collection-grid">{archive.deepTracks.map(track=><article class="collection"><h3>{track.title}</h3><p>{track.desc}</p><ul>{track.ids.map(id=><li><a href={articleHref(id)}>{archive.articles.find(a=>a.id===id)?.title}</a></li>)}</ul></article>)}</div><p><a href="/learning/">Ifá model and pronunciation overview →</a></p></section>}
+<section class="wrap section"><h2 class="browse-title">{c.articles.length} readings</h2><ArticleCards articles={c.articles}/></section></Site>

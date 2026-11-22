@@ -1,0 +1,5 @@
+---
+import Site from '../../layouts/Site.astro';
+import {archive,sourceHref} from '../../lib/archive';
+---
+<Site title="Sources & research leads" active="Sources"><section class="wrap page-head"><p class="kicker">TRACE THE READING</p><h1>Sources & research leads.</h1><p class="lead">128 original bibliographic records. Catalogue access and full-text verification are different things.</p></section><section class="wrap source-directory">{archive.sources.map(s=><article><p class="kicker">{s.institution}</p><h2><a href={sourceHref(s.id)}>{s.title}</a></h2><p>{s.kind}</p></article>)}</section></Site>

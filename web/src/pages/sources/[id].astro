@@ -1,0 +1,10 @@
+---
+import Site from '../../layouts/Site.astro';
+import {archive,articleHref,Source} from '../../lib/archive';
+import type {z} from 'zod';
+export function getStaticPaths(){return archive.sources.map(source=>({params:{id:source.id},props:{source}}));}
+interface Props {source:z.infer<typeof Source>}
+const {source:s}=Astro.props;
+const cited=archive.articles.filter(a=>a.sourceIds.includes(s.id)||a.sections.some(section=>section.sourceIds.includes(s.id)));
+---
+<Site title={s.title} active="Sources"><section class="wrap narrow page-head"><a href="/sources/">← Source directory</a><p class="kicker">{s.institution}</p><h1 class="canonical-source-title">{s.title}</h1><p class="lead canonical-source-kind">{s.kind}</p><p class="canonical-source-detail prose">{s.detail}</p><p><a class="button" href={s.url} rel="noopener noreferrer">Visit original source ↗</a></p><p class="source-url">{s.url}</p><aside class="notice"><h2>Verification boundary</h2><p>Claims unreviewed · Rights unknown. This record preserves its original access and evidence notes. Linking a publication does not certify every statement made in the archive.</p></aside><h2>Readings citing this source</h2><ul class="link-list">{cited.map(a=><li><a href={articleHref(a.id)}>{a.title}</a></li>)}</ul>{cited.length===0&&<p>This record remains a research lead in the preserved source register.</p>}</section></Site>

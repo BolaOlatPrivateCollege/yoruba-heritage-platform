@@ -1,0 +1,5 @@
+---
+import Site from '../layouts/Site.astro';
+import {archive,sourceFor,sourceHref} from '../lib/archive';
+---
+<Site title="Community-history leads"><section class="wrap page-head"><p class="kicker">SIX PRESERVED RESEARCH RECORDS</p><h1>Community & memory.</h1><p class="lead">These are the original community-history leads, with their provenance limitations. They are not newly authenticated interviews.</p><p class="notice">Read-only archive. There are no live submissions, recordings or discussion services here.</p></section><section class="wrap narrow">{archive.communityVoices.map(v=><article class="community-record article-section" id={v.id}><p class="kicker">{v.community} · {v.type}</p><h2>{v.title}</h2><p class="prose">{v.summary}</p><p class="prose">{v.context}</p><p class="evidence">{v.status}</p><ul>{v.sourceIds.map(id=><li><a href={sourceHref(id)}>{sourceFor(id).title}</a></li>)}</ul><a href={v.readUrl} rel="noopener noreferrer">Original research lead ↗</a></article>)}</section></Site>

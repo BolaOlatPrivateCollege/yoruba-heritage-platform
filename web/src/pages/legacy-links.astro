@@ -1,0 +1,5 @@
+---
+import Site from '../layouts/Site.astro';
+import {archive,articleHref} from '../lib/archive';
+---
+<Site title="Legacy links & rollback"><section class="wrap narrow page-head"><p class="kicker">KEEP THE ORIGINAL AVAILABLE</p><h1>Legacy links & rollback.</h1><p>The unchanged root index.html remains the local/offline prototype. This web application is a separate reading preview; it does not replace that file or redirect its links.</p><p>Old #article/&lt;id&gt; links map to /articles/&lt;id&gt;/. Section suffixes map to #section-N. This is a documented future mapping, not an installed redirect.</p><a href="/legacy-map.json">Download the exact article and section link map</a><ul class="link-list">{archive.articles.map(a=><li><code>#article/{a.id}</code><br/><a href={articleHref(a.id)}>{a.title} →</a></li>)}</ul><p>To roll back the preview, stop its local process and reopen the root index.html. No database or content migration is involved.</p></section></Site>
