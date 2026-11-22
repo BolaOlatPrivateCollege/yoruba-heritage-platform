@@ -1,0 +1,7 @@
+---
+import {regionalSource,type RegionalParagraphRecord} from '../lib/regions';
+interface Props {paragraph:RegionalParagraphRecord}
+const {paragraph:p}=Astro.props;
+const labels={'documented-record':'Dated documentary record','attributed-scholarship':'Attributed scholarly interpretation','mediated-report':'Reported scholarly perspective','editorial-reflection':'Editorial reading / reflection'};
+---
+<div class="story-paragraph" id={p.id}><p class="story-prose">{p.text}</p><p class="story-trace"><span>{labels[p.kind]}</span>{p.citations.map(c=><a href={`#evidence-${c.sourceId}-${c.passageId}`}>{regionalSource(c.sourceId).title}</a>)}</p></div>

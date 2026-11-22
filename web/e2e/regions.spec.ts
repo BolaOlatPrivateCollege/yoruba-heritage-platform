@@ -1,0 +1,18 @@
+import {test,expect} from '@playwright/test';
+import {mkdir} from 'node:fs/promises';
+const story='/places/abeokuta-tax-and-representation/';
+
+test('regional story and discovery work without JavaScript and preserve private draft boundaries',async({browser})=>{
+  const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:900}});try{const page=await context.newPage();await page.goto('http://127.0.0.1:4321/places/');await page.locator('.place-story-link').click();await expect(page).toHaveURL(new RegExp(story));await expect(page.locator('.regional-status')).toContainText('private review only');await page.locator('.story-toc summary').click();await page.getByRole('navigation',{name:'Regional story sections'}).getByRole('link',{name:'Read the inspected evidence'}).click();await expect(page.locator('#read-evidence')).toBeInViewport();}finally{await context.close();}
+});
+test('keyboard reaches exact source passage and original archive section',async({page})=>{
+  await page.goto(story);const link=page.locator('#three-shillings .story-trace a');await link.focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/#evidence-region-rate-1952-record$/);await expect(page.locator('#evidence-region-rate-1952-record')).toBeInViewport();const original=page.getByRole('link',{name:'Return to the preserved Abẹ́òkúta section'});await original.focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/articles\/ibadan-abeokuta\/#section-2$/);
+});
+for(const width of [1440,320,390])test(`regional discovery, narrative, image and evidence screenshots at ${width}px`,async({page})=>{
+  await page.setViewportSize({width,height:1000});await page.emulateMedia({reducedMotion:'reduce'});await mkdir('screenshots',{recursive:true});
+  for(const [route,name] of [['/places/','discovery'],[story,'abeokuta']] as const){await page.goto(route);for(const img of await page.locator('main img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);}await page.evaluate(()=>scrollTo(0,0));expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`screenshots/regions-${name}-${width}.png`,fullPage:true});}
+  await page.locator('#read-evidence').scrollIntoViewIfNeeded();await page.screenshot({path:`screenshots/regions-evidence-${width}.png`});if(width<1000){await page.evaluate(()=>scrollTo(0,0));await page.locator('.mobile-menu summary').click();await page.screenshot({path:`screenshots/regions-navigation-${width}.png`});}
+});
+test('regional navigation is discoverable, stateless and readable with enlarged text',async({page})=>{
+  const external:string[]=[],mutations:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:4321'))external.push(r.url());if(!['GET','HEAD'].includes(r.method()))mutations.push(r.method());});await page.goto('/');await page.locator('.places-discovery-link').click();await expect(page).toHaveURL(/\/places\/$/);await page.locator('.place-story-link').click();await page.setViewportSize({width:720,height:900});await page.evaluate(()=>{document.documentElement.style.fontSize='32px';});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.locator('.regional-meta')).toContainText('No authenticated oral testimony');expect(external).toEqual([]);expect(mutations).toEqual([]);expect(await page.evaluate(()=>[localStorage.length,sessionStorage.length,document.cookie])).toEqual([0,0,'']);await expect(page.locator('main form,main input,main iframe')).toHaveCount(0);
+});
