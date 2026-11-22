@@ -18,7 +18,9 @@ test('typed adapter is a full lossless parse of the approved importer, including
   assert.equal(digest(archive),readManifest().archiveSha256);
   for(const [key,value]of Object.entries(original)){
     assert.equal(digest(archive[key]),digest(value),key);
-    if(Array.isArray(value))assert.deepEqual(archive[key].map(r=>r?.id??null),value.map(r=>r?.id??null));
+    // VM-origin arrays have a different prototype; compare exact ordered data,
+    // not runtime realm identity. The full object hash above is also required.
+    if(Array.isArray(value))assert.equal(canonical(archive[key].map(r=>r?.id??null)),canonical(value.map(r=>r?.id??null)));
   }
   assert.equal(archive.communityVoices.length,6);assert.equal(archive.sacredProfiles.length,24);
 });

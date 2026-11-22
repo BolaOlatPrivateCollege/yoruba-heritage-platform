@@ -24,10 +24,10 @@ __pycache__/
 coverage/
 dist/
 .astro/
-.generated/
-test-results/
-playwright-report/
-screenshots/
+/web/.generated/
+/web/test-results/
+/web/playwright-report/
+/web/screenshots/
 *.log
 .DS_Store
 Thumbs.db
