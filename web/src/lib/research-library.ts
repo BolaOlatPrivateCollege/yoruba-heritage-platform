@@ -108,5 +108,5 @@ export function makePetitionTrace(items:Assessment[]){
 export const petitionTrace=makePetitionTrace(activeAssessments);
 export function libraryCard(sourceId:string){
   const s=sourceFor(sourceId),a=assessmentFor(sourceId);
-  return {id:sourceId,title:s.title,host:s.institution,kind:s.kind,href:sourceHref(s.id),access:a?.access??'not-assessed',role:a?.role??'not-assessed',creator:a?.creator??s.institution,key:[s.title,s.institution,s.kind,a?.creator,a?.workTitle,a?.note].filter(Boolean).join(' '),assessment:a};
+  return {id:sourceId,title:s.title,host:s.institution,kind:s.kind,href:sourceHref(s.id),access:a?.access??'not-assessed',role:a?.role??('not-assessed' as const),creator:a?.creator??s.institution,key:[s.title,s.institution,s.kind,a?.creator,a?.workTitle,a?.note].filter(Boolean).join(' '),assessment:a};
 }
