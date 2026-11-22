@@ -1,0 +1,24 @@
+---
+import {assessmentFor,accessLabels,roleLabels,supportLabels,guideFor,guideHref,resolveLibraryTarget,passagesForAssessment,eligibleAssessments,usagesFor,type Assessment} from '../lib/research-library';
+interface Props {sourceId?:string;assessment?:Assessment}
+const candidate=Astro.props.assessment??(Astro.props.sourceId?assessmentFor(Astro.props.sourceId):undefined);
+const a=candidate&&eligibleAssessments([candidate])[0];
+const source=a?resolveLibraryTarget(a.target):null,guide=a?guideFor(a):undefined;
+const usages=a?.target.register==='canonical'?usagesFor(a.target.sourceId):[];
+---
+<aside class="library-assessment" aria-label="Separate editorial source assessment">
+<p class="kicker">SEPARATE EDITORIAL ASSESSMENT · PRIVATE RESEARCH DRAFT</p>
+<h2>What has actually been examined?</h2>
+<p class="access-chip">{accessLabels[a?.access??'not-assessed']}</p>
+{a&&source?<>
+  <p class="support-scope"><strong>Kind of support:</strong> {supportLabels[a.support]}</p>
+  <dl class="assessment-facts"><div><dt>Associated work / creator</dt><dd>{a.workTitle}<br/>{a.creator}</dd></div><div><dt>Edition and publisher</dt><dd>{a.edition}<br/>{a.workPublisher}</dd></div><div><dt>Source role</dt><dd>{roleLabels[a.role]}</dd></div><div><dt>Assessment scope</dt><dd>{a.note}</dd></div><div><dt>Locality / community</dt><dd>{source.scope}</dd></div><div><dt>Historical evidence</dt><dd>Not established by access status. An author’s interpretation, an attested statement and corroboration of an event require separate claim-level assessment.</dd></div><div><dt>Rights and consent</dt><dd>{source.rightsNote} No permission to reproduce a complete book, sacred verse or private testimony is inferred.</dd></div></dl>
+  {guide&&<div class="library-basis"><h3>Basis for this label</h3><p>Prior project reading guide, 22 November 2026: {guide.section}.</p><p>This explorer reconciles that recorded assessment; it does not claim a new direct reading of the book.</p><a href={guideHref(guide.guide)}>Read the existing source-assessment guide (GitHub)</a></div>}
+  {passagesForAssessment(a).length>0&&<div class="library-passages"><h3>Recorded inspected passages</h3>{passagesForAssessment(a).map(p=><div><h4>{p.locator}</h4><p><strong>Supports within its scope:</strong> {p.supports}</p><p><strong>Does not establish:</strong> {p.limits}</p><a href={p.href}>Read this passage record in its original draft context</a></div>)}<p class="fine">Earlier register accessed {source.accessed}{source.sourceVersion?` · source revision ${source.sourceVersion}`:''}. Selected passages do not equal a full-text audit.</p></div>}
+  <p><strong>Dependency assessment:</strong> {source.dependency}</p>
+  {a.authorArticle&&<p><a href={`/articles/${a.authorArticle}/`}>Return to the preserved author study</a> · Its original wording remains a research draft.</p>}
+  {usages.length>0&&<div><h3>Original archive sections using this reference</h3><ul>{usages.map(u=><li><a href={u.href}>{u.title} — {u.section}</a></li>)}</ul><p class="fine">These are preserved citation relationships, not new verification of the sections’ claims.</p></div>}
+  {a.relations.length>0&&<div class="library-relations"><h3>Related records, different roles</h3><ul>{a.relations.map(r=><li><a href={`/sources/${r.sourceId}/`}>Related source record</a><p>{r.note}</p></li>)}</ul></div>}
+  <details class="library-history"><summary>Assessment revision and review limits</summary><p>Version {a.version} · updated {a.updated}. Independent source, cultural, language and rights review pending. Public release not granted.</p><ol>{a.history.map(h=><li>Version {h.version} · {h.date}: {h.note}</li>)}</ol></details>
+</>:<p>This original bibliography entry remains available with its original notes. No new work-level access assessment has been made here. A title, catalogue link or earlier access label is not evidence that the full work has been read, its history verified or its rights cleared.</p>}
+</aside>
