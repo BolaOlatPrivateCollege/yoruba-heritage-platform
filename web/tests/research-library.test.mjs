@@ -7,7 +7,7 @@ import {archive} from '../src/lib/archive.ts';
 import {digest} from '../../scripts/preservation.mjs';
 import {assessments,activeAssessments,draftAssessments,assessmentFor,unassessedCount,authorPaths,LibraryAssessment,validateLibraryAssessments,resolveLibraryTarget,passagesForAssessment,guideFor,guideHref,usagesFor,eligibleAssessments,makePetitionTrace,excludedAuthority,libraryCard} from '../src/lib/research-library.ts';
 import {matchesLibrary} from '../src/lib/library-filter.ts';
-const html=route=>load(readFileSync(resolve('dist',route,'index.html'),'utf8'));
+const html=route=>load(readFileSync(resolve('dist',route.replace(/^\//,''),'index.html'),'utf8'));
 const clone=id=>structuredClone(assessmentFor(id));
 const walk=dir=>readdirSync(dir).flatMap(n=>{const p=join(dir,n);return statSync(p).isDirectory()?walk(p):[p];});
 
