@@ -1,0 +1,29 @@
+# Private pilot storage and credentials (never publication content)
+private_data/
+.env
+.env.*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+*.db
+*.db-*
+backups/
+*.sql.gz
+*.dump
+*.bak
+*.key
+*.pem
+# Reproducible local outputs
+node_modules/
+generated/
+preservation/*.candidate.json
+__pycache__/
+*.py[cod]
+.cache/
+coverage/
+dist/
+.astro/
+*.log
+.DS_Store
+Thumbs.db

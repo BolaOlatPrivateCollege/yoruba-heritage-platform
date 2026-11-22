@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { ROOT } from './preservation.mjs';
+const tracked = spawnSync('git', ['ls-files','-z'], {cwd:ROOT,encoding:'utf8'});
+assert.equal(tracked.status,0,'Tracked-file check requires a Git checkout');
+const paths=tracked.stdout.split('\0').filter(Boolean);
+assert.ok(paths.length, 'No tracked files');
+const ignored=spawnSync('git',['check-ignore','--no-index','--stdin'],{cwd:ROOT,encoding:'utf8',input:paths.join('\n')+'\n'});
+assert.equal(ignored.status,1,'Tracked files match private/generated exclusions: inspect git check-ignore --no-index');
+console.log('Tracked-file exclusion check passed (not a comprehensive secret scanner).');

@@ -1,0 +1,2 @@
+# Keep preserved UTF-8 source bytes identical on Windows and Linux.
+* -text

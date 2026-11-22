@@ -1,14 +1,12 @@
-# 2026-11-22 preserved heritage encyclopaedia baseline
+# Preserved heritage baseline — 22 November 2026
 
-The current prototype contains 68 article records, 64 bibliographic records, 6 community history entries, 24 timeline events, 11 geographical markers, 12 people profiles and 15 learning quiz questions. Counts describe existing content, **not proof that every historical claim has been verified**.
+Current baseline commit: `587d9969b43a1cf302381568fb9e3aa3f5c1afe9`.
+There are 113 chapters, 128 sources, six community-history leads, 24 Sacred World profiles, 24 timeline events, 11 places, 12 people, 30 glossary terms and 15 quiz items. There are ten research pathways, 16 principal Odù labels, 15 pronunciation entries, 16 deep studies, two sacred-name studies and three author dossiers.
 
-Canonical material is spread across `content.js`, `knowledge.js` and `extended-sacred-arts.js`. The original frontend remains untouched until the scoped Astro migration has been built and reviewed. In the interim run `npm run verify` before and after edits.
+Historical milestone: the original foundation had 68 articles and 64 source records. Later 92/110-chapter milestones in older notes are historical, not current inventories. Counts are preservation indicators, not historical certification.
 
-Editorial requirements:
-- Original source IDs must resolve and historical/medical knowledge evidence notes remain present.
-- Oral-history testimony must be attributed and permissioned, not silently presented as independently proven facts.
-- Source register must not contain books authored by Samuel Johnson.
-- Diacritics and local names must be preserved.
-- Source verification status must not be upgraded by code changes alone.
+See `preservation/baseline.json` for exact original IDs and full-content hashes, and `docs/PRESERVATION.md` for verification and review procedures. `npm run verify` retains the original 12 tests; `npm run verify:preservation` adds exact data, Unicode, wording and file-byte checks.
 
-Neither the repository foundation nor CI publishes the website or enables live discussions.
+Original IDs, source links, evidence/rights notes and diacritics must remain unchanged. No automated verification grants scholarly or publication approval. Samuel Johnson's books remain excluded as factual authorities, including unchecked indirect retellings. Community accounts still require attributed, permissioned and appropriately reviewed context.
+
+The original UI remains intact. No Astro interface or production backend has been created. Issue #2 remains an unresolved public-deployment blocker.
