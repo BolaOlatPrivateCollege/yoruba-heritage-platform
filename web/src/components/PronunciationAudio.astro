@@ -1,0 +1,8 @@
+---
+import {recordingForTerm} from '../lib/audio-recordings';
+import '../styles/audio.css';
+interface Props {text:string;id?:string;compact?:boolean}
+const {text,id='term',compact=false}=Astro.props,recording=recordingForTerm(text);
+---
+{recording?<div class="pronunciation-audio" data-approved-recording={recording.id}><p lang="yo">{recording.text}</p><audio controls preload="none" aria-label={`Reviewed pronunciation: ${recording.text}`}><source src={recording.file} type={recording.mediaType}/>Your browser cannot play this recording. Its transcript is shown above.</audio><p>{recording.credit} — {recording.variety}; {recording.community}. {recording.licence}, private review only. Linguistic review: {recording.linguisticReview.credit}, {recording.linguisticReview.date}.</p></div>:!compact&&<div class="pronunciation-audio" data-recording-unavailable><button type="button" disabled aria-describedby={`audio-pending-${id}`}>Listen unavailable</button><p id={`audio-pending-${id}`}>Awaiting a consent-cleared, tone-checked recording with a labelled local variety. No synthetic Yorùbá voice is substituted.</p></div>}
+<script>import '../lib/media-coordinator';</script>
