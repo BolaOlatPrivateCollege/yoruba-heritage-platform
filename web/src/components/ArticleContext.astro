@@ -1,0 +1,23 @@
+---
+import {contextFor,contextSources} from '../data/article-context';
+import {categoryLabels,claimLabels,sourcesForEntry,categories,previewEntries} from '../lib/traditions';
+import '../styles/article-context.css';
+interface Props {articleId:string}
+const entries=previewEntries(Astro.props.articleId,contextFor(Astro.props.articleId));
+---
+{entries.length>0&&<section class="article-context" aria-labelledby="beyond-record" data-editorial-layer="traditions">
+  <header class="context-heading"><p class="kicker">A SEPARATE EDITORIAL LAYER</p><h2 id="beyond-record">Beyond the<br/><em>Written Record</em></h2><p>Listen to context. Follow the evidence. Leave room for what we do not know.</p></header>
+  <p class="context-draft">Editorial research drafts · private review only · no public release granted</p>
+  <p class="context-intro">The original article and bibliography above are preserved. These additions distinguish attributed oral accounts, folklore and historical interpretation. Recording a tradition does not prove every narrated event occurred; uncertainty does not diminish a community’s knowledge or belief.</p>
+  {categories.map(category=>{const group=entries.filter(e=>e.category===category);return group.length>0&&<div class={`context-category context-${category}`}><h3>{categoryLabels[category]}</h3>{group.map(e=><details class="context-card" id={`context-${e.id}`}>
+    <summary><span class="context-card-label">{e.category==='community-tradition'?'A mediated account · provenance matters':e.category==='contested-interpretation'?'Alternative readings · evidence has limits':'An attributed narrative · scope matters'}</span><span class="context-card-title">{e.title}</span><span class="context-toggle">Open account, evidence and limits <span aria-hidden="true">＋</span></span></summary>
+    <div class="context-card-body"><p class="context-status">{claimLabels[e.claimStatus]}<br/>Version {e.version} · assessed {e.review.date}</p><p class="context-summary">{e.summary}</p>
+    <dl class="context-provenance"><div><dt>Community & place</dt><dd>{e.community}. {e.geography}</dd></div><div><dt>Who tells it?</dt><dd>{e.narrator}. {e.sourceAuthorship}</dd></div><div><dt>How it reached this page</dt><dd>{e.sourceType}. {e.collectionContext}</dd></div><div><dt>Period & language</dt><dd>{e.period}. Primary language: {e.primaryLanguage}. {e.translationNote}</dd></div></dl>
+    {e.variant&&<p><strong>Attested variant:</strong> {e.variant}</p>}{e.culturalMeaning&&<p><strong>Cultural context:</strong> {e.culturalMeaning}</p>}
+    {e.perspectives.length>0&&<section class="context-perspectives" aria-labelledby={`perspectives-${e.id}`}><h4 id={`perspectives-${e.id}`}>Interpretations in the source</h4>{e.perspectives.map(p=><div><h5>{p.label}</h5><p>{p.account}</p><p class="fine">Evidence weight: {p.evidenceWeight}</p></div>)}</section>}
+    <section class="context-limits" aria-labelledby={`limits-${e.id}`}><h4 id={`limits-${e.id}`}>Evidence and limits</h4><h5>What is known</h5><ul>{e.known.map(t=><li>{t}</li>)}</ul><h5>What remains unknown</h5><ul>{e.unknown.map(t=><li>{t}</li>)}</ul><h5>Counterevidence & weighting</h5><p>{e.counterevidence}</p></section>
+    {e.circulation?.factCheckOutcome&&<p><strong>Fact-check outcome:</strong> {e.circulation.factCheckOutcome}</p>}
+    <section class="context-evidence" aria-labelledby={`evidence-${e.id}`}><h4 id={`evidence-${e.id}`}>Read the inspected evidence</h4>{sourcesForEntry(e,contextSources).map(s=><div class="context-source"><h5><a href={s.url}>{s.title}</a></h5><p>{s.author} · {s.type} · accessed {s.accessed}</p>{s.passages.filter(p=>[...e.citations,...e.perspectives.flatMap(p=>p.citations),...(e.circulation?.evidence??[])].some(c=>c.sourceId===s.id&&c.passageId===p.id)).map(p=><div id={`context-source-${e.id}-${s.id}-${p.id}`}><p><strong>Exact inspected location:</strong> {p.locator}</p><p>{p.support}</p><p class="fine">Source limit: {p.limit}</p></div>)}<p class="fine">Dependency assessment: {s.dependencyNote}</p></div>)}</section>
+    <section class="context-review" aria-labelledby={`review-${e.id}`}><h4 id={`review-${e.id}`}>Review, rights & corrections</h4><p>{e.review.reviewer} · {e.review.date}. {e.review.note}</p><p>{e.consentNote}</p><p>{e.communityReviewNote}</p><p>{e.releaseNote}</p><ol>{e.history.map(h=><li>Version {h.version} · {h.date} · {h.action}: {h.note}</li>)}</ol><p class="fine">Corrections and withdrawal requests go through the project owner’s existing editorial review process. No public submissions are collected here.</p></section>
+    </div></details>)}</div>})}
+</section>}
