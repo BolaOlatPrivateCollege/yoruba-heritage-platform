@@ -78,9 +78,10 @@ Manual screen-reader, zoom, high-contrast, font/tone placement and wider browser
 testing remain required, as does qualified historical/community source review.
 
 All progress is **in-memory on this document only**: no localStorage, sessionStorage,
-cookies, analytics, submissions, accounts, leaderboard or backend. Reloading or
-normal full-document navigation starts a new review; this is not cross-page or
-tab-restoration persistence. There is no consented media, audio, TTS or microphone.
+cookies, analytics, submissions, accounts, leaderboard or backend. A new page load
+starts a new review; browser-managed history caching may restore an existing
+document's in-memory state. No cross-page/tab-restoration persistence is promised.
+There is no consented media, audio, TTS or microphone.
 
 Astro escapes the quiz into hidden static question markup. Client code reads only
 those quiz fields, uses textContent, and imports no raw archive/developer source.
@@ -117,7 +118,8 @@ The existing workflows discover the new test files automatically:
 - [Feature branch runs](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/actions?query=branch%3Acodex%2F001d-knowledge-quizzes)
 
 Exact final-head commit, completed run/job links, results and private screenshot
-artifact link are recorded in this feature's PR. A prior passing head is not the
+artifact link are recorded in [PR #11](https://github.com/BolaOlatPrivateCollege/yoruba-heritage-platform/pull/11).
+A prior passing head is not the
 acceptance evidence for subsequent changes.
 
 The baseline 84 tests remain: 12 legacy, 24 preservation, nine security-revision,

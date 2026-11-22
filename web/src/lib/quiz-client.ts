@@ -35,7 +35,7 @@ export function initializeQuiz(root:HTMLElement):void {
     summary.hidden=!state.finished;next.hidden=state.finished;help.hidden=state.finished;
     verdict.textContent='';explanation.textContent='';
     if(state.finished){summaryScore.textContent=`${score} of 15 answers match the archived key.`;if(moveFocus)summaryHeading.focus();return;}
-    const card=cards[state.index]!,question=quiz[state.index]!,choice=state.answers[state.index]!,answeredCurrent=choice!==null;
+    const card=cards[state.index]!,question=quiz[state.index]!,choice=state.answers[state.index]??null,answeredCurrent=choice!==null;
     card.querySelectorAll<HTMLButtonElement>('[data-choice]').forEach((button,index)=>{
       button.setAttribute('aria-disabled',String(answeredCurrent));button.setAttribute('aria-pressed',String(choice===index));
       const key=answeredCurrent&&index===question.correct;

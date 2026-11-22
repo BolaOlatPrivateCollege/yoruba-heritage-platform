@@ -32,8 +32,8 @@ test('quiz references must resolve to existing source-linked articles',()=>{
 });
 test('escaped static quiz payload retains every original field and no-JS controls stay hidden',()=>{
  const $=markup();assert.equal($('.quiz-question').length,15);
- archive.quiz.forEach((q,i)=>{const card=$('#'+quizDisplayId(i));assert.equal(card.attr('data-original-index'),String(i));assert.equal(card.attr('data-correct'),String(q.correct));assert.equal(card.find('h2').text(),q.q);assert.deepEqual(card.find('.option-text').map((_,el)=>$(el).text()).get(),q.a);assert.equal(card.find('[data-original-explanation]').text(),q.why);assert.equal(card.attr('hidden'),'');});
- assert.equal($('#quiz-stage').attr('hidden'),'');assert.equal($('#quiz-start').attr('hidden'),'');
+ archive.quiz.forEach((q,i)=>{const card=$('#'+quizDisplayId(i));assert.equal(card.attr('data-original-index'),String(i));assert.equal(card.attr('data-correct'),String(q.correct));assert.equal(card.find('h2').text(),q.q);assert.deepEqual(card.find('.option-text').map((_,el)=>$(el).text()).get(),q.a);assert.equal(card.find('[data-original-explanation]').text(),q.why);assert.ok(card.is('[hidden]'));});
+ assert.ok($('#quiz-stage').is('[hidden]'));assert.ok($('#quiz-start').is('[hidden]'));
  assert.match($('noscript').text(),/requires JavaScript/);assert.match($('#quiz-caveat').text(),/does not establish independently verified historical facts/);
  assert.equal($('#quiz-readings a').length,new Set(archive.quiz.map(q=>q.link)).size);
 });
