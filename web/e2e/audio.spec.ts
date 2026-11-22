@@ -47,7 +47,7 @@ test('long same-section speech changes live status only for section or playback 
     await page.evaluate(()=>window.__speechTest.finish());
     await expect(page.locator('.narrator-status')).toContainText('Playing: Opening.');
   }
-  const announcements=await page.evaluate(()=>(window as Window&{__narratorAnnouncements:string[]}).__narratorAnnouncements);
+  const announcements=await page.evaluate(()=>(window as unknown as {__narratorAnnouncements:string[]}).__narratorAnnouncements);
   expect(announcements.filter(message=>message==='Starting: Opening.')).toHaveLength(1);
   expect(announcements.filter(message=>message==='Playing: Opening.')).toHaveLength(1);
   await control(page,'pause').click();await expect(page.locator('.narrator-status')).toContainText('Paused');
