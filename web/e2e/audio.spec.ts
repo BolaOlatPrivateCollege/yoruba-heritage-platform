@@ -31,6 +31,30 @@ test('all five readers speak the actual visible narrative in section order and f
     await expect(page.locator('.narrator-status')).toContainText('Finished');const spoken=await page.evaluate(()=>window.__speechTest.state.calls.map(c=>c.text).join(' '));expect(spoken).toBe(expected);expect(spoken).not.toContain('DRAFT SOURCE REGISTER');expect(spoken).not.toContain('Publication approval not granted');
   }
 });
+test('long same-section speech changes live status only for section or playback transitions',async({page})=>{
+  await installSpeech(page);await page.goto(first);
+  await page.evaluate(()=>{
+    const opening=document.querySelector<HTMLSelectElement>('#narrator-section')!.value;
+    const paragraph=document.getElementById(opening)!.querySelector<HTMLElement>('.story-prose')!;
+    paragraph.textContent=Array(150).fill('A source-aware classroom reading continues.').join(' ');
+    const status=document.querySelector<HTMLElement>('.narrator-status')!;
+    const messages:string[]=[];
+    new MutationObserver(()=>messages.push(status.textContent??'')).observe(status,{childList:true,characterData:true,subtree:true});
+    Object.assign(window,{__narratorAnnouncements:messages});
+  });
+  await control(page,'play').click();await expect(page.locator('.narrator-status')).toContainText('Playing: Opening.');
+  for(let i=0;i<5;i++){
+    await page.evaluate(()=>window.__speechTest.finish());
+    await expect(page.locator('.narrator-status')).toContainText('Playing: Opening.');
+  }
+  const announcements=await page.evaluate(()=>(window as Window&{__narratorAnnouncements:string[]}).__narratorAnnouncements);
+  expect(announcements.filter(message=>message==='Starting: Opening.')).toHaveLength(1);
+  expect(announcements.filter(message=>message==='Playing: Opening.')).toHaveLength(1);
+  await control(page,'pause').click();await expect(page.locator('.narrator-status')).toContainText('Paused');
+  await control(page,'resume').click();await expect(page.locator('.narrator-status')).toContainText('Resumed');
+  await control(page,'stop').click();await expect(page.locator('.narrator-status')).toContainText('Stopped');
+});
+
 test('section selection stops playback, starts at the selected visible heading and offers its reading link',async({page})=>{
   await installSpeech(page);await page.goto(first);await control(page,'play').click();await page.locator('#narrator-section').selectOption('city');await expect(control(page,'play')).toBeEnabled();await expect(page.locator('.narrator-jump')).toHaveAttribute('href','#city');await control(page,'play').click();expect(await page.evaluate(()=>window.__speechTest.state.calls.at(-1)?.text)).toBe(await page.locator('#city h2').textContent());await control(page,'stop').click();
 });
@@ -53,7 +77,7 @@ test('no-JS story reading and all 15 unapproved pronunciation entries retain hon
 });
 for(const width of [1440,390,320])test(`narration and pronunciation remain accessible without overflow, with ${width}px screenshots`,async({page})=>{
   await installSpeech(page);await page.setViewportSize({width,height:1000});await page.emulateMedia({reducedMotion:'reduce'});await mkdir('screenshots',{recursive:true});await page.goto(first);await page.locator('[data-narrator]').scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await control(page,'play').click();await expect(page.locator('.narrator-status')).toContainText('Playing');await page.screenshot({path:`screenshots/voice-narration-${width}.png`});await page.locator('.narrator-controls').scrollIntoViewIfNeeded();await page.screenshot({path:`screenshots/voice-narration-controls-${width}.png`});await control(page,'stop').click();
-  const diagnostics=await page.evaluate(()=>{const ids=Array.from(document.querySelectorAll('[id]')).map(e=>e.id);return {duplicates:ids.length-new Set(ids).size,tiny:Array.from(document.querySelectorAll('.narrator-actions button')).filter(b=>b.getBoundingClientRect().height<44).length,unlabelled:Array.from(document.querySelectorAll('[data-narrator] select')).filter(s=>!document.querySelector(`label[for="${s.id}"]`)).length};});expect(diagnostics).toEqual({duplicates:0,tiny:0,unlabelled:0});
+  const diagnostics=await page.evaluate(()=>{const ids=Array.from(document.querySelectorAll('[id]')).map(e=>e.id);const buttons=Array.from(document.querySelectorAll<HTMLButtonElement>('.narrator-actions button'));const unwrapped=buttons.filter(b=>{const range=document.createRange();range.selectNodeContents(b);const rects=Array.from(range.getClientRects()).filter(r=>r.width>0);return getComputedStyle(b).whiteSpace!=='nowrap'||rects.length!==1||b.scrollWidth>b.clientWidth+1;}).length;return {duplicates:ids.length-new Set(ids).size,tiny:buttons.filter(b=>b.getBoundingClientRect().height<44).length,unlabelled:Array.from(document.querySelectorAll('[data-narrator] select')).filter(s=>!document.querySelector(`label[for="${s.id}"]`)).length,unwrapped};});expect(diagnostics).toEqual({duplicates:0,tiny:0,unlabelled:0,unwrapped:0});
   await page.goto('/learning/pronunciation/');await page.locator('#reference-1').scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`screenshots/voice-pronunciation-${width}.png`});await page.locator('.pronunciation-resource').scrollIntoViewIfNeeded();await page.screenshot({path:`screenshots/voice-uga-reference-${width}.png`});
 });
 test('audio pages at enlarged text size make no external/media/mutation requests or storage writes',async({page})=>{

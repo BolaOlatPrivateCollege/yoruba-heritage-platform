@@ -30,6 +30,32 @@ test('speech chunks retain every tone-marked word and never select a remote or n
 test('real speech API adapter queues successive chunks, pauses, resumes, stops and ignores late cancelled events',()=>{
   const e=engine(),c=e.controller;c.start(units,voice,1);assert.equal(e.spoken.length,1);assert.equal(e.spoken[0].text,units[0].text);assert.equal(e.spoken[0].lang,'en-GB');assert.equal(c.state,'starting');e.spoken[0].onstart();assert.equal(c.state,'playing');c.pause();assert.equal(c.state,'paused');c.resume();assert.equal(c.state,'playing');e.spoken[0].onend();assert.equal(e.spoken.length,2);assert.equal(e.spoken[1].text,units[1].text);const old=e.spoken[1];c.stop();old.onend();old.onerror();assert.equal(c.state,'stopped');assert.equal(e.spoken.length,2);c.start(units,voice,1);e.spoken.at(-1).onstart();c.pause();const ended=e.spoken.at(-1);ended.onend();assert.equal(c.state,'paused');c.resume();assert.equal(e.spoken.at(-1).text,units[1].text);ended.onstart();assert.equal(c.state,'starting');c.destroy();
 });
+test('live narration announces only meaningful state and section changes, not every speech chunk',()=>{
+  const e=engine(),c=e.controller;
+  const passages=[
+    {text:'Chunk one.',section:'opening',label:'Opening'},
+    {text:'Chunk two.',section:'opening',label:'Opening'},
+    {text:'Chunk three.',section:'opening',label:'Opening'},
+    {text:'A new section.',section:'context',label:'Context'}
+  ];
+  c.start(passages,voice,1);assert.equal(e.events.at(-1)[2],'Starting: Opening.');
+  e.spoken[0].onstart();assert.equal(e.events.at(-1)[2],'Playing: Opening.');
+  const firstSectionCount=e.events.length;
+  for(let i=0;i<2;i++){
+    e.spoken[i].onend();assert.equal(c.state,'starting');
+    assert.equal(e.events.length,firstSectionCount,'a same-section chunk must not reannounce starting');
+    e.spoken[i+1].onstart();assert.equal(c.state,'playing');
+    assert.equal(e.events.length,firstSectionCount,'a same-section chunk must not reannounce playing');
+  }
+  e.spoken[2].onend();assert.equal(e.events.length,firstSectionCount+1);
+  assert.equal(e.events.at(-1)[2],'Starting: Context.');
+  e.spoken[3].onstart();assert.equal(e.events.at(-1)[2],'Playing: Context.');
+  const nextSectionCount=e.events.length;
+  c.pause();assert.equal(e.events.length,nextSectionCount+1);assert.equal(e.events.at(-1)[0],'paused');
+  c.resume();assert.equal(e.events.at(-1)[2],'Resumed the current passage.');
+  c.stop();assert.equal(e.events.at(-1)[0],'stopped');
+});
+
 test('rapid play, empty text, invalid voice/speed, thrown API calls, errors and disposal fail safely',()=>{
   const e=engine(),c=e.controller;c.start(units,voice,1.25);c.start(units,voice,1);assert.equal(e.spoken.length,1);assert.equal(e.spoken[0].rate,1.25);e.spoken[0].onerror();assert.equal(c.state,'error');c.start([],voice,1);assert.equal(c.state,'error');c.start(units,{...voice,localService:false},1);assert.equal(c.state,'error');c.start(units,voice,4);assert.equal(c.state,'error');e.port.speak=()=>{throw Error('synthetic');};c.start(units,voice,1);assert.equal(c.state,'error');c.destroy();c.start(units,voice,1);assert.equal(e.spoken.length,1);
 });

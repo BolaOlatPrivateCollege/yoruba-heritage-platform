@@ -33,17 +33,20 @@ export class NarrationController {
   }
   private next(){
     const unit=this.units[this.index];if(!unit){this.epoch++;this.clear();this.utterance=undefined;this.announce('finished','Finished the selected story reading.');return;}
+    // Suppress duplicate screen-reader announcements for chunks inside one section.
+    const announceSection=this.index===0||this.units[this.index-1]?.section!==unit.section;
     const epoch=++this.epoch;
     const current=()=>!this.disposed&&epoch===this.epoch;
     const utterance=this.create(unit.text);this.utterance=utterance;utterance.voice=this.voice!;utterance.lang=this.voice!.lang;utterance.rate=this.rate;
-    utterance.onstart=()=>{if(current()){this.announce('playing',`Playing: ${unit.label}.`);this.deadline(60000/this.rate);}};
+    utterance.onstart=()=>{if(current()){if(announceSection)this.announce('playing',`Playing: ${unit.label}.`);else this.state='playing';this.deadline(60000/this.rate);}};
     utterance.onend=()=>{if(current()){this.epoch++;this.clear();this.utterance=undefined;this.index++;if(this.state==='paused')return;try{this.next();}catch{this.fail('The device could not continue. Press Play to try again.');}}};
     utterance.onerror=()=>{if(current())this.fail('The device could not speak this passage. Try another local English voice; pronunciation of embedded Yorùbá names is not verified.');};
-    this.announce('starting',`Starting: ${unit.label}.`);this.deadline(8000);
+    if(announceSection)this.announce('starting',`Starting: ${unit.label}.`);else this.state='starting';
+    this.deadline(8000);
     try{this.port.speak(utterance);}catch{this.fail('Device speech playback failed. Continue reading or try another local English voice.');}
   }
   pause(){if(this.state!=='playing')return;try{this.port.pause();this.clear();this.announce('paused','Paused. Resume continues the current passage.');}catch{this.fail('The device could not pause playback. Playback stopped.');}}
-  resume(){if(this.state!=='paused')return;try{this.port.resume();if(!this.utterance){this.next();return;}this.announce('playing','Resumed the current passage.');this.deadline(60000/this.rate);}catch{this.fail('The device could not resume playback. Press Play to restart.');}}
+  resume(){if(this.state!=='paused')return;try{this.port.resume();if(!this.utterance){this.announce('starting','Resuming at the next passage.');this.next();return;}this.announce('playing','Resumed the current passage.');this.deadline(60000/this.rate);}catch{this.fail('The device could not resume playback. Press Play to restart.');}}
   stop(message='Stopped. Play restarts at the chosen section.'){if(this.disposed)return;this.cancel();this.announce('stopped',message);}
   destroy(){this.cancel();this.disposed=true;}
 }

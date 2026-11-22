@@ -211,3 +211,28 @@ production service or deployment configuration changes.
 
 **Nothing merged, deployed, indexed or publicly published. No audio rights or
 linguistic approval have been fabricated.**
+
+## Review remediation — mobile controls and live narration state
+
+Independent review of PR #27 identified two UI/accessibility corrections: at a
+390px viewport the Resume control wrapped inside the word, and the original
+speech controller announced Start/Playing for each 300-character chunk even when
+the reader was still within the same section.
+
+- The narrator's mobile action controls now use a predictable two-column grid
+  at widths through 800px, smaller mobile side padding and nonwrapping button
+  labels; all action targets retain the existing 48px minimum height. Responsive
+  tests assert intact action labels and no inner horizontal overflow at
+  1440px, 390px and 320px.
+- The controller continues its existing asynchronous chunk queue and silence
+  watchdog but only announces Starting/Playing at the first chunk or the start
+  of a different section. Between chunks in the same section it updates
+  internal state without repeating ARIA live-region text. Pause, Resume,
+  Stop, finished, and error announcements remain accessible. Resume after an
+  utterance ended while paused now announces the restart before the next chunk.
+  Added deterministic unit and browser coverage to prove that multiple chunks
+  in one section do not flood the live region.
+
+These changes do not imply actual screen-reader certification or audible voice
+quality approval. All earlier rights, pronunciation, source and publication
+restrictions continue unchanged.
