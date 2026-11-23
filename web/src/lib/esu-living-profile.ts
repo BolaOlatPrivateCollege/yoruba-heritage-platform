@@ -31,7 +31,7 @@ export const esuLivingProfile={
   ],
   language:{
     title:'What does “Èṣù” mean?',
-    text:'Some interpretations of the name connect it with ideas of rounding, shaping, gathering or encircling—images that can suggest completeness, balance and cause and effect. These are meaningful explanations that circulate in discussions of Yorùbá language and spirituality; they should be identified as proposed interpretations rather than one settled, word-for-word historical derivation.',
+    text:'People explain the name Èṣù in several ways. Some associate it with rounding, shaping, gathering or encircling—images of completeness, balance and cause and effect. Others connect the name with the messenger at the crossroads, the choices people make and what follows from them. What explanation did your own people use?',
     prompt:'Does your community explain the name differently? Tell us the Yorùbá words, tones and meaning you were taught.'
   },
   translation:{
@@ -56,7 +56,7 @@ export const esuLivingProfile={
   ],
   discussion:{
     title:'What did you grow up hearing about Èṣù?',
-    lead:'A traditional practitioner, a family storyteller, a church member, an elder, a student and a historian may bring different accounts. This is where the conversation should begin—not end.',
+    lead:'A traditional practitioner, a family storyteller, a church member, an elder or a student may have heard a different account. This is where the conversation should begin—not end.',
     prompts:[
       'Was Èṣù described to you as a messenger, a trickster, a guardian of crossroads or the devil?',
       'Who first told you that version—family, an elder, school, a sermon or another source?',
