@@ -34,3 +34,17 @@ test('legend cards and navigation remain plain public-reading content without in
  await page.getByRole('link',{name:/Women whose stories refuse to disappear/}).click();
  await expect(page).toHaveURL(/#heroines$/);
 });
+
+test('four featured legendary figures lead to complete six-chapter stories',async({page})=>{
+ await page.goto('/tales/legendary-figures/');
+ const hrefs=['moremi-fire-in-the-reeds','lisabi-farmers-promise','sango-when-thunder-answered','timi-gbonka-two-champions'];
+ const links=page.locator('.heritage-lead-read');
+ await expect(links).toHaveCount(hrefs.length);
+ for(const slug of hrefs){
+  await expect(page.locator(`.heritage-lead-read[href="/tales/${slug}/"]`)).toHaveCount(1);
+ }
+ await page.locator('.heritage-lead-read[href="/tales/moremi-fire-in-the-reeds/"]').click();
+ await expect(page).toHaveURL(/\/tales\/moremi-fire-in-the-reeds\//);
+ await expect(page.locator('.tale-chapter')).toHaveCount(6);
+ await expect(page.getByText(/Story type:/)).toBeVisible();
+});
