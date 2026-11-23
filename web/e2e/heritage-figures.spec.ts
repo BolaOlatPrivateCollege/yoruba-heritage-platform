@@ -40,9 +40,9 @@ test('Olódùmarè is distinguished from specialised òrìṣà and heroes from 
 });
 test('documentary and stories retain their original navigation and separate meaning',async({page})=>{
   await page.goto('/tales/esu-hat-two-views/');
-  await expect(page.getByRole('link',{name:/Learn who this figure is/})).toHaveAttribute('href','/figures/esu/');
+  await expect(page.getByRole('link',{name:/Explore different accounts of/})).toHaveAttribute('href','/figures/esu/');
   await page.goto('/tales/olodumare-many-meanings/');
-  await expect(page.getByRole('link',{name:/Learn who this figure is/})).toHaveAttribute('href','/figures/olodumare/');
+  await expect(page.getByRole('link',{name:/Explore different accounts of/})).toHaveAttribute('href','/figures/olodumare/');
 });
 for(const width of [320,390,1440]){
   test('figures hub and Èṣù profile remain readable without horizontal overflow at '+width+'px',async({page})=>{

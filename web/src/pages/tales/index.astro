@@ -15,9 +15,9 @@ const shelves=[
   <header class="wrap tales-hero">
     <p class="kicker">PRIVATE EDITORIAL PREVIEW · STORIES & LIVING MEMORIES</p>
     <h1>Everyone knows a story.<br/><em>Who tells it differently?</em></h1>
-    <p class="lead">Follow a mystery, laugh at a trick, discover a familiar name—or bring a version that nobody else has heard. Stories live when people tell them again.</p>
+    <p class="lead">Follow a mystery, laugh at a trick, meet a remembered hero, or discover a telling you never knew. This is a home for the stories people carry, the versions families remember, and the retellings that keep them alive.</p>
     <div class="tales-actions"><a class="button" href="/tales/laughing-mask/">Begin our first tale</a><a class="button secondary" href="/figures/">Meet the figures behind the stories</a></div>
-    <p class="fine">Story types are clearly labelled; the contribution features described here are not live.</p>
+    <p class="fine">A telling is presented as a telling—not a verdict on history or belief. New contributions are not yet enabled.</p>
   </header>
   <section class="wrap tales-featured" aria-labelledby="first-tale">
     <div><p class="kicker">A CULTURAL MYSTERY · ORIGINAL FICTION</p>
@@ -29,10 +29,10 @@ const shelves=[
     <div class="tales-art-swatch" aria-hidden="true"><span>Àlọ́</span><span>?</span></div>
   </section>
   <section class="wrap tales-live" aria-labelledby="fresh-tales">
-    <p class="kicker">TWO MORE STORIES · FIRST PRIVATE READING EDITION</p>
+    <p class="kicker">SEVEN MORE STORIES · FIRST PRIVATE READING EDITION</p>
     <h2 id="fresh-tales">Follow the question.</h2>
-    <p class="lead">Two new tales about the ways people see, remember and explain their world. Which version did you grow up hearing?</p>
-    <div class="tales-new-grid">{livingEpisodes.map((e,index)=><article class:list={['tales-new-card',index===0?'theme-crossroads':'theme-name']}>
+    <p class="lead">Seven complete tales of cleverness, courage, thunder, rivalry and the ways people carry different versions. Choose a story and step inside.</p>
+    <div class="tales-new-grid">{livingEpisodes.map((e,index)=><article class:list={['tales-new-card',index%2===0?'theme-crossroads':'theme-name']}>
       <p class="kicker">{e.world}</p>
       <h3><a href={episodeHref(e.slug)}>{e.name}</a></h3>
       <p>{e.deck}</p>
@@ -40,12 +40,19 @@ const shelves=[
       <a class="tales-inline-link" href={episodeHref(e.slug)}>Enter the story →</a>
     </article>)}</div>
   </section>
+  <section class="wrap tales-live" aria-labelledby="warriors-legends">
+    <p class="kicker">WARRIORS · HEROINES · RIVALRIES · MYSTERIES</p>
+    <h2 id="warriors-legends">Whose story do you know?</h2>
+    <p class="lead">Meet a powerful Ìyálóde, follow a disputed royal legend, or enter a forest mystery. Explore 30 dramatic story leads and the different kinds of telling behind them—from historical memory to sacred tradition and imaginative folklore.</p>
+    <a class="tales-inline-link" href="/tales/legendary-figures/">Explore Warriors, Heroines &amp; Legendary Mysteries →</a>
+    <p class="fine">Private editorial preview: these are story introductions, not completed or independently authenticated community accounts.</p>
+  </section>
   <aside class="wrap tales-invite" aria-labelledby="profile-discovery"><p class="kicker">WHO IS BEHIND THE STORY?</p><h2 id="profile-discovery">Find out what communities believe.</h2><p>Hear what people say about Èṣù, Olódùmarè and other òrìṣà and heroes. Explore the stories and beliefs behind the names.</p><a class="tales-inline-link" href="/figures/">Explore Beliefs &amp; Figures →</a></aside><section class="wrap tales-lanes" aria-labelledby="explore-tales">
     <p class="kicker">A WORLD OF STORIES TO EXPLORE</p>
     <h2 id="explore-tales">What fascinates you?</h2>
     <div class="tales-grid">{shelves.map(s=><article class="tales-lane">
       <p class="kicker">{s.label}</p><h3>{s.title}</h3><p>{s.lead}</p>
-      <p class="fine">Stories being collected and developed · no content published in this category yet</p>
+      <p class="fine">Explore the story collection above and return as new tellings are developed</p>
     </article>)}</div>
   </section>
   <aside class="wrap tales-invite" aria-label="Community participation roadmap">
