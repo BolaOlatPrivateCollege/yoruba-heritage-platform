@@ -16,6 +16,18 @@ test('community practice is visible from the public reader but cannot submit',as
   await expect(page.locator('#cv-preview')).toBeVisible();
 });
 
+test('privacy details remain accessible but do not obscure the mobile invitation',async({page})=>{
+  await page.setViewportSize({width:320,height:900});
+  await page.goto('/community/share/');
+  await expect(page.getByText(/not a live submission form/)).toBeVisible();
+  const details=page.locator('.community-privacy-details');
+  await expect(details).not.toHaveAttribute('open','');
+  await details.locator('summary').click();
+  await expect(details).toHaveAttribute('open','');
+  await expect(details.getByText(/shared device/)).toBeVisible();
+  await expect(page.locator('main form,main input[type=file]')).toHaveCount(0);
+});
+
 test('a pre-linked Èṣù story allows a safe local preview with no network, cookies or storage',async({page,context})=>{
   const unsafe:string[]=[],errors:string[]=[];
   page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:4321')||r.method()!=='GET')unsafe.push(r.url());});
