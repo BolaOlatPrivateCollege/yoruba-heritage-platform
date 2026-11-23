@@ -17,7 +17,7 @@ test('historic translation and varied name explanations are discussed without as
   assert.match(esu.translation.story,/Samuel Ajayi Crowther/);
   assert.match(esu.translation.story,/nineteenth-century missionary translation/);
   assert.match(esu.translation.opening,/Satan or the devil/);
-  assert.match(esu.language.text,/proposed interpretations/);
+  assert.match(esu.language.text,/Some|gathering or encircling/);
   assert.equal(esu.names.items.length,4);
   assert.ok(esu.misunderstandings.length>=3);
 });
