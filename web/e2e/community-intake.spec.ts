@@ -24,7 +24,7 @@ test('privacy details remain accessible but do not obscure the mobile invitation
   await expect(details).not.toHaveAttribute('open','');
   await details.locator('summary').click();
   await expect(details).toHaveAttribute('open','');
-  await expect(details.getByText(/shared device/)).toBeVisible();
+  await expect(details.getByText(/same device/)).toBeVisible();
   await expect(page.locator('main form,main input[type=file]')).toHaveCount(0);
 });
 
