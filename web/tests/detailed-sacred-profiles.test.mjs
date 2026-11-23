@@ -24,7 +24,7 @@ test('religious variants remain labelled and sourced, no mistaken claim of archi
  assert.match(orunmila.sections.map(x=>x.paragraphs.join(' ')).join(' '),/256 odù/);
  assert.match(orunmila.notes.join(' '),/not been authenticated/);
  const obatala=detailedSacredProfiles.obatala;
- assert.match(obatala.tales[0].context,/not.*universally attested/);
+ assert.match(obatala.tales[0].account,/not an independently verified date or universally attested account/);
  const route=reader('web/src/pages/figures/[slug].astro');
  assert.match(route,/detailedSacredProfiles/);
  assert.match(route,/Stories and their different versions/);
