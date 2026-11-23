@@ -18,15 +18,15 @@ export function parsePilotStory(markdown:string):ReaderPilot{
   if(!title)throw new Error('Missing pilot story title');
   const headers=[...source.matchAll(/^## Chapter (\d+) — (.+)$/gm)];
   if(headers.length!==6)throw new Error('Pilot must have six complete chapters');
-  const divider=source.indexOf('\n---\n',headers[0].index!);
+  const divider=source.indexOf('\n---\n',headers[0]!.index!);
   const end=divider<0?source.length:divider;
   const chapters=headers.map((header,i)=>{
     const number=Number(header[1]);
     const from=header.index!+header[0].length;
-    const to=i+1<headers.length?headers[i+1].index!:end;
+    const to=i+1<headers.length?headers[i+1]!.index!:end;
     const parts=source.slice(from,to).trim().split(/\n\s*\n/u).filter(Boolean);
     if(number!==i+1||parts.length<4)throw new Error('Invalid chapter sequence or incomplete story');
-    return {number,title:header[2].trim(),id:'chapter-'+number,passages:parts.map(parsePassage)};
+    return {number,title:header[2]!.trim(),id:'chapter-'+number,passages:parts.map(parsePassage)};
   });
   const words=chapters.flatMap(c=>c.passages).map(p=>p.plain).join(' ').trim().split(/\s+/u).length;
   if(words<1200)throw new Error('The story must not be an excerpt');
