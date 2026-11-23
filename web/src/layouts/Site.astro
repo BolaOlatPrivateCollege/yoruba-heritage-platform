@@ -2,7 +2,7 @@
 import '../styles/site.css';
 interface Props {title:string;description?:string;active?:string}
 const {title,description='Àṣà & Ìtàn — source-linked Yorùbá heritage readings.',active=''}=Astro.props;
-const nav=[['/','Overview'],['/articles/','Library'],['/tales/','Stories'],['/collections/sacred/','Sacred World'],['/collections/research/','Research'],['/sources/','Sources'],['/search/','Search'],['/learning/','Learning'],['/learning/quiz/','Quiz'],['/learning/ifa-matrix/','Ifá explorer']];
+const nav=[['/','Overview'],['/articles/','Library'],['/tales/','Stories'],['/figures/','Beliefs & Figures'],['/collections/research/','Research'],['/sources/','Sources'],['/search/','Search'],['/learning/','Learning'],['/learning/quiz/','Quiz'],['/learning/ifa-matrix/','Ifá explorer']];
 ---
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#0d1d21"/><title>{title} · Àṣà & Ìtàn</title></head>
@@ -13,7 +13,7 @@ const nav=[['/','Overview'],['/articles/','Library'],['/tales/','Stories'],['/co
 <nav class="desktop-nav" aria-label="Main sections">{nav.map(([href,label])=><a href={href} aria-current={active===label?'page':undefined}>{label}</a>)}</nav>
 <details class="mobile-menu"><summary>Explore sections</summary><nav aria-label="Mobile sections">{nav.map(([href,label])=><a href={href} aria-current={active===label?'page':undefined}>{label}</a>)}</nav></details></div></header>
 <main id="main" tabindex="-1"><slot/></main>
-<footer><div><a class="brand" href="/" lang="yo">Àṣà & Ìtàn</a><p>History is not one voice.</p><p class="muted">Evidence, attribution and community context remain visible.</p></div><nav aria-label="Archive resources"><a href="/learning/">Learning overview</a><a href="/stories/">Documentary stories</a><a href="/community/">Community-history leads</a><a href="/legacy-links/">Legacy link mapping</a><a href="/about/">Sources & editorial limits</a></nav><p class="fine">Claims unreviewed · Rights unknown<br/>Read-only engineering preview.<br/>No live community submissions.</p></footer>
+<footer><div><a class="brand" href="/" lang="yo">Àṣà & Ìtàn</a><p>History is not one voice.</p><p class="muted">Evidence, attribution and community context remain visible.</p></div><nav aria-label="Archive resources"><a href="/learning/">Learning overview</a><a href="/stories/">Documentary stories</a><a href="/collections/sacred/">Sacred World research</a><a href="/community/">Community-history leads</a><a href="/legacy-links/">Legacy link mapping</a><a href="/about/">Sources & editorial limits</a></nav><p class="fine">Claims unreviewed · Rights unknown<br/>Read-only engineering preview.<br/>No live community submissions.</p></footer>
 <script>
   document.querySelectorAll<HTMLDetailsElement>('.mobile-menu').forEach(menu=>menu.addEventListener('keydown',event=>{
     if(event.key==='Escape'&&menu.open){menu.open=false;menu.querySelector('summary')?.focus();}
