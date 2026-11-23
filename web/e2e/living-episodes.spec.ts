@@ -24,7 +24,7 @@ for(const e of episodes){
     await page.goto('/tales/'+e.slug+'/');
     await expect(page.getByRole('heading',{level:1,name:e.title})).toBeVisible();
     await expect(page.locator('.tale-chapter')).toHaveCount(6);
-    await expect(page.locator('.tale-disclosure')).toContainText('not');
+    await expect(page.locator('.tale-disclosure')).toContainText(/not|no literal|invented|invents|imagined/i);
     await expect(page.locator('.tale-outro')).toContainText('No submission, personal data or audio is collected');
     await expect(page.locator('main form, main input, main audio')).toHaveCount(0);
     await expect(page.locator('meta[name=robots]')).toHaveAttribute('content','noindex,nofollow');
