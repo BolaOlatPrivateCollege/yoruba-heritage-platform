@@ -57,7 +57,7 @@ export async function openPrivateDraftRepository(directory){
  if(typeof directory!=='string'||!directory.trim())throw new Error('Private directory is required');
  const absolute=resolve(directory);
  // Never permit the prototype's private records beneath a static-site output tree.
- if(absolute.split(/[\\/]+/u).some(part=>['public','dist','.generated'].includes(part))){
+ if(absolute.replaceAll(String.fromCharCode(92),'/').split('/').some(part=>['public','dist','.generated'].includes(part))){
   throw new Error('Private CMS storage cannot be placed in a public build directory');
  }
  await mkdir(absolute,{recursive:true,mode:0o700});
