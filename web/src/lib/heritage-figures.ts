@@ -52,7 +52,7 @@ const explainers:Record<string,Explainer>={
  'sac-ogun':{
    role:'Iron, tools, roads, work and the power of making',
    beliefs:['Ògún is an òrìṣà associated with iron, smithing, tools and occupations that use them, as well as paths, hunting and conflict in many tellings.','Stories and religious observances can emphasise strength, obligation and the dangers that powerful tools can bring.'],
-   differences:'Specific practices vary with community and occupation. Stories also connect Ògún with craft, paths and people's responsibilities when using iron.',
+   differences:'Specific practices vary with community and occupation. Stories also connect Ògún with craft, paths and people’s responsibilities when using iron.',
    question:'What story about Ògún have you heard from workers, elders or family?'
  },
  'sac-sango':{
@@ -116,7 +116,7 @@ const heroes:CulturalFigure[]=[
   slug:'lisabi',name:'Lísàbí',kind:'Cultural hero in Ẹ̀gbá tradition',scope:'Ẹ̀gbá histories, including Abẹ́òkúta',
   role:'A symbol of collective Ẹ̀gbá identity and resistance',
   beliefs:['Lísàbí is celebrated in Ẹ̀gbá cultural memory as a figure associated with unity, leadership and opposition to domination.','Different oral accounts bring their own details about the people, places and events remembered in the story.'],
-  differences:'Ask which companions, places and events your family's version remembers, and listen to how neighbouring communities tell it.',
+  differences:'Ask which companions, places and events your family’s version remembers, and listen to how neighbouring communities tell it.',
   question:'How does your Ẹ̀gbá family or community remember Lísàbí?',
   mistaken:'All stories about Lísàbí have one agreed chronology.',
   clarification:'Shared remembrance does not require every detail of different oral tellings to be identical.',
