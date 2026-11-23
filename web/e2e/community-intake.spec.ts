@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+import {mkdirSync} from 'node:fs';
+mkdirSync('screenshots',{recursive:true});
 
 test('community practice is visible from the public reader but cannot submit',async({page})=>{
   await page.goto('/community/');
