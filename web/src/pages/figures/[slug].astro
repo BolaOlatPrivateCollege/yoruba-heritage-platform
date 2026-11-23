@@ -53,9 +53,9 @@ const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind==
       </section>
       <section id="misunderstandings" aria-labelledby="misunderstandings-heading">
         <p class="kicker">LET'S TALK ABOUT IT</p>
-        <h2 id="misunderstandings-heading">Different ways people explain Èṣù</h2>
-        <div class="figure-myths">{esu.misunderstandings.map(item=><div class="figure-myth">
-          <h3>{item.heard}</h3><p>{item.another}</p>
+        <h2 id="misunderstandings-heading">What different people say about Èṣù</h2>
+        <div class="figure-myths">{esu.waysPeopleSpeak.map(item=><div class="figure-myth">
+          <h3>{item.topic}</h3><p>{item.voices}</p>
         </div>)}</div>
       </section>
       <aside class="figure-story" aria-label="Related Èṣù folktale adaptation">
