@@ -4,7 +4,7 @@ mkdirSync('screenshots',{recursive:true});
 
 test('Beliefs and Figures is accessible from homepage and new story library',async({page})=>{
   await page.goto('/');
-  await expect(page.getByRole('link',{name:/Explore Beliefs, Òrìṣà/})).toHaveAttribute('href','/figures/');
+  await expect(page.getByRole('link',{name:/Explore beliefs & figures/})).toHaveAttribute('href','/figures/');
   await page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Beliefs & Figures'}).click();
   await expect(page).toHaveURL(/\/figures\/$/);
   await expect(page.getByRole('heading',{level:1})).toContainText('Who are the figures');
