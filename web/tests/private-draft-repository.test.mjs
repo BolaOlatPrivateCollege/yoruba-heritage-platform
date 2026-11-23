@@ -71,3 +71,26 @@ test('only independent reviewers can approve after cleared rights',async()=>{
   assert.equal((await reopened.auditHistory(owner)).length,3);
  });
 });
+
+test('storage refuses a directory in a public build tree',async()=>{
+ const root=await mkdtemp(join(tmpdir(),'asa-cms-public-test-'));
+ try{
+  await assert.rejects(openPrivateDraftRepository(join(root,'dist','cms')),/public build directory/);
+  await assert.rejects(openPrivateDraftRepository(join(root,'public','cms')),/public build directory/);
+ }finally{await rm(root,{recursive:true,force:true})}
+});
+test('concurrent actions on one instance cannot lose a revision',async()=>{
+ await withStore(async(path,store)=>{
+  await store.createDraft(editor,draft());
+  const action={kind:'submit_for_review',expectedRevision:1};
+  const responses=await Promise.allSettled([
+   store.applyAction(editor,draft().id,action),
+   store.applyAction(editor,draft().id,action)
+  ]);
+  assert.equal(responses.filter(x=>x.status==='fulfilled').length,1);
+  assert.equal(responses.filter(x=>x.status==='rejected').length,1);
+  const again=await openPrivateDraftRepository(path);
+  assert.equal((await again.getRecord(owner,draft().id)).revision,2);
+  assert.equal((await again.auditHistory(owner)).length,2);
+ });
+});
