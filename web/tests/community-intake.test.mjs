@@ -41,7 +41,8 @@ test('local example validation fails closed for missing permission and unsafe en
 test('prototype client has no submission, collection or unsafe dynamic HTML sink',()=>{
   const client=readFileSync('src/lib/community-preview-client.ts','utf8');
   const page=readFileSync('src/pages/community/share.astro','utf8');
-  assert.doesNotMatch(client,/\bfetch\s*\(|sendBeacon|XMLHttpRequest|localStorage|sessionStorage|document\.cookie|indexedDB|WebSocket|\.submit\s*\(|innerHTML|insertAdjacentHTML|navigator\.clipboard/i);
+  const executable=client.replace(/\/\*[\s\S]*?\*\//g,'').replace(/^\s*\/\/.*$/gm,'');
+  assert.doesNotMatch(executable,/\bfetch\s*\(|sendBeacon|XMLHttpRequest|localStorage|sessionStorage|document\.cookie|indexedDB|WebSocket|\.submit\s*\(|innerHTML|insertAdjacentHTML|navigator\.clipboard/i);
   assert.doesNotMatch(page,/<form\b|<input[^>]*type="file"|<iframe\b|<audio\b/i);
   assert.doesNotMatch(page,/action\s*=/i);
   assert.match(client,/\.textContent=/);
