@@ -46,6 +46,8 @@ jobs:
             -e PGPASSWORD="$PGPASSWORD" -v "$PWD":/workspace:ro \
             postgres:16 psql -X -v ON_ERROR_STOP=1 -h 127.0.0.1 -U cms_ci -d cms_ci \
             -f /workspace/cms/migrations/001_smoke_test.sql
+      - name: Install locked web validation dependencies
+        run: npm ci --prefix web --ignore-scripts --no-audit --no-fund
       - name: Install isolated PostgreSQL integration test client
         run: npm install --prefix cms --no-save --no-package-lock --ignore-scripts --no-audit --no-fund pg@8.16.3
       - name: Test real PostgreSQL private drafts, concurrency and rollback
