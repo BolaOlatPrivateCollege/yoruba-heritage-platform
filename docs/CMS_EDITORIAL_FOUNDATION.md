@@ -64,6 +64,14 @@ The pure module `web/src/lib/editorial-workflow.ts` now plans a restricted subse
 
 **This is NOT security enforcement yet:** a future server must identify actors from secure sessions, persist records and audit events in one atomic transaction, enforce permissions against server-resolved roles, and prohibit client-supplied audit/approval metadata. The prototype deliberately has no publish, withdraw, admin login, API route or user-facing editor.
 
+## Phase 1 private draft storage prototype (development only)
+
+A single-process **local storage adapter** now exists at `cms/private-draft-repository.mjs`, with regression tests at `web/tests/private-draft-repository.test.mjs`. It persists a private JSON state (draft records and audit events together) with temporary-file replacement, restricts file/directory permissions, rejects public build paths, validates records, rejects duplicate IDs/slugs, enforces exact revision checks, and provides an independent-review process. It preserves Yorùbá Unicode and returns cloned record values so callers cannot mutate stored records directly.
+
+The repository contains **NO web route, login, administrator page, database service, hosted URL or public publishing operation**. This adapter is **not production-ready**: it accepts actor identities provided by its caller, has only in-process serialisation (not multi-process database transactions), stores local files without a verified encryption/backup regime, and lacks production-grade recovery/security controls. Do not expose it behind HTTP before a real identity provider, RBAC, atomic database transactions and security assessment are implemented.
+
+For local development only, storage should live outside the public web tree (for example `private_data/cms/`, which is ignored by Git). Private draft content must never be copied to `web/public`, `dist`, screenshots, static build artefacts, public search, sitemap, or browser bundles. **Do not use this local JSON store as a deployed CMS database**. PostgreSQL or another appropriately managed transactional database should replace it for multi-editor production use.
+
 ## Security and operational gates
 
 **Phase 0 — this branch:** documentation, pure data-contract validation/tests, no runtime endpoints or accounts.
