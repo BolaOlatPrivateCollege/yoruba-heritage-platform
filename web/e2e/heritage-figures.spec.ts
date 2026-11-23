@@ -11,18 +11,20 @@ test('Beliefs and Figures is accessible from homepage and new story library',asy
   await expect(page.locator('.figure-card')).toHaveCount(27);
   await expect(page.locator('meta[name=robots]')).toHaveAttribute('content','noindex,nofollow');
   await expect(page.locator('form,input[type=file],textarea')).toHaveCount(0);
-  await expect(page.getByRole('link',{name:'Sacred World archive'})).toHaveAttribute('href','/collections/sacred/');
+  await expect(page.locator('.figure-context')).toContainText('What did you grow up hearing?');
 });
 test('Èṣù is described as òrìṣà, not reduced to Satan or merely an invented hat tale',async({page})=>{
   await page.goto('/figures/esu/');
   await expect(page.getByRole('heading',{level:1})).toContainText('Èṣù');
-  await expect(page.getByText('ÒRÌṢÀ · CULTURAL INTRODUCTION')).toBeVisible();
-  await expect(page.getByText(/carrying messages between human beings and sacred powers/)).toBeVisible();
-  await expect(page.getByText(/Christian translation/)).toBeVisible();
-  await expect(page.getByRole('link',{name:/Read the imaginative tale/})).toHaveAttribute('href','/tales/esu-hat-two-views/');
-  await expect(page.getByText(/This preview is read-only/)).toBeVisible();
-  const sources=page.locator('.figure-scholar');
-  await expect(sources).not.toHaveAttribute('open','');
+  await expect(page.getByText('ÒRÌṢÀ · LIVING CULTURAL KNOWLEDGE')).toBeVisible();
+  await expect(page.getByText(/carries messages and offerings between human beings/)).toBeVisible();
+  await expect(page.getByRole('heading',{name:/Why did so many people grow up hearing/})).toBeVisible();
+  await expect(page.getByRole('link',{name:'Read the hat story'})).toHaveAttribute('href','/tales/esu-hat-two-views/');
+  await expect(page.getByText(/This private preview does not collect submissions/)).toBeVisible();
+  await expect(page.locator('.figure-scholar')).toHaveCount(0);
+  await expect(page.locator('.figure-role')).toHaveCount(4);
+  await expect(page.locator('.figure-name')).toHaveCount(4);
+  await expect(page.locator('.figure-discussion-list li')).toHaveCount(4);
 });
 test('Olódùmarè is distinguished from specialised òrìṣà and heroes from sacred figures',async({page})=>{
   await page.goto('/figures/olodumare/');
