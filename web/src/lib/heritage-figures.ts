@@ -40,7 +40,7 @@ const explainers:Record<string,Explainer>={
  'sac-obatala':{
    role:'A central figure in creation accounts and the shaping of humanity',
    beliefs:['Ọbàtálá, also called Òrìṣàńlá in relevant accounts, features in many creation traditions and is linked with shaping human beings.','White clothing or materials, calm authority and clarity are important associations in several practices.'],
-   differences:'The roles of Ọbàtálá and Odùduwà vary across tellings. A creation narrative is a religious account, not an independently dated scientific event.',
+   differences:'The roles of Ọbàtálá and Odùduwà vary across tellings. Some communities place greater emphasis on Ọbàtálá and others on Odùduwà when telling how the world began.',
    question:'What creation story involving Ọbàtálá did you first hear?'
  },
  'sac-oduduwa':{
@@ -70,7 +70,7 @@ const explainers:Record<string,Explainer>={
  'sac-yemoja':{
    role:'Motherhood and water in differing Yorùbá traditions',
    beliefs:['Yemọja is associated with motherhood and water in several religious traditions.','Nigerian traditions may connect Yemọja with particular rivers, while some diaspora traditions emphasise the sea.'],
-   differences:'These regional variations should not be flattened into one claim that Yemọja is always and everywhere exclusively an ocean divinity.',
+   differences:'Ask which river, waterway or sea is part of the story as told in the community you know.',
    question:'Which water or family tradition is Yemọja linked to in the version you know?'
  },
  'sac-oya':{
@@ -91,7 +91,7 @@ const sacred:CulturalFigure[]=archive.sacredProfiles.map(p=>{
   return {
     slug:p.id.replace(/^sac-/u,''),name:p.name,kind:p.kind,scope:p.scope,
     role:e?.role??p.summary,beliefs:e?.beliefs??[p.summary],
-    differences:e?.differences??'Local practices, oral accounts and interpretations vary. This overview describes reported associations, not a claim that every household believes the same thing.',
+    differences:e?.differences??'Different families and communities tell and remember this in their own ways. Which explanation have you heard?',
     question:e?.question??('What does your community say about '+p.name+'?'),
     mistaken:m.mistaken,clarification:m.clarification,
     relatedTerms:('relatedTerms' in p&&Array.isArray(p.relatedTerms))?p.relatedTerms.filter((x):x is string=>typeof x==='string'):[],
