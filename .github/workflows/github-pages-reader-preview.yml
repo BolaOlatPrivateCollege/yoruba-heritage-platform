@@ -43,6 +43,11 @@ jobs:
         env:
           GITHUB_PAGES_BASE: ${{ github.event.repository.name }}
         run: node scripts/prepare-pages-base.mjs
+      - name: Audit and sanitise public reader output
+        working-directory: web
+        env:
+          GITHUB_PAGES_BASE: ${{ github.event.repository.name }}
+        run: node scripts/audit-pages-public.mjs
       - name: Inspect generated output for private or server files
         working-directory: web
         run: |
