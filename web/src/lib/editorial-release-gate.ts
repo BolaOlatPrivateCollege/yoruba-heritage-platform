@@ -11,14 +11,11 @@ const uuid=z.string().uuid();
 export const ownerPublicationIntentSchema=z.object({
   recordId:uuid,
   expectedRevision:z.number().int().positive(),
-  confirmAction:z.literal('PUBLISH_APPROVED_REVISION'),
-  // Prevent a UI checkbox becoming the sole authority; the server must
-  // independently confirm a fresh MFA-backed owner session.
-  freshOwnerSessionVerified:z.literal(true)
+  confirmAction:z.literal('PUBLISH_APPROVED_REVISION')
 }).strict();
 
 export type OwnerPublishContext={
-  actor:{userId:string;role:string;active:boolean;mfaVerified:boolean};
+  actor:{userId:string;role:string;active:boolean;mfaVerified:boolean;freshOwnerMfaVerified:boolean};
   ownerUserId:string;
   record:{
     id:string;revision:number;state:string;
@@ -37,7 +34,7 @@ export function evaluateOwnerPublication(context:OwnerPublishContext):OwnerPubli
   const {actor,record}=context;
   // Reject unauthorised callers before parsing any user-supplied intent.
   if(!actor.active||actor.role!=='owner'||actor.userId!==context.ownerUserId||
-     !actor.mfaVerified||!uuid.safeParse(actor.userId).success||
+     !actor.mfaVerified||!actor.freshOwnerMfaVerified||!uuid.safeParse(actor.userId).success||
      !uuid.safeParse(context.ownerUserId).success){
     return {allowed:false,reason:'A verified, active owner session is required'};
   }
