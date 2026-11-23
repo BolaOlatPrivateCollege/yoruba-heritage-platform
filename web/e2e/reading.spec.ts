@@ -9,7 +9,8 @@ test('desktop overview, static reading links and keyboard skip link',async({page
   await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();
   await page.keyboard.press('Enter');await expect(page.locator('#main')).toBeFocused();
   await page.screenshot({path:'screenshots/desktop-home.png',fullPage:true});
-  await page.getByRole('link',{name:/Explore the scholars’ archive/}).click();
+  await page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Research'}).click();
+  await page.getByRole('link',{name:/All 113 archive articles/}).click();
   await expect(page.locator('.reading-card')).toHaveCount(113);expect(errors).toEqual([]);
 });
 test('search without diacritics, keyboard result navigation and exact article title',async({page})=>{
@@ -36,7 +37,8 @@ test('mobile native navigation, Escape focus return and narrow-screen article',a
   await page.keyboard.press('Escape');await expect(summary).toBeFocused();
   await expect(page.getByRole('navigation',{name:'Mobile sections'})).not.toBeVisible();
   await page.screenshot({path:'screenshots/mobile-home.png',fullPage:true});
-  await summary.press('Enter');await page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Sources',exact:true}).click();
+  await summary.press('Enter');await page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Research',exact:true}).click();
+  await page.locator('a.collection[href="/sources/"]').click();
   await expect(page.getByRole('heading',{level:1})).toContainText('Sources');
   await page.goto('/articles/deep-name-olodumare/');await expect(page.locator('.canonical-title')).toBeVisible();
   await page.locator('.mobile-toc summary').focus();await page.keyboard.press('Enter');
@@ -48,7 +50,7 @@ test('mobile native navigation, Escape focus return and narrow-screen article',a
 test('read-only learning boundaries, sacred taxonomy and real not-found route',async({page})=>{
   await page.goto('/collections/sacred/');await expect(page.locator('.profile')).toHaveCount(24);
   await expect(page.locator('.profile').first()).toContainText('Supreme source');
-  await page.goto('/learning/');await expect(page.getByRole('link',{name:'explore the illustrative mathematical pairings'})).toHaveAttribute('href','/learning/ifa-matrix/');
+  await page.goto('/learning/');await expect(page.getByRole('link',{name:/Alphabet & tone practice/})).toHaveAttribute('href','/learning/alphabet/');
   await expect(page.locator('audio')).toHaveCount(0);await expect(page.locator('form')).toHaveCount(0);
   const response=await page.goto('/does-not-exist/');expect(response?.status()).toBe(404);
   await expect(page.getByRole('heading',{level:1})).toContainText('This reading isn’t here.');

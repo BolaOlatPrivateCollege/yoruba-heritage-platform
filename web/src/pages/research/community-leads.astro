@@ -1,0 +1,23 @@
+---
+import Site from '../../layouts/Site.astro';
+import {archive,sourceFor,sourceHref} from '../../lib/archive';
+---
+<Site title="Community-history research records" description="Preserved provenance records for community history leads, available only within the Research area." active="Research">
+  <section class="wrap page-head">
+    <a href="/research/">← Research &amp; Documentary Archive</a>
+    <p class="kicker">RESEARCH · COMMUNITY HISTORY RECORDS</p>
+    <h1>Preserved community-history leads</h1>
+    <p class="lead">Six original research records and their provenance notes live here for readers studying source material. The main Community section is devoted instead to people's stories and future contributions.</p>
+    <p class="notice">These are archival research leads, not newly collected community submissions. No public contribution forms are active.</p>
+  </section>
+  <section class="wrap narrow">
+    {archive.communityVoices.map(v=><article class="community-record article-section" id={v.id}>
+      <p class="kicker">{v.community} · {v.type}</p>
+      <h2>{v.title}</h2>
+      <p class="prose">{v.summary}</p><p class="prose">{v.context}</p>
+      <p class="evidence">{v.status}</p>
+      <ul>{v.sourceIds.map(id=><li><a href={sourceHref(id)}>{sourceFor(id).title}</a></li>)}</ul>
+      <a href={v.readUrl} rel="noopener noreferrer">Original research lead ↗</a>
+    </article>)}
+  </section>
+</Site>

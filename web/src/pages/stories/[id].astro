@@ -13,7 +13,7 @@ interface Props {story:StoryRecord}
 const {story:s}=Astro.props;
 const next=storyFor(s.next),sources=sourcesFor(s);
 ---
-<Site title={s.title} description={s.deck} active="Stories">
+<Site title={s.title} description={s.deck} active="Research">
   <article class:list={['story-page',`theme-${s.theme}`]} data-story={s.id}>
     <header class="wrap page-head story-header"><a class="text-link" href="/stories/">← Stories &amp; journeys</a><p class="kicker">{s.place}</p><h1>{s.title}</h1><p class="story-subtitle">{s.subtitle}</p><p class="lead">{s.deck}</p><p class="draft-banner">Editorial research draft · not reviewed for public release</p><p class="fine story-reading-meta" data-word-count={storyWordCount(s)}>{storyWordCount(s)} words · about {readingMinutes(storyWordCount(s))} min read · Version {s.revision}<br/>Claims unreviewed · Rights unknown · Publication approval not granted</p></header>
 <StoryNarrator parts={[{id:s.opening.id,label:'Opening'},...s.sections.map(section=>({id:section.id,label:section.title})),{id:'look-closely',label:s.lookCloser.title},{id:'tradition-evidence',label:'Tradition and evidence'},{id:'questions-open',label:'Questions still open'},{id:'voices-needed',label:'Research voices needed'}]}/>

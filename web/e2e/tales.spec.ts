@@ -4,12 +4,12 @@ mkdirSync('screenshots',{recursive:true});
 test('living stories entry is readable and keeps documentary archive accessible',async({page})=>{
   await page.goto('/');
   await expect(page.getByRole('heading',{name:/Every town has a tale/i})).toBeVisible();
-  await page.getByRole('link',{name:/Explore living stories/}).click();
+  await page.getByRole('link',{name:/Enter the stories/}).click();
   await expect(page).toHaveURL(/\/tales\/$/);
   await expect(page.getByRole('heading',{name:/Who tells it differently/i})).toBeVisible();
   await expect(page.getByRole('link',{name:'Read the complete six-chapter story'})).toBeVisible();
   await expect(page.getByText('This prototype has no working submission form', {exact:false})).toBeVisible();
-  await expect(page.getByRole('link',{name:/Read the documentary edition/})).toHaveAttribute('href','/stories/');
+  await expect(page.getByRole('link',{name:/Meet the figures behind the stories/})).toHaveAttribute('href','/figures/');
 });
 test('complete story renders six chapters with clear fiction status and no bibliography in body',async({page})=>{
   await page.goto('/tales/laughing-mask/');

@@ -12,3 +12,14 @@ h1,h2,h3,.brand{font-family:Georgia,'Times New Roman',serif;font-weight:400;line
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 @media(max-width:650px){.contents{display:none}.mobile-toc{display:block;margin-block:1.5rem;border:1px solid var(--line);padding:.8rem 1rem;font-size:.85rem}.mobile-toc summary{min-height:28px;color:var(--bronze)}.mobile-toc li{margin-block:.8rem}}
 }
+
+
+/* The living-voices navigation has more links: switch to the existing
+   accessible mobile disclosure before desktop links overflow at 1024–1360px. */
+@media (min-width:1001px) and (max-width:1390px){
+ .desktop-nav{display:none}
+ .mobile-menu{display:block;position:relative;font-size:.8rem}
+ .mobile-menu summary{padding:.75rem;border:1px solid var(--line)}
+ .mobile-menu nav{position:absolute;right:0;top:100%;width:240px;max-width:calc(100vw - 40px);padding:1rem;background:var(--panel2);border:1px solid var(--line);z-index:10;box-shadow:0 20px 30px #0008}
+ .mobile-menu nav a{display:block;padding:.7rem}
+}

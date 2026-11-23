@@ -16,7 +16,7 @@ const shelves=[
     <p class="kicker">PRIVATE EDITORIAL PREVIEW · STORIES & LIVING MEMORIES</p>
     <h1>Everyone knows a story.<br/><em>Who tells it differently?</em></h1>
     <p class="lead">Follow a mystery, laugh at a trick, discover a familiar name—or bring a version that nobody else has heard. Stories live when people tell them again.</p>
-    <div class="tales-actions"><a class="button" href="/tales/laughing-mask/">Begin our first tale</a><a class="button secondary" href="/stories/">Read the documentary edition</a></div>
+    <div class="tales-actions"><a class="button" href="/tales/laughing-mask/">Begin our first tale</a><a class="button secondary" href="/figures/">Meet the figures behind the stories</a></div>
     <p class="fine">Story types are clearly labelled; the contribution features described here are not live.</p>
   </header>
   <section class="wrap tales-featured" aria-labelledby="first-tale">
@@ -24,14 +24,14 @@ const shelves=[
       <h2 id="first-tale">Who Was the Laughing Mask Talking About?</h2>
       <p>One twelve-second video. A rumour racing through a town. Two young investigators determined to discover what everybody thinks they know. What could possibly go wrong?</p>
       <a class="tales-inline-link" href="/tales/laughing-mask/">Read the complete six-chapter story →</a>
-      <p class="fine">An invented story inspired by curiosity about Gẹ̀lẹ̀dẹ́. Not a documented performance or collected oral history.</p>
+      <p class="fine">Original fiction inspired by questions people ask about Gẹ̀lẹ̀dẹ́.</p>
     </div>
     <div class="tales-art-swatch" aria-hidden="true"><span>Àlọ́</span><span>?</span></div>
   </section>
   <section class="wrap tales-live" aria-labelledby="fresh-tales">
     <p class="kicker">TWO MORE STORIES · FIRST PRIVATE READING EDITION</p>
     <h2 id="fresh-tales">Follow the question.</h2>
-    <p class="lead">Two new complete adventures in the power of stories and the different meanings we carry. These are original learning adaptations, not authenticated community testimony.</p>
+    <p class="lead">Two new tales about the ways people see, remember and explain their world. Which version did you grow up hearing?</p>
     <div class="tales-new-grid">{livingEpisodes.map((e,index)=><article class:list={['tales-new-card',index===0?'theme-crossroads':'theme-name']}>
       <p class="kicker">{e.world}</p>
       <h3><a href={episodeHref(e.slug)}>{e.name}</a></h3>
@@ -40,7 +40,7 @@ const shelves=[
       <a class="tales-inline-link" href={episodeHref(e.slug)}>Enter the story →</a>
     </article>)}</div>
   </section>
-  <section class="wrap tales-lanes" aria-labelledby="explore-tales">
+  <aside class="wrap tales-invite" aria-labelledby="profile-discovery"><p class="kicker">WHO IS BEHIND THE STORY?</p><h2 id="profile-discovery">Find out what communities believe.</h2><p>Hear what people say about Èṣù, Olódùmarè and other òrìṣà and heroes. Explore the stories and beliefs behind the names.</p><a class="tales-inline-link" href="/figures/">Explore Beliefs &amp; Figures →</a></aside><section class="wrap tales-lanes" aria-labelledby="explore-tales">
     <p class="kicker">A WORLD OF STORIES TO EXPLORE</p>
     <h2 id="explore-tales">What fascinates you?</h2>
     <div class="tales-grid">{shelves.map(s=><article class="tales-lane">
@@ -54,5 +54,4 @@ const shelves=[
     <p class="fine">This prototype has no working submission form or public comments. Secure moderation, rights and child-safe privacy protections must be completed before collecting real accounts.</p>
     <a class="tales-inline-link" href="/community/">Explore existing read-only community leads →</a>
   </aside>
-  <div class="wrap tales-scholar"><p>Looking for documentary evidence and scholarly reading? The complete original <a href="/articles/">Research & Documentary Archive</a> and <a href="/sources/">source library</a> remain available separately.</p></div>
 </Site>

@@ -55,11 +55,13 @@ test('all original 113 article bodies, bibliography and archive hash remain unch
 test('four earlier stories and both corrected Task 001G modules remain intact',()=>{
   assert.equal(stories.length,4);for(const s of stories)assert.equal(html('stories/'+s.id)('[data-story]').attr('data-story'),s.id);
   assert.equal(html('articles/ile-ife')('.context-category>h3').text(),'Unresolved object interpretations');assert.equal(html('articles/know-adire')('.context-category>h3').text(),'Museum-mediated reports');
-  for(const route of ['', 'stories'])assert.equal(html(route)('a.places-discovery-link[href="/places/"]').length,1);
+  assert.ok(html('')('a[href="/places/"]').length>=1,'Public homepage retains Places');
+  assert.equal(html('research')('a[href="/places/abeokuta-tax-and-representation/"]').length,1,'Regional documentary remains reachable from Research');
 });
 test('original conceptual media bytes, captions and safe local image paths are traceable',()=>{
   const media=JSON.parse(readFileSync('src/data/regional-media.json','utf8'));assert.equal(media.length,1);const m=media[0],bytes=readFileSync(m.path);assert.equal(bytes.length,m.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),m.sha256);assert.equal(m.documentary,false);assert.equal(m.externalMediaCopied,false);assert.equal(m.publicRelease,'not-granted');assert.doesNotMatch(bytes.toString(),/<script|foreignObject|(?:href|src)=["']https?:|onload=/i);
-  for(const route of ['places','places/'+regions[0].id]){const $=html(route);assert.equal($('main img').length,1);assert.match($('main img').attr('alt'),/[Cc]onceptual/);assert.match($('figcaption').text(),/[Cc]onceptual/);assert.equal($('main img').attr('src'),'/editorial/representation-reading.svg');}
+  const publicPlaces=html('places');assert.equal(publicPlaces('main img').length,0,'Public Places discovery no longer embeds documentary diagrams');
+  const $=html('places/'+regions[0].id);assert.equal($('main img').length,1);assert.match($('main img').attr('alt'),/[Cc]onceptual/);assert.match($('figcaption').text(),/[Cc]onceptual/);assert.equal($('main img').attr('src'),'/editorial/representation-reading.svg');
 });
 test('built regional prose, inspected evidence anchors and original article links resolve safely',()=>{
   const s=regions[0],$=html('places/'+s.id);for(const p of regionalParagraphs(s))assert.equal($('#'+p.id+' .story-prose').text(),p.text);
@@ -69,9 +71,11 @@ test('built regional prose, inspected evidence anchors and original article link
   assert.ok($.html().includes('&amp;'));assert.match($('.regional-status').text(),/private review only/);assert.equal($('meta[name="robots"]').attr('content'),'noindex,nofollow');
 });
 test('place discovery preserves Unicode, independent scopes and actual section pointers',()=>{
-  const $=html('places');assert.equal($('.place-card').length,2);assert.deepEqual($('.place-card h2').map((_,e)=>$(e).text()).get(),['Abẹ́òkúta','Ìbàdàn']);
-  assert.equal($('#ibadan a.place-story-link').length,0);assert.equal($('#abeokuta a.place-story-link').attr('href'),'/places/'+regions[0].id+'/');
-  for(const p of places)assert.equal($(`#${p.id} a[href="/articles/${p.articleId}/#section-${p.section}"]`).length,1);
+  const $=html('places');assert.equal($('.place-card').length,4);assert.deepEqual($('.place-card h2').map((_,e)=>$(e).text()).get(),['Abẹ́òkúta','Ìbàdàn','Ilé-Ifẹ̀','Ọ̀yọ́']);
+  assert.equal($('main a[href^="/articles/"],main a.place-story-link').length,0,'No research documentary links in Places');
+  assert.equal(places.length,2,'Original place records remain unchanged');
+  for(const p of places)assert.ok(archive.articles.some(a=>a.id===p.articleId));
+  assert.equal(html('research')('a[href="/places/abeokuta-tax-and-representation/"]').length,1);
   assert.equal(Number(html('places/'+regions[0].id)('.regional-meta').attr('data-word-count')),regionalWordCount(regions[0]));
 });
 test('internal research dossiers and ineligible fixture text never enter static output',()=>{

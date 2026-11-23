@@ -102,12 +102,13 @@ test('hostile option text is inert; selection makes no external requests or pers
 });
 
 test('desktop and mobile navigation discover explorer and source-backed chapters', async ({page}) => {
-  await page.setViewportSize({width:1440,height:1000}); await page.goto('/learning/');
-  await page.getByRole('navigation',{name:'Live learning tools'}).getByRole('link',{name:'Illustrative Ifá explorer'}).click();
-  await expect(page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Ifá explorer'})).toHaveAttribute('aria-current','page');
+  await page.setViewportSize({width:1440,height:1000}); await page.goto('/research/');
+  await page.getByRole('link',{name:/Ifá mathematical comparison/}).click();
+  await expect(page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Research'})).toHaveAttribute('aria-current','page');
   await page.setViewportSize({width:390,height:844}); await page.goto('/');
   await page.locator('.mobile-menu summary').click();
-  await page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Ifá explorer'}).click();
+  await page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Research'}).click();
+  await page.getByRole('link',{name:/Ifá mathematical comparison/}).click();
   await expect(page).toHaveURL(/\/learning\/ifa-matrix\/$/);
   await page.getByRole('link',{name:'Ifá tradition and source context'}).click();
   await expect(page.locator('.evidence-note')).toBeVisible();
