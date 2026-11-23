@@ -14,14 +14,19 @@ const tale=parsePilotStory(manuscript);
       <p class="kicker">ORIGINAL FICTION · CULTURAL MYSTERY</p>
       <h1>{tale.title}</h1>
       <p class="lead">One short clip. Several confident explanations. One town full of questions.</p>
-      <p class="fine">{tale.words} words · Six chapters · For secondary students and interested adults</p>
+      <p class="fine">{tale.words} words · Six chapters · For curious minds of every generation</p>
       <p class="tale-disclosure">This is an original fictional learning tale inspired by themes around Gẹ̀lẹ̀dẹ́. The people, events and viral video are invented; this is not a collected community account or a documented performance.</p>
-      <nav class="tale-chapters" aria-label="Story chapters"><p class="kicker">FIND A CHAPTER</p><ol>{tale.chapters.map(chapter=><li><a href={`#${chapter.id}`}>{chapter.number}. {chapter.title}</a></li>)}</ol></nav>
+      <nav class="tale-chapters" id="chapter-index" aria-label="Story chapters"><p class="kicker">FIND A CHAPTER</p><ol>{tale.chapters.map(chapter=><li><a href={`#${chapter.id}`}>{chapter.number}. {chapter.title}</a></li>)}</ol></nav>
     </header>
     <div class="tale-paper">
-      {tale.chapters.map(chapter=><section class="tale-chapter" id={chapter.id}>
+      {tale.chapters.map((chapter,index)=><section class="tale-chapter" id={chapter.id}>
         <p class="kicker">CHAPTER {chapter.number} / 6</p><h2>{chapter.title}</h2>
         {chapter.passages.map(p=><p>{p.segments.map(s=>s.strong?<strong>{s.text}</strong>:s.italic?<em>{s.text}</em>:s.text)}</p>)}
+        <nav class="tale-chapter-next" aria-label={`Navigation after chapter ${chapter.number}`}>
+          {index>0&&<a href={`#${tale.chapters[index-1]?.id}`} aria-label={`Previous chapter: ${tale.chapters[index-1]?.title}`}>← Previous chapter</a>}
+          <a href="#chapter-index">Chapter index ↑</a>
+          {index<tale.chapters.length-1&&<a href={`#${tale.chapters[index+1]?.id}`} aria-label={`Next chapter: ${tale.chapters[index+1]?.title}`}>Next chapter →</a>}
+        </nav>
       </section>)}
     </div>
     <footer class="tale-outro">
@@ -30,6 +35,7 @@ const tale=parsePilotStory(manuscript);
       <p class="fine">The planned contribution and correction actions are not enabled in this preview. No personal information is collected.</p>
       <p class="tale-discuss"><strong>Discuss:</strong> What did Kẹ́mi think she knew after the short video? What changed when she watched the whole performance?</p>
       <p><a href="/figures/gelede/">Learn what Yorùbá–Nago communities say about Gẹ̀lẹ̀dẹ́ →</a></p>
+      <p><a href="/community/share/?story=laughing-mask">Practise sharing your telling (private demo; nothing is submitted) →</a></p>
       <a href="/tales/">Discover more tales →</a>
       <p class="fine">This original story has no recorded narration yet.</p>
     </footer>

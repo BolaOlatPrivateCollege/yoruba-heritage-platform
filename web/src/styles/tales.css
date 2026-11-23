@@ -36,6 +36,11 @@
 .tale-chapter .kicker{color:#79512c}
 .tale-chapter h2{margin:.6rem 0 1.8rem;font-size:clamp(1.65rem,3.5vw,2.4rem)}
 .tale-chapter>p:not(.kicker){font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.12rem,1.6vw,1.25rem);line-height:1.9;margin-bottom:1.15rem}
+.tale-chapter-next{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem;margin-top:2.2rem;padding-top:1rem;border-top:1px solid #9a917e66;font-family:system-ui,sans-serif;font-size:.92rem}
+.tale-chapter-next a{color:#61401e;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.tale-chapter-next a:focus-visible{outline:3px solid #61401e;outline-offset:4px}
+.tale-chapter-next a:last-child{margin-left:auto}
+.tale-chapters{scroll-margin-top:2rem}
 .tale-outro{max-width:800px;margin:0 auto 6rem;padding:2.5rem;background:var(--panel);border-left:3px solid var(--bronze)}
 .tale-outro h2{margin:.6rem 0 1.2rem}
 .tale-outro .tale-discuss{margin-top:1.5rem;padding:1rem;border:1px solid var(--line)}
