@@ -36,8 +36,8 @@ jobs:
         working-directory: web
         run: |
           npm run check
-          npm test
           npm run build
+          npm test
       - name: Convert paths for project Pages
         working-directory: web
         env:
