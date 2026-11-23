@@ -40,7 +40,7 @@ Bàbá Délé began with a king.
 
 "Some accounts speak of Ṣàngó as a powerful ruler remembered in the old Ọ̀yọ́ world. The details differ, and they come through generations of tellers. For tonight, imagine a royal court where every decision is heard twice: first by the people who are pleased, and then by those who pay the price."
 
-In his imagined court, messengers waited beneath the eaves. A council had gathered because two villages disputed a road that carried traders between them. Both claimed they had cleared it. Both believed the taxes collected there belonged to them.
+Messengers waited beneath the eaves. A council had gathered because two villages disputed a road that carried traders between them. Both claimed they had cleared it. Both believed the taxes collected there belonged to them.
 
 The king's advisers gave contradictory advice.
 
@@ -72,7 +72,7 @@ Outside, rain struck the leaves in a rush. Àdìkẹ́ moved a bowl beneath a le
 
 ## Chapter 3 — The noise inside the palace
 
-In the storyteller's imagined court, the broken bridge became an embarrassment. Instead of sending builders immediately, officials argued over who should have warned the king sooner.
+The broken bridge became an embarrassment. Instead of sending builders immediately, officials argued over who should have warned the king sooner.
 
 The king struck the floor with his staff.
 
@@ -88,7 +88,7 @@ That night the courier returned with another message. People had begun to repair
 
 "No," the courier answered.
 
-The king might have punished them for acting without permission. He might have praised them. In the telling Bàbá Délé chose that evening, he did neither at first.
+The king might have punished them for acting without permission. He might have praised them. He did neither at first.
 
 He walked alone to the palace gate and listened to the rain.
 
@@ -96,7 +96,7 @@ Kúnlé leaned forward.
 
 "You are making him unusually thoughtful."
 
-"Perhaps," said Bàbá Délé. "I told you this was a story I am shaping, not a word-for-word record. Another teller might give the king a fiercer voice. Another might dwell on consequences that my version has only begun to show."
+"Perhaps," said Bàbá Délé. "Would you rather hear a king who was wise from his very first breath? Where would his struggle be?"
 
 Àdìkẹ́ nodded. "That is why we ought to ask where the telling came from."
 
@@ -122,7 +122,7 @@ Kúnlé's younger cousin announced, "Then somebody must be wrong."
 
 Rain hammered the roof. A woman at the far side of the veranda explained that she belonged to a family for whom the names were spoken reverently, not as characters in a game. She did not offer details of practice, and nobody pressed her.
 
-Bàbá Délé thanked her. Then he returned to his imagined king.
+Bàbá Délé thanked her. Then he returned to the court.
 
 The palace messengers reported that both villages had brought timber to rebuild the bridge. One had brought wood. The other had brought rope. Neither contribution could stand alone.
 
@@ -152,7 +152,7 @@ Bàbá Délé had finished his court story, but the children demanded an ending.
 
 "Did lightning strike the palace?"
 
-The old man looked towards the clouds. "Different tellings can take a life in different directions. Some emphasise royal pride and an ending marked by calamity. Some speak from living devotion, where Ṣàngó cannot be contained in a tale about a fallen ruler. I will not pretend to settle those tellings with one invented lightning strike."
+The old man looked towards the clouds. "Some speak of royal pride and terrible consequences. Others speak of power that does not end with a throne. Must every storm end the same way?"
 
 Kúnlé was disappointed.
 
