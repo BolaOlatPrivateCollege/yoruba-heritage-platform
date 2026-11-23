@@ -2,8 +2,8 @@ import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
 const ids=['ile-ife-art-city-evidence','adire-indigo-design','gelede-performance-knowledge','osun-osogbo-living-landscape'];
 
-test('homepage has four complete stories and four useful five-reading journeys',async({page})=>{
-  await page.goto('/');await expect(page.locator('.story-card')).toHaveCount(4);await expect(page.locator('.reader-journey')).toHaveCount(4);await expect(page.locator('.reader-journey li')).toHaveCount(20);
+test('Research tab preserves all four documentary stories and reading journeys',async({page})=>{
+  await page.goto('/research/');await expect(page.locator('.story-card')).toHaveCount(4);await expect(page.locator('.reader-journey')).toHaveCount(4);await expect(page.locator('.reader-journey li')).toHaveCount(20);
   await page.getByRole('link',{name:'All stories and reading journeys →'}).click();await expect(page).toHaveURL(/\/stories\/$/);
   await expect(page.getByRole('heading',{level:1})).toContainText('Stay for');
   await page.getByRole('link',{name:'Read A face, a city, a thousand questions'}).click();await expect(page.locator('[data-story]')).toHaveAttribute('data-story',ids[0]!);
