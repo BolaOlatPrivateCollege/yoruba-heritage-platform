@@ -72,6 +72,14 @@ The repository contains **NO web route, login, administrator page, database serv
 
 For local development only, storage should live outside the public web tree (for example `private_data/cms/`, which is ignored by Git). Private draft content must never be copied to `web/public`, `dist`, screenshots, static build artefacts, public search, sitemap, or browser bundles. **Do not use this local JSON store as a deployed CMS database**. PostgreSQL or another appropriately managed transactional database should replace it for multi-editor production use.
 
+## Design preview — separate administrator interface
+
+The standalone files in `cms/admin-preview/` provide a **responsive, in-memory dashboard design** for the future content manager. Categories include stories, beliefs, figures, places, Research, language and website pages. The demonstration supports editing a fictional sample's title, slug, introduction and body, switching primary language, viewing a safely text-rendered preview, and resetting to the sample. Its interface explicitly labels persistent save as disabled.
+
+**Do not add this directory to the static Astro build or expose it as an admin website.** It is not an authenticated dashboard: no real login, server, session, database connection, uploads, actual draft save, audit persistence, approval or publication. It does not call `fetch` or browser storage and loses edits when the page closes. Do not enter real confidential information or community testimony.
+
+The next major phase is to select a production identity provider, transactional database and deployment isolation, implement server-authorised content editing and private/public projection boundaries, and security-test those components *before* connecting the dashboard to real data. That phase is not authorised for deployment merely by approving this visual prototype.
+
 ## Security and operational gates
 
 **Phase 0 — this branch:** documentation, pure data-contract validation/tests, no runtime endpoints or accounts.
