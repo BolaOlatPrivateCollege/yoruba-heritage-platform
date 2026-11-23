@@ -1,0 +1,40 @@
+name: CMS database schema
+on:
+  pull_request:
+    paths:
+      - "cms/migrations/**"
+      - ".github/workflows/cms-database-schema.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  migration-smoke:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: cms_ci
+          POSTGRES_PASSWORD: local_ci_only
+          POSTGRES_DB: cms_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U cms_ci -d cms_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Verify private schema migration on disposable Postgres
+        env:
+          PGPASSWORD: local_ci_only
+        run: |
+          set -euo pipefail
+          docker run --rm --network host \
+            -e PGPASSWORD="$PGPASSWORD" -v "$PWD":/workspace:ro \
+            postgres:16 psql -X -v ON_ERROR_STOP=1 -h 127.0.0.1 -U cms_ci -d cms_ci \
+            -f /workspace/cms/migrations/001_private_editorial_schema.sql
+          docker run --rm --network host \
+            -e PGPASSWORD="$PGPASSWORD" -v "$PWD":/workspace:ro \
+            postgres:16 psql -X -v ON_ERROR_STOP=1 -h 127.0.0.1 -U cms_ci -d cms_ci \
+            -f /workspace/cms/migrations/001_smoke_test.sql
