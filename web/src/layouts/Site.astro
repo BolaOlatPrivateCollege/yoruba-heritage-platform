@@ -2,7 +2,7 @@
 import '../styles/site.css';
 interface Props {title:string;description?:string;active?:string}
 const {title,description='Àṣà & Ìtàn — Yorùbá stories, beliefs and living community memories.',active=''}=Astro.props;
-const nav=[['/','Overview'],['/tales/','Stories'],['/figures/','Beliefs & Figures'],['/learning/','Learning'],['/community/','Community'],['/articles/','Library'],['/collections/research/','Research'],['/sources/','Sources'],['/search/','Search'],['/learning/quiz/','Quiz'],['/learning/ifa-matrix/','Ifá explorer']];
+const nav=[['/','Overview'],['/tales/','Stories'],['/figures/','Beliefs & Figures'],['/places/','Places'],['/community/','Community'],['/learning/','Learning'],['/research/','Research']];
 ---
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#0d1d21"/><title>{title} · Àṣà & Ìtàn</title></head>
@@ -13,7 +13,7 @@ const nav=[['/','Overview'],['/tales/','Stories'],['/figures/','Beliefs & Figure
 <nav class="desktop-nav" aria-label="Main sections">{nav.map(([href,label])=><a href={href} aria-current={active===label?'page':undefined}>{label}</a>)}</nav>
 <details class="mobile-menu"><summary>Explore sections</summary><nav aria-label="Mobile sections">{nav.map(([href,label])=><a href={href} aria-current={active===label?'page':undefined}>{label}</a>)}</nav></details></div></header>
 <main id="main" tabindex="-1"><slot/></main>
-<footer><div><a class="brand" href="/" lang="yo">Àṣà & Ìtàn</a><p>History is not one voice.</p><p class="muted">Every community can carry another version.</p></div><nav aria-label="Archive resources"><a href="/learning/">Learning overview</a><a href="/stories/">Documentary stories</a><a href="/collections/sacred/">Sacred World research</a><a href="/community/">Community-history leads</a><a href="/legacy-links/">Legacy link mapping</a><a href="/about/">Sources & editorial limits</a></nav><p class="fine">Private, read-only preview.<br/>No live community submissions or public release.</p></footer>
+<footer><div><a class="brand" href="/" lang="yo">Àṣà & Ìtàn</a><p>History is not one voice.</p><p class="muted">Every community has a story worth hearing.</p></div><nav aria-label="Explore the website"><a href="/tales/">Stories</a><a href="/figures/">Beliefs &amp; Figures</a><a href="/places/">Places</a><a href="/community/">Community Voices</a><a href="/learning/">Learning</a><a href="/research/">Research</a></nav><p class="fine">Private, read-only preview.<br/>Community submissions are not live.</p></footer>
 <script>
   document.querySelectorAll<HTMLDetailsElement>('.mobile-menu').forEach(menu=>menu.addEventListener('keydown',event=>{
     if(event.key==='Escape'&&menu.open){menu.open=false;menu.querySelector('summary')?.focus();}
