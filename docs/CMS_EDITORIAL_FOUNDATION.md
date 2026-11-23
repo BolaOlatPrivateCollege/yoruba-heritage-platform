@@ -58,6 +58,12 @@ Required editorial safeguards:
 - Use a fixture-only dry-run migration and archive-parity tests before any live data import.
 - Do not automatically turn existing fictional narratives into named community testimony.
 
+## Phase 0 continuation — review workflow prototype
+
+The pure module `web/src/lib/editorial-workflow.ts` now plans a restricted subset of content changes: draft revision, submission for review, return to draft, and independent approval of content whose rights are cleared. Each operation requires an exact revision and emits an **audit intent**; it performs no database write. Reviewers cannot author drafts, editors cannot approve them, and a reviewer cannot approve the revision they authored. Pending rights or uncleared media prevent approval. Oral/community testimony is specifically blocked until verified, separately stored consent is available.
+
+**This is NOT security enforcement yet:** a future server must identify actors from secure sessions, persist records and audit events in one atomic transaction, enforce permissions against server-resolved roles, and prohibit client-supplied audit/approval metadata. The prototype deliberately has no publish, withdraw, admin login, API route or user-facing editor.
+
 ## Security and operational gates
 
 **Phase 0 — this branch:** documentation, pure data-contract validation/tests, no runtime endpoints or accounts.
