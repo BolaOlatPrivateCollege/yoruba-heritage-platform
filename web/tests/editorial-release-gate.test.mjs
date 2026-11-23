@@ -8,12 +8,11 @@ const editorId='248dce42-71f2-4504-a9a2-713cc3e86c86';
 const reviewerId='d97e7d69-16b3-4973-9d89-c932d365ef57';
 function context(){
  return {
-  actor:{userId:ownerId,role:'owner',active:true,mfaVerified:true},
+  actor:{userId:ownerId,role:'owner',active:true,mfaVerified:true,freshOwnerMfaVerified:true},
   ownerUserId:ownerId,
   record:{id:recordId,revision:4,state:'approved',rightsCleared:true,mediaRightsCleared:true,
     consentCleared:true,independentReviewRequired:true,reviewerId,authorId:editorId,lastEditorId:editorId},
-  intent:{recordId,expectedRevision:4,confirmAction:'PUBLISH_APPROVED_REVISION',
-    freshOwnerSessionVerified:true}
+  intent:{recordId,expectedRevision:4,confirmAction:'PUBLISH_APPROVED_REVISION'}
  };
 }
 test('owner can authorise only the specifically approved revision',()=>{
@@ -22,7 +21,7 @@ test('owner can authorise only the specifically approved revision',()=>{
 });
 test('other users, a fake owner role, disabled account and no MFA are refused',()=>{
  for(const [part,value] of [
-  ['userId',editorId],['role','editor'],['active',false],['mfaVerified',false]
+  ['userId',editorId],['role','editor'],['active',false],['mfaVerified',false],['freshOwnerMfaVerified',false]
  ]){
   const c=context();c.actor[part]=value;
   assert.equal(evaluateOwnerPublication(c).allowed,false,part);
@@ -32,7 +31,7 @@ test('explicit confirmation and fresh session are required',()=>{
  const c=context();
  c.intent.confirmAction='save_draft';
  assert.equal(evaluateOwnerPublication(c).allowed,false);
- const d=context();d.intent.freshOwnerSessionVerified=false;
+ const d=context();d.actor.freshOwnerMfaVerified=false;
  assert.equal(evaluateOwnerPublication(d).allowed,false);
  const e=context();e.intent.extraRole='owner';
  assert.equal(evaluateOwnerPublication(e).allowed,false);
