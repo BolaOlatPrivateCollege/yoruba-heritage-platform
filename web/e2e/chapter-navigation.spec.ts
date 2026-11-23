@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 
-for(const slug of ['laughing-mask','esu-hat-two-views','olodumare-many-meanings']){
+for(const slug of ['laughing-mask','esu-hat-two-views','olodumare-many-meanings','ijapa-feast-nobody-could-finish','moremi-fire-in-the-reeds','lisabi-farmers-promise','sango-when-thunder-answered','timi-gbonka-two-champions']){
   test('six chapter story has direct accessible chapter navigation: '+slug,async({page})=>{
     await page.goto('/tales/'+slug+'/');
     const chapters=page.locator('.tale-chapter');
