@@ -1,0 +1,36 @@
+---
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import Site from '../../layouts/Site.astro';
+import {parsePilotStory} from '../../lib/reader-pilot';
+import '../../styles/tales.css';
+const manuscript=readFileSync(resolve(process.cwd(),'../docs/story-first/the-laughter-beneath-the-mask.md'),'utf8');
+const tale=parsePilotStory(manuscript);
+---
+<Site title={tale.title} description="A fictional Yorùbá-inspired mystery about a rumour, a gathering and learning who to ask for the full story." active="Stories">
+  <article class="tale-reader wrap">
+    <header class="tale-reader-head">
+      <a href="/tales/">← Stories &amp; Living Memories</a>
+      <p class="kicker">ORIGINAL FICTION · CULTURAL MYSTERY</p>
+      <h1>{tale.title}</h1>
+      <p class="lead">One short clip. Several confident explanations. One town full of questions.</p>
+      <p class="fine">{tale.words} words · Six chapters · For secondary students and interested adults</p>
+      <p class="tale-disclosure">This is an original fictional learning tale inspired by themes around Gẹ̀lẹ̀dẹ́. The people, events and viral video are invented; this is not a collected community account or a documented performance.</p>
+      <nav class="tale-chapters" aria-label="Story chapters"><p class="kicker">FIND A CHAPTER</p><ol>{tale.chapters.map(chapter=><li><a href={`#${chapter.id}`}>{chapter.number}. {chapter.title}</a></li>)}</ol></nav>
+    </header>
+    <div class="tale-paper">
+      {tale.chapters.map(chapter=><section class="tale-chapter" id={chapter.id}>
+        <p class="kicker">CHAPTER {chapter.number} / 6</p><h2>{chapter.title}</h2>
+        {chapter.passages.map(p=><p>{p.segments.map(s=>s.strong?<strong>{s.text}</strong>:s.italic?<em>{s.text}</em>:s.text)}</p>)}
+      </section>)}
+    </div>
+    <footer class="tale-outro">
+      <p class="kicker">THE END? MAYBE NOT.</p><h2>Does your town tell it differently?</h2>
+      <p>The story above is fictional. If you know an actual account from a community performer, elder or family member, their voice deserves to be heard with permission, careful attribution and space for other versions.</p>
+      <p class="fine">The planned contribution and correction actions are not enabled in this preview. No personal information is collected.</p>
+      <p class="tale-discuss"><strong>Discuss:</strong> What did Kẹ́mi think she knew after the short video? What changed when she watched the whole performance?</p>
+      <a href="/tales/">Discover more tales →</a>
+      <p class="fine">For historical source material, explore the separate <a href="/stories/">documentary stories</a>. No audio exists for this rewritten tale; the existing Fola recordings belong to their unchanged documentary scripts.</p>
+    </footer>
+  </article>
+</Site>
