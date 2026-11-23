@@ -1,7 +1,6 @@
 ---
 import Site from '../layouts/Site.astro';
-import {Image} from 'astro:assets';
-import indigoStudy from '../assets/indigo-study.png';
+import '../styles/story-home-feature.css';
 ---
 <Site title="Yorùbá Stories & Living Memories" active="Overview">
   <section class="hero wrap">
@@ -15,13 +14,21 @@ import indigoStudy from '../assets/indigo-study.png';
       </div>
       <p class="fine">Original stories are clearly labelled; living community contributions will appear with the teller’s permission.</p>
     </div>
-    <figure class="home-editorial-cover">
-      <Image src={indigoStudy} alt="AI-generated painterly illustration of folded indigo cloth and loose threads." width={640} widths={[320,480,640,900]} sizes="(max-width:650px) calc(100vw - 40px), (max-width:1000px) 45vw, 520px" format="webp" quality={75} loading="eager"/>
+    <figure class="home-editorial-cover home-story-feature">
+      <div class="story-fire-scene" role="img" aria-label="Decorative imagined evening storytelling scene: warm lantern light beneath a large tree, with the silhouettes of a storyteller and listeners.">
+        <span class="story-fire-moon" aria-hidden="true"></span>
+        <span class="story-fire-tree" aria-hidden="true"></span>
+        <span class="story-fire-horizon" aria-hidden="true"></span>
+        <span class="story-fire-people" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="story-fire-glow" aria-hidden="true"></span>
+        <span class="story-fire-words" lang="yo" aria-hidden="true">Àlọ́ o!</span>
+      </div>
       <figcaption>
-        <p class="kicker">STORIES BEHIND THE THINGS WE MAKE</p>
-        <h2>Every pattern<br/><em>has a storyteller.</em></h2>
-        <p>From the makers of Àdìrẹ to the people who trade, drum, cook and pass down family memories.</p>
-        <p class="fine">AI-generated artistic illustration; not a photograph of a real maker or documented textile.</p>
+        <p class="kicker">TONIGHT'S STORY · MỌ́REMÍ ÀJÀṢORÒ</p>
+        <h2><a href="/tales/moremi-fire-in-the-reeds/">The night the forest<br/><em>kept a secret.</em></a></h2>
+        <p>A city is afraid. A woman follows the danger into the reeds—and discovers that courage may ask for more than anyone can give.</p>
+        <p><a class="home-feature-link" href="/tales/moremi-fire-in-the-reeds/">Enter Mọ́remí's story <span aria-hidden="true">→</span></a></p>
+        <p class="fine">An original dramatic retelling, not a recorded elder's testimony. Accounts of Mọ́remí differ by teller and community.</p>
       </figcaption>
     </figure>
   </section>
