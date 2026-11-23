@@ -22,7 +22,7 @@ test('public Places page invites oral histories while archived regional document
   await page.getByRole('link',{name:/Explore places/}).click();
   await expect(page).toHaveURL(/\/places\/$/);
   await expect(page.locator('.place-card')).toHaveCount(4);
-  await expect(page.getByText('Every place')).toBeVisible();
+  await expect(page.getByRole('heading',{name:/Every place/})).toBeVisible();
   await expect(page.locator('main a[href^="/articles/"],main a[href^="/sources/"]')).toHaveCount(0);
   await page.setViewportSize({width:720,height:900});
   await page.evaluate(()=>{document.documentElement.style.fontSize='32px';});
