@@ -18,7 +18,7 @@ export function parsePilotStory(markdown:string):ReaderPilot{
   if(!title)throw new Error('Missing pilot story title');
   const headers=[...source.matchAll(/^## Chapter (\d+) — (.+)$/gm)];
   if(headers.length!==6)throw new Error('Pilot must have six complete chapters');
-  const divider=source.indexOf('\n---\n',headers[0].index);
+  const divider=source.indexOf('\n---\n',headers[0].index!);
   const end=divider<0?source.length:divider;
   const chapters=headers.map((header,i)=>{
     const number=Number(header[1]);
