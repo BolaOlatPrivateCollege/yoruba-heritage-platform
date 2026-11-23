@@ -1,70 +1,113 @@
 ---
 import Site from '../../layouts/Site.astro';
 import {heritageFigures,figureHref,type CulturalFigure} from '../../lib/heritage-figures';
+import {esuLivingProfile as esu} from '../../lib/esu-living-profile';
 import '../../styles/figures.css';
 export function getStaticPaths(){return heritageFigures.map(f=>({params:{slug:f.slug},props:{figure:f}}));}
 interface Props{figure:CulturalFigure}
 const {figure:f}=Astro.props;
+const isEsu=f.slug==='esu';
 const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind===f.kind).slice(0,3);
 ---
-<Site title={f.name+' — beliefs and cultural background'} description={f.role+'. A clear introduction to what different Yorùbá accounts say.'} active="Beliefs & Figures">
+<Site title={isEsu?'Èṣù — Messenger, Crossroads and Choice':f.name+' — Yorùbá beliefs and cultural memory'} description={isEsu?esu.lead:f.role+'. Stories, beliefs and community perspectives.'} active="Beliefs & Figures">
   <article class="wrap figure-detail">
     <header class="figure-detail-head">
       <a href="/figures/">← Beliefs, Òrìṣà &amp; Historical Figures</a>
-      <p class="kicker">{f.kind.toUpperCase()} · CULTURAL INTRODUCTION</p>
-      <h1 lang="yo">{f.name}</h1>
-      <p class="lead">{f.role}</p>
-      <p class="figure-context"><strong>A note about truth and tradition:</strong> This page describes reported Yorùbá beliefs, remembered stories and historical interpretations. It does not claim that every community explains them identically, or that an oral sacred story is a scientific record.</p>
-      {f.relatedTerms.length>0&&<p class="figure-alias"><strong>Related words and names:</strong> <span lang="yo">{f.relatedTerms.join(' · ')}</span></p>}
+      <p class="kicker">{f.kind.toUpperCase()} · LIVING CULTURAL KNOWLEDGE</p>
+      <h1 lang="yo">{isEsu?'Èṣù':f.name}</h1>
+      <p class="lead">{isEsu?esu.lead:f.role}</p>
+      {isEsu?<p class="figure-opening">{esu.invitation}</p>:<p class="figure-opening">What do people in your town, household and community say about this name? Begin with its roles and stories, then discover how others understand it.</p>}
+      {f.relatedTerms.length>0&&<p class="figure-alias"><strong>Other related words and names:</strong> <span lang="yo">{f.relatedTerms.join(' · ')}</span></p>}
+      {isEsu&&<nav aria-label="Explore Èṣù" class="figure-jump">
+        <a href="#roles">Key roles</a><a href="#name-meaning">The name</a>
+        <a href="#devil">Èṣù and “devil”</a><a href="#other-names">Other names</a><a href="#share-voice">Your account</a>
+      </nav>}
     </header>
+    {isEsu?
+    <div class="figure-article figure-article-living">
+      <section id="roles" aria-labelledby="roles-heading">
+        <p class="kicker">KEY ROLES &amp; MEANINGS</p>
+        <h2 id="roles-heading">Who is Èṣù in Yorùbá spirituality?</h2>
+        <p class="figure-section-opening">Èṣù is far more than a figure in a folktale. His roles touch communication, sacred duty, decisions, order and the unexpected. These are the meanings people discuss when they tell stories about Èṣù.</p>
+        <div class="figure-role-grid">{esu.roles.map(role=><article class="figure-role" id={role.id}>
+          <h3>{role.title}</h3><p>{role.body}</p><p class="figure-role-question">{role.conversation}</p>
+        </article>)}</div>
+      </section>
+      <section id="name-meaning" aria-labelledby="name-heading">
+        <p class="kicker">THE NAME AND ITS MEANINGS</p>
+        <h2 id="name-heading">{esu.language.title}</h2>
+        <p>{esu.language.text}</p>
+        <p class="figure-discussion-prompt">{esu.language.prompt}</p>
+      </section>
+      <section id="devil" aria-labelledby="devil-heading">
+        <p class="kicker">A NAME THAT STARTS A CONVERSATION</p>
+        <h2 id="devil-heading">{esu.translation.title}</h2>
+        <p>{esu.translation.opening}</p><p>{esu.translation.story}</p><p>{esu.translation.closer}</p>
+      </section>
+      <section id="other-names" aria-labelledby="other-names-heading">
+        <p class="kicker">NAMES YOU MAY HAVE HEARD</p>
+        <h2 id="other-names-heading">{esu.names.title}</h2>
+        <div class="figure-name-grid">{esu.names.items.map(item=><div class="figure-name">
+          <h3 lang="yo">{item.name}</h3><p>{item.note}</p>
+        </div>)}</div>
+      </section>
+      <section id="misunderstandings" aria-labelledby="misunderstandings-heading">
+        <p class="kicker">LET'S TALK ABOUT IT</p>
+        <h2 id="misunderstandings-heading">Three things people often say</h2>
+        <div class="figure-myths">{esu.misunderstandings.map(item=><div class="figure-myth">
+          <h3>{item.heard}</h3><p>{item.another}</p>
+        </div>)}</div>
+      </section>
+      <aside class="figure-story" aria-label="Related Èṣù folktale adaptation">
+        <p class="kicker">ONE TALE, MANY VERSIONS</p>
+        <h2>Two friends. One hat. Two different truths.</h2>
+        <p>Read our imaginative adaptation of the well-known Èṣù hat story. Then ask your family or community which version they know.</p>
+        <a href="/tales/esu-hat-two-views/">Read the hat story →</a>
+      </aside>
+      <section id="share-voice" class="figure-voices" aria-labelledby="share-heading">
+        <p class="kicker">YOUR COMMUNITY'S VOICE</p>
+        <h2 id="share-heading">{esu.discussion.title}</h2>
+        <p>{esu.discussion.lead}</p>
+        <ol class="figure-discussion-list">{esu.discussion.prompts.map(q=><li>{q}</li>)}</ol>
+        <p class="fine">{esu.discussion.note} This private preview does not collect submissions or personal details yet.</p>
+      </section>
+    </div>
+    :
     <div class="figure-article">
       <section aria-labelledby="who-is-this">
-        <p class="kicker">START HERE</p>
-        <h2 id="who-is-this">Understanding {f.name}</h2>
+        <p class="kicker">MEET THIS NAME</p><h2 id="who-is-this">Understanding {f.name}</h2>
         <p>{f.beliefs[0]}</p>
-        <p class="figure-scope"><strong>Where this account is situated:</strong> {f.scope}</p>
+        <p class="figure-scope"><strong>Places and traditions connected with this name:</strong> {f.scope}</p>
       </section>
       {f.beliefs.length>1&&<section aria-labelledby="traditional-accounts">
-        <p class="kicker">CULTURAL UNDERSTANDING</p>
-        <h2 id="traditional-accounts">How people understand this figure</h2>
+        <p class="kicker">WHAT PEOPLE TELL</p>
+        <h2 id="traditional-accounts">Roles and beliefs</h2>
         {f.beliefs.slice(1).map(text=><p>{text}</p>)}
       </section>}
       <section aria-labelledby="different-versions">
-        <p class="kicker">MORE THAN ONE VOICE</p>
-        <h2 id="different-versions">Where accounts differ</h2>
-        <p>{f.differences}</p>
-        <p class="fine">Accounts should be connected to an identifiable community, tradition or contributor before being presented as that community’s own words.</p>
+        <p class="kicker">OTHER WAYS OF TELLING IT</p>
+        <h2 id="different-versions">Different community accounts</h2><p>{f.differences}</p>
       </section>
       <section aria-labelledby="common-confusion">
-        <p class="kicker">LET'S CLEAR SOMETHING UP</p>
-        <h2 id="common-confusion">Something readers often hear</h2>
-        <p><strong>A common simplification:</strong> {f.mistaken}</p>
-        {f.clarification&&<p><strong>A fuller explanation:</strong> {f.clarification}</p>}
+        <p class="kicker">A QUESTION WORTH ASKING</p>
+        <h2 id="common-confusion">What people sometimes say</h2>
+        <p><strong>A common claim:</strong> {f.mistaken}</p>
+        {f.clarification&&<p><strong>Another perspective:</strong> {f.clarification}</p>}
       </section>
       {f.storyHref&&<aside class="figure-story" aria-label="Related fictional learning story">
-        <p class="kicker">NOW ENTER THE STORY</p>
-        <h2>Meet this name in a tale</h2>
-        <p>Our separate learner story uses invented scenes and dialogue to explore a question connected with this figure. It is not a documented oral-history transcript.</p>
+        <p class="kicker">A STORY TO ENJOY</p><h2>Read a tale connected with this name</h2>
+        <p>Stories spark questions about the beliefs people have passed on. Invented dialogue and scenes are clearly identified as fiction.</p>
         <a href={f.storyHref}>Read the imaginative tale →</a>
       </aside>}
-      <section class="figure-voices" aria-labelledby="share-voice">
-        <p class="kicker">WHAT HAVE YOU HEARD?</p><h2 id="share-voice">A place for your community's voice</h2>
+      <section class="figure-voices" id="share-voice" aria-labelledby="share-voice-heading">
+        <p class="kicker">YOUR COMMUNITY'S VOICE</p><h2 id="share-voice-heading">What were you told?</h2>
         <p>{f.question}</p>
-        <p>We plan to accept corrections, other versions and first-hand accounts with the teller's permission, place/context and careful moderation. Different community versions will be shown as attributed tellings rather than one enforced answer.</p>
-        <p class="fine">This preview is read-only. No real submissions, personal details or recordings are collected here.</p>
+        <p>Different tellers may remember different versions. We want to hear those accounts in their own voices—with permission and respect for the person who shared them.</p>
+        <p class="fine">This private preview is read-only. Community contributions are not enabled yet.</p>
       </section>
-      <details class="figure-scholar">
-        <summary>For researchers: see the existing records and reading leads</summary>
-        <div>
-          <p><strong>Editorial status:</strong> {f.status}. These links show where claims can be investigated; they do not replace first-hand community testimony or license reuse of third-party media.</p>
-          {f.archiveHref&&<p><a href={f.archiveHref}>Open the preserved detailed Sacred World profile →</a></p>}
-          <ul>{f.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul>
-        </div>
-      </details>
-    </div>
+    </div>}
     {neighbours.length>0&&<nav aria-label="Related cultural profiles" class="figure-related">
-      <h2>Discover another name</h2>
-      <div>{neighbours.map(other=><a href={figureHref(other.slug)}>{other.name} →</a>)}</div>
+      <h2>Discover another name</h2><div>{neighbours.map(other=><a href={figureHref(other.slug)}>{other.name} →</a>)}</div>
     </nav>}
   </article>
 </Site>
