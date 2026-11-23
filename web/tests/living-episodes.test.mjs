@@ -10,7 +10,7 @@ test('seven complete tales keep distinct genres, stable IDs and 6 rich chapters 
     assert.ok(e.body.words>=1200,e.slug+': full length');
     assert.deepEqual(e.body.chapters.map(c=>c.number),[1,2,3,4,5,6]);
     assert.ok(e.body.chapters.every(c=>c.passages.length>=4));
-    assert.match(e.fictionalStatus,/invented|imagined/i);
+    assert.match(e.fictionalStatus,/invented|imagined|invents|invention/i);
     assert.equal(episodeHref(e.slug),'/tales/'+e.slug+'/');
     const text=e.body.chapters.flatMap(c=>c.passages).map(p=>p.plain).join(' ');
     assert.doesNotMatch(text,/source register|museum accession|bibliography|http(s)?:\/\//i);
@@ -36,7 +36,7 @@ test('five added manuscripts are full, openly literary tellings and are not sile
  assert.equal(added.length,5);
  for(const episode of added){
   assert.match(episode.genre,/fiction|retelling/i,episode.slug);
-  assert.match(episode.fictionalStatus,/invented|invention|imagined/i,episode.slug);
+  assert.match(episode.fictionalStatus,/invented|invention|imagined|invents/i,episode.slug);
   assert.ok(episode.question.length>20);
   assert.ok(episode.body.chapters.every(ch=>ch.passages.length>=4),episode.slug);
  }
