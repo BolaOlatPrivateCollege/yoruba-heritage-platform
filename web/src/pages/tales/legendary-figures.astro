@@ -1,0 +1,106 @@
+---
+import Site from '../../layouts/Site.astro';
+import '../../styles/tales.css';
+
+type Lead={name:string;hook:string;label:string;kind:'Oral tradition'|'Historical memory'|'Sacred tradition'|'Legendary motif'|'Verification needed'};
+type Collection={id:string;title:string;subtitle:string;items:Lead[]};
+const collections:Collection[]=[
+ {id:'origins',title:'Origins, kings & sacred power',subtitle:'Follow the paths where royal memories, sacred accounts and extraordinary storytelling meet.',items:[
+  {name:'Odùduwà',hook:'A crown, an ancestral city, and different accounts of where a founding figure came from. Which version does Ilé-Ifẹ̀ remember?',label:'Multiple origin traditions; no single universally agreed biography',kind:'Oral tradition'},
+  {name:'Ọ̀rànmíyàn',hook:'A warrior journeys between royal worlds. What survives in the memories of Ilé-Ifẹ̀, Ọ̀yọ́ and Benin?',label:'Royal traditions with differing lineages and accounts',kind:'Oral tradition'},
+  {name:'Ṣàngó',hook:'When thunder answers a royal quarrel, is it a warning, a memory or a sacred telling? Hear the perspectives separately.',label:'A living òrìṣà tradition; not merely a fantasy character',kind:'Sacred tradition'},
+  {name:'Àgànjú',hook:'Fire, strength and wild landscapes follow a powerful name. But is every claim about the king and the òrìṣà the same story?',label:'Identity, succession and traditions require local review',kind:'Verification needed'},
+  {name:'Ògún',hook:'Iron opens a road where none existed. The tale asks what happens when the power to create and destroy travels together.',label:'Sacred traditions differ by community and lineage',kind:'Sacred tradition'}
+ ]},
+ {id:'heroines',title:'Women whose stories refuse to disappear',subtitle:'Political power, courage, community memory—and the reputations later storytellers gave them.',items:[
+  {name:'Mọ́remí Àjàṣorò',hook:'A dangerous decision, a hidden identity, and a community remembering sacrifice through the Ẹ̀dì festival.',label:'Ilé-Ifẹ̀ commemorative tradition; dramatic scenes need attribution',kind:'Oral tradition'},
+  {name:'Efúnsetán Aníwúrà',hook:'An Ìyálóde controls trade and influence in a city shaped by war. Who wrote her reputation—and who challenged it?',label:'Historical figure; hostile character portraits are disputed',kind:'Historical memory'},
+  {name:'Ẹfúnróyè Tinúbú',hook:'A merchant and political power-broker navigates Lagos, Abẹ́òkúta and rival ambitions in a changing century.',label:'Historical figure; anti-colonial and trading claims need nuance',kind:'Historical memory'},
+  {name:'Ọ̀ròmpòtó',hook:'When a throne becomes a question of gender and courage, stories of a formidable ruler take different forms.',label:'Ọ̀yọ́ royal tradition; transformation and battle details are lore',kind:'Oral tradition'}
+ ]},
+ {id:'commanders',title:'Commanders, resistance & civil-war memories',subtitle:'Wars shaped Yorùbá towns, but the people within these stories deserve more than simple heroes and villains.',items:[
+  {name:'Lísàbí Agbòngbò-Àkàlà',hook:'Farmers gather under an ordinary banner. Is a harvest society also the beginning of a struggle for autonomy?',label:'Ẹ̀gbá liberation memories; exact numbers and tactics unverified',kind:'Oral tradition'},
+  {name:'Ògèdèngbé Agbógungbòrò',hook:'A general carries the weight of an alliance while the Kiriji conflict stretches across generations.',label:'Historical commander; supernatural protection claims are lore',kind:'Historical memory'},
+  {name:'Baṣọ̀run Ògúnmọ́lá',hook:'From political ascent to the Ijaye conflict, one leader can be remembered as protector and adversary.',label:'Historical figure; dramatic punishments need verification',kind:'Historical memory'},
+  {name:'Ààrẹ Látòósà',hook:'How long can a leader pursue victory when the cost of war keeps rising?',label:'Historical figure; motives and death stories vary',kind:'Historical memory'},
+  {name:'Balógun Ìbíkúnlé',hook:'At Òṣogbo, stories of command and daring collide with memories of a hard-fought defence.',label:'Battle traditions; cinematic tactics require independent sourcing',kind:'Historical memory'},
+  {name:'Kúrùnmí of Ìjàyè',hook:'A leader refuses to bend over succession. At what moment does a political stand become a tragedy?',label:'Historical conflict; family-death and suicide scenes require verification',kind:'Historical memory'},
+  {name:'Àfọ̀njá of Ìlọrin',hook:'An ambitious commander breaks with a crown—and the consequences reach beyond his own lifetime.',label:'Historical and oral accounts; avoid ethnic scapegoating',kind:'Historical memory'}
+ ]},
+ {id:'rivalries',title:'Rivalries that could carry a serial',subtitle:'Two powerful figures, conflicting ambitions, and different communities remembering the same struggle.',items:[
+  {name:'Tìmì Agbalẹ̀ & Gbónká',hook:'Two champions are drawn into a contest. In some tellings the duel ends with impossible survival—what does it say about power?',label:'Ṣàngó-linked legendary motif; duel details need a named telling',kind:'Legendary motif'},
+  {name:'Kúrùnmí & Ògúnmọ́lá',hook:'A disagreement over authority becomes a conflict whose cost cannot be measured by victory alone.',label:'Historical rivals; specific humiliation scenes are unverified',kind:'Historical memory'},
+  {name:'Efúnsetán & Látòósà',hook:'Influence, wealth and military command collide in a city where reputations can become weapons.',label:'Competing portrayals; assassination details are disputed',kind:'Historical memory'}
+ ]},
+ {id:'unsung',title:'Lesser-heard champions and forest mysteries',subtitle:'Promising story leads that need local voices and careful checks before becoming a named tradition.',items:[
+  {name:'Fábùnmi of Òkèmèsí',hook:'An act of resistance in Èkìtì becomes a spark that later generations connect to the Kiriji struggle.',label:'Historical figure; exact trigger and chronology vary',kind:'Historical memory'},
+  {name:'Ajáyí Ògbóríẹ̀fọ̀n',hook:'A war commander enters stories of a river battle, desperate choices and the noise of approaching armies.',label:'Historical lead; river battle exploits require verification',kind:'Verification needed'},
+  {name:'Hunters of Ìrẹ̀',hook:'A lonely forest path, hidden dangers and the question: what belongs to the hunter, and what belongs to the forest?',label:'Fictional story pitch; no named local testimony yet',kind:'Legendary motif'},
+  {name:'Olúròmbò the hunter',hook:'A guardian is said to move as swiftly as the forest itself. Who first told the transformation tale?',label:'Unverified named character; do not assert as historical fact',kind:'Verification needed'},
+  {name:'Akíntúndé and the night-watch',hook:'Night scouts see signals beyond the walls. This is a possible original mystery, not a verified war biography.',label:'Unverified identity; no attributed historical account established',kind:'Verification needed'}
+ ]},
+ {id:'mystical',title:'Mysteries of protection and the spoken word',subtitle:'Ideas found in dramatic retellings of war and forest power—not instructions or verified demonstrations.',items:[
+  {name:'Ẹgbẹ́ — vanishing from danger',hook:'A warrior is surrounded, and the story says he is gone before the next arrow lands. Where did the tale begin?',label:'Supernatural motif; no verified physical teleportation',kind:'Legendary motif'},
+  {name:'Protection from iron and shot',hook:'An arrow strikes, but a tale says the warrior survives untouched. Who tells it, and what does protection mean?',label:'Oral motif; do not treat charms as proven protection',kind:'Legendary motif'},
+  {name:'Àfọ̀ṣẹ — words with consequences',hook:'One whispered command changes a contest. The story turns on whether words can bind another person.',label:'Belief and storytelling motif; no ritual instructions',kind:'Legendary motif'},
+  {name:'Kánákò — the shortened journey',hook:'An army arrives sooner than expected. Did a storyteller imagine the distance folding?',label:'Terminology and local provenance need checking',kind:'Verification needed'},
+  {name:'The ring that hid its wearer',hook:'A tiny ring becomes the centre of a tale about what observers think they can see.',label:'Motif only; named object and provenance need checking',kind:'Verification needed'},
+  {name:'Ṣìgìdì — the clay figure',hook:'A story imagines a figure standing guard through the night. The unsettling question is who believes it has moved.',label:'Sacred and fictional contexts vary; do not provide harm instructions',kind:'Legendary motif'}
+ ]}
+];
+const types=['Oral tradition','Historical memory','Sacred tradition','Legendary motif','Verification needed'];
+---
+<Site title="Warriors, Heroines & Legendary Mysteries" description="Explore Yorùbá heroes, royal memories, dramatic rivalries and the supernatural tales attached to their names. Private editorial preview." active="Stories">
+ <main class="wrap heritage-leads" id="legendary-index">
+  <header class="heritage-leads-head">
+   <a href="/tales/">← Stories &amp; Living Memories</a>
+   <p class="kicker">PRIVATE STORY-DEVELOPMENT PREVIEW · NOT AUTHENTICATED TESTIMONY</p>
+   <h1>Warriors, heroines <em>&amp; legends</em> that still raise questions</h1>
+   <p class="lead">A warrior who would not retreat. A queen remembered for a dangerous choice. A hunter whose path leads beyond familiar trees. Every name opens a door—and not everyone tells the story the same way.</p>
+   <p class="tale-disclosure"><strong>About these story leads:</strong> Some people named here are historical figures; others belong to sacred, royal or oral traditions. The most dramatic details are often disputed or unverified. These are short invitations to explore—not complete stories, first-hand interviews or verified accounts of magical events. Full retellings require named sources and editorial review.</p>
+   <nav aria-label="Browse legend collections" class="heritage-leads-navigation">
+    {collections.map(group=><a href={'#'+group.id}>{group.title}</a>)}
+   </nav>
+  </header>
+  <div class="heritage-leads-sections">
+   {collections.map(group=><section id={group.id} class="heritage-leads-section">
+    <p class="kicker">EXPLORE THE TELLINGS</p>
+    <h2>{group.title}</h2>
+    <p>{group.subtitle}</p>
+    <div class="heritage-leads-grid">
+     {group.items.map(item=><article class="heritage-lead-card">
+      <p class="heritage-lead-type">{item.kind}</p>
+      <h3>{item.name}</h3>
+      <p>{item.hook}</p>
+      <p class="heritage-lead-context">{item.label}</p>
+     </article>)}
+    </div>
+   </section>)}
+  </div>
+  <aside class="tales-invite">
+   <p class="kicker">MORE THAN ONE TELLING</p>
+   <h2>Whose version have you heard?</h2>
+   <p>Names, stories and sacred meanings can differ across towns, families and traditions. We aim to preserve those differences with permission and appropriate attribution—not to turn folklore into invented eyewitness testimony.</p>
+   <p class="fine">This private prototype cannot receive stories or recordings. No live community contribution or publication is enabled.</p>
+   <a href="/tales/">Return to the story library →</a>
+  </aside>
+ </main>
+</Site>
+<style>
+.heritage-leads{max-width:1160px}.heritage-leads-head{max-width:930px;padding-block:4rem 2rem}
+.heritage-leads-head>a{color:var(--bronze)}.heritage-leads-head h1{font-size:clamp(2.3rem,5vw,4.9rem);line-height:1.1;margin:1.2rem 0}
+.heritage-leads-head .lead{max-width:760px}
+.heritage-leads-navigation{display:flex;flex-wrap:wrap;gap:.7rem;margin:2rem 0 1rem}
+.heritage-leads-navigation a{display:inline-block;padding:.55rem .8rem;border:1px solid var(--line);border-radius:4px;color:var(--cream);text-decoration:none;font-size:.86rem}
+.heritage-leads-navigation a:focus-visible,.heritage-leads-grid a:focus-visible{outline:3px solid var(--bronze);outline-offset:3px}
+.heritage-leads-section{padding-block:3rem 1rem;scroll-margin-top:2rem;border-top:1px solid var(--line)}
+.heritage-leads-section h2{font-size:clamp(1.7rem,3vw,2.5rem);margin:.5rem 0}.heritage-leads-section>p:not(.kicker){max-width:740px;color:var(--muted)}
+.heritage-leads-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+.heritage-lead-card{min-width:0;padding:1.4rem;border:1px solid var(--line);background:var(--panel);border-radius:4px}
+.heritage-lead-card h3{font-family:Georgia,serif;font-size:1.45rem;margin:.65rem 0}.heritage-lead-card>p{line-height:1.65}
+.heritage-lead-type{font-size:.72rem!important;color:var(--bronze);font-weight:750;text-transform:uppercase;letter-spacing:.07em}
+.heritage-lead-context{border-top:1px solid var(--line);padding-top:.85rem;margin-top:1.5rem;color:var(--muted);font-size:.81rem}
+.heritage-leads .tales-invite{margin:3rem 0 5rem}
+@media(max-width:850px){.heritage-leads-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.heritage-leads-head{padding-block:2.5rem 1.5rem}.heritage-leads-grid{grid-template-columns:1fr}.heritage-lead-card{padding:1.15rem}}
+</style>
