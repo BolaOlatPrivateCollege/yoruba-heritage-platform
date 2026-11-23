@@ -70,6 +70,7 @@ const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind==
         <p>{esu.discussion.lead}</p>
         <ol class="figure-discussion-list">{esu.discussion.prompts.map(q=><li>{q}</li>)}</ol>
         <p class="fine">{esu.discussion.note} This private preview does not collect submissions or personal details yet.</p>
+        <p><a href="/community/share/">Try a private example of telling your version →</a></p>
       </section>
     </div>
     :
@@ -98,6 +99,7 @@ const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind==
         <p>{f.question}</p>
         <p>Different tellers may remember different versions. We want to hear those accounts in their own voices—with permission and respect for the person who shared them.</p>
         <p class="fine">This private preview is read-only. Community contributions are not enabled yet.</p>
+        <p><a href="/community/share/">Practise adding your version (nothing submitted) →</a></p>
       </section>
     </div>}
     {neighbours.length>0&&<nav aria-label="Related cultural profiles" class="figure-related">
