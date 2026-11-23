@@ -1,0 +1,21 @@
+.voice-hero{padding-bottom:2.5rem}
+.voice-hero>a{color:var(--bronze)}
+.voice-preview{max-width:65rem;padding:1.1rem 1.3rem;border-left:3px solid var(--bronze);background:var(--panel);line-height:1.7;margin:1.7rem 0}
+.voice-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:2rem 0 0}
+.voice-paths a{display:flex;gap:1rem;align-items:center;min-height:54px;padding:.9rem 1rem;border:1px solid var(--line);color:var(--cream);background:var(--panel);text-decoration:none}
+.voice-paths a:hover,.voice-paths a:focus-visible{border-color:var(--bronze)}
+.voice-paths span{color:var(--bronze);font-weight:700}
+.voice-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;padding-block:2rem}
+.voice-guide{min-width:0;padding:1.75rem;background:var(--panel);border:1px solid var(--line);scroll-margin-top:1.5rem}
+.voice-guide h2{font-size:clamp(1.45rem,2.4vw,1.9rem);margin:.7rem 0 1rem}
+.voice-guide h3{font-size:1.08rem;margin:1.6rem 0 .75rem}
+.voice-guide p,.voice-guide li{line-height:1.76}
+.voice-guide ol{padding-left:1.5rem}
+.voice-guide li{margin:.55rem 0}
+.voice-example{padding:1rem;background:var(--panel2);font-style:italic;border-left:2px solid var(--bronze)}
+.voice-notice{font-size:.85rem;color:var(--muted);margin-top:1.5rem}
+.voice-principles{padding:2rem;background:var(--panel);border-left:3px solid var(--bronze);margin-block:1rem 4rem}
+.voice-principles p{max-width:75ch;line-height:1.75}
+.voice-principles h2{margin:.7rem 0 1rem}
+.voice-principles a{color:var(--bronze)}
+@media(max-width:760px){.voice-paths,.voice-layout{grid-template-columns:1fr}.voice-guide,.voice-principles{padding:1.2rem}}

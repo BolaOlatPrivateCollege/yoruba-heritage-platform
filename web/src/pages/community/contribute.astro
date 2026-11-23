@@ -1,0 +1,42 @@
+---
+import Site from '../../layouts/Site.astro';
+import '../../styles/community-voices.css';
+const paths=[
+ {id:'another-telling',number:'01',name:'I know another version',kind:'Another telling',example:'“In my town, the hat had three colours, not two…”',help:'Share the story as you heard it. Say whose telling it was and which town or community you associate with it.',questions:['Which story or person does your telling relate to?','How did the story begin, and how did it end?','Where did you hear it? What does your version add?']},
+ {id:'family-memory',number:'02',name:'A story from my family',kind:'Family or elder memory',example:'“My grandmother often spoke about our market festival…”',help:'Tell a memory passed down to you, with the teller’s permission if you quote or identify them.',questions:['Who passed this memory to you?','Which town, broad period or tradition was it connected with?','What do you remember most clearly?']},
+ {id:'first-hand',number:'03',name:'Something I experienced',kind:'First-hand recollection',example:'“I remember how our village celebrated the festival…”',help:'Describe a festival, custom, place, craft or event you personally experienced, without revealing private or unsafe details.',questions:['What did you personally see or do?','Which community and approximate period is the memory associated with?','Is there anything you would rather keep private?']},
+ {id:'belief-name',number:'04',name:'What a name or belief means to us',kind:'Belief or cultural explanation',example:'“We grew up hearing a different explanation of Èṣù Ọ̀dàrà…”',help:'Share a spiritual understanding, sacred name, or traditional explanation as it was taught to you. No scientific proof of a sacred belief is required.',questions:['Which name, belief or tradition are you describing?','Who taught you this interpretation?','Do people in your community tell related stories?']},
+ {id:'add-question',number:'05',name:'An addition, correction or question',kind:'Addition or discussion question',example:'“Has anyone heard another ending to Mọremí’s story?”',help:'Offer a missing detail, a respectful alternative explanation or an interesting question without attacking another teller.',questions:['Which account or page are you responding to?','What would you add, phrase differently or ask?','What kind of reply would help the conversation grow?']}
+];
+---
+<Site title="Tell Your Version — Community Voices" description="Explore ways to share Yorùbá memories, alternative stories and living beliefs. This read-only prototype does not accept submissions." active="Community">
+  <header class="wrap page-head voice-hero">
+    <a href="/community/">← Community Voices</a>
+    <p class="kicker">HOW YOUR STORY CAN JOIN OURS · PRIVATE PREVIEW</p>
+    <h1>Tell it as you heard it.</h1>
+    <p class="lead">Not everybody remembers a story the same way. That is exactly what makes it worth sharing. Choose the kind of account you want to contribute and see the questions a future submission will ask.</p>
+    <p class="voice-preview"><strong>Preview only:</strong> This is a read-only walkthrough. There is no working submission, login, message box, file upload or recording. Nothing entered or sent to the website.</p>
+    <nav class="voice-paths" aria-label="Choose how to contribute">
+      {paths.map(p=><a href={'#'+p.id}><span>{p.number}</span>{p.name}</a>)}
+    </nav>
+  </header>
+  <section class="wrap voice-layout" aria-label="Contribution guide">
+    {paths.map(p=><article class="voice-guide" id={p.id}>
+      <p class="kicker">{p.number} · {p.kind.toUpperCase()}</p>
+      <h2>{p.name}</h2>
+      <p class="voice-example">{p.example}</p>
+      <p>{p.help}</p>
+      <h3>What we would ask you</h3>
+      <ol>{p.questions.map(q=><li>{q}</li>)}</ol>
+      <p class="voice-notice">These are prompts for discussion only. Submission is not enabled.</p>
+    </article>)}
+  </section>
+  <aside class="wrap voice-principles" aria-labelledby="voice-respect">
+    <p class="kicker">HOW WE WILL TREAT PEOPLE'S STORIES</p>
+    <h2 id="voice-respect">Different voices belong beside one another.</h2>
+    <p>A person who learned a story from an elder may have heard a different version from somebody in another town. We will make space for both, clearly identifying the teller and type of account where the contributor permits it. We are not asking people to prove that a sacred belief is scientifically true.</p>
+    <p>Before any public contribution system opens, the project must support permission to share, safe public names or anonymity, guardian or school supervision for minors, private staff moderation, safe media handling, reporting and a way to withdraw an account. Personal contact details and consent records must never appear on public story pages.</p>
+    <p class="fine">No invented testimony has been added and no accounts have been collected by this prototype.</p>
+    <a href="/community/">Back to Community Voices →</a>
+  </aside>
+</Site>
