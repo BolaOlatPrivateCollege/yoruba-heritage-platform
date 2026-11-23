@@ -14,7 +14,7 @@ Once, Adúnní remembered, the children had raced each other through that gate a
 
 No one agreed about what the raiders looked like. Everyone agreed about the fear left behind.
 
-Mọ́remí listened beside the market well. In some tellings she was already a woman of the royal household; in others the details of her place and time shift like figures seen through rain. Here, in this imagined telling, she stood without jewellery, carrying a plain water pot. People spoke more freely when they believed nobody important was listening.
+Mọ́remí listened beside the market well. She stood without jewellery, carrying a plain water pot. People spoke more freely when they believed nobody important was listening.
 
 "What did you see?" she asked the potter.
 
@@ -54,7 +54,7 @@ Silence filled the hall.
 
 Nobody answered. The palace could refuse her request, but it could not promise that waiting would end the attacks.
 
-Later, alone beneath a darkening sky, Mọ́remí stood before a river. People later told the story of a vow, of help sought and a price whose weight could not be measured in gold. Some tellers name the river and the spirit differently; some emphasise the vow, others the courage. In this retelling she did not hear a voice rise from the water. She heard instead the sound of the current moving without regard for what humans wanted.
+Later, alone beneath a darkening sky, Mọ́remí stood before a river. The promise she made seemed lighter when spoken than it would feel when remembered. She did not hear a voice rise from the water. She heard instead the sound of the current moving without regard for what humans wanted.
 
 "If I return," she whispered, "let me return with an answer."
 
@@ -132,7 +132,7 @@ Then she told the people what she had seen.
 
 ## Chapter 5 — When fear caught fire
 
-In this version of the old narrative, knowledge changed the city's defence.
+Knowledge changed the city's defence.
 
 Watchers learned to recognise the rustle of the coverings. The guards arranged for light at the gate and made plans to challenge the attackers' disguises when they returned. Those who had once fled from the first movement in the trees prepared to stand together.
 
@@ -166,7 +166,7 @@ It passed over stones with the same patient sound it had made when Mọ́remí f
 
 The vow remained.
 
-In the telling most familiar to many listeners, the demand that follows is devastating: Mọ́remí must surrender the child she loves. The child's name, details of the promise and its ritual meaning can differ according to the teller. This retelling will not pretend that any of those differences have been settled by an invented scene.
+Then came the demand that made every victory song feel bitter: the vow required Mọ́remí to surrender the child she loved. No treasure, no procession and no grateful words could ease the terror of hearing the price spoken aloud.
 
 Adúnní found Mọ́remí kneeling beside the water.
 
