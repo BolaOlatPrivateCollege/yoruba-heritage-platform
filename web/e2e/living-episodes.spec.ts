@@ -3,15 +3,20 @@ import {mkdirSync} from 'node:fs';
 mkdirSync('screenshots',{recursive:true});
 const episodes=[
   {slug:'esu-hat-two-views',title:'The Hat That Divided the Road'},
-  {slug:'olodumare-many-meanings',title:'The Name That Would Not Fit Into One Answer'}
+  {slug:'olodumare-many-meanings',title:'The Name That Would Not Fit Into One Answer'},
+  {slug:'ijapa-feast-nobody-could-finish',title:'Ìjàpá and the Feast Nobody Could Finish'},
+  {slug:'moremi-fire-in-the-reeds',title:'Mọ́remí and the Fire in the Reeds'},
+  {slug:'lisabi-farmers-promise',title:"Lísàbí and the Farmers' Promise"},
+  {slug:'sango-when-thunder-answered',title:'Ṣàngó: When Thunder Answered'},
+  {slug:'timi-gbonka-two-champions',title:'Tìmì and Gbónká: The Duel That Would Not End'}
 ];
 
-test('the library offers exactly two new complete linked stories and preserves Gẹ̀lẹ̀dẹ́',async({page})=>{
+test('the library offers seven complete linked stories and preserves Gẹ̀lẹ̀dẹ́',async({page})=>{
   await page.goto('/tales/');
-  await expect(page.locator('.tales-new-card')).toHaveCount(2);
+  await expect(page.locator('.tales-new-card')).toHaveCount(7);
   await expect(page.getByRole('link',{name:'Read the complete six-chapter story'})).toHaveAttribute('href','/tales/laughing-mask/');
   for(const e of episodes){
-    await expect(page.locator('.tales-new-card').getByRole('link',{name:e.title})).toHaveAttribute('href','/tales/'+e.slug+'/');
+    await expect(page.locator('.tales-new-card h3').getByRole('link',{name:e.title})).toHaveAttribute('href','/tales/'+e.slug+'/');
   }
 });
 for(const e of episodes){
