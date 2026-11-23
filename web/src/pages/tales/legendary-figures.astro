@@ -2,24 +2,24 @@
 import Site from '../../layouts/Site.astro';
 import '../../styles/tales.css';
 
-type Lead={name:string;hook:string;label:string;kind:'Oral tradition'|'Historical memory'|'Sacred tradition'|'Legendary motif'|'Verification needed'};
+type Lead={name:string;hook:string;label:string;kind:'Oral tradition'|'Historical memory'|'Sacred tradition'|'Legendary motif'|'Verification needed';story?:string};
 type Collection={id:string;title:string;subtitle:string;items:Lead[]};
 const collections:Collection[]=[
  {id:'origins',title:'Origins, kings & sacred power',subtitle:'Follow the paths where royal memories, sacred accounts and extraordinary storytelling meet.',items:[
   {name:'Odùduwà',hook:'A crown, an ancestral city, and different accounts of where a founding figure came from. Which version does Ilé-Ifẹ̀ remember?',label:'Multiple origin traditions; no single universally agreed biography',kind:'Oral tradition'},
   {name:'Ọ̀rànmíyàn',hook:'A warrior journeys between royal worlds. What survives in the memories of Ilé-Ifẹ̀, Ọ̀yọ́ and Benin?',label:'Royal traditions with differing lineages and accounts',kind:'Oral tradition'},
-  {name:'Ṣàngó',hook:'When thunder answers a royal quarrel, is it a warning, a memory or a sacred telling? Hear the perspectives separately.',label:'A living òrìṣà tradition; not merely a fantasy character',kind:'Sacred tradition'},
+  {name:'Ṣàngó',story:'sango-when-thunder-answered',hook:'When thunder answers a royal quarrel, is it a warning, a memory or a sacred telling? Hear the perspectives separately.',label:'A living òrìṣà tradition; not merely a fantasy character',kind:'Sacred tradition'},
   {name:'Àgànjú',hook:'Fire, strength and wild landscapes follow a powerful name. But is every claim about the king and the òrìṣà the same story?',label:'Identity, succession and traditions require local review',kind:'Verification needed'},
   {name:'Ògún',hook:'Iron opens a road where none existed. The tale asks what happens when the power to create and destroy travels together.',label:'Sacred traditions differ by community and lineage',kind:'Sacred tradition'}
  ]},
  {id:'heroines',title:'Women whose stories refuse to disappear',subtitle:'Political power, courage, community memory—and the reputations later storytellers gave them.',items:[
-  {name:'Mọ́remí Àjàṣorò',hook:'A dangerous decision, a hidden identity, and a community remembering sacrifice through the Ẹ̀dì festival.',label:'Ilé-Ifẹ̀ commemorative tradition; dramatic scenes need attribution',kind:'Oral tradition'},
+  {name:'Mọ́remí Àjàṣorò',story:'moremi-fire-in-the-reeds',hook:'A dangerous decision, a hidden identity, and a community remembering sacrifice through the Ẹ̀dì festival.',label:'Ilé-Ifẹ̀ commemorative tradition; dramatic scenes need attribution',kind:'Oral tradition'},
   {name:'Efúnsetán Aníwúrà',hook:'An Ìyálóde controls trade and influence in a city shaped by war. Who wrote her reputation—and who challenged it?',label:'Historical figure; hostile character portraits are disputed',kind:'Historical memory'},
   {name:'Ẹfúnróyè Tinúbú',hook:'A merchant and political power-broker navigates Lagos, Abẹ́òkúta and rival ambitions in a changing century.',label:'Historical figure; anti-colonial and trading claims need nuance',kind:'Historical memory'},
   {name:'Ọ̀ròmpòtó',hook:'When a throne becomes a question of gender and courage, stories of a formidable ruler take different forms.',label:'Ọ̀yọ́ royal tradition; transformation and battle details are lore',kind:'Oral tradition'}
  ]},
  {id:'commanders',title:'Commanders, resistance & civil-war memories',subtitle:'Wars shaped Yorùbá towns, but the people within these stories deserve more than simple heroes and villains.',items:[
-  {name:'Lísàbí Agbòngbò-Àkàlà',hook:'Farmers gather under an ordinary banner. Is a harvest society also the beginning of a struggle for autonomy?',label:'Ẹ̀gbá liberation memories; exact numbers and tactics unverified',kind:'Oral tradition'},
+  {name:'Lísàbí Agbòngbò-Àkàlà',story:'lisabi-farmers-promise',hook:'Farmers gather under an ordinary banner. Is a harvest society also the beginning of a struggle for autonomy?',label:'Ẹ̀gbá liberation memories; exact numbers and tactics unverified',kind:'Oral tradition'},
   {name:'Ògèdèngbé Agbógungbòrò',hook:'A general carries the weight of an alliance while the Kiriji conflict stretches across generations.',label:'Historical commander; supernatural protection claims are lore',kind:'Historical memory'},
   {name:'Baṣọ̀run Ògúnmọ́lá',hook:'From political ascent to the Ijaye conflict, one leader can be remembered as protector and adversary.',label:'Historical figure; dramatic punishments need verification',kind:'Historical memory'},
   {name:'Ààrẹ Látòósà',hook:'How long can a leader pursue victory when the cost of war keeps rising?',label:'Historical figure; motives and death stories vary',kind:'Historical memory'},
@@ -28,7 +28,7 @@ const collections:Collection[]=[
   {name:'Àfọ̀njá of Ìlọrin',hook:'An ambitious commander breaks with a crown—and the consequences reach beyond his own lifetime.',label:'Historical and oral accounts; avoid ethnic scapegoating',kind:'Historical memory'}
  ]},
  {id:'rivalries',title:'Rivalries that could carry a serial',subtitle:'Two powerful figures, conflicting ambitions, and different communities remembering the same struggle.',items:[
-  {name:'Tìmì Agbalẹ̀ & Gbónká',hook:'Two champions are drawn into a contest. In some tellings the duel ends with impossible survival—what does it say about power?',label:'Ṣàngó-linked legendary motif; duel details need a named telling',kind:'Legendary motif'},
+  {name:'Tìmì Agbalẹ̀ & Gbónká',story:'timi-gbonka-two-champions',hook:'Two champions are drawn into a contest. In some tellings the duel ends with impossible survival—what does it say about power?',label:'Ṣàngó-linked legendary motif; duel details need a named telling',kind:'Legendary motif'},
   {name:'Kúrùnmí & Ògúnmọ́lá',hook:'A disagreement over authority becomes a conflict whose cost cannot be measured by victory alone.',label:'Historical rivals; specific humiliation scenes are unverified',kind:'Historical memory'},
   {name:'Efúnsetán & Látòósà',hook:'Influence, wealth and military command collide in a city where reputations can become weapons.',label:'Competing portrayals; assassination details are disputed',kind:'Historical memory'}
  ]},
@@ -72,6 +72,7 @@ const collections:Collection[]=[
       <h3>{item.name}</h3>
       <p>{item.hook}</p>
       <p class="heritage-lead-context">{item.label}</p>
+      {item.story&&<a class="heritage-lead-read" href={`/tales/${item.story}/`}>Read the six-chapter telling →</a>}
      </article>)}
     </div>
    </section>)}
@@ -97,6 +98,7 @@ const collections:Collection[]=[
 .heritage-leads-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
 .heritage-lead-card{min-width:0;padding:1.4rem;border:1px solid var(--line);background:var(--panel);border-radius:4px}
 .heritage-lead-card h3{font-family:Georgia,serif;font-size:1.45rem;margin:.65rem 0}.heritage-lead-card>p{line-height:1.65}
+.heritage-lead-read{display:inline-block;margin-top:.65rem;font-weight:700;color:var(--bronze)}
 .heritage-lead-type{font-size:.72rem!important;color:var(--bronze);font-weight:750;text-transform:uppercase;letter-spacing:.07em}
 .heritage-lead-context{border-top:1px solid var(--line);padding-top:.85rem;margin-top:1.5rem;color:var(--muted);font-size:.81rem}
 .heritage-leads .tales-invite{margin:3rem 0 5rem}
