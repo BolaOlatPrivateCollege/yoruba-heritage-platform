@@ -1,0 +1,119 @@
+---
+import Site from '../../layouts/Site.astro';
+import {contributionTypes,learningPaths,ageGroups,displayCredits,storyContexts,spokenLanguages} from '../../lib/community-intake';
+import '../../styles/community.css';
+---
+<Site title="Tell Your Version — Guided Private Preview" description="Explore how you could contribute a family story, local telling, memory, correction or question. This private preview never sends or saves the text." active="Community">
+  <header class="wrap page-head community-share-head">
+    <a href="/community/">← Community Voices</a>
+    <p class="kicker">YOUR STORY · YOUR VOICE · PRIVATE WALKTHROUGH</p>
+    <h1>How would you<br/><em>tell it?</em></h1>
+    <p class="lead">A family saying. Another ending. A memory from your town. You may know a version nobody else has shared here.</p>
+    <p class="community-warning"><strong>This is a practice preview, not a live submission form.</strong> No accounts, personal details or permissions are received, saved or published. Please use imaginary examples only. Do not enter real names, contact information, exact addresses or sensitive family details.</p>
+  </header>
+
+  <section class="wrap community-preview" data-community-preview aria-labelledby="community-demo-heading">
+    <div class="community-demo-intro">
+      <p class="kicker">TRY THE FUTURE EXPERIENCE</p>
+      <h2 id="community-demo-heading">Shape a sample account</h2>
+      <p>Try the choices and see how an account might be presented for a future human review. This demonstration never creates a submission.</p>
+    </div>
+    <noscript><p class="community-nojs">The interactive preview needs JavaScript. You can still read the contribution steps below. Nothing is collected.</p></noscript>
+    <div class="preview-interactive">
+      <fieldset class="community-fieldset">
+        <legend>1. What kind of account do you have?</legend>
+        <div class="community-fields">
+          <div class="community-field">
+            <label for="cv-type">I want to share</label>
+            <select id="cv-type">{contributionTypes.map(t=><option value={t.id}>{t.label}</option>)}</select>
+          </div>
+          <div class="community-field">
+            <label for="cv-context">Connected to</label>
+            <select id="cv-context">{storyContexts.map(t=><option value={t.id}>{t.label}</option>)}</select>
+          </div>
+        </div>
+        <p id="cv-prompt" class="community-prompt" aria-live="polite">{contributionTypes[0].prompt}</p>
+      </fieldset>
+
+      <fieldset class="community-fieldset">
+        <legend>2. Tell the account in your own words</legend>
+        <div class="community-field">
+          <label for="cv-title">A title for your example</label>
+          <input id="cv-title" type="text" maxlength="120" autocomplete="off" placeholder="For example: The traveller with two different hats"/>
+        </div>
+        <div class="community-field">
+          <label for="cv-account">Your example story or question</label>
+          <textarea id="cv-account" rows="6" maxlength="5000" placeholder="Start with what someone said, what happened, or what you remember about the tale. Use fictional details in this demo."></textarea>
+          <p class="fine">30–5,000 characters · Do not include real private information</p>
+        </div>
+      </fieldset>
+
+      <fieldset class="community-fieldset">
+        <legend>3. How did this account reach you?</legend>
+        <div class="community-fields">
+          <div class="community-field">
+            <label for="cv-learned">How I learned it</label>
+            <select id="cv-learned">{learningPaths.map(t=><option value={t.id}>{t.label}</option>)}</select>
+          </div>
+          <div class="community-field">
+            <label for="cv-language">Language of the account</label>
+            <select id="cv-language">{spokenLanguages.map(t=><option value={t.id}>{t.label}</option>)}</select>
+          </div>
+          <div class="community-field">
+            <label for="cv-place">Broad town or community (optional)</label>
+            <input id="cv-place" type="text" maxlength="90" autocomplete="off" placeholder="e.g., an imagined town in Ọ̀yọ́"/>
+            <p class="fine">Town only. No street, home or exact location.</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="community-fieldset">
+        <legend>4. Permission and public credit</legend>
+        <div class="community-fields">
+          <div class="community-field">
+            <label for="cv-age">Contributor age band</label>
+            <select id="cv-age">{ageGroups.map(t=><option value={t.id}>{t.label}</option>)}</select>
+          </div>
+          <div class="community-field">
+            <label for="cv-credit">If approved later, how would you prefer to be credited?</label>
+            <select id="cv-credit">{displayCredits.map(t=><option value={t.id}>{t.label}</option>)}</select>
+          </div>
+        </div>
+        <label class="community-check"><input id="cv-rights" type="checkbox"/> <span>I understand that a real contribution would need my permission and any storyteller’s permission before publication. This demo does not collect consent.</span></label>
+        <p class="fine">A future real submission from anyone under 18 must be handled through a properly supervised guardian/school route. No public credit is automatically assigned.</p>
+      </fieldset>
+
+      <div class="community-actions">
+        <button type="button" class="button" id="cv-preview">Preview my example locally</button>
+        <button type="button" class="button secondary" id="cv-clear">Clear this example</button>
+      </div>
+      <div id="cv-feedback" class="community-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+      <section id="cv-result" class="community-result" hidden aria-labelledby="cv-result-title">
+        <p class="kicker">LOCAL EXAMPLE · NOT SUBMITTED</p>
+        <h2 id="cv-result-title">Your example as a community story card</h2>
+        <article class="community-result-card">
+          <p id="cv-result-type" class="kicker"></p>
+          <h3 id="cv-result-name"></h3>
+          <p id="cv-result-account" class="community-example-text"></p>
+          <p id="cv-result-context" class="fine"></p>
+          <p id="cv-result-origin" class="fine"></p>
+          <p id="cv-result-credit" class="fine"></p>
+        </article>
+        <p id="cv-result-note" class="community-result-note"></p>
+      </section>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="future-review-heading">
+    <p class="kicker">HOW REAL CONTRIBUTIONS WILL WORK</p>
+    <h2 id="future-review-heading">People's voices, with their permission</h2>
+    <div class="collection-grid community-steps">
+      <article class="collection"><p class="kicker">ONE · TELL</p><h3>Share a telling</h3><p>A person, elder or family can offer a memory, variant, belief, correction or question with broad place and context.</p></article>
+      <article class="collection"><p class="kicker">TWO · PROTECT</p><h3>Private human review</h3><p>Editors examine consent, safe handling, privacy and attribution. They do not demand that a traditional belief be proved true or false.</p></article>
+      <article class="collection"><p class="kicker">THREE · SHARE</p><h3>Publish only with permission</h3><p>If approved, the person's account can sit beside other tellings with the agreed credit, version history and a route to request changes or withdrawal.</p></article>
+    </div>
+    <p class="fine">No backend, staff accounts, file upload, external storage, public comment stream or collection API is connected to this private prototype.</p>
+    <p><a href="/community/">Back to Community Voices →</a></p>
+  </section>
+</Site>
+<script>import '../../lib/community-preview-client';</script>
