@@ -21,7 +21,7 @@ test('legendary discovery offers reader-friendly but properly labelled accounts'
  await expect(page.getByText(/not complete stories, first-hand interviews or verified accounts/)).toBeVisible();
  await expect(page.getByText('Efúnsetán Aníwúrà')).toBeVisible();
  await expect(page.getByText('Ṣàngó',{exact:true})).toBeVisible();
- await expect(page.getByText(/no live community contribution or publication/)).toHaveCount(1);
+ await expect(page.getByText(/No live community contribution or publication/i)).toHaveCount(1);
  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth);
  expect(overflow).toBe(false);
 });
