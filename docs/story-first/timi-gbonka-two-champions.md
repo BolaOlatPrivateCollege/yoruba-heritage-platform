@@ -20,7 +20,7 @@ Aṣàkẹ́ sold water near the gathering place. She had learned that whenever 
 
 The boy frowned. He was certain that the question deserved a grander answer. Tìmì was said to stand firm when others faltered. Gbónká was said to be the kind of champion who walked towards a danger simply because someone told him it could not be overcome.
 
-Some tellings place their rivalry inside a wider account of Ṣàngó and royal contests. Other versions change the nature of their feats or the lessons drawn from them. In this imagined story, the whole trouble began with a careless boast.
+The trouble began with a careless boast.
 
 A court messenger had praised Tìmì's courage during a public gathering. Another, wanting favour, had declared Gbónká even greater.
 
@@ -42,7 +42,7 @@ The king listened to their names spoken with growing excitement.
 
 "Because a contest can become a command," another answered.
 
-In this literary version, the king was not satisfied with the argument. He wanted a display that would remind the people of his court's power. Yet he also feared what might happen if either champion refused and the crowd took refusal for weakness.
+The king was not satisfied with the argument. He wanted a display that would remind the people of his court's power. Yet he also feared what might happen if either champion refused and the crowd took refusal for weakness.
 
 "Will you stand against each other?" he asked.
 
@@ -64,7 +64,7 @@ The king ordered the challenge to proceed.
 
 On the chosen day the spectators gathered around an open field.
 
-There are tellings in which fire becomes central to the rivalry, and stories in which impossible feats make ordinary defeat seem meaningless. This retelling uses fire as an image of the danger a crowd can invite without pretending to preserve any particular ritual sequence.
+The town would remember the fire long after it forgot who had ordered it lit. On that day, its flames were the boundary of a challenge that no ordinary contest could satisfy.
 
 A line of flames burned at the far end of the ground. The heat made the air tremble. Nobody could see clearly through it.
 
@@ -148,7 +148,7 @@ An adviser shouted for the challenge to continue. Some spectators booed. Others 
 
 The king's face hardened.
 
-In many versions of the old rivalry, the tale proceeds towards startling consequences rather than a peaceful refusal. This is where the paths of tellers diverge. In this imagined version, the champions did not settle the question with a blow. They turned away from the centre of the field and stood together at its edge.
+The champions did not settle the question with a blow. They turned away from the centre of the field and stood together at its edge.
 
 The refusal was not a victory without cost. Court favour could vanish. A king might feel humiliated. The crowd could make the story into a different accusation.
 
