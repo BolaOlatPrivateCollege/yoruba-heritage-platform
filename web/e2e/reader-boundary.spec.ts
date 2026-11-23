@@ -15,6 +15,7 @@ test('Stories, Beliefs, Places, Community and Learning have no embedded research
   }
 });
 test('Research is the exclusive navigation entry to scholarly sources and old documentary material',async({page})=>{
+  await page.setViewportSize({width:1440,height:900});
   await page.goto('/');
   const nav=page.getByRole('navigation',{name:'Main sections'});
   await expect(nav.getByRole('link',{name:'Research',exact:true})).toHaveAttribute('href','/research/');
