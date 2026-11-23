@@ -16,15 +16,20 @@ const tale=e.body;
       <p class="lead">{e.deck}</p>
       <p class="fine">{tale.words} words · Six chapters · For secondary students and curious adults</p>
       <p class="tale-disclosure"><strong>Story type:</strong> {e.genre}. {e.fictionalStatus}</p>
-      <nav class="tale-chapters" aria-label="Story chapters">
+      <nav class="tale-chapters" id="chapter-index" aria-label="Story chapters">
         <p class="kicker">FIND A CHAPTER</p>
         <ol>{tale.chapters.map(chapter=><li><a href={`#${chapter.id}`}>{chapter.number}. {chapter.title}</a></li>)}</ol>
       </nav>
     </header>
     <div class="tale-paper">
-      {tale.chapters.map(chapter=><section class="tale-chapter" id={chapter.id}>
+      {tale.chapters.map((chapter,index)=><section class="tale-chapter" id={chapter.id}>
         <p class="kicker">CHAPTER {chapter.number} / 6</p><h2>{chapter.title}</h2>
         {chapter.passages.map(p=><p>{p.segments.map(s=>s.strong?<strong>{s.text}</strong>:s.italic?<em>{s.text}</em>:s.text)}</p>)}
+        <nav class="tale-chapter-next" aria-label={`Navigation after chapter ${chapter.number}`}>
+          {index>0&&<a href={`#${tale.chapters[index-1].id}`} aria-label={`Previous chapter: ${tale.chapters[index-1].title}`}>← Previous chapter</a>}
+          <a href="#chapter-index">Chapter index ↑</a>
+          {index<tale.chapters.length-1&&<a href={`#${tale.chapters[index+1].id}`} aria-label={`Next chapter: ${tale.chapters[index+1].title}`}>Next chapter →</a>}
+        </nav>
       </section>)}
     </div>
     <footer class="tale-outro">
