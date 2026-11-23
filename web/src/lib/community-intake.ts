@@ -22,7 +22,7 @@ export const learningPaths=[
 ] as const;
 export const ageGroups=[
   {id:'adult',label:'Adult (18 or older)'},
-  {id:'under18',label:'Under 18 — school/guardian support required for any future real submission'}
+  {id:'under18',label:'Under 18 — parent, guardian or appropriately supervised youth channel required for any future real submission'}
 ] as const;
 export const displayCredits=[
   {id:'anonymous',label:'Anonymous: no public name'},
@@ -70,6 +70,6 @@ export function validatePrototypeDraft(value:PrototypeDraft):string[]{
 }
 export function explainPreviewOnly(ageGroup:AgeGroup):string{
  return ageGroup==='under18'
- ?'A student could take this outline to a trusted teacher or guardian. Nothing has been sent, saved or published.'
+ ?'A younger visitor could discuss this outline with a trusted parent, guardian or responsible adult. Nothing has been sent, saved or published.'
  :'This is a local example, not a submission. Nothing has been sent, saved or published.';
 }
