@@ -1,4 +1,4 @@
-import {archive,articleHref,sourceFor} from './archive';
+import {archive,articleHref,sourceFor} from './archive.ts';
 
 export type CulturalFigure={
   slug:string;name:string;kind:string;scope:string;role:string;
