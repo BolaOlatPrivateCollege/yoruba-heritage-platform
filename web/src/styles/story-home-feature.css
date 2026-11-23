@@ -1,0 +1,24 @@
+/* Story-first, CSS-only illustration: fast, responsive and independent of unapproved artwork. */
+.home-story-feature{margin:0;overflow:hidden;border:1px solid var(--line);background:#102225}
+.home-story-feature figcaption{padding:clamp(1.35rem,3vw,2.1rem)}
+.home-story-feature figcaption h2{margin:.65rem 0 1rem;line-height:1.12;font-size:clamp(1.7rem,3.2vw,2.7rem)}
+.home-story-feature figcaption h2 a{text-decoration:none}
+.home-story-feature figcaption p:not(.kicker){font-size:.93rem;line-height:1.75}
+.home-story-feature figcaption .fine{margin-top:1.15rem;font-size:.74rem;color:var(--muted)}
+.home-feature-link{display:inline-block;color:var(--bronze);font-weight:650;text-underline-offset:.35rem}
+.story-fire-scene{position:relative;isolation:isolate;overflow:hidden;height:clamp(245px,35vw,395px);background:radial-gradient(ellipse 45% 33% at 56% 93%,#f7a35655,transparent 100%),linear-gradient(180deg,#182844 0%,#35405d 38%,#815342 75%,#1d292b 100%)}
+.story-fire-moon{position:absolute;right:15%;top:13%;width:60px;height:60px;border-radius:50%;background:#f7d5a0;box-shadow:0 0 45px #f9b96a77}
+.story-fire-tree{position:absolute;left:8%;top:-22%;width:24px;height:115%;transform:rotate(-13deg);background:linear-gradient(90deg,#111d22,#292b27);box-shadow:12px 0 0 #111d22}
+.story-fire-tree:before{content:"";position:absolute;width:340px;height:135px;top:8%;left:-65px;border-radius:55% 45% 50% 40%;background:radial-gradient(ellipse at bottom,#244037,#0e242a 72%);box-shadow:100px -12px 0 -9px #142b2b,220px 5px 0 -20px #152b2b}
+.story-fire-tree:after{content:"";position:absolute;left:0;top:20%;width:220px;height:22px;transform:rotate(-25deg);transform-origin:left;background:#162526;border-radius:1rem}
+.story-fire-horizon{position:absolute;inset:auto 0 0;height:32%;background:linear-gradient(175deg,#344039 0%,#15292c 75%);clip-path:polygon(0 35%,12% 22%,25% 39%,43% 20%,66% 35%,80% 14%,100% 26%,100% 100%,0 100%)}
+.story-fire-glow{position:absolute;bottom:13%;left:47%;height:17%;width:9%;border-radius:50%;background:#ffce75;filter:blur(17px);box-shadow:0 0 85px 35px #ff924266}
+.story-fire-people{position:absolute;left:9%;right:6%;bottom:12%;height:40%;display:flex;justify-content:space-between;align-items:end;z-index:2}
+.story-fire-people i{position:relative;display:block;width:17%;height:56%;border-radius:46% 46% 18% 18%;background:linear-gradient(120deg,#162b32,#090f1b);box-shadow:0 4px 20px #101f22}
+.story-fire-people i:before{content:"";position:absolute;width:65%;aspect-ratio:1;top:-36%;left:18%;border-radius:50%;background:#19262b}
+.story-fire-people i:nth-child(3){width:21%;height:85%;background:linear-gradient(120deg,#24384c,#111a25)}
+.story-fire-people i:nth-child(3):before{width:58%;left:21%;top:-25%;background:#22272e;box-shadow:0 -9px 0 5px #212632}
+.story-fire-people i:nth-child(2),.story-fire-people i:nth-child(4){height:50%}
+.story-fire-people i:nth-child(5){height:46%}
+.story-fire-words{position:absolute;right:7%;top:11%;color:#fff2d9;font:italic 400 clamp(1.5rem,3vw,2.6rem)/1 Georgia,serif;letter-spacing:.02em;text-shadow:0 2px 15px #080e1caa}
+@media(max-width:750px){.story-fire-scene{height:320px}.home-story-feature figcaption{padding:1.25rem}.story-fire-tree:before{width:260px}}
