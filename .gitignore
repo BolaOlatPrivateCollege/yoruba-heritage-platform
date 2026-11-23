@@ -1,5 +1,6 @@
 # Private pilot storage and credentials (never publication content)
 private_data/
+**/editorial-private-state.json
 .env
 .env.*
 *.sqlite

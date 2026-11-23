@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Private CMS design preview — Àṣà & Ìtàn Yorùbá</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#142a28;background:#f4f0e8;font-synthesis:none}
+*{box-sizing:border-box}
+body{margin:0}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.skip{position:absolute;left:-10000px}.skip:focus{left:1rem;top:1rem;z-index:20;background:white;padding:1rem}
+.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+.sidebar{background:#142f2c;color:#f7edda;padding:2rem 1.2rem;display:flex;flex-direction:column}
+.brand{font-family:Georgia,serif;font-size:1.35rem;line-height:1.4;margin-bottom:.3rem}
+.brand-small{font-size:.75rem;color:#d5b477;letter-spacing:.13em;text-transform:uppercase}
+.sidebar nav{margin-top:2.5rem}
+.sidebar nav button{display:block;width:100%;text-align:left;border:0;background:transparent;color:#e8e8df;padding:.8rem 1rem;margin:.15rem 0;border-radius:7px}
+.sidebar nav button[aria-current]{background:#b78a4d;color:#172c2b;font-weight:750}
+.sidebar footer{font-size:.75rem;line-height:1.65;color:#bdc9c4;margin-top:auto;padding:1rem}
+main{min-width:0}
+.topbar{background:#fffaf2;border-bottom:1px solid #d4cabb;padding:1rem clamp(1rem,4vw,3rem);display:flex;align-items:center;gap:1rem;justify-content:space-between}
+.topbar p{margin:0;color:#64736c;font-size:.85rem}
+.pill{display:inline-block;color:#79440b;background:#fce4b9;font-size:.75rem;border-radius:999px;padding:.4rem .75rem;font-weight:750}
+.content{max-width:1220px;margin:auto;padding:clamp(1.1rem,3vw,3rem)}
+.banner{border-left:4px solid #b07c41;background:#fff5e2;padding:1rem 1.2rem;font-size:.88rem;line-height:1.6}
+h1{font-family:Georgia,serif;font-size:clamp(1.65rem,3vw,2.5rem);margin:1.5rem 0 .35rem}
+.lede{color:#627269;margin:0 0 2rem}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-bottom:1.6rem}
+.stat{background:white;border:1px solid #e6ddd0;border-radius:10px;padding:1rem}
+.stat strong{display:block;font-size:1.5rem;margin-top:.5rem}
+.workspace{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:1.5rem}
+.panel{background:#fffdfa;border:1px solid #ddd2c2;border-radius:11px;padding:clamp(1rem,2.3vw,1.7rem);min-width:0}
+.panel h2{font-family:Georgia,serif;font-size:1.35rem;margin:.1rem 0 1rem}
+.field{margin-bottom:1rem}
+label{display:block;font-size:.81rem;font-weight:700;margin-bottom:.38rem}
+input,textarea,select{display:block;width:100%;border:1px solid #aeb4ac;border-radius:6px;background:white;padding:.7rem .8rem;color:#1b2e2a}
+textarea{resize:vertical;min-height:130px}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #aa7734;outline-offset:3px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.button{border:0;border-radius:7px;padding:.7rem 1rem;font-weight:750;background:#174b3e;color:white}
+.button.secondary{border:1px solid #b7c0b8;background:#f7f5ee;color:#213c36}
+.preview{background:#ede3d0;border:1px solid #cfc1a9;border-radius:8px;padding:1.35rem;min-height:230px;overflow-wrap:anywhere}
+.preview h3{font-family:Georgia,serif;font-size:1.65rem;margin:.7rem 0}
+.preview p{line-height:1.7;white-space:pre-wrap}
+.helper{color:#68736d;font-size:.8rem;line-height:1.65}
+.note{margin-top:1rem;border-top:1px solid #ddd2c2;padding-top:1rem}
+.status{font-weight:700;color:#365d48}
+[hidden]{display:none!important}
+@media(max-width:950px){.workspace{grid-template-columns:1fr}.sidebar{padding:1rem}.sidebar nav{margin-top:1rem}}
+@media(max-width:700px){.shell{grid-template-columns:1fr}.sidebar{display:block}.sidebar nav{display:flex;overflow:auto;gap:.4rem}.sidebar nav button{white-space:nowrap;width:auto}.sidebar footer{display:none}.topbar{flex-wrap:wrap}.stats{grid-template-columns:1fr}.fields{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar" aria-label="Private preview navigation">
+  <div class="brand">Àṣà &amp; Ìtàn Yorùbá</div><div class="brand-small">Editorial studio</div>
+  <nav aria-label="Content categories" id="categories"></nav>
+  <footer>DESIGN PROTOTYPE ONLY<br>No login, database, content uploads or real publication.</footer>
+</aside>
+<main id="main">
+  <div class="topbar"><p>Private CMS interface concept · For a public heritage website serving everyone</p><span class="pill">NOT CONNECTED</span></div>
+  <div class="content">
+   <div class="banner" role="note"><strong>This is not a working administrator login.</strong> Changes stay only in the current browser page and are lost on refresh or closing the tab. Do not enter private, community, consent or unpublished real material. Nothing is sent, saved or published.</div>
+   <h1>Content studio</h1>
+   <p class="lede">Explore a future way to add and edit stories, traditions and heritage articles without touching code.</p>
+   <div class="stats">
+    <div class="stat"><span class="helper">Example drafts</span><strong>1</strong></div>
+    <div class="stat"><span class="helper">Connected database</span><strong>None</strong></div>
+    <div class="stat"><span class="helper">Publishing</span><strong>Disabled</strong></div>
+   </div>
+   <div class="workspace">
+    <section class="panel" aria-labelledby="edit-heading">
+      <h2 id="edit-heading">Draft editor</h2>
+      <form id="editor" autocomplete="off">
+       <div class="fields">
+        <div class="field"><label for="category">Content type</label><select id="category" name="category"></select></div>
+        <div class="field"><label for="language">Primary language</label><select id="language" name="language"><option value="yo">Yorùbá</option><option value="en">English</option></select></div>
+       </div>
+       <div class="field"><label for="title">Title</label><input id="title" name="title" maxlength="180" required></div>
+       <div class="field"><label for="slug">Proposed URL slug</label><input id="slug" name="slug" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="100" required></div>
+       <div class="field"><label for="summary">Short introduction</label><textarea id="summary" name="summary" rows="3" maxlength="800" required></textarea></div>
+       <div class="field"><label for="body">Story or article body</label><textarea id="body" name="body" rows="8" maxlength="120000" required></textarea></div>
+       <div class="actions">
+        <button class="button" type="button" id="preview-button">Preview changes</button>
+        <button class="button secondary" type="button" id="reset-button">Reset example</button>
+        <button class="button secondary" type="button" disabled title="Available only after secure backend development">Save to database (disabled)</button>
+       </div>
+       <p class="helper">Preview is plain text, not HTML or Markdown rendering. Real save, content review, media and publishing require a separately secured backend.</p>
+      </form>
+    </section>
+    <section class="panel" aria-labelledby="preview-heading">
+     <h2 id="preview-heading">Reader preview</h2>
+     <p class="helper">In-memory demonstration · never a public page</p>
+     <article class="preview" id="preview" aria-live="polite">
+      <span class="pill" id="preview-type"></span>
+      <h3 id="preview-title"></h3>
+      <p id="preview-summary"></p>
+      <p id="preview-body"></p>
+     </article>
+     <div class="note"><p class="status" id="status" role="status">Example loaded. No changes saved.</p>
+      <p class="helper">Before launching an admin dashboard, we'll add authenticated accounts, a private database, revision history, permissioned approval and a separate publishing pipeline.</p>
+     </div>
+    </section>
+   </div>
+  </div>
+</main>
+</div>
+<script type="module">
+import {categories,example,draftSummary} from './editor.js';
+const $=id=>document.getElementById(id);
+const form=$('editor');
+for(const [value,label] of categories){
+ const option=document.createElement('option');
+ option.value=value;option.textContent=label;$('category').append(option);
+ const button=document.createElement('button');
+ button.type='button';button.textContent=label;button.dataset.category=value;
+ button.addEventListener('click',()=>{
+  $('category').value=value;
+  syncNavigation();
+  $('category').focus();
+ });
+ $('categories').append(button);
+}
+const fields=['title','slug','category','language','summary','body'];
+function readValues(){return Object.fromEntries(fields.map(k=>[k,$(k).value]));}
+function syncNavigation(){
+ for(const button of $('categories').querySelectorAll('button')){
+  if(button.dataset.category===$('category').value)button.setAttribute('aria-current','page');
+  else button.removeAttribute('aria-current');
+ }
+}
+function render(record){
+ const value=draftSummary(record);
+ $('preview-type').textContent=categories.find(x=>x[0]===value.category)?.[1]||'Editorial content';
+ $('preview-title').textContent=value.title;
+ $('preview-summary').textContent=value.summary;
+ $('preview-body').textContent=value.body;
+}
+function reset(){
+ for(const field of fields)$(field).value=example[field];
+ syncNavigation();render(example);$('status').textContent='Example restored. Nothing stored or submitted.';
+}
+$('preview-button').addEventListener('click',()=>{
+ if(!form.reportValidity())return;
+ render(readValues());$('status').textContent='Preview updated in this tab only. Nothing saved or published.';
+});
+$('reset-button').addEventListener('click',reset);
+$('category').addEventListener('change',syncNavigation);
+form.addEventListener('submit',event=>event.preventDefault());
+reset();
+</script>
+</body>
+</html>
