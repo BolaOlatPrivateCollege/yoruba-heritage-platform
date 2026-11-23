@@ -17,9 +17,9 @@ const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind==
       <a href="/figures/">← Beliefs, Òrìṣà &amp; Historical Figures</a>
       <p class="kicker">{f.kind.toUpperCase()} · LIVING CULTURAL KNOWLEDGE</p>
       <h1 lang="yo">{isEsu?'Èṣù':f.name}</h1>
-      <p class="lead">{isEsu?esu.lead:f.role}</p>
+      <p class="lead">{isEsu?esu.lead:(detailed?.lead??f.role)}</p>
       {isEsu?<p class="figure-opening">{esu.invitation}</p>:<p class="figure-opening">{detailed?.intro??'What do people in your town, household and community say about this name? Begin with its roles and stories, then discover how others understand it.'}</p>}
-      {f.relatedTerms.length>0&&<p class="figure-alias"><strong>Other related words and names:</strong> <span lang="yo">{f.relatedTerms.join(' · ')}</span></p>}
+      {detailed?<p class="figure-alias"><strong>Names and related forms:</strong> <span>{detailed.aliases}</span></p>:f.relatedTerms.length>0&&<p class="figure-alias"><strong>Other related words and names:</strong> <span lang="yo">{f.relatedTerms.join(' · ')}</span></p>}
       {isEsu&&<nav aria-label="Explore Èṣù" class="figure-jump">
         <a href="#roles">Key roles</a><a href="#name-meaning">The name</a>
         <a href="#devil">Èṣù and “devil”</a><a href="#other-names">Other names</a><a href="#share-voice">Your account</a>
