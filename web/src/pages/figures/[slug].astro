@@ -1,0 +1,70 @@
+---
+import Site from '../../layouts/Site.astro';
+import {heritageFigures,figureHref,type CulturalFigure} from '../../lib/heritage-figures';
+import '../../styles/figures.css';
+export function getStaticPaths(){return heritageFigures.map(f=>({params:{slug:f.slug},props:{figure:f}}));}
+interface Props{figure:CulturalFigure}
+const {figure:f}=Astro.props;
+const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind===f.kind).slice(0,3);
+---
+<Site title={f.name+' — beliefs and cultural background'} description={f.role+'. A clear introduction to what different Yorùbá accounts say.'} active="Beliefs & Figures">
+  <article class="wrap figure-detail">
+    <header class="figure-detail-head">
+      <a href="/figures/">← Beliefs, Òrìṣà &amp; Historical Figures</a>
+      <p class="kicker">{f.kind.toUpperCase()} · CULTURAL INTRODUCTION</p>
+      <h1 lang="yo">{f.name}</h1>
+      <p class="lead">{f.role}</p>
+      <p class="figure-context"><strong>A note about truth and tradition:</strong> This page describes reported Yorùbá beliefs, remembered stories and historical interpretations. It does not claim that every community explains them identically, or that an oral sacred story is a scientific record.</p>
+      {f.relatedTerms.length>0&&<p class="figure-alias"><strong>Related words and names:</strong> <span lang="yo">{f.relatedTerms.join(' · ')}</span></p>}
+    </header>
+    <div class="figure-article">
+      <section aria-labelledby="who-is-this">
+        <p class="kicker">START HERE</p>
+        <h2 id="who-is-this">Who is {f.name}?</h2>
+        <p>{f.beliefs[0]}</p>
+        <p class="figure-scope"><strong>Where this account is situated:</strong> {f.scope}</p>
+      </section>
+      {f.beliefs.length>1&&<section aria-labelledby="traditional-accounts">
+        <p class="kicker">CULTURAL UNDERSTANDING</p>
+        <h2 id="traditional-accounts">How people understand this figure</h2>
+        {f.beliefs.slice(1).map(text=><p>{text}</p>)}
+      </section>}
+      <section aria-labelledby="different-versions">
+        <p class="kicker">MORE THAN ONE VOICE</p>
+        <h2 id="different-versions">Where accounts differ</h2>
+        <p>{f.differences}</p>
+        <p class="fine">Accounts should be connected to an identifiable community, tradition or contributor before being presented as that community’s own words.</p>
+      </section>
+      <section aria-labelledby="common-confusion">
+        <p class="kicker">LET'S CLEAR SOMETHING UP</p>
+        <h2 id="common-confusion">Something readers often hear</h2>
+        <p><strong>A common simplification:</strong> {f.mistaken}</p>
+        {f.clarification&&<p><strong>A fuller explanation:</strong> {f.clarification}</p>}
+      </section>
+      {f.storyHref&&<aside class="figure-story" aria-label="Related fictional learning story">
+        <p class="kicker">NOW ENTER THE STORY</p>
+        <h2>Meet this name in a tale</h2>
+        <p>Our separate learner story uses invented scenes and dialogue to explore a question connected with this figure. It is not a documented oral-history transcript.</p>
+        <a href={f.storyHref}>Read the imaginative tale →</a>
+      </aside>}
+      <section class="figure-voices" aria-labelledby="share-voice">
+        <p class="kicker">WHAT HAVE YOU HEARD?</p><h2 id="share-voice">A place for your community's voice</h2>
+        <p>{f.question}</p>
+        <p>We plan to accept corrections, other versions and first-hand accounts with the teller's permission, place/context and careful moderation. Different community versions will be shown as attributed tellings rather than one enforced answer.</p>
+        <p class="fine">This preview is read-only. No real submissions, personal details or recordings are collected here.</p>
+      </section>
+      <details class="figure-scholar">
+        <summary>For researchers: see the existing records and reading leads</summary>
+        <div>
+          <p><strong>Editorial status:</strong> {f.status}. These links show where claims can be investigated; they do not replace first-hand community testimony or license reuse of third-party media.</p>
+          {f.archiveHref&&<p><a href={f.archiveHref}>Open the preserved detailed Sacred World profile →</a></p>}
+          <ul>{f.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul>
+        </div>
+      </details>
+    </div>
+    {neighbours.length>0&&<nav aria-label="Related cultural profiles" class="figure-related">
+      <h2>Discover another name</h2>
+      <div>{neighbours.map(other=><a href={figureHref(other.slug)}>{other.name} →</a>)}</div>
+    </nav>}
+  </article>
+</Site>
