@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+import {mkdirSync} from 'node:fs';
+mkdirSync('screenshots',{recursive:true});
 test('living stories entry is readable and keeps documentary archive accessible',async({page})=>{
   await page.goto('/');
   await expect(page.getByRole('heading',{name:/Every town has a tale/i})).toBeVisible();
@@ -29,6 +31,7 @@ for(const width of [320,390,1440]){
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1);
       expect(overflow).toBe(false);
       await expect(page.locator('meta[name=robots]')).toHaveAttribute('content','noindex,nofollow');
+      await page.screenshot({path:`screenshots/living-${path==='/tales/'?'library':'story'}-${width}.png`,fullPage:true});
     }
   });
 }
