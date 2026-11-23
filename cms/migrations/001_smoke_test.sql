@@ -33,8 +33,11 @@ BEGIN
       <> 'Ìtàn Ilé-Ifẹ̀' THEN RAISE EXCEPTION 'Unicode was lost'; END IF;
  IF (SELECT count(*) FROM editorial_private.audit_events)<>1 THEN
    RAISE EXCEPTION 'Missing audit event'; END IF;
- IF (SELECT nspacl IS NULL OR NOT (nspacl @> ARRAY['=U/postgres']::aclitem[])
-     FROM pg_namespace WHERE nspname='editorial_private') IS NOT TRUE THEN
-   RAISE EXCEPTION 'Unexpected permissions check'; END IF;
+ IF EXISTS (
+   SELECT 1 FROM pg_namespace n,
+     LATERAL aclexplode(COALESCE(n.nspacl,acldefault('n',n.nspowner))) a
+   WHERE n.nspname='editorial_private'
+     AND a.grantee=0 AND a.privilege_type='USAGE'
+ ) THEN RAISE EXCEPTION 'PUBLIC has access to private editorial schema'; END IF;
 END $$;
 ROLLBACK;
