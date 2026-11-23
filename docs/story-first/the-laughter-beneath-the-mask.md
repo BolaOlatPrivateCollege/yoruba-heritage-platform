@@ -1,208 +1,235 @@
-# The Laughter Beneath the Mask
+# Who Was the Laughing Mask Talking About?
 
-*Gẹ̀lẹ̀dẹ́ · A story-first reading for secondary students and curious adults*
+*An original fictional mystery inspired by the public storytelling, artistry and social humour associated with Gẹ̀lẹ̀dẹ́.*
 
-> **Private creative pilot — not an eyewitness account.** Tóbi, his aunt and their conversations are imagined learning characters. The gathering is a composite scene, not a description of one documented ceremony. The cultural framework comes from published accounts of Gẹ̀lẹ̀dẹ́ among Yorùbá-Nago communities; local practice and interpretation differ. No actual song, sacred speech, or practitioner testimony is reproduced.
+**For readers:** The town, characters, messages and events in this story are imagined. They are **not** a recorded local legend, an eyewitness account of a Gẹ̀lẹ̀dẹ́ performance or words attributed to an actual elder. If you know a real telling from your community, the library wants to hear it—with permission.
 
-## 1. The thing above the face
+## Chapter 1 — A rumour arrives before the music
 
-The first sound Tóbi notices is laughter.
+By breakfast, half the town had heard the news.
 
-Not polite laughter, the kind people use when they do not understand a joke. This laughter has travelled through the gathering like a sudden gust of wind. A few people lean towards one another. Others stretch to see what has happened. Somewhere ahead, a performer has turned, and whatever is resting above the carved face has caught everyone's attention.
+By lunchtime, everybody seemed to have a different version.
 
-Tóbi rises on his toes.
+At the market, a boy selling roasted groundnuts said the performer had come to expose a thief. A woman buying pepper insisted it was a warning to people who told lies. Two schoolchildren declared that the mask could see through walls.
 
-He has seen photographs of masks before. In those photographs a mask sits in a museum, motionless under light, with a small label beside it. You can walk around it, study the wood, and decide that its story is finished.
+Kẹ́mi had not seen the performer at all.
 
-Here, nothing stays still long enough to become a museum photograph.
+That did not stop her from having an opinion.
 
-Cloth moves. Feet find the rhythm. People watch from different angles, so that a shape which looks serious from one side can look startlingly funny from another. The carved face is only the beginning. Above it are shapes that invite questions, and around it is a performance that refuses to explain everything at once.
+“Of course it's about the missing money,” she told her friend Sẹ́gun as they hurried past the row of colourful fabrics. “Didn't you see the video?”
 
-“Why is everyone laughing?” Tóbi asks.
+Sẹ́gun held out his phone. The video was twelve seconds long. In it, a masked figure turned sharply. The crowd burst into laughter. Somebody had written four enormous words across the screen:
 
-His aunt, who has brought him along, is watching too.
+**IT KNOWS WHO DID IT.**
 
-“Perhaps they understand something you haven't noticed yet,” she says.
+There was no beginning to the clip. No ending. Only laughter.
 
-That is an annoying answer. Tóbi likes answers that come with a beginning and an end.
+“Who wrote those words?” Sẹ́gun asked.
 
-He looks again. He had expected a celebration, perhaps some colourful costumes and a chance to record something for his friends. Instead, he has stumbled into a kind of conversation in which the speaker is moving, the listeners are responding, and the meaning seems to belong partly to the people gathered around him.
+Kẹ́mi shrugged. “Everybody is sharing it.”
 
-A carved face cannot speak. Yet it has made a whole crowd answer.
+“That wasn't my question.”
 
-How?
+She rolled her eyes. Sẹ́gun had an irritating habit of asking the sort of question that could ruin a perfectly exciting rumour.
 
-## 2. A joke can carry a warning
+Then they heard music in the distance.
 
-The performance continues. A change in the rhythm brings another ripple of attention. Tóbi notices that the crowd's response is not always the same: laughter now, then close watching, then another burst of amusement.
+Not music from somebody's phone. Real sound, rising and falling, carrying through the open space where people were gathering.
 
-“Maybe they are making fun of somebody,” he whispers.
+Kẹ́mi forgot the argument.
 
-“Maybe,” his aunt replies. “But a joke can ask a serious question.”
+“Come,” she said. “We can find out for ourselves.”
 
-Tóbi thinks about the last school assembly. Everyone laughed when a student performed a short sketch about somebody who wanted to be first in every queue. At the end, the head teacher did not have to give a long speech about selfishness. The joke had already done some of the work.
+They ran.
 
-He looks back towards the performance.
+## Chapter 2 — Three people, three answers
 
-Could something like that happen here, across songs, carving, movement and the responses of people who know the community? A carved figure might remind one viewer of a familiar problem; another might recognise a proverb or an event. That would not mean every animal, shape or gesture carries exactly the same message everywhere. It would mean a performance can invite a community to think together.
+They found Auntie Títí near the edge of the gathering.
 
-Tóbi has heard adults say that masks are just entertainment. He has also heard people dismiss unfamiliar traditions because they do not understand them. Neither answer seems large enough for what he is seeing.
+She sold cloth in the market and always seemed to know what had happened before the people involved knew it themselves. Today she was watching the crowd with the same expression she wore when checking whether a customer had given her the correct change.
 
-A school sketch can entertain and criticise a behaviour. A story told by a grandmother can be amusing and still carry a warning. A song can honour somebody and also remind listeners of what they owe one another.
+“Auntie, what's the mask going to reveal?” Kẹ́mi asked.
 
-Why should a public performance have only one purpose?
+“Reveal?” Auntie Títí looked amused. “Who promised you a revelation?”
 
-He begins to suspect that laughter may be the easiest part to hear—and the hardest part to understand.
+“The internet.”
 
-## 3. The mothers inside the story
+“That is a very talkative person,” Auntie said.
 
-“Who is this performance for?” he asks.
+Sẹ́gun laughed. Kẹ́mi did not.
 
-His aunt does not give him a secret explanation. She offers a place to begin.
+A young man nearby said the performance was making fun of people who boasted about what they could never do. Another visitor believed the laughter was part of a story about foolish pride. Someone else said there was nothing mysterious about it: people were simply enjoying the movements, costumes and skill of the performers.
 
-“In traditions of Gẹ̀lẹ̀dẹ́, honouring mothers and women's power is important. But ask the people who keep this particular practice what it means here.”
+Kẹ́mi counted the answers on her fingers.
 
-The words leave Tóbi with more questions. He knows the everyday meanings of *mother*: the woman who raised somebody, an aunt who cared for children, an elder who helped a household survive. Yet in Yorùbá-Nago traditions, the language around motherhood and female power can also reach into spiritual ideas and inherited narratives.
+“One mask. Three stories.”
 
-Some accounts speak of **Iyà Nlá**, a primordial mother. The stories, songs and meanings surrounding her are part of a living heritage, not a puzzle that one museum label can solve for everybody. Different communities and tradition bearers may explain an aspect differently, or may consider some knowledge unsuitable for a casual visitor.
+“Four, if you count the internet,” said Sẹ́gun.
 
-Tóbi has two temptations. He wants to ask whether every telling of a sacred story happened exactly as it is narrated. And he wants to label the whole thing “only a myth” if nobody can hand him a photograph.
+Auntie Títí leaned closer. “Different people may recognise different things in a performance. That doesn't make every guess an explanation.”
 
-Neither question helps him hear what the story is doing.
+“So which one is true?”
 
-A sacred narrative can express how a community understands responsibility, relationships, powers and the world. Archaeology asks other questions: What material survives? Where was it found? How old is it? What can it prove? Those different questions can meet, challenge one another, or remain unanswered without one being reduced to a cheap insult.
+“Perhaps we should watch before deciding.”
 
-He thinks of the people laughing, listening and watching.
+Kẹ́mi wanted the answer immediately. But the crowd had begun to make room, and the sound was coming nearer.
 
-The point is not that he must pretend to believe something he does not believe. The point is that he must understand whose story he is hearing before deciding what question to ask about it.
+The thing she had seen for twelve seconds on a little screen was about to become something far larger.
 
-For the first time that evening, he stops preparing his next argument and simply listens.
+## Chapter 3 — The joke nobody could pause
 
-## 4. What the photograph forgot
+A carved face moved towards them beneath an elaborate form.
 
-A moment later, Tóbi remembers the museum photograph on his phone.
+Kẹ́mi had expected to see the face first. Instead she noticed the movement: the careful balance, the quick changes of direction, the costume catching the air. From one angle the figure looked majestic. From another, its playful movement made people smile.
 
-There had been an object number. A date or perhaps a date range. A material—wood, he thinks—and a place. Those details mattered. Someone had studied the object carefully enough to preserve them.
+Then the laughter came.
 
-But the photograph had forgotten the movement.
+Kẹ́mi recognised the exact moment from the video.
 
-It had forgotten that masks may belong to a larger performance of costume, singing, spoken or chanted poetry, dance, craft, humour and community knowledge. It had forgotten the makers whose skill allows a carving to become part of something alive. It had forgotten the listeners, who can bring their own memories to the scene.
+There was the sudden turn. There was the crowd's response. There was the raised arm that the clip had made look like an accusation.
 
-A mask in a collection is not necessarily the whole story of the mask.
+But this time the moment did not end after twelve seconds.
 
-He raises his phone.
+The performer continued.
 
-“Can I take a video?”
+What followed was a lively, teasing sequence. People reacted at different times, as though some understood a reference before others did. Kẹ́mi caught only part of it. Sẹ́gun looked equally puzzled and equally delighted.
 
-His aunt touches his arm gently. “Ask the organisers first. Being able to see something doesn't automatically mean you have permission to record or share it.”
+She glanced around for the person everyone had supposedly been accusing.
 
-He lowers the phone.
+Nobody was being dragged out of the crowd. Nobody was announcing a thief's name. The people around her were talking about what they had seen, laughing and pointing out details to one another.
 
-The question is embarrassing, mostly because he realises he had been thinking only about what he could take home. A photograph for a class project. A short clip for a group chat. Evidence that he had been there.
+The video had not been entirely false. It had shown a real moment from the imagined gathering.
 
-What could he learn if, for once, he did not try to capture everything?
+It had simply made that moment tell a different story.
 
-He studies what he can actually see. He notices where the costume ends and the carving begins. He notices the patience of a performer who must carry a crafted object and make it part of moving theatre. He notices that the people nearest the performance sometimes react sooner than he does.
+“Maybe we came for the wrong mystery,” she whispered.
 
-There is information in a mask's surface. There is more information in the skills and relationships that surround it.
+“Or maybe the real mystery is why everybody believed the caption,” Sẹ́gun replied.
 
-The photograph was not useless.
+He had a point. Kẹ́mi hated that.
 
-It was incomplete.
+## Chapter 4 — A name can hurt somebody
 
-## 5. A tradition with more than one address
+They found a little shade beside a stall selling oranges.
 
-“Is this what all Yorùbá festivals are like?” Tóbi asks as the gathering continues.
+Kẹ́mi opened the video again.
 
-“No,” his aunt says. “You cannot learn one community's performance and claim it speaks for every Yorùbá person.”
+Underneath it, someone had written the name of a market trader. A few people had added laughing emojis. Another person had written, *We always knew.*
 
-That answer surprises him less than the first one.
+The trader's name had not been mentioned in the performance.
 
-Gẹ̀lẹ̀dẹ́ is associated with Yorùbá-Nago communities whose cultural worlds cross the borders of present-day **Benin, Nigeria and Togo**. Its forms, histories, performers and meanings are not identical in every place. A museum mask may come from one area, while a film may document another. A local elder may remember a performance that a distant catalogue never mentions.
+Kẹ́mi stared at the comments.
 
-This is what makes an easy internet explanation so tempting. One picture. One paragraph. “Here is what the mask means.” Finish.
+“That's not funny,” she said.
 
-But if one carving appears above a face, what tells Tóbi whether its meaning is a proverb, a joke about a local event, a tribute, a warning, a reference to a song, or something else entirely?
+Sẹ́gun took the phone, then handed it back without replying.
 
-A guess is not always foolish. A guess can begin research.
+Auntie Títí appeared with a small bag of oranges. She studied Kẹ́mi's face.
 
-The danger comes when a guess is dressed up as the final answer.
+“What's troubling you?”
 
-Tóbi imagines himself back at school. He can already hear his classmates arguing.
+Kẹ́mi showed her the comments.
 
-“It's just a dance.”
+Auntie Títí's smile disappeared. “A story can make people laugh,” she said. “A rumour can make an innocent person suffer. They are not the same thing.”
 
-“No, it is a religious event.”
+Kẹ́mi remembered how confidently she had repeated the story at breakfast. She had not written the trader's name. But she had helped the rumour travel.
 
-“No, it's art.”
+“What should I do?”
 
-“No, it's a lesson.”
+“Begin with what you know.”
 
-He smiles. Perhaps the interesting question is not which single box wins. Perhaps the interesting question is how a living performance can hold different kinds of meaning at the same time.
+That answer sounded simple until she tried it.
 
-And perhaps a second question matters even more:
+She knew the video was only twelve seconds long. She knew the words on the screen had been added by somebody. She knew she had just watched a longer performance that did not publicly identify the person in the comments.
 
-**Who gets to explain it?**
+She did **not** know who had started the rumour or why.
 
-A visitor? A teacher? A curator? A carver? A singer? A woman elder? A community organiser? Somebody whose family has taken part for generations?
+So she sent a message to her class group:
 
-Each may know something; none should be invented to make the story sound more authoritative.
+*I watched the performance. The video caption doesn't prove anybody stole anything. Please stop sharing the accusation.*
 
-## 6. What the laughter leaves behind
+Then she put away her phone.
 
-When Tóbi finally turns to leave, he has not solved every mystery.
+It was the least exciting message she had sent all day.
 
-He cannot identify every image he saw. He does not know the origin of every song, and he has not spoken to the people who made or organised the performance. He would fail a quiz that asked him to provide one universal explanation for every carved symbol.
+It was also the one that mattered most.
 
-But he has learned one thing he does not want to forget.
+## Chapter 5 — A story can carry more than one meaning
 
-A performance can make a crowd laugh without becoming trivial. It can honour mothers, remember ideas about power, make room for criticism and ask a community to look at itself. The carved object is beautiful; the relationships around it are part of the art.
+As people began to leave, Kẹ́mi asked Auntie Títí why the performance had felt different from the videos they usually watched at school.
 
-He slips his phone into his pocket.
+“Because you couldn't pause the people,” Auntie replied. “You had to watch, listen and notice how others responded.”
 
-“At school,” he says, “I think I'll ask why people laughed.”
+“But what does Gẹ̀lẹ̀dẹ́ really mean?”
 
-His aunt nods.
+“That question is bigger than one afternoon,” Auntie said. “In communities where Gẹ̀lẹ̀dẹ́ is practised, its performances can bring together carving, costume, music, dance, humour and respect for mothers and women's importance. Traditions have their own histories and meanings. If you want to learn how people here understand a particular performance, you must ask people who actually carry that knowledge.”
 
-“And after that?”
+Kẹ́mi thought of the performers, the makers, the organisers and the women in the audience whose laughter had carried across the square.
 
-“I'll ask what they were laughing *about*.”
+“Would everybody tell the same story?”
 
-He pauses, remembering the mask above the face, the changing movements, the people who caught a meaning before he did.
+“Not necessarily. Different people remember different things. Different towns may have their own ways of telling. You cannot collect one answer from a stranger and say every community believes it.”
 
-“Then,” he says, “I'll ask somebody who knows this tradition.”
+“And what about the stories of powers we can't see?”
 
-His aunt grins. “Now that sounds like the beginning of a story.”
+Auntie took her time answering.
 
-The laughter has faded behind them. The question has not.
+“Listen respectfully when someone shares what is sacred to them. Learn who is telling the story and where it belongs. You can ask questions without insulting the teller. But you should not claim their beliefs as your own discovery or make up details because the story sounds more exciting that way.”
+
+Kẹ́mi liked that answer, even though it gave her more work.
+
+A mystery was better, she decided, when the answer was not stolen from somebody else's mouth.
+
+## Chapter 6 — The story gets another ending
+
+On Monday, their teacher asked the class what they had learnt over the weekend.
+
+A boy at the back announced that a mask had identified a thief.
+
+Kẹ́mi felt twenty heads turn towards her. After all, she had been the one who shared the video first.
+
+She stood up slowly.
+
+“I thought that too,” she said. “But we saw more than the video showed.”
+
+She told them about the crowd, the laughter, the different interpretations and the caption somebody had placed on the clip. She did not pretend she understood every gesture. She did not claim to speak for the performers.
+
+At the end, she wrote three questions on the board:
+
+**Who told this version?**
+
+**What did they actually see or hear?**
+
+**Who else might tell it differently?**
+
+The classroom became noisy.
+
+One student said her grandmother knew stories about performances in another town. Another said a family member could explain the making of costumes. A third wanted to know whether their class could invite a storyteller—with permission—to speak about an account from their own community.
+
+Their teacher smiled.
+
+“Now,” she said, “we have somewhere to begin.”
+
+That evening Kẹ́mi opened her notebook. At the top of a fresh page she wrote:
+
+**THE MASK THAT MADE EVERYBODY TALK**
+
+Underneath, she began again—not with the thief, and not with the caption, but with the first thing she really remembered.
+
+*By breakfast, half the town had heard the news.*
+
+She stopped, crossed out *the news* and wrote *a rumour*.
+
+Then she left a space at the bottom of the page.
+
+**If someone tells this story differently, there is room for their version too.**
 
 ---
 
-## Beyond the story — the Truth Trail
+### Your version matters
 
-**What kind of reading is this?** An original, deliberately **fictional learner's visit** built around documented public characteristics of Gẹ̀lẹ̀dẹ́. Tóbi, his aunt, their dialogue, this gathering and its sequence of moments are *not* historical testimony or a transcript of one specific performance. The main cultural facts are sourced below; the narrative interpretation is educational creative writing.
+Have you heard a story connected with Gẹ̀lẹ̀dẹ́, a performance in your community, or a rumour that changed as people passed it along? What place did it come from? Who told it, and do you have their permission to share it?
 
-**Known from published sources:** UNESCO describes Gẹ̀lẹ̀dẹ́ as a living Yorùbá-Nago oral heritage across Benin, Nigeria and Togo. It involves carved masks, costumes, dance and Yorùbá-language songs/chants and can include satire, comedy and reverence for the primordial mother Iyà Nlá and women's social importance. UNESCO's safeguarding work involved communities, organisations and master/apprentice learning. Neither UNESCO description proves a universal reading of any single mask.
+When the community contribution feature has been independently approved, this is where readers will be able to **Tell another version**, **Correct a detail**, or **Share a family memory**. This manuscript is a private creative pilot; **the submission feature is not yet live**.
 
-**Where a misconception hides:**
-- **“A Gẹ̀lẹ̀dẹ́ mask is only a decorative museum object.”** It can be an important art object, but its use and meanings arise in performance and community contexts.
-- **“Every carving has the same fixed meaning everywhere.”** Specific motifs can refer to people, proverbs, songs or circumstances; meaning depends on context and local interpreters.
-- **“A sacred myth must be either a literal history textbook or an obvious lie.”** Sacred/oral narratives, historical records and archaeology answer different kinds of questions. Listen to identifiable tradition-bearers and be specific about what a claim actually asserts.
-
-### A classroom conversation worth having
-
-1. At what moment did Tóbi realise that laughter might carry more than amusement? Could he still be mistaken?
-2. A museum displays a Gẹ̀lẹ̀dẹ́ mask without a recording of the performance. What three questions would you ask before writing its label?
-3. Two practitioners from different communities explain a motif differently. What would respectful, careful historical inquiry look like?
-4. Your class wants to show a festival video. How would you seek permission, preserve context and avoid presenting a fictional scene as documented fact?
-
-**For readers who want to investigate:** Start with the UNESCO account and safeguarding programme; then read an identifiable local practitioner's or community organisation's own account and check whose performance, year and place it describes. Seek rights/consent before recording, translating, republishing or quoting songs and oríkì.
-
-### Reading trail (leads, not blanket clearance)
-
-- UNESCO, [Oral heritage of Gelede](https://ich.unesco.org/en/RL/oral-tradition-of-the-gelede-00002) — multinational community practice, satire, songs, dances, craft, Iyà Nlá.
-- UNESCO, [Action Plan for Safeguarding and Promotion of the Oral Tradition of Gelede](https://ich.unesco.org/en/projects/action-plan-for-the-safeguarding-and-promotion-of-the-oral-tradition-of-gelede-00006) — community and apprentice work in the Kétou area.
-- Smarthistory, [Fagbite Asamu of Idahin and Falola Edun, Helmet Mask (Gelede)](https://smarthistory.org/fagbite-asamu-and-falola-edun-helmet-mask/) — objects can refer to specific people, situations, proverbs and songs.
-- Yoruba-language contemporary research: [Gẹ̀lẹ̀dẹ́ performance and poetry in social change](https://revistas.unilab.edu.br/njingaesape/article/view/2327) — a further lead, not yet direct permission to reproduce performance texts/interviews.
-
-**Editorial status:** Original imaginative educational draft; no verified local narrator interviewed; community/linguistic/pedagogical review pending. Not for public release. This does not replace the current factual Gẹ̀lẹ̀dẹ́ documentary narrative or its existing Fola WAV, and should not be paired with that audio.
+*Story type: Original educational fiction. No actual community witness, elder, performer, historic trader or living person is represented here. The fictional characters, video and gathering are inventions. Refer to the separate staff editorial notes for factual cultural context, permissions and verification. No matching narrated audio has been generated.*
