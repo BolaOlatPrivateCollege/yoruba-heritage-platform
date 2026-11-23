@@ -25,9 +25,9 @@ const explainers:Record<string,Explainer>={
    beliefs:[
      'Olódùmarè is widely understood as the supreme source of existence and authority in many Yorùbá religious and Ifá-related accounts. Olódùmarè is not normally classified as a specialised òrìṣà like Ògún or Ọ̀ṣun.',
      'Other titles such as Ọlọ́run and Ẹlẹ́dàá sometimes overlap with this usage. They are important expressions, although their equivalence can differ between speakers and contexts.',
-     'Explanations of the name sometimes describe everlasting fullness or supreme authority. These may be meaningful interpretations without establishing one certain historical origin for every syllable.'
+     'Explanations of the name sometimes describe everlasting fullness or supreme authority. The explanations carry different meanings for the people who use the name.'
    ],
-   differences:'Views on divine mediation, prayer and how the name was formed differ across religious communities. Popular word-breakdowns should not be presented as proven linguistic facts.',
+   differences:'Views on divine mediation, prayer and how the name was formed differ across religious communities. Different families and religious communities may offer different word-breakdowns and meanings.',
    question:'What explanation of the name Olódùmarè did you grow up hearing?',
    storyHref:'/tales/olodumare-many-meanings/'
  },
@@ -52,7 +52,7 @@ const explainers:Record<string,Explainer>={
  'sac-ogun':{
    role:'Iron, tools, roads, work and the power of making',
    beliefs:['Ògún is an òrìṣà associated with iron, smithing, tools and occupations that use them, as well as paths, hunting and conflict in many tellings.','Stories and religious observances can emphasise strength, obligation and the dangers that powerful tools can bring.'],
-   differences:'Specific practices vary with community and occupation. Ògún is not only a god of war, and traditions about iron cannot prove invention of modern technology.',
+   differences:'Specific practices vary with community and occupation. Stories also connect Ògún with craft, paths and people's responsibilities when using iron.',
    question:'What story about Ògún have you heard from workers, elders or family?'
  },
  'sac-sango':{
@@ -64,7 +64,7 @@ const explainers:Record<string,Explainer>={
  'sac-osun':{
    role:'River, vitality and sacred relationships in Ọ̀ṣun traditions',
    beliefs:['Ọ̀ṣun is associated with rivers and with ideas of vitality, care and fertility in several Yorùbá traditions.','The Ọ̀ṣun–Òṣogbo Sacred Grove is especially important within living practices connected to Òṣogbo.'],
-   differences:'Different communities tell different accounts; claims of healing belong to religious belief and do not replace medical evidence.',
+   differences:'Different communities tell different accounts of rivers, care, fertility and sacred relationships with Ọ̀ṣun.',
    question:'What does your community tell about Ọ̀ṣun and the river?'
  },
  'sac-yemoja':{
@@ -105,7 +105,7 @@ const heroes:CulturalFigure[]=[
   slug:'moremi-ajasoro',name:'Mọremí Àjàṣorò',kind:'Heroine of oral tradition',scope:'Ilé-Ifẹ̀ traditions and public commemoration',
   role:'Courage and difficult sacrifice in Ilé-Ifẹ̀ cultural memory',
   beliefs:['Mọremí Àjàṣorò is remembered in widely known Ilé-Ifẹ̀ traditions as a courageous woman who sought a way to protect her community.','Her story is retold in different forms through oral narration, theatre and public remembrance.'],
-  differences:'Family details, opponents, sacrifices and endings differ among tellings. A dramatic performance should not be treated as a verified transcript of ancient events.',
+  differences:'Family details, opponents, sacrifices and endings differ among tellings. The different tellings show which parts of Mọremí’s story communities remember and emphasise.',
   question:'Which version of Mọremí’s courage was told in your family or town?',
   mistaken:'Every scene in a modern play about Mọremí happened exactly as shown.',
   clarification:'The cultural importance of a heroine can be distinguished from claims about precise dates and incidents.',
@@ -115,8 +115,8 @@ const heroes:CulturalFigure[]=[
  {
   slug:'lisabi',name:'Lísàbí',kind:'Cultural hero in Ẹ̀gbá tradition',scope:'Ẹ̀gbá histories, including Abẹ́òkúta',
   role:'A symbol of collective Ẹ̀gbá identity and resistance',
-  beliefs:['Lísàbí is celebrated in Ẹ̀gbá cultural memory as a figure associated with unity, leadership and opposition to domination.','Different oral accounts help explain his importance to communal identity, but not every story supplies a verified date or event sequence.'],
-  differences:'Specific battles, companions, locations and chronology should be attributed to identifiable tellings instead of presented as a single universally proven narrative.',
+  beliefs:['Lísàbí is celebrated in Ẹ̀gbá cultural memory as a figure associated with unity, leadership and opposition to domination.','Different oral accounts bring their own details about the people, places and events remembered in the story.'],
+  differences:'Ask which companions, places and events your family's version remembers, and listen to how neighbouring communities tell it.',
   question:'How does your Ẹ̀gbá family or community remember Lísàbí?',
   mistaken:'All stories about Lísàbí have one agreed chronology.',
   clarification:'Shared remembrance does not require every detail of different oral tellings to be identical.',
@@ -126,8 +126,8 @@ const heroes:CulturalFigure[]=[
  {
   slug:'efunsetan-aniwura',name:'Ẹfúnṣetán Aníwúrà',kind:'Historical person',scope:'Nineteenth-century Ìbàdàn',
   role:'Influential Ìyálóde and important woman in Yorùbá political memory',
-  beliefs:['Ẹfúnṣetán Aníwúrà held the Ìyálóde title in nineteenth-century Ìbàdàn and is remembered for wealth, leadership and political influence.','Accounts of her life appear in historical writing as well as plays and films, where dramatic scenes may add interpretation or invented dialogue.'],
-  differences:'Remembered motives and conflicts are debated; a historical life should not be reduced to the villain or heroine of any one drama.',
+  beliefs:['Ẹfúnṣetán Aníwúrà held the Ìyálóde title in nineteenth-century Ìbàdàn and is remembered for wealth, leadership and political influence.','Accounts of her life appear in historical writing as well as plays and films, and in plays and films that portray her in different ways.'],
+  differences:'People remember her influence, conflicts and personal character in different ways. Which accounts have been told in your community?',
   question:'What accounts of Ìyálóde Ẹfúnṣetán have you encountered, and who passed them on?',
   mistaken:'A popular play records every event and conversation from her life.',
   clarification:'Historical drama is not a literal record; invented scenes need to be distinguished from documented events.',
