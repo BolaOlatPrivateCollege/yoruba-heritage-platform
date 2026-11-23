@@ -11,7 +11,7 @@ test('Beliefs and Figures is accessible from homepage and new story library',asy
   await expect(page.locator('.figure-card')).toHaveCount(27);
   await expect(page.locator('meta[name=robots]')).toHaveAttribute('content','noindex,nofollow');
   await expect(page.locator('form,input[type=file],textarea')).toHaveCount(0);
-  await expect(page.locator('.figure-context')).toContainText('What did you grow up hearing?');
+  await expect(page.locator('.figures-context')).toContainText('What did you grow up hearing?');
 });
 test('Èṣù is described as òrìṣà, not reduced to Satan or merely an invented hat tale',async({page})=>{
   await page.goto('/figures/esu/');
