@@ -23,9 +23,9 @@ const tale=parsePilotStory(manuscript);
         <p class="kicker">CHAPTER {chapter.number} / 6</p><h2>{chapter.title}</h2>
         {chapter.passages.map(p=><p>{p.segments.map(s=>s.strong?<strong>{s.text}</strong>:s.italic?<em>{s.text}</em>:s.text)}</p>)}
         <nav class="tale-chapter-next" aria-label={`Navigation after chapter ${chapter.number}`}>
-          {index>0&&<a href={`#${tale.chapters[index-1].id}`} aria-label={`Previous chapter: ${tale.chapters[index-1].title}`}>← Previous chapter</a>}
+          {index>0&&<a href={`#${tale.chapters[index-1]?.id}`} aria-label={`Previous chapter: ${tale.chapters[index-1]?.title}`}>← Previous chapter</a>}
           <a href="#chapter-index">Chapter index ↑</a>
-          {index<tale.chapters.length-1&&<a href={`#${tale.chapters[index+1].id}`} aria-label={`Next chapter: ${tale.chapters[index+1].title}`}>Next chapter →</a>}
+          {index<tale.chapters.length-1&&<a href={`#${tale.chapters[index+1]?.id}`} aria-label={`Next chapter: ${tale.chapters[index+1]?.title}`}>Next chapter →</a>}
         </nav>
       </section>)}
     </div>
