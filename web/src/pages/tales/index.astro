@@ -1,5 +1,6 @@
 ---
 import Site from '../../layouts/Site.astro';
+import {livingEpisodes,episodeHref} from '../../lib/living-episodes';
 import '../../styles/tales.css';
 const shelves=[
   {title:'Ìjàpá and the tricksters',lead:'Laugh at an impossible promise, a lost feast, or a clever plan that backfires.',label:'Folktales · Versions wanted'},
@@ -26,6 +27,18 @@ const shelves=[
       <p class="fine">An invented story inspired by curiosity about Gẹ̀lẹ̀dẹ́. Not a documented performance or collected oral history.</p>
     </div>
     <div class="tales-art-swatch" aria-hidden="true"><span>Àlọ́</span><span>?</span></div>
+  </section>
+  <section class="wrap tales-live" aria-labelledby="fresh-tales">
+    <p class="kicker">TWO MORE STORIES · FIRST PRIVATE READING EDITION</p>
+    <h2 id="fresh-tales">Follow the question.</h2>
+    <p class="lead">Two new complete adventures in the power of stories and the different meanings we carry. These are original learning adaptations, not authenticated community testimony.</p>
+    <div class="tales-new-grid">{livingEpisodes.map((e,index)=><article class:list={['tales-new-card',index===0?'theme-crossroads':'theme-name']}>
+      <p class="kicker">{e.world}</p>
+      <h3><a href={episodeHref(e.slug)}>{e.name}</a></h3>
+      <p>{e.deck}</p>
+      <p class="fine">{e.genre} · Six chapters · {e.body.words} words</p>
+      <a class="tales-inline-link" href={episodeHref(e.slug)}>Enter the story →</a>
+    </article>)}</div>
   </section>
   <section class="wrap tales-lanes" aria-labelledby="explore-tales">
     <p class="kicker">A WORLD OF STORIES TO EXPLORE</p>
