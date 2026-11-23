@@ -22,7 +22,7 @@ At her father's farm the yam heaps were smaller than the year before. Her younge
 
 The stranger introduced himself as Lísàbí.
 
-Some tellings remember him as a farmer and organiser; others emphasise the shape of the movement that grew around his name. In this story he made no grand announcement. He asked Yẹ́mí's father how many families had harvested less than they planted, and how often the collectors returned.
+He made no grand announcement. He asked Yẹ́mí's father how many families had harvested less than they planted, and how often the collectors returned.
 
 "That is not an interesting question," Bàbá Láyí said.
 
@@ -154,7 +154,7 @@ Yẹ́mí looked around the circle. They were frightened. They were divided. The
 
 ## Chapter 5 — The night of many footsteps
 
-In later tellings of Lísàbí, the defeat of oppressive authority can be described with bold scenes of planning, movement and victory. Some versions include particular tactics and supernatural protection. Here the decisive night remains deliberately a dramatic imagined scene, not a reconstruction of a verifiable battle plan.
+The night that followed would grow in the telling. By the time the story reached distant markets, people would speak of astonishing escapes and daring plans.
 
 Yẹ́mí remembered it first by its sounds.
 
@@ -194,7 +194,7 @@ Yẹ́mí's daughter listened carefully.
 
 "Did you see him?"
 
-"In this story, I did," Yẹ́mí said, smiling at the strange way stories sometimes made imaginary people feel like ancestors. "But a real family wishing to learn its history should ask the elders who carry its own account."
+"I saw the man who asked our village to stand together," Yẹ́mí said. "The one in the songs is bigger than any man I knew. If you want the stories from other towns, ask the people who remember them."
 
 Her daughter frowned. "Then what do we remember?"
 
