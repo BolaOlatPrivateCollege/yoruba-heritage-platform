@@ -75,7 +75,7 @@ const manifest:EpisodeSpec[]=[
     slug:'sango-when-thunder-answered',
     label:'Ṣàngó · Thunder and the weight of power',
     name:'Ṣàngó: When Thunder Answered',
-    deck:'Thunder interrupts a gathering, and a visitor discovers that a royal legend, a sacred emblem and a family's belief can carry very different meanings.',
+    deck:'Thunder interrupts a gathering, and a visitor discovers that a royal legend, a sacred emblem and a family belief can carry very different meanings.',
     genre:'Original framed fiction inspired by living Ṣàngó traditions',
     fictionalStatus:'The festival framing, characters and imagined kingly dialogue are literary inventions. Living sacred traditions and royal accounts vary; this story does not claim to reproduce sacred verses, a ceremony, or a factual biography.',
     world:'Living beliefs · Ṣàngó',
