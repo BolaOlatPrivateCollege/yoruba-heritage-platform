@@ -19,7 +19,7 @@ test('historic translation and varied name explanations are discussed without as
   assert.match(esu.translation.opening,/Satan or the devil/);
   assert.match(esu.language.text,/Some|gathering or encircling/);
   assert.equal(esu.names.items.length,4);
-  assert.ok(esu.misunderstandings.length>=3);
+  assert.equal(esu.waysPeopleSpeak.length,3);
 });
 test('the owner-facing cultural page is intended to invite community discussion rather than pretend a submission form is live',()=>{
   assert.equal(esu.discussion.prompts.length,4);
