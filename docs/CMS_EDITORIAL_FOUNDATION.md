@@ -101,3 +101,21 @@ The next major phase is to select a production identity provider, transactional 
 - No noindex removal or public deployment until expressly authorised.
 
 **Owner's approval to continue backend development does not imply approval to deploy or start a public data-collection service.**
+
+
+## Phase 1B — Transactional PostgreSQL repository adapter (private, not connected)
+
+`cms/postgres-private-draft-repository.mjs` implements a **server-only dependency-injected PostgreSQL client adapter** for creating new editorial drafts and changing their draft/review state. It does not import network packages, read database credentials, start a server or expose any public URL. A future authenticated API must supply a trusted `pg`-compatible pool and a server-resolved identity; caller-supplied actor objects are not authentication.
+
+The adapter:
+- Validates original draft records and only accepts `draft` revision 1 authored by the identified owner/editor.
+- Executes all related inserts (record, language editions, provenance, immutable revision snapshot, audit event) in one `BEGIN / COMMIT` transaction with `ROLLBACK` on failure.
+- Uses `SELECT ... FOR UPDATE` and expected revision checks to prevent lost updates when applying editorial review actions, and delegates decisions to `planEditorialChange`.
+- Stores Unicode Yorùbá titles and bodies as UTF-8 through parameterised queries; never interpolates contributor text into SQL.
+- Intentionally implements **no publish, withdrawal, upload, community intake or unauthenticated read API**. Real community evidence/consent and media uploads remain separate pending policy approval.
+
+`web/tests/postgres-private-draft-repository.test.mjs` uses a mock PostgreSQL-compatible pool to test SQL transaction boundaries, audit intent, role rejection, locks, revision conflicts and rollback. These unit tests **do not replace an integration test that uses a real PostgreSQL client against the migration**. The PostgreSQL schema CI independently tests the SQL migration and its Unicode/audit smoke fixture.
+
+**Remaining security and engineering gates:** integrate an appropriate managed PostgreSQL driver and pooled connections; server-side MFA/auth/session, owner account bootstrap and per-record authorisation; migration tooling and least-privilege DB users; transaction-based real PostgreSQL integration tests (including concurrency); audit immutability, robust backup/restore; protected image/audio storage; and owner-only release orchestration. Keep this code isolated from Astro static builds.
+
+The owner explicitly chose **separate hosting**, **only the owner as initial administrator** and **manual publication by the owner only**. See `docs/CMS_OWNER_DECISIONS_AND_HOSTING.md`. This branch grants **no release permission**.
