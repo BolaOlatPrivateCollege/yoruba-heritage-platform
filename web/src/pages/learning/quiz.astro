@@ -5,7 +5,7 @@ import {quizDisplayId} from '../../lib/quiz';
 import '../../styles/quiz.css';
 const readings=[...new Set(archive.quiz.map(question=>question.link))].map(id=>archive.articles.find(article=>article.id===id)!);
 ---
-<Site title="Source-linked knowledge quiz" active="Quiz">
+<Site title="Source-linked knowledge quiz" active="Research">
 <header class="wrap page-head"><p class="kicker">KNOWLEDGE PRACTICE · ARCHIVED ANSWERS</p><h1>Question.<br/>Read. <em>Reflect.</em></h1><p class="lead">Review all 15 original questions, one at a time. Explore the explanations and return to the source-linked readings.</p><nav class="pills" aria-label="Learning tools"><a href="/learning/">Learning overview</a><a href="/learning/alphabet/">Alphabet & tone practice</a><a href="/learning/pronunciation/">Pronunciation references</a></nav></header>
 <div class="wrap quiz-layout" data-quiz>
 <div>
