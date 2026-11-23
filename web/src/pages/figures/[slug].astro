@@ -4,12 +4,13 @@ import {heritageFigures,figureHref,type CulturalFigure} from '../../lib/heritage
 import {esuLivingProfile as esu} from '../../lib/esu-living-profile';
 import {detailedSacredProfiles} from '../../lib/detailed-sacred-profiles';
 import {oduduwaLivingProfile} from '../../lib/oduduwa-living-profile';
+import {ogunLivingProfile} from '../../lib/ogun-living-profile';
 import '../../styles/figures.css';
 export function getStaticPaths(){return heritageFigures.map(f=>({params:{slug:f.slug},props:{figure:f}}));}
 interface Props{figure:CulturalFigure}
 const {figure:f}=Astro.props;
 const isEsu=f.slug==='esu';
-const detailed=f.slug==='oduduwa'?oduduwaLivingProfile:detailedSacredProfiles[f.slug];
+const detailed=f.slug==='oduduwa'?oduduwaLivingProfile:f.slug==='ogun'?ogunLivingProfile:detailedSacredProfiles[f.slug];
 const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind===f.kind).slice(0,3);
 ---
 <Site title={isEsu?'Èṣù — Messenger, Crossroads and Choice':f.name+' — Yorùbá beliefs and cultural memory'} description={isEsu?esu.lead:(detailed?.lead??f.role)+'. Stories, beliefs and community perspectives.'} active="Beliefs & Figures">
