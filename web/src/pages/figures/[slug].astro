@@ -53,7 +53,7 @@ const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind==
       </section>
       <section id="misunderstandings" aria-labelledby="misunderstandings-heading">
         <p class="kicker">LET'S TALK ABOUT IT</p>
-        <h2 id="misunderstandings-heading">Three things people often say</h2>
+        <h2 id="misunderstandings-heading">Different ways people explain Èṣù</h2>
         <div class="figure-myths">{esu.misunderstandings.map(item=><div class="figure-myth">
           <h3>{item.heard}</h3><p>{item.another}</p>
         </div>)}</div>
@@ -87,12 +87,6 @@ const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind==
       <section aria-labelledby="different-versions">
         <p class="kicker">OTHER WAYS OF TELLING IT</p>
         <h2 id="different-versions">Different community accounts</h2><p>{f.differences}</p>
-      </section>
-      <section aria-labelledby="common-confusion">
-        <p class="kicker">A QUESTION WORTH ASKING</p>
-        <h2 id="common-confusion">What people sometimes say</h2>
-        <p><strong>A common claim:</strong> {f.mistaken}</p>
-        {f.clarification&&<p><strong>Another perspective:</strong> {f.clarification}</p>}
       </section>
       {f.storyHref&&<aside class="figure-story" aria-label="Related fictional learning story">
         <p class="kicker">A STORY TO ENJOY</p><h2>Read a tale connected with this name</h2>
