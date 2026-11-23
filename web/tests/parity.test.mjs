@@ -67,7 +67,8 @@ test('every generated internal link and section anchor resolves',()=>{
     const $=load(readFileSync(file,'utf8'));
     for(const node of $('a[href]').toArray()){
       const href=$(node).attr('href');if(!href||(!href.startsWith('/')&&!href.startsWith('#')))continue;
-      const [path,fragment]=href.split('#');
+      const [pathWithQuery,fragment]=href.split('#');
+      const path=pathWithQuery.split('?')[0];
       const target=path?resolve(dist,'.'+path+(path.endsWith('/')?'index.html':'')):file;
       assert.ok(existsSync(target),`${file}: ${href}`);
       if(fragment){const page=load(readFileSync(target,'utf8'));assert.ok(page('[id]').toArray().some(el=>page(el).attr('id')===fragment),href);}
