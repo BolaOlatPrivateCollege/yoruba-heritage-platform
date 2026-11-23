@@ -52,3 +52,24 @@
 .figure-related a{padding:.8rem 1rem;border:1px solid var(--line);color:var(--bronze);text-decoration:none}
 @media(max-width:980px){.figure-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.figures-hero{padding-block:2.5rem}.figure-grid{grid-template-columns:1fr}.figure-detail-head{padding-block:2rem}.figure-community,.figure-voices,.figure-story{padding:1.25rem!important}.figure-card{padding:1.35rem}.figure-article section>p:not(.kicker){font-size:1rem}.figure-related>div{flex-direction:column}.figure-related a{min-height:44px}}
+
+
+/* Living cultural explanations: conversation-led, without scholar apparatus in the reading column. */
+.figure-opening{max-width:55ch;margin:1.6rem 0;font-size:1.1rem;line-height:1.85;color:var(--cream)}
+.figure-article-living .figure-section-opening{max-width:65ch;font-size:1.1rem;line-height:1.85}
+.figure-role-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.7rem}
+.figure-role{min-width:0;background:var(--panel);padding:1.55rem;border:1px solid var(--line)}
+.figure-role h3{font-size:1.4rem;margin:0 0 1rem}
+.figure-role p{font-size:1rem;line-height:1.75}
+.figure-role .figure-role-question{font-size:.9rem;color:var(--bronze);border-top:1px solid var(--line);padding-top:.85rem;margin:1rem 0 0}
+.figure-name-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin-top:1.8rem}
+.figure-name{padding:1.25rem;background:var(--panel);border:1px solid var(--line)}
+.figure-name h3{font-size:1.2rem;margin:0 0 .7rem}
+.figure-name p{font-size:.95rem;line-height:1.65;margin:0}
+.figure-myth{padding:1rem 0 1.25rem;border-bottom:1px solid var(--line)}
+.figure-myth h3{font-size:1.1rem;line-height:1.45;margin-bottom:.7rem}
+.figure-myth p{line-height:1.75;margin:0}
+.figure-discussion-prompt{padding:1.1rem 1.3rem;border-left:3px solid var(--bronze);background:var(--panel)}
+.figure-discussion-list{padding-left:1.5rem;max-width:62ch}
+.figure-discussion-list li{line-height:1.75;margin:.9rem 0}
+@media(max-width:650px){.figure-role-grid,.figure-name-grid{grid-template-columns:1fr}.figure-role{padding:1.25rem}.figure-opening{font-size:1rem}.figure-article-living .figure-section-opening{font-size:1rem}}
