@@ -49,10 +49,10 @@ export const esuLivingProfile={
       {name:'Ẹlẹ́gbára',note:'A name or title associated with Èṣù in related traditions; pronunciations and uses vary.'}
     ]
   },
-  misunderstandings:[
-    {heard:'“Èṣù is exactly the Christian Satan.”',another:'That is one influential translation and religious usage, not a complete description of Èṣù in traditional Yorùbá spirituality.'},
-    {heard:'“If Èṣù is a trickster, he must be entirely evil.”',another:'Many tales use surprise, contradiction and testing to explore character, fairness and the limits of certainty; other accounts may also describe disturbing or harmful powers.'},
-    {heard:'“Èṣù makes people do wrong things.”',another:'Some everyday expressions blame Èṣù for bad decisions. Stories of choice and consequence also invite the opposite question: what responsibility belongs to the person who chose?'}
+  waysPeopleSpeak:[
+    {topic:'“Èṣù” in Christian conversation',voices:'Many Yorùbá-speaking Christians grew up using Èṣù for Satan or the devil. Other Yorùbá religious tellings speak of a messenger, guardian of crossroads and sacred intermediary. What did the word mean in the setting where you first heard it?'},
+    {topic:'“The trickster” in a folktale',voices:'Some stories remember Èṣù through surprise and a test of character. Others speak about messages, obligations and ritual life. Which stories did people around you emphasise?'},
+    {topic:'“Èṣù pushed me to do it”',voices:'People sometimes use the name when telling stories about misfortune, temptation or an unexpected choice. Another teller may focus on the person who made the choice. What saying do people use in your home?'}
   ],
   discussion:{
     title:'What did you grow up hearing about Èṣù?',
