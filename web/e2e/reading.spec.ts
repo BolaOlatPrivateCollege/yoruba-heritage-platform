@@ -5,11 +5,11 @@ mkdirSync('screenshots',{recursive:true});
 test('desktop overview, static reading links and keyboard skip link',async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.setViewportSize({width:1440,height:1000});await page.goto('/');
-  await expect(page.getByRole('heading',{level:1})).toContainText('A living archive.');
+  await expect(page.getByRole('heading',{level:1})).toContainText('Every town has a tale.');
   await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();
   await page.keyboard.press('Enter');await expect(page.locator('#main')).toBeFocused();
   await page.screenshot({path:'screenshots/desktop-home.png',fullPage:true});
-  await page.getByRole('link',{name:/Explore the library/}).click();
+  await page.getByRole('link',{name:/Explore the scholars’ archive/}).click();
   await expect(page.locator('.reading-card')).toHaveCount(113);expect(errors).toEqual([]);
 });
 test('search without diacritics, keyboard result navigation and exact article title',async({page})=>{
