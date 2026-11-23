@@ -1,6 +1,6 @@
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
-import {parsePilotStory,type ReaderPilot} from './reader-pilot';
+import {parsePilotStory,type ReaderPilot} from './reader-pilot.ts';
 
 export type LivingEpisode={
   slug:string;
