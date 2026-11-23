@@ -51,7 +51,7 @@ test('a pre-linked Èṣù story allows a safe local preview with no network, co
   await expect(page.locator('#cv-result')).toBeVisible();
   await expect(page.locator('#cv-result-name')).toHaveText('A tale with two sides');
   await expect(page.locator('#cv-result-account')).toContainText('A fictional teller');
-  await expect(page.locator('#cv-result-note')).toContainText('trusted teacher or guardian');
+  await expect(page.locator('#cv-result-note')).toContainText('trusted parent, guardian or responsible adult');
   await expect(page.locator('#cv-feedback')).toContainText('No story, name, permission or account has been sent or saved');
   expect(unsafe).toEqual([]);expect(errors).toEqual([]);
   expect(await page.evaluate(()=>({local:localStorage.length,session:sessionStorage.length}))).toEqual({local:0,session:0});
