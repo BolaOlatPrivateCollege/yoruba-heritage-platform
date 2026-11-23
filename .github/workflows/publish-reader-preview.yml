@@ -1,0 +1,60 @@
+name: Publish approved read-only development preview to GitHub Pages
+
+# Updating this workflow on main triggers a deployment of the pinned,
+# CI-validated static reader revision. PRs, CMS code and source changes do
+# not automatically publish. Only a new approved SHA and workflow edit can.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-reader-preview.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-published-reader
+  cancel-in-progress: false
+
+jobs:
+  publish-preview:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out approved static reader candidate
+        uses: actions/checkout@v4
+        with:
+          ref: 7192f0eba8cb79ea723311eecb286e318578d400
+          persist-credentials: false
+      - name: Confirm candidate pin
+        run: test "$(git rev-parse HEAD)" = "7192f0eba8cb79ea723311eecb286e318578d400"
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.4'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Rebuild and audit static Pages package
+        working-directory: web
+        env:
+          GITHUB_PAGES_BASE: yoruba-heritage-platform
+        run: |
+          npm ci
+          npm run check
+          npm run build
+          npm test
+          node scripts/prepare-pages-base.mjs
+          node scripts/audit-pages-public.mjs
+          test ! -f dist/community/share/index.html
+          test -f dist/tales/index.html
+          test -f dist/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist/
+      - id: deployment
+        uses: actions/deploy-pages@v4
