@@ -1,0 +1,5 @@
+/* Historical image house style: documentary masters are never destructively altered. */
+.heritage-visual{display:block;max-width:100%}
+.heritage-visual--historical{filter:grayscale(1) sepia(.55) contrast(1.07)}
+.heritage-visual--archive-original,.heritage-visual--modern{filter:none}
+.heritage-visual-caption{font-size:.8rem;line-height:1.55;color:var(--muted,#777)}

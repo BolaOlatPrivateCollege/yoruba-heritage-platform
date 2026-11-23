@@ -1,4 +1,5 @@
-/* Story-first, CSS-only illustration: fast, responsive and independent of unapproved artwork. */
+/* Fictional period-setting illustration: render exclusively in archival monochrome/sepia.
+   The imagery is an imaginative reconstruction, NEVER a historical photograph. */
 .home-story-feature{margin:0;overflow:hidden;border:1px solid var(--line);background:#102225}
 .home-story-feature figcaption{padding:clamp(1.35rem,3vw,2.1rem)}
 .home-story-feature figcaption h2{margin:.65rem 0 1rem;line-height:1.12;font-size:clamp(1.7rem,3.2vw,2.7rem)}
@@ -6,7 +7,7 @@
 .home-story-feature figcaption p:not(.kicker){font-size:.93rem;line-height:1.75}
 .home-story-feature figcaption .fine{margin-top:1.15rem;font-size:.74rem;color:var(--muted)}
 .home-feature-link{display:inline-block;color:var(--bronze);font-weight:650;text-underline-offset:.35rem}
-.story-fire-scene{position:relative;isolation:isolate;overflow:hidden;height:clamp(245px,35vw,395px);background:radial-gradient(ellipse 45% 33% at 56% 93%,#f7a35655,transparent 100%),linear-gradient(180deg,#182844 0%,#35405d 38%,#815342 75%,#1d292b 100%)}
+.story-fire-scene{filter:grayscale(1) sepia(.65) contrast(1.1);position:relative;isolation:isolate;overflow:hidden;height:clamp(245px,35vw,395px);background:radial-gradient(ellipse 45% 33% at 56% 93%,#f7a35655,transparent 100%),linear-gradient(180deg,#182844 0%,#35405d 38%,#815342 75%,#1d292b 100%)}
 .story-fire-moon{position:absolute;right:15%;top:13%;width:60px;height:60px;border-radius:50%;background:#f7d5a0;box-shadow:0 0 45px #f9b96a77}
 .story-fire-tree{position:absolute;left:8%;top:-22%;width:24px;height:115%;transform:rotate(-13deg);background:linear-gradient(90deg,#111d22,#292b27);box-shadow:12px 0 0 #111d22}
 .story-fire-tree:before{content:"";position:absolute;width:340px;height:135px;top:8%;left:-65px;border-radius:55% 45% 50% 40%;background:radial-gradient(ellipse at bottom,#244037,#0e242a 72%);box-shadow:100px -12px 0 -9px #142b2b,220px 5px 0 -20px #152b2b}
