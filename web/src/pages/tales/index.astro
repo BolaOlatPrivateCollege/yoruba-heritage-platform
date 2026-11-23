@@ -1,0 +1,45 @@
+---
+import Site from '../../layouts/Site.astro';
+import '../../styles/tales.css';
+const shelves=[
+  {title:'Ìjàpá and the tricksters',lead:'Laugh at an impossible promise, a lost feast, or a clever plan that backfires.',label:'Folktales · Versions wanted'},
+  {title:'Sacred names and many meanings',lead:'Olódùmarè, Èṣù, Ọ̀ṣun, and the accounts different generations grew up hearing.',label:'Living beliefs · Voices wanted'},
+  {title:'Mysteries of our towns',lead:'Unusual stones, surprising place-names, and memories of where a community began.',label:'Local legends · Voices wanted'},
+  {title:'Markets, makers and family memories',lead:'Àdìrẹ, everyday invention, music, market women, foodways and first-hand stories.',label:'Community histories · Voices wanted'},
+  {title:'Àlọ́, riddles and moonlight tales',lead:'Stories with twists, questions to answer aloud, and the ending nobody expected.',label:'Folklore · Storytelling traditions'},
+  {title:'History people still argue about',lead:'Courage, difficult choices and surprising accounts that change depending on the teller.',label:'Competing histories · Perspectives'}
+];
+---
+<Site title="Stories & Living Memories" description="Enter a living Yorùbá world of folktales, local mysteries, family memories and cultural storytelling." active="Stories">
+  <header class="wrap tales-hero">
+    <p class="kicker">PRIVATE EDITORIAL PREVIEW · STORIES & LIVING MEMORIES</p>
+    <h1>Everyone knows a story.<br/><em>Who tells it differently?</em></h1>
+    <p class="lead">Follow a mystery, laugh at a trick, discover a familiar name—or bring a version that nobody else has heard. Stories live when people tell them again.</p>
+    <div class="tales-actions"><a class="button" href="/tales/laughing-mask/">Begin our first tale</a><a class="button secondary" href="/stories/">Read the documentary edition</a></div>
+    <p class="fine">Story types are clearly labelled; the contribution features described here are not live.</p>
+  </header>
+  <section class="wrap tales-featured" aria-labelledby="first-tale">
+    <div><p class="kicker">A CULTURAL MYSTERY · ORIGINAL FICTION</p>
+      <h2 id="first-tale">Who Was the Laughing Mask Talking About?</h2>
+      <p>One twelve-second video. A rumour racing through a town. Two young investigators determined to discover what everybody thinks they know. What could possibly go wrong?</p>
+      <a class="tales-inline-link" href="/tales/laughing-mask/">Read the complete six-chapter story →</a>
+      <p class="fine">An invented story inspired by curiosity about Gẹ̀lẹ̀dẹ́. Not a documented performance or collected oral history.</p>
+    </div>
+    <div class="tales-art-swatch" aria-hidden="true"><span>Àlọ́</span><span>?</span></div>
+  </section>
+  <section class="wrap tales-lanes" aria-labelledby="explore-tales">
+    <p class="kicker">A WORLD OF STORIES TO EXPLORE</p>
+    <h2 id="explore-tales">What fascinates you?</h2>
+    <div class="tales-grid">{shelves.map(s=><article class="tales-lane">
+      <p class="kicker">{s.label}</p><h3>{s.title}</h3><p>{s.lead}</p>
+      <p class="fine">Stories being collected and developed · no content published in this category yet</p>
+    </article>)}</div>
+  </section>
+  <aside class="wrap tales-invite" aria-label="Community participation roadmap">
+    <p class="kicker">YOUR VERSION MATTERS</p><h2>Did you hear a different ending?</h2>
+    <p>One town may remember a tale differently from another. We want to hear those voices without erasing either version. Contributors will eventually be able to share a family story, correct a detail or send a first-hand account—with permission.</p>
+    <p class="fine">This prototype has no working submission form or public comments. Secure moderation, rights and child-safe privacy protections must be completed before collecting real accounts.</p>
+    <a class="tales-inline-link" href="/community/">Explore existing read-only community leads →</a>
+  </aside>
+  <div class="wrap tales-scholar"><p>Looking for documentary evidence and scholarly reading? The complete original <a href="/articles/">Research & Documentary Archive</a> and <a href="/sources/">source library</a> remain available separately.</p></div>
+</Site>
