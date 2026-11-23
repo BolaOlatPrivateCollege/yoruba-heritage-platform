@@ -42,6 +42,8 @@ test('mobile navigation reaches Stories and journeys return to unchanged canonic
   await page.locator('.mobile-menu summary').click();
   await expect(page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Stories',exact:true})).toHaveAttribute('aria-current','page');
   await page.locator('.mobile-menu summary').click();
+  await expect(page.getByRole('heading',{name:/Who tells it differently/})).toBeVisible();
+  await page.goto('/stories/');
   await page.locator('#journey-objects li').nth(1).getByRole('link').click();await expect(page).toHaveURL(/\/articles\/ile-ife\/$/);await expect(page.locator('.canonical-title')).toContainText('Ilé-Ifẹ̀');
   await expect(page.locator('.canonical-body')).toHaveCount(4);
 });
