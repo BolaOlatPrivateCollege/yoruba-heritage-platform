@@ -27,7 +27,12 @@ function walk(dir){
   // Remove entry links to the now-absent private walkthrough, keeping Community accessible.
   const redirected=html.replaceAll(prefix+'community/share/',prefix+'community/');
   if(redirected!==html){writeFileSync(file,redirected);changed++;html=redirected;}
-  if(/<form\b|<textarea\b|type\s*=\s*["']file["']/i.test(html)) errors.push('Unexpected form/upload element: '+rel);
+  // Read-only search/filter forms are safe: they never submit external data.
+  const allowedReadOnlySearch=(rel==='search/index.html'||rel==='sources/index.html');
+  if(/<textarea\b|type\s*=\s*["']file["']/i.test(html)||
+     (!allowedReadOnlySearch&&/<form\b/i.test(html))||
+     (allowedReadOnlySearch&&/<form\b[^>]*\baction\s*=/i.test(html)))
+    errors.push('Unexpected collection, upload or submitting form: '+rel);
   if(missingPrefix.test(html))errors.push('Unexpected unprefixed internal path: '+rel);
   if(!/<meta\s+name=["']robots["']\s+content=["']noindex,nofollow["']/i.test(html))
    errors.push('Noindex marker not found: '+rel);
