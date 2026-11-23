@@ -14,7 +14,7 @@ const tale=parsePilotStory(manuscript);
       <p class="kicker">ORIGINAL FICTION · CULTURAL MYSTERY</p>
       <h1>{tale.title}</h1>
       <p class="lead">One short clip. Several confident explanations. One town full of questions.</p>
-      <p class="fine">{tale.words} words · Six chapters · For secondary students and interested adults</p>
+      <p class="fine">{tale.words} words · Six chapters · For curious minds of every generation</p>
       <p class="tale-disclosure">This is an original fictional learning tale inspired by themes around Gẹ̀lẹ̀dẹ́. The people, events and viral video are invented; this is not a collected community account or a documented performance.</p>
       <nav class="tale-chapters" id="chapter-index" aria-label="Story chapters"><p class="kicker">FIND A CHAPTER</p><ol>{tale.chapters.map(chapter=><li><a href={`#${chapter.id}`}>{chapter.number}. {chapter.title}</a></li>)}</ol></nav>
     </header>
