@@ -7,8 +7,8 @@ const card=(page:import('@playwright/test').Page)=>page.locator('.quiz-question:
 const begin=async(page:import('@playwright/test').Page)=>{await page.goto('/learning/quiz/');await page.getByRole('button',{name:'Start 15-question review'}).click();};
 
 test('quiz navigation, keyboard feedback, locked answers and source-linked explanation',async({page})=>{
- await page.setViewportSize({width:1440,height:1000});await page.goto('/learning/');await page.getByRole('link',{name:'Knowledge quiz · 15 questions'}).click();
- await expect(page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Quiz',exact:true})).toHaveAttribute('aria-current','page');
+ await page.setViewportSize({width:1440,height:1000});await page.goto('/research/');await page.getByRole('link',{name:/Archived research quiz/}).click();
+ await expect(page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Research',exact:true})).toHaveAttribute('aria-current','page');
  await page.getByRole('button',{name:'Start 15-question review'}).focus();await page.keyboard.press('Enter');
  await expect(card(page).getByRole('heading')).toBeFocused();await expect(card(page).getByRole('group')).toHaveAccessibleName(quiz[0]!.q);
  const next=page.getByRole('button',{name:'Next question'});await expect(next).toBeDisabled();await next.focus();await page.keyboard.press('Enter');await expect(page.locator('#quiz-progress-text')).toHaveText('Question 1 of 15 · 0 answered');
@@ -44,7 +44,7 @@ test('320/390px quiz layouts and accessibility diagnostics, reduced motion and m
    const buttons=Array.from(document.querySelectorAll<HTMLButtonElement>('main button')).filter(b=>b.getBoundingClientRect().height>0);
    return {duplicates:ids.length-new Set(ids).size,small:buttons.filter(b=>b.getBoundingClientRect().height<44).length,unnamed:buttons.filter(b=>!b.textContent?.trim()&&!b.getAttribute('aria-label')).length};
   });expect(diagnostics).toEqual({duplicates:0,small:0,unnamed:0});await expect(page.getByRole('main')).toHaveCount(1);await expect(page.getByRole('heading',{level:1})).toHaveCount(1);await expect(page.getByRole('status')).toHaveAttribute('aria-atomic','true');
-  if(width<400){await page.screenshot({path:`screenshots/mobile-${width}-quiz.png`,fullPage:true});const menu=page.locator('.mobile-menu summary');await menu.focus();await menu.press('Enter');await expect(page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Quiz',exact:true})).toBeVisible();await menu.press('Escape');await expect(menu).toBeFocused();}
+  if(width<400){await page.screenshot({path:`screenshots/mobile-${width}-quiz.png`,fullPage:true});const menu=page.locator('.mobile-menu summary');await menu.focus();await menu.press('Enter');await expect(page.getByRole('navigation',{name:'Mobile sections'}).getByRole('link',{name:'Research',exact:true})).toBeVisible();await menu.press('Escape');await expect(menu).toBeFocused();}
  }
 });
 test('no-JavaScript quiz has honest static fallback, no playable controls and usable article links',async({browser})=>{
