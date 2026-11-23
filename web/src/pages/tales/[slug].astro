@@ -6,6 +6,8 @@ export function getStaticPaths(){return livingEpisodes.map(e=>({params:{slug:e.s
 interface Props {episode:LivingEpisode}
 const {episode:e}=Astro.props;
 const tale=e.body;
+const nextStory=livingEpisodes[(livingEpisodes.findIndex(item=>item.slug===e.slug)+1)%livingEpisodes.length];
+const relatedFigure=e.slug==='esu-hat-two-views'?{href:'/figures/esu/',name:'Èṣù'}:e.slug==='olodumare-many-meanings'?{href:'/figures/olodumare/',name:'Olódùmarè'}:null;
 ---
 <Site title={tale.title} description={e.deck} active="Stories">
   <article class="tale-reader wrap">
@@ -40,7 +42,9 @@ const tale=e.body;
       <p class="tale-discuss"><strong>Talk about the story:</strong> What did the characters think they knew? What could another viewpoint add? Who would you ask next?</p>
       <p><a href={"/community/share/?story="+e.slug}>Practise telling another version (private demo; nothing is submitted) →</a></p>
       <a href="/tales/">Explore other tales →</a>
-      <p><a href={e.slug==='esu-hat-two-views'?'/figures/esu/':'/figures/olodumare/'}>Learn who this figure is and what Yorùbá traditions say →</a></p>
+      {relatedFigure&&<p><a href={relatedFigure.href}>Explore different accounts of {relatedFigure.name} →</a></p>}
+      <p class="kicker">THE NEXT TALE</p>
+      <p><a href={`/tales/${nextStory.slug}/`}>{nextStory.name} →</a></p>
       <p class="fine">This written version has no matching narrated audio yet.</p>
     </footer>
   </article>
