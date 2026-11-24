@@ -20,7 +20,7 @@ test('museum evidence, disputed origin tales and visual approvals stay distinct'
  const prose=p.sections.flatMap(s=>s.paragraphs).join(' ');
  assert.match(prose,/Smithsonian/);
  assert.match(prose,/shrine/);
- assert.match(prose,/not independently verified historical/i);
+ assert.match(prose,/not evidence that an identified historical individual discovered farming/i);
  assert.match(p.notes.join(' '),/witchcraft accusations/);
  assert.match(p.notes.join(' '),/not.*factual authority/);
  const approval=readFileSync(new URL('../../docs/ORISA_OKO_ILLUSTRATION_REVIEW.md',import.meta.url),'utf8');
