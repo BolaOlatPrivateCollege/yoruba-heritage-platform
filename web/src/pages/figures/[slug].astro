@@ -12,6 +12,7 @@ import {oyaLivingProfile} from '../../lib/oya-living-profile';
 import {olokunLivingProfile} from '../../lib/olokun-living-profile';
 import {obaLivingProfile} from '../../lib/oba-living-profile';
 import {osanyinLivingProfile} from '../../lib/osanyin-living-profile';
+import {orisaOkoLivingProfile} from '../../lib/orisa-oko-living-profile';
 import '../../styles/figures.css';
 import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
 import {existsSync} from 'node:fs';
@@ -20,7 +21,7 @@ export function getStaticPaths(){return heritageFigures.map(f=>({params:{slug:f.
 interface Props{figure:CulturalFigure}
 const {figure:f}=Astro.props;
 const isEsu=f.slug==='esu';
-const detailed=f.slug==='oduduwa'?oduduwaLivingProfile:f.slug==='ogun'?ogunLivingProfile:f.slug==='sango'?sangoLivingProfile:f.slug==='osun'?osunLivingProfile:f.slug==='yemoja'?yemojaLivingProfile:f.slug==='oya'?oyaLivingProfile:f.slug==='olokun'?olokunLivingProfile:f.slug==='oba'?obaLivingProfile:f.slug==='osanyin'?osanyinLivingProfile:detailedSacredProfiles[f.slug];
+const detailed=f.slug==='oduduwa'?oduduwaLivingProfile:f.slug==='ogun'?ogunLivingProfile:f.slug==='sango'?sangoLivingProfile:f.slug==='osun'?osunLivingProfile:f.slug==='yemoja'?yemojaLivingProfile:f.slug==='oya'?oyaLivingProfile:f.slug==='olokun'?olokunLivingProfile:f.slug==='oba'?obaLivingProfile:f.slug==='osanyin'?osanyinLivingProfile:f.slug==='orisa-oko'?orisaOkoLivingProfile:detailedSacredProfiles[f.slug];
 const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind===f.kind).slice(0,3);
 const artCandidate=approvedFigureIllustrations[f.slug];
 // GitHub Pages is static: only output links after the files have actually been uploaded.

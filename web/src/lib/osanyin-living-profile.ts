@@ -82,7 +82,7 @@ export const osanyinLivingProfile:LivingSacredProfile={
   'Museum examples document varied staff shapes and bird counts. Exactly sixteen birds cannot be stated as a universal standard.',
   'The user-supplied saying “Kò sí ewé, kò sí Òrìṣà” is held for Yorùbá linguistic and custodial verification before being labelled an authentic traditional quotation.',
   'This cultural profile is not medical guidance: it does not recommend herbal dosages or replace evidence-based care.',
-  'No figure illustration is approved or uploaded in this branch. No Samuel Johnson material is used as historical authority.'
+  'The original sepia Òsányìn illustration was approved by the owner in the project conversation, but its binary has not been uploaded to this branch. No Samuel Johnson material is used as historical authority.'
  ],
  references:[
   {title:'Smithsonian National Museum of African Art — Ọ̀pá Ọ̀sanyìn (herbalist’s staff)',url:'https://africa.si.edu/collection/object/nmafa_2014-31-1',scope:'Verified iron staff with bird symbolism and distinct roles for herbalists and diviners'},

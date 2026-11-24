@@ -22,5 +22,5 @@ test('archaeology is not mistaken for proof of a sacred person or an authenticat
  const route=readFileSync(new URL('../src/pages/figures/[slug].astro',import.meta.url),'utf8');
  assert.match(route,/f.slug==='olokun'\?olokunLivingProfile/);
  const record=readFileSync(new URL('../../docs/OLOKUN_ILLUSTRATION_REVIEW.md',import.meta.url),'utf8');
- assert.match(record,/approval pending/i);
+ assert.match(record,/Owner approved the generated sepia Olókun illustration/);
 });

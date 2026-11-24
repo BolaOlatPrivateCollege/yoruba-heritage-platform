@@ -194,7 +194,30 @@ const osanyinSacredProfile:CulturalFigure={
   {title:'Yoruba folk medicine study',url:'https://psnnjp.org/index.php/home/article/view/182'}
  ]
 };
-export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,obaSacredProfile,osanyinSacredProfile,...heroes];
+const orisaOkoSacredProfile:CulturalFigure={
+ slug:'orisa-oko',name:'Ọ̀rìṣà Oko',kind:'Òrìṣà and sacred figure',
+ scope:'Ìràwọ̀ and varied Yorùbá farming and harvest traditions',
+ role:'Agriculture, cultivated land, food production, harvest and community moral authority',
+ beliefs:[
+  'Ọ̀rìṣà Oko is revered as a patron of agricultural land and the work of cultivation in several Yorùbá traditions.',
+  'Museum records document distinctive iron staffs forged by Ìràwọ̀ blacksmiths from hoes supplied for shrines.',
+  'His shrine has also been associated with difficult communal judgments, whose histories require critical examination.'
+ ],
+ differences:'Local harvest observances and stories about the outcast hunter, bees and Ọ̀ṣun vary; a sacred origin story is not independently established history.',
+ question:'How do farmers, smiths and shrine custodians in Ìràwọ̀ remember Ọ̀rìṣà Oko?',
+ mistaken:'The story of the hunter and famine proves that one individual invented all farming.',
+ clarification:'The story preserves community values concerning dignity and generosity; agricultural history is studied using other evidence.',
+ relatedTerms:['Ìràwọ̀','ìṣu','ọ̀pá Ọ̀rìṣà Oko','Ọdún Iṣu','àgbẹ̀'],
+ status:'Full editorial draft with museum sources; community review required',
+ sources:[
+  {title:'Smithsonian — Staff for Orisha Oko',url:'https://africa.si.edu/collection/object/nmafa_2005-6-71.1'},
+  {title:'Metropolitan Museum — Sheath for ọ̀pá Oko',url:'https://www.metmuseum.org/art/collection/search/844646'}
+ ]
+};
+const candidateSacred=[...additionalSacred,obaSacredProfile,osanyinSacredProfile,orisaOkoSacredProfile];
+// Canonical archive entries always take precedence when an expanded reader already exists for that slug.
+const newSacred=candidateSacred.filter(f=>!sacred.some(existing=>existing.slug===f.slug));
+export const heritageFigures:CulturalFigure[]=[...sacred,...newSacred,...heroes];
 const slugs=new Set(heritageFigures.map(x=>x.slug));
 if(slugs.size!==heritageFigures.length)throw new Error('Duplicate cultural figure ID');
 export function figureHref(slug:string){
