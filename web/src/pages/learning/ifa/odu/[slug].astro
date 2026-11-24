@@ -1,0 +1,25 @@
+---
+import Site from '../../../../layouts/Site.astro';
+import OduSignature from '../../../../components/OduSignature.astro';
+import {oduLibrary,oduHref,type OduEntry} from '../../../../lib/odu-library';
+export function getStaticPaths(){return oduLibrary.map(o=>({params:{slug:o.slug},props:{o}}));}
+const {o}=Astro.props as {o:OduEntry};
+const reverse=oduLibrary.find(x=>x.right.slug===o.left.slug&&x.left.slug===o.right.slug)!;
+---
+<Site title={o.name+' — Odù reference'} active="Learning">
+<article class="wrap narrow article-section">
+<p class="kicker">{o.principal?'PRINCIPAL ODÙ':'COMBINED ODÙ · COMPONENT LABEL'}</p>
+<h1 lang="yo">{o.name}</h1>
+<p><a href="/learning/ifa/odu/">← All 256 Odù</a></p>
+<figure class="odu-display"><OduSignature right={o.right.code} left={o.left.code}/><figcaption>Left: {o.left.name} · Right: {o.right.name}</figcaption></figure>
+<h2>Signature and structure</h2>
+<dl class="glossary"><div><dt>Right column (first)</dt><dd>{o.right.name} · <code>{o.right.code}</code></dd></div><div><dt>Left column (second)</dt><dd>{o.left.name} · <code>{o.left.code}</code></dd></div><div><dt>Educational eight-bit encoding</dt><dd><code>{o.bits}</code></dd></div><div><dt>Decimal equivalent</dt><dd>{o.decimal} (not traditional seniority)</dd></div></dl>
+<p>{o.principal?'Both columns match, forming a principal signature.':'The columns differ. Reversing their order gives a distinct configuration.'}</p>
+{!o.principal&&<p><a href={oduHref(reverse.slug)}>Explore reversed pairing: {reverse.name}</a></p>}
+<h2>Oral literature and interpretation</h2><p>Attributed ẹsẹ Ifá, translations, traditional aliases and contextual interpretations are not yet available in this entry. They require permission, documented sources and practitioner review. No generic blessing, warning or prescription is assigned to this signature.</p>
+<h2>Provenance</h2><p>Signature transcribed from the owner-supplied principal Odù tables. The combined pattern is generated from these component signatures. The reference has not yet been independently authenticated by a named practitioner or lineage.</p>
+<p>Single = 1, double = 0 is our educational encoding. This page is not a personal reading.</p>
+<p><a href="/learning/ifa/">Learn about Ifá readings and instruments</a> · <a href="/figures/orunmila/">Meet Ọ̀rúnmìlà</a></p>
+</article>
+</Site>
+<style>.odu-display{border:1px solid var(--line);padding:1.5rem;margin:1rem 0;text-align:center}.odu-display :global(svg){max-width:180px}</style>

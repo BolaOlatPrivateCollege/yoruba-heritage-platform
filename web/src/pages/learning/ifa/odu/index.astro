@@ -1,0 +1,22 @@
+---
+import Site from '../../../../layouts/Site.astro';
+import OduSignature from '../../../../components/OduSignature.astro';
+import {oduLibrary,oduHref} from '../../../../lib/odu-library';
+const principal=oduLibrary.filter(o=>o.principal);
+const combined=oduLibrary.filter(o=>!o.principal);
+---
+<Site title="Odù Ifá library" active="Learning">
+<header class="wrap page-head"><p class="kicker">IFÁ KNOWLEDGE CENTRE · EDUCATIONAL REFERENCE</p><h1>The 256 Odù.</h1><p class="lead">Explore sixteen matching signatures and 240 ordered combinations. Read the right column first, from top to bottom.</p><p>These signatures and their sequence follow the owner-supplied reference tables, pending independent practitioner review. Combined labels identify their components; they are not a verified catalogue of traditional aliases.</p><p><a href="/learning/ifa/">Understanding Ifá</a> · <a href="/learning/ifa-matrix/">Mathematical explorer</a></p></header>
+<section class="wrap section" aria-labelledby="principal"><h2 id="principal">16 principal Odù</h2><div class="odu-grid">{principal.map(o=><article class="odu-card"><a href={oduHref(o.slug)}><OduSignature right={o.right.code} left={o.left.code}/><h3 lang="yo">{o.name}</h3></a><code>{o.bits}</code></article>)}</div></section>
+<section class="wrap section" aria-labelledby="combined"><h2 id="combined">240 combined Odù</h2><p>Filter by component name or the eight-bit educational code. All entries remain accessible without JavaScript.</p><div id="odu-filter" hidden><label for="odu-search">Search combined signatures</label><input id="odu-search" type="search" placeholder="e.g. Ogbe or 11110000"/><p id="odu-count" role="status"></p></div><div class="odu-grid">{combined.map(o=><article class="odu-card" data-odu={o.name+' '+o.slug+' '+o.bits}><a href={oduHref(o.slug)}><OduSignature right={o.right.code} left={o.left.code}/><h3 lang="yo">{o.name}</h3></a><code>{o.bits}</code></article>)}</div></section>
+<aside class="wrap notice"><p>Single stroke = 1 and double stroke = 0 are modern teaching choices, not sacred numerical values. This library does not perform divination, offer predictions or invent verses.</p></aside>
+</Site>
+<script>
+const filter=document.querySelector<HTMLElement>('#odu-filter');
+const input=document.querySelector<HTMLInputElement>('#odu-search');
+const count=document.querySelector<HTMLElement>('#odu-count');
+const cards=Array.from(document.querySelectorAll<HTMLElement>('[data-odu]'));
+const normal=(s:string)=>s.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().trim();
+if(filter&&input&&count){filter.hidden=false;const update=()=>{let n=0;for(const card of cards){card.hidden=!normal(card.dataset.odu??'').includes(normal(input.value));if(!card.hidden)n++;}count.textContent=n+' matching combinations';};input.addEventListener('input',update);update();}
+</script>
+<style>.odu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem}.odu-card{border:1px solid var(--line);padding:1rem;text-align:center;min-width:0}.odu-card[hidden]{display:none}.odu-card h3{font-size:1rem;overflow-wrap:anywhere}.odu-card code{font-size:.8rem}#odu-filter{margin-block:1rem}#odu-search{display:block;max-width:100%;padding:.7rem;margin-block:.5rem}</style>
