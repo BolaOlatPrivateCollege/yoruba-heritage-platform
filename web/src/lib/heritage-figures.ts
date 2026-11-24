@@ -214,8 +214,10 @@ const orisaOkoSacredProfile:CulturalFigure={
   {title:'Metropolitan Museum — Sheath for ọ̀pá Oko',url:'https://www.metmuseum.org/art/collection/search/844646'}
  ]
 };
-const additionalOko=sacred.some(f=>f.slug==='orisa-oko')?[]:[orisaOkoSacredProfile];
-export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,obaSacredProfile,osanyinSacredProfile,...additionalOko,...heroes];
+const candidateSacred=[...additionalSacred,obaSacredProfile,osanyinSacredProfile,orisaOkoSacredProfile];
+// Canonical archive entries always take precedence when an expanded reader already exists for that slug.
+const newSacred=candidateSacred.filter(f=>!sacred.some(existing=>existing.slug===f.slug));
+export const heritageFigures:CulturalFigure[]=[...sacred,...newSacred,...heroes];
 const slugs=new Set(heritageFigures.map(x=>x.slug));
 if(slugs.size!==heritageFigures.length)throw new Error('Duplicate cultural figure ID');
 export function figureHref(slug:string){
