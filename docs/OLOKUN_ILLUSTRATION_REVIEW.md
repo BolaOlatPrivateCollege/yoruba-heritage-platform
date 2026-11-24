@@ -1,4 +1,4 @@
-# Olókun visual concept — awaiting owner approval
+# Olókun visual concept — owner-approved
 
 Date: 24 November 2026.
 
@@ -6,7 +6,7 @@ The user supplied a photograph of a metal or bronze-like sculptural head as a **
 
 A **new original sepia artwork** was generated in the conversation: an imagined carved/burnished head, beaded with cowries, emerging from churning ocean waves. This portrays an interpretive Olókun figure with a crown-like ornament, not any authenticated museum object or regalia.
 
-**Status:** Owner approval pending; no image binary uploaded and no public page image inserted.
+**Status:** Owner approved the generated sepia Olókun illustration on 24 November 2026. No image binary has been uploaded and no public page image has been inserted.
 
 Proposed filename once approved and uploaded: `web/public/images/olokun-ocean-artistic-portrait.webp`.
 
