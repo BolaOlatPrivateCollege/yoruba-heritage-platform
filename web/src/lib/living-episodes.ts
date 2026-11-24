@@ -92,6 +92,17 @@ const manifest:EpisodeSpec[]=[
     world:'Rivalries · Tìmì and Gbónká',
     question:'What happens to Tìmì and Gbónká in the version you have heard?',
     manuscript:'timi-gbonka-two-champions.md'
+  },
+  {
+    slug:'ogun-path-nobody-could-open',
+    label:'Ògún · Iron and responsibility',
+    name:'Ògún: The Path Nobody Could Open',
+    deck:'When the forest swallows the market road, a young blacksmith must discover whether strength alone can open a way forward.',
+    genre:'Original literary fiction inspired by Ògún traditions',
+    fictionalStatus:'All characters, conversations and events are imagined. The story is inspired by associations with iron, skilled work and opening paths, not a transmitted sacred narrative or historical reconstruction.',
+    world:'Living tales · Ògún',
+    question:'What did your family teach you about Ògún, iron, skilled work and the responsibility of opening paths?',
+    manuscript:'ogun-the-path-nobody-could-open.md'
   }
 ];
 export const livingEpisodes:LivingEpisode[]=manifest.map(entry=>{
