@@ -103,6 +103,17 @@ const manifest:EpisodeSpec[]=[
     world:'Living tales · Ògún',
     question:'What did your family teach you about Ògún, iron, skilled work and the responsibility of opening paths?',
     manuscript:'ogun-the-path-nobody-could-open.md'
+  },
+  {
+    slug:'osun-when-the-world-forgot-her',
+    label:'Ọ̀ṣun · Wisdom and cooperation',
+    name:'Ọ̀ṣun: When the World Forgot Her',
+    deck:'A village builds a magnificent market but overlooks the people who understand its river. One young messenger must help the council learn to listen.',
+    genre:'Original literary fiction inspired by Ọ̀ṣun traditions',
+    fictionalStatus:'All characters, dialogue and events are imagined. Inspired by associations with rivers, care and feminine sacred authority, not an authenticated Ifá verse, transmitted sacred narrative or historical account.',
+    world:'Living tales · Ọ̀ṣun',
+    question:'What accounts of Ọ̀ṣun, water, wisdom and cooperation did you learn from your family or community?',
+    manuscript:'osun-when-the-world-forgot-her.md'
   }
 ];
 export const livingEpisodes:LivingEpisode[]=manifest.map(entry=>{
