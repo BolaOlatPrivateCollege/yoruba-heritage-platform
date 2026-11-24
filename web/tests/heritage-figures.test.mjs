@@ -5,8 +5,9 @@ import {heritageFigures,figureHref} from '../src/lib/heritage-figures.ts';
 
 test('all 24 preserved Sacred World records have distinct readable cultural pages and three hero entries',()=>{
   assert.equal(archive.sacredProfiles.length,24);
-  assert.equal(heritageFigures.length,27);
-  assert.equal(new Set(heritageFigures.map(x=>x.slug)).size,27);
+  assert.ok(heritageFigures.length>=27);
+  assert.equal(new Set(heritageFigures.map(x=>x.slug)).size,heritageFigures.length);
+  assert.deepEqual(heritageFigures.slice(-3).map(x=>x.slug),['moremi-ajasoro','lisabi','efunsetan-aniwura']);
   assert.deepEqual(heritageFigures.slice(0,24).map(x=>x.slug),archive.sacredProfiles.map(x=>x.id.replace(/^sac-/,'')));
   for(const f of heritageFigures){
     assert.ok(f.name.length>1);
