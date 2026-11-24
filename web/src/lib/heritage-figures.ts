@@ -214,7 +214,8 @@ const orisaOkoSacredProfile:CulturalFigure={
   {title:'Metropolitan Museum — Sheath for ọ̀pá Oko',url:'https://www.metmuseum.org/art/collection/search/844646'}
  ]
 };
-export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,obaSacredProfile,osanyinSacredProfile,orisaOkoSacredProfile,...heroes];
+const additionalOko=sacred.some(f=>f.slug==='orisa-oko')?[]:[orisaOkoSacredProfile];
+export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,obaSacredProfile,osanyinSacredProfile,...additionalOko,...heroes];
 const slugs=new Set(heritageFigures.map(x=>x.slug));
 if(slugs.size!==heritageFigures.length)throw new Error('Duplicate cultural figure ID');
 export function figureHref(slug:string){
