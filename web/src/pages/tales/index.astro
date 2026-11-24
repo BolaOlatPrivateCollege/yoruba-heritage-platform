@@ -5,7 +5,7 @@ import '../../styles/tales.css';
 import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
 import {existsSync} from 'node:fs';
 import {resolve} from 'node:path';
-const coverMap:Record<string,string>={'esu-hat-two-views':'esu','moremi-fire-in-the-reeds':'moremi-ajasoro','sango-when-thunder-answered':'sango','ogun-path-nobody-could-open':'ogun'};
+const coverMap:Record<string,string>={'esu-hat-two-views':'esu','moremi-fire-in-the-reeds':'moremi-ajasoro','sango-when-thunder-answered':'sango','ogun-path-nobody-could-open':'ogun','osun-when-the-world-forgot-her':'osun'};
 const coverFor=(slug:string)=>{const a=approvedFigureIllustrations[coverMap[slug]??''];return a&&existsSync(resolve(process.cwd(),'public','images',a.filename))?a:undefined;};
 const shelves=[
   {title:'Ìjàpá and the tricksters',lead:'Laugh at an impossible promise, a lost feast, or a clever plan that backfires.',label:'Folktales · Versions wanted'},
