@@ -28,10 +28,10 @@ jobs:
       - name: Check out approved static reader candidate
         uses: actions/checkout@v4
         with:
-          ref: e310c0895f14a145bad4f76efd1e1f06427e5c63
+          ref: d8bba3feced5c15688b73dd1f49dff2fdf13c5c4
           persist-credentials: false
       - name: Confirm candidate pin
-        run: test "$(git rev-parse HEAD)" = "e310c0895f14a145bad4f76efd1e1f06427e5c63"
+        run: test "$(git rev-parse HEAD)" = "d8bba3feced5c15688b73dd1f49dff2fdf13c5c4"
       - name: Install Node
         uses: actions/setup-node@v4
         with:
@@ -52,6 +52,7 @@ jobs:
           test -f dist/tales/index.html
           test -f dist/index.html
           test -f dist/figures/index.html
+          test -f dist/learning/ifa/index.html
           test -d dist/_astro
           grep -q 'href="/_astro/' dist/index.html
           ! grep -q '/yoruba-heritage-platform/_astro/' dist/index.html
