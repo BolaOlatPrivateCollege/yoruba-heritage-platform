@@ -6,13 +6,20 @@ import {detailedSacredProfiles} from '../../lib/detailed-sacred-profiles';
 import {oduduwaLivingProfile} from '../../lib/oduduwa-living-profile';
 import {ogunLivingProfile} from '../../lib/ogun-living-profile';
 import {sangoLivingProfile} from '../../lib/sango-living-profile';
+import {osunLivingProfile} from '../../lib/osun-living-profile';
 import '../../styles/figures.css';
+import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
+import {existsSync} from 'node:fs';
+import {resolve} from 'node:path';
 export function getStaticPaths(){return heritageFigures.map(f=>({params:{slug:f.slug},props:{figure:f}}));}
 interface Props{figure:CulturalFigure}
 const {figure:f}=Astro.props;
 const isEsu=f.slug==='esu';
-const detailed=f.slug==='oduduwa'?oduduwaLivingProfile:f.slug==='ogun'?ogunLivingProfile:f.slug==='sango'?sangoLivingProfile:detailedSacredProfiles[f.slug];
+const detailed=f.slug==='oduduwa'?oduduwaLivingProfile:f.slug==='ogun'?ogunLivingProfile:f.slug==='sango'?sangoLivingProfile:f.slug==='osun'?osunLivingProfile:detailedSacredProfiles[f.slug];
 const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind===f.kind).slice(0,3);
+const artCandidate=approvedFigureIllustrations[f.slug];
+// GitHub Pages is static: only output links after the files have actually been uploaded.
+const art=artCandidate&&existsSync(resolve(process.cwd(),'public','images',artCandidate.filename))?artCandidate:undefined;
 ---
 <Site title={isEsu?'Èṣù — Messenger, Crossroads and Choice':f.name+' — Yorùbá beliefs and cultural memory'} description={isEsu?esu.lead:(detailed?.lead??f.role)+'. Stories, beliefs and community perspectives.'} active="Beliefs & Figures">
   <article class="wrap figure-detail">
@@ -28,6 +35,10 @@ const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind==
         <a href="#devil">Èṣù and “devil”</a><a href="#other-names">Other names</a><a href="#share-voice">Your account</a>
       </nav>}
     </header>
+    {art&&<figure class="figure-artwork">
+      <img src={`/images/${art.filename}`} width={art.width} height={art.height} alt={art.alt} loading="lazy" decoding="async"/>
+      <figcaption>{art.caption}</figcaption>
+    </figure>}
     {isEsu?
     <div class="figure-article figure-article-living">
       <section id="roles" aria-labelledby="roles-heading">
