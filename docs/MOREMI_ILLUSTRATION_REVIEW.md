@@ -1,4 +1,4 @@
-# Mọremí Àjàṣorò — original sepia illustration for review
+# Mọremí Àjàṣorò — owner-approved original sepia illustration
 
 Date: 24 November 2026.
 
@@ -6,7 +6,7 @@ The user supplied a contemporary colour illustration/poster of Mọremí amid bu
 
 A **new original monochrome/sepia image** was generated for this project conversation. It shows a dignified young Yorùbá woman with braided hair, cowries and patterned cloth, holding a woven torch-like staff and a decorated vessel near an Ifẹ̀-inspired sculptural monument, traditional buildings and flowing water.
 
-**Status:** Owner has not yet approved the new image; binary is not yet committed. No page image URL should be created until file exists and owner confirms approval.
+**Status:** Owner approved the new original sepia illustration on 24 November 2026 and confirmed Mọremí is the final profile in this series for now. The image binary is not yet committed. No page image URL should be created until file exists and owner confirms approval.
 
 - Proposed future asset: `web/public/images/moremi-ajasoro-artistic-portrait.webp`.
 - Proposed caption: “AI-generated artistic interpretation inspired by Ilé-Ifẹ̀ accounts of Mọremí Àjàṣorò, remembered for courage, intelligence and difficult sacrifice. Not an archival photograph or authenticated likeness of a historical person.”
