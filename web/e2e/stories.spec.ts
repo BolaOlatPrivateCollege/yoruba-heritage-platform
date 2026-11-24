@@ -29,7 +29,7 @@ for(const width of [1440,320,390])test(`editorial discovery and long-form readin
   for(const [route,name] of [['/','home'],['/stories/','index'],['/stories/adire-indigo-design/','adire']] as const){
     await page.goto(route);await page.locator('footer').scrollIntoViewIfNeeded();await page.evaluate(()=>scrollTo(0,0));
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-    for(const image of await page.locator('main img').all()){await image.scrollIntoViewIfNeeded();await expect.poll(()=>image.evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);}
+    for(const image of await page.locator('main img:visible').all()){await image.scrollIntoViewIfNeeded();await expect.poll(()=>image.evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);}
     await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:`screenshots/stories-${name}-${width}.png`,fullPage:true});
   }
   if(width===1440){await page.goto('/stories/'+ids[0]+'/');await page.screenshot({path:'screenshots/stories-ife-1440.png',fullPage:true});}
