@@ -1,0 +1,8 @@
+---
+interface Props {right:string;left:string}
+const {right,left}=Astro.props;
+---
+<svg class="odu-signature" viewBox="0 0 120 128" role="img" aria-label={'Left column '+left.split('').map(x=>x==='1'?'single':'double').join(', ')+'; right column '+right.split('').map(x=>x==='1'?'single':'double').join(', ')}>
+{[left,right].map((code,c)=>code.split('').map((bit,r)=>(bit==='1'?[0]:[-5,5]).map(dx=><rect x={34+c*52+dx-2} y={8+r*30} width="4" height="22" rx="1" fill="currentColor"/>)))}
+</svg>
+<style>.odu-signature{display:block;width:100%;max-width:110px;height:auto;margin:1rem auto;color:inherit}</style>
