@@ -135,7 +135,28 @@ const heroes:CulturalFigure[]=[
   sources:[{title:'Framing Female Leadership on Stage and Screen in Yorubaland',url:'https://api-ir.unilag.edu.ng/server/api/core/bitstreams/3689d25f-eaae-4ade-b69f-7085b4d5ac30/content'},{title:'Efúnsetán Aníwúrà and Tinúubú: Yoruba Historical Dramas (catalogue)',url:'https://digitalcommons.unomaha.edu/goodrichfacbooks/2/'}]
  }
 ];
-export const heritageFigures:CulturalFigure[]=[...sacred,...heroes];
+const additionalSacred:CulturalFigure[]=[
+ {
+  slug:'olokun',name:'Olókun',kind:'Òrìṣà and sacred figure',scope:'Ilé-Ifẹ̀, Edo/Benin and coastal/diaspora traditions',
+  role:'Great waters, wealth, mystery and sacred depths across differing communities',
+  beliefs:[
+   'Olókun is associated with great waters, prosperity and mysterious depth in several Yorùbá and Edo traditions.',
+   'In some Ilé-Ifẹ̀ accounts Olókun is female, while Edo and other traditions may describe a male or differently gendered sacred figure.',
+   'The Ìgbò Olókun area has independent archaeological evidence of local glassmaking; oral traditions give the landscape sacred meanings.'
+  ],
+  differences:'The gender, genealogies and sacred boundaries associated with Olókun vary among communities. Archaeological glassmaking does not prove a religious origin story.',
+  question:'What stories do local custodians tell about Olókun and Ìgbò Olókun?',
+  mistaken:'The so-called Olókun bronze head is a proven portrait of the deity.',
+  clarification:'The identification and provenance of sculpture known by that name are debated; the supplied photograph should not be treated as authenticated proof.',
+  relatedTerms:['Ìgbò Olókun','Ilé-Ifẹ̀','Benin City','Olókun'],
+  status:'Rich cultural profile in editorial review; regional testimony needed',
+  sources:[
+   {title:'Ile-Ife and Igbo Olokun in the history of glass in West Africa',url:'https://www.cambridge.org/core/journals/antiquity/article/abs/ileife-and-igbo-olokun-in-the-history-of-glass-in-west-africa/271A101DC136996C91364464ED61A258'},
+   {title:'Smithsonian — Olókun shrine vessel in Edo traditions',url:'https://africa.si.edu/collection/object/nmafa_2008-9-11'}
+  ]
+ }
+];
+export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,...heroes];
 const slugs=new Set(heritageFigures.map(x=>x.slug));
 if(slugs.size!==heritageFigures.length)throw new Error('Duplicate cultural figure ID');
 export function figureHref(slug:string){
