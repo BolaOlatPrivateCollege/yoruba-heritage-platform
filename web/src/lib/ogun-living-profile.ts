@@ -65,7 +65,7 @@ export const ogunLivingProfile:LivingSacredProfile={
  notes:[
   'Ògún’s roles and iconography differ by town, lineage, occupation and diaspora community. The profile does not declare one definitive sacred biography.',
   'Claims that every modern metalworker venerates Ògún, that all festival calendars are identical, or that an oath on iron is uniformly recognised in Nigerian courts are not supported.',
-  'The user-approved sepia illustration is an AI-generated artistic interpretation featuring a cutlass, shield, fronds and forge. The shield and adornments are artistic choices, not authenticated sacred regalia. The actual image file has not yet been uploaded to the website.',
+  'The user-approved sepia illustration is an AI-generated artistic interpretation, not a historical photograph, featuring a cutlass, shield, fronds and forge. The shield and adornments are artistic choices, not authenticated sacred regalia. The actual image file has not yet been uploaded to the website.',
   'The supplied oríkì and everyday sayings are held for native-speaker transcription and attributed review rather than silently published as exact, universal quotations.'
  ],
  references:[
