@@ -65,8 +65,8 @@ export const sangoLivingProfile:LivingSacredProfile={
   'These sections distinguish sacred belief and storytelling from independently established historical fact; specific chants, oríkì and festival details await attribution and community review.'
  ],
  references:[
-  {title:'UNESCO — Sango Festival, Oyo',url:'https://ich.unesco.org/en/RL/sango-festival-oyo-01966',scope:'Institutional description of the living festival tradition and its cultural significance; consult the full record'},
-  {title:'The Metropolitan Museum of Art — Staff: Shango, Yoruba',url:'https://www.metmuseum.org/art/collection/search/312545',scope:'Museum collection as a research lead for carved Ṣàngó objects; check cataloguing and object-specific provenance before citing'},
+  {title:'UNESCO — Sango Festival, Oyo',url:'https://ich.unesco.org/en/RL/sango-festival-oyo-01974',scope:'Institutional description of the living festival tradition and its cultural significance; consult the full record'},
+  {title:'The Metropolitan Museum of Art — Staff: Shango, Yoruba',url:'https://www.metmuseum.org/art/collection/search/314326',scope:'Museum collection as a research lead for carved Ṣàngó objects; check cataloguing and object-specific provenance before citing'},
   {title:'Existing Àṣà & Ìtàn tale — Tìmì and Gbónká',url:'/tales/timi-gbonka-two-champions/',scope:'Original imaginative retelling, not an independently documented historical source'}
  ]
 };
