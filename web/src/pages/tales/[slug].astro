@@ -10,10 +10,10 @@ export function getStaticPaths(){return livingEpisodes.map(e=>({params:{slug:e.s
 interface Props {episode:LivingEpisode}
 const {episode:e}=Astro.props;
 const tale=e.body;
-const storyArt:Record<string,string>={'esu-hat-two-views':'esu','moremi-fire-in-the-reeds':'moremi-ajasoro','sango-when-thunder-answered':'sango','ogun-path-nobody-could-open':'ogun'};
+const storyArt:Record<string,string>={'esu-hat-two-views':'esu','moremi-fire-in-the-reeds':'moremi-ajasoro','sango-when-thunder-answered':'sango','ogun-path-nobody-could-open':'ogun','osun-when-the-world-forgot-her':'osun'};
 const art=availableArt(storyArt[e.slug]??'');
 const nextStory=livingEpisodes[(livingEpisodes.findIndex(item=>item.slug===e.slug)+1)%livingEpisodes.length]??e;
-const relatedFigure=e.slug==='ogun-path-nobody-could-open'?{href:'/figures/ogun/',name:'Ògún'}:e.slug==='esu-hat-two-views'?{href:'/figures/esu/',name:'Èṣù'}:e.slug==='olodumare-many-meanings'?{href:'/figures/olodumare/',name:'Olódùmarè'}:null;
+const relatedFigure=e.slug==='osun-when-the-world-forgot-her'?{href:'/figures/osun/',name:'Ọ̀ṣun'}:e.slug==='ogun-path-nobody-could-open'?{href:'/figures/ogun/',name:'Ògún'}:e.slug==='esu-hat-two-views'?{href:'/figures/esu/',name:'Èṣù'}:e.slug==='olodumare-many-meanings'?{href:'/figures/olodumare/',name:'Olódùmarè'}:null;
 ---
 <Site title={tale.title} description={e.deck} active="Stories">
   <article class="tale-reader wrap">
