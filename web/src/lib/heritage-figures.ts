@@ -214,7 +214,27 @@ const orisaOkoSacredProfile:CulturalFigure={
   {title:'Metropolitan Museum — Sheath for ọ̀pá Oko',url:'https://www.metmuseum.org/art/collection/search/844646'}
  ]
 };
-const candidateSacred=[...additionalSacred,obaSacredProfile,osanyinSacredProfile,orisaOkoSacredProfile];
+const erinleSacredProfile:CulturalFigure={
+ slug:'erinle',name:'Èrìnlẹ̀',kind:'Òrìṣà and sacred figure',
+ scope:'Ilobu and the Èrìnlẹ̀ River; related Yoruba and diaspora religious traditions',
+ role:'Hunter, river protector and healer in Ilobu community traditions',
+ beliefs:[
+  'Museum-documented Ilobu accounts remember Èrìnlẹ̀ as a hunter associated with the founding of the town and transformation into river form.',
+  'Iron bird-topped staffs are associated with Èrìnlẹ̀ and sometimes Òsányìn, with differing provenance and designs.',
+  'Annual public festival traditions preserve local identity, praise and sacred arts.'
+ ],
+ differences:'Accounts of a hunter, river transformation, battles and healing differ. No precise nineteenth-century supernatural victory is established by current evidence.',
+ question:'What do Ilobu elders and custodians recount about Èrìnlẹ̀, the river and the festival?',
+ mistaken:'The bird staff and river legends prove one fixed historical biography for Èrìnlẹ̀.',
+ clarification:'Museum documentation establishes living traditions and material objects; it does not authenticate miraculous events or a single origin story.',
+ relatedTerms:['Ilobu','Odò Èrìnlẹ̀','Ọ̀pá Èrìnlẹ̀','Inle','Òsányìn'],
+ status:'Long-form editorial draft; additional direct Ilobu testimony needed',
+ sources:[
+  {title:'Metropolitan Museum — Erinlẹ̀ shrine figure',url:'https://www.metmuseum.org/art/collection/search/844650'},
+  {title:'North Carolina Museum — Erinle staff',url:'https://learn.ncartmuseum.org/artwork/erinle-staff-opa-erinle/'}
+ ]
+};
+const candidateSacred=[...additionalSacred,obaSacredProfile,osanyinSacredProfile,orisaOkoSacredProfile,erinleSacredProfile];
 // Canonical archive entries always take precedence when an expanded reader already exists for that slug.
 const newSacred=candidateSacred.filter(f=>!sacred.some(existing=>existing.slug===f.slug));
 export const heritageFigures:CulturalFigure[]=[...sacred,...newSacred,...heroes];
