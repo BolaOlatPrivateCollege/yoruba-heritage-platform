@@ -22,7 +22,7 @@ test('historical claims, sacred traditions and image provenance have explicit li
  assert.match(text,/Ọba Kò So/);
  assert.match(text,/Tìmì/);
  assert.match(text,/ọ̀ṣẹ́ Ṣàngó/i);
- assert.match(text,/not.*verified historical account|not.*verified history|not.*independently established history/i);
+ assert.match(text,/cannot be treated as independently established history/i);
  assert.match(p.notes.join(' '),/AI-generated sepia artistic interpretation/);
  const approval=read('docs/SANGO_ILLUSTRATION_APPROVAL.md');
  assert.match(approval,/not.*historical photograph/i);
