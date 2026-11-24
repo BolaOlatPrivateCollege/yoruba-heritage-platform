@@ -13,7 +13,7 @@ export const olokunLivingProfile:LivingSacredProfile={
   {id:'identity',heading:'A queen, a king or a power beyond one description?',paragraphs:[
    'Some Ilé-Ifẹ̀ religious traditions describe Olókun as female and connect the figure with accounts of Odùduwà, marriage, wealth and local sacred places. Some Edo traditions of Benin City refer to Olókun as a male deity. Scholars and practitioners have also documented identities that cannot be compressed into a simple male-or-female contrast.',
    'The differences matter. They arise from the particular histories and rituals of communities, not simply from a single original identity that everyone has forgotten. The name may be shared without the meaning of each community’s Olókun being identical.',
-   'Diaspora accounts of Olókun also differ, including treatments that stress ambiguous or dual gender. The site's role is to identify the teller and context rather than prescribe a universal answer.'
+   'Diaspora accounts of Olókun also differ, including treatments that stress ambiguous or dual gender. The role of this website is to identify the teller and context rather than prescribe a universal answer.'
   ]},
   {id:'wealth',heading:'Cowries, coral and wealth carried by water',paragraphs:[
    'Olókun’s association with wealth has many layers. Cowrie shells served as currency in parts of West Africa and appear in sacred art. Beads, cloth, traders, fishing and movement over water offer historical and symbolic languages of abundance.',
