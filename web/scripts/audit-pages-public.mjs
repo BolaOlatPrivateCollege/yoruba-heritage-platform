@@ -3,8 +3,8 @@
 import {readFileSync,writeFileSync,readdirSync,statSync,rmSync,existsSync} from 'node:fs';
 import {resolve,join,relative,sep} from 'node:path';
 const base=process.env.GITHUB_PAGES_BASE;
-if(!base||!/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(base))throw new Error('Missing safe Pages base');
-const prefix='/'+base+'/';
+if(base!=='/'&&(!base||!/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(base)))throw new Error('Missing safe Pages base');
+const prefix=base==='/'?'/':'/'+base+'/';
 const dist=resolve(import.meta.dirname,'../dist');
 const walkway=join(dist,'community/share');
 if(existsSync(walkway))rmSync(walkway,{recursive:true,force:true});
@@ -33,7 +33,8 @@ function walk(dir){
      (!allowedReadOnlySearch&&/<form\b/i.test(html))||
      (allowedReadOnlySearch&&/<form\b[^>]*\baction\s*=/i.test(html)))
     errors.push('Unexpected collection, upload or submitting form: '+rel);
-  if(missingPrefix.test(html))errors.push('Unexpected unprefixed internal path: '+rel);
+  if(base!=='/'&&missingPrefix.test(html))errors.push('Unexpected unprefixed internal path: '+rel);
+  if(base==='/'&&html.includes('/yoruba-heritage-platform/'))errors.push('Legacy project path in root-domain output: '+rel);
   if(!/<meta\s+name=["']robots["']\s+content=["']noindex,nofollow["']/i.test(html))
    errors.push('Noindex marker not found: '+rel);
  }
