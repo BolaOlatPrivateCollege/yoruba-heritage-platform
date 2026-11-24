@@ -110,7 +110,7 @@ const heroes:CulturalFigure[]=[
   mistaken:'Every scene in a modern play about Mọremí happened exactly as shown.',
   clarification:'The cultural importance of a heroine can be distinguished from claims about precise dates and incidents.',
   relatedTerms:['Ilé-Ifẹ̀','Mọremí'],status:'Named figure of oral tradition; exact chronology and variants require local review',
-  sources:[{title:'The Historical Position of Moremi Ajasoro Within the Yoruba Nation (bibliographic lead)',url:'https://books.google.com/books/about/The_Historical_Position_of_Moremi_Ajasor.html?hl=en&id=cHMxAAAAIAAJ&output=html_text'}]
+  sources:[{title:'Indigenous Ritual Performance in Ile-Ife: A Further Light into the Edì Festival',url:'https://repository.run.edu.ng/items/6a190a36-6724-45ac-a3de-8c2ab6ea349b'},{title:'Edì Festival in Ipetumodu: Oral interviews and local observation',url:'https://www.richtmann.org/journal/index.php/jesr/article/view/11850'}]
  },
  {
   slug:'lisabi',name:'Lísàbí',kind:'Cultural hero in Ẹ̀gbá tradition',scope:'Ẹ̀gbá histories, including Abẹ́òkúta',
