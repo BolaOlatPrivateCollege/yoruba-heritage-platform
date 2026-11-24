@@ -1,0 +1,41 @@
+---
+import Site from '../../layouts/Site.astro';
+import {heritageFigures,figureHref} from '../../lib/heritage-figures';
+import '../../styles/figures.css';
+const groups=[
+ {id:'supreme',title:'Supreme source',description:'The divine source, distinguished from specialised òrìṣà.',predicate:(kind:string)=>kind==='Supreme source'},
+ {id:'orisa',title:'Òrìṣà and regional traditions',description:'Divine figures with histories, names and emphases that differ across places.',predicate:(kind:string)=>kind==='Òrìṣà'||kind==='Regional òrìṣà'},
+ {id:'ancestors',title:'Ancestors, sacred knowledge and concepts',description:'Living traditions, spiritual understandings and communal practices, not all named divinities.',predicate:(kind:string)=>kind==='Ancestral tradition'||kind==='Spiritual concept'},
+ {id:'heroes',title:'Heroes, remembered lives and history',description:'Distinguish oral legends from historically attested people and later dramatic retellings.',predicate:(kind:string)=>kind==='Heroine of oral tradition'||kind==='Cultural hero in Ẹ̀gbá tradition'||kind==='Historical person'}
+];
+---
+<Site title="Beliefs, Òrìṣà & Historical Figures" description="Meet the names, figures and ideas of Yorùbá beliefs and history, with accessible introductions and room for different local accounts." active="Beliefs & Figures">
+  <header class="wrap figures-hero">
+    <p class="kicker">PRIVATE PREVIEW · CULTURAL BELIEFS & REMEMBERED LIVES</p>
+    <h1>Who are the figures<br/><em>behind the stories?</em></h1>
+    <p class="lead">Meet important òrìṣà, sacred names, ancestral traditions and people remembered in Yorùbá history. Discover what many traditions say, where accounts differ and what your own community might add.</p>
+    <p class="figures-context"><strong>What did you grow up hearing?</strong> These pages begin with the names, roles, stories and beliefs people pass down. One town, family or religious community may tell an account differently from another. We want room for those voices.</p>
+    <nav aria-label="Browse figure categories" class="figure-jump">{groups.map(g=><a href={'#'+g.id}>{g.title}</a>)}</nav>
+  </header>
+  {groups.map(group=>{
+    const figures=heritageFigures.filter(f=>group.predicate(f.kind));
+    return <section class="wrap figure-section" id={group.id} aria-labelledby={group.id+'-heading'}>
+      <div class="figure-section-head"><p class="kicker">{figures.length} PROFILES</p><h2 id={group.id+'-heading'}>{group.title}</h2><p>{group.description}</p></div>
+      <div class="figure-grid">{figures.map(f=><article class="figure-card">
+        <p class="kicker">{f.kind}</p>
+        <h3><a lang="yo" href={figureHref(f.slug)}>{f.name}</a></h3>
+        <p>{f.role}</p>
+        <p class="figure-card-location">{f.scope}</p>
+        <a class="figure-link" href={figureHref(f.slug)}>Read who this is →</a>
+      </article>)}</div>
+    </section>
+  })}
+  <aside class="wrap figure-community">
+    <p class="kicker">LIVING BELIEFS · MANY VOICES</p>
+    <h2>Does your town tell it differently?</h2>
+    <p>Some people have first-hand experience of a tradition. Others remember what parents, elders and storytellers taught. We want those versions to stand alongside each other with clear permission and attribution—not erase one another.</p>
+    <p class="fine">This private preview does not yet collect accounts. A moderated contribution space with consent and safeguards for young contributors is planned.</p>
+    <a href="/tales/">Read the stories →</a>
+  </aside>
+
+</Site>

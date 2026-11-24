@@ -1,5 +1,39 @@
 ---
 import Site from '../layouts/Site.astro';
-import {archive,sourceFor,sourceHref} from '../lib/archive';
 ---
-<Site title="Community-history leads"><section class="wrap page-head"><p class="kicker">SIX PRESERVED RESEARCH RECORDS</p><h1>Community & memory.</h1><p class="lead">These are the original community-history leads, with their provenance limitations. They are not newly authenticated interviews.</p><p class="notice">Read-only archive. There are no live submissions, recordings or discussion services here.</p></section><section class="wrap narrow">{archive.communityVoices.map(v=><article class="community-record article-section" id={v.id}><p class="kicker">{v.community} · {v.type}</p><h2>{v.title}</h2><p class="prose">{v.summary}</p><p class="prose">{v.context}</p><p class="evidence">{v.status}</p><ul>{v.sourceIds.map(id=><li><a href={sourceHref(id)}>{sourceFor(id).title}</a></li>)}</ul><a href={v.readUrl} rel="noopener noreferrer">Original research lead ↗</a></article>)}</section></Site>
+<Site title="Community Voices — Tell Your Version" description="A home for real accounts, stories heard from elders, local memories and alternate tellings shared by Yorùbá communities." active="Community">
+  <header class="wrap page-head">
+    <p class="kicker">EVERY VOICE ADDS A STORY</p>
+    <h1>What did your people tell you?</h1>
+    <p class="lead">Maybe you heard another ending. Perhaps you know the meaning of a name, remember an event, or learned a legend that people in another town tell differently. We want the story you heard, in your own words.</p>
+    <p class="notice">This is a private preview. The conversation space does not yet accept or save accounts or personal information.</p><p><a class="button" href="/community/share/">Try the contribution walkthrough (no submission) →</a></p>
+  </header>
+  <section class="wrap section" aria-labelledby="conversation-openers">
+    <div class="section-title">
+      <div><p class="kicker">WAYS TO JOIN THE CONVERSATION</p><h2 id="conversation-openers">Every telling has a place.</h2></div>
+    </div>
+    <div class="collection-grid">
+      <article class="collection"><p class="kicker">ANOTHER VERSION</p><h3>“That isn't how we were told.”</h3><p>Tell us the ending, names, colours, place or meaning your family remembers. Two versions can sit beside each other.</p></article>
+      <article class="collection"><p class="kicker">FIRST-HAND MEMORY</p><h3>“I was there.”</h3><p>Share an event you witnessed, a festival you remember, a craft you practised or how your community has changed.</p></article>
+      <article class="collection"><p class="kicker">ELDER'S ACCOUNT</p><h3>“My grandparents used to say…”</h3><p>Tell us what was passed to you, who told it and which community it came from, with permission to share their words.</p></article>
+      <article class="collection"><p class="kicker">NAMES &amp; BELIEFS</p><h3>“Here is what this name means to us.”</h3><p>Offer explanations of Èṣù, Olódùmarè, Ọ̀ṣun or another name that matters to your community or family.</p></article>
+      <article class="collection"><p class="kicker">ADD TO A STORY</p><h3>“You left something out.”</h3><p>Suggest an addition or a correction to a telling, while preserving the original voice and making space for yours.</p></article>
+      <article class="collection"><p class="kicker">ASK THE COMMUNITY</p><h3>“Has anyone else heard this?”</h3><p>Start with a local riddle, an unanswered question, a rumour or an unusual tradition people remember.</p></article>
+    </div>
+  </section>
+  <section class="wrap notice" aria-labelledby="community-listen">
+    <p class="kicker">A PLACE TO LISTEN</p><h2 id="community-listen">Not a contest over whose story wins.</h2>
+    <p>We want to hear the words and beliefs people actually share. Different tellings can stand alongside each other, with the community or storyteller named when they choose. Nothing here asks people to prove the sacred stories they grew up hearing.</p>
+    <p>Contributions will be reviewed for permission, privacy and respectful treatment of others—not ranked by popularity or whether a belief matches an outside publication.</p>
+    <p class="fine">Submission and reply features are not active yet. An optional <a href="/community/share/">guided practice page</a> demonstrates the steps without collecting or sending anything. We will not ask children to publish personal contact details or accept unreviewed recordings or photographs.</p>
+    <a href="/tales/">Begin with a tale →</a>
+  </section>
+  <section class="wrap section" aria-labelledby="what-have-you-heard">
+    <h2 id="what-have-you-heard">Conversation starters</h2>
+    <div class="collection-grid">
+      <a class="collection" href="/figures/esu/"><p class="kicker">ÈṢÙ</p><h3>Messenger, crossroads—or something else?</h3><p>What did the people around you say?</p><span class="text-link">Explore the living beliefs ↗</span></a>
+      <a class="collection" href="/figures/olodumare/"><p class="kicker">OLÓDÙMARÈ</p><h3>A name with many explanations</h3><p>What does the name mean in your home?</p><span class="text-link">Hear the explanations ↗</span></a>
+      <a class="collection" href="/places/"><p class="kicker">TOWNS &amp; MEMORY</p><h3>Where does your town's story begin?</h3><p>Which version did your family pass down?</p><span class="text-link">Explore the places ↗</span></a>
+    </div>
+  </section>
+</Site>

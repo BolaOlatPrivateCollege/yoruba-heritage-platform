@@ -1,0 +1,64 @@
+---
+import Site from '../../layouts/Site.astro';
+import {livingEpisodes,episodeHref} from '../../lib/living-episodes';
+import '../../styles/tales.css';
+const shelves=[
+  {title:'Ìjàpá and the tricksters',lead:'Laugh at an impossible promise, a lost feast, or a clever plan that backfires.',label:'Folktales · Versions wanted'},
+  {title:'Sacred names and many meanings',lead:'Olódùmarè, Èṣù, Ọ̀ṣun, and the accounts different generations grew up hearing.',label:'Living beliefs · Voices wanted'},
+  {title:'Mysteries of our towns',lead:'Unusual stones, surprising place-names, and memories of where a community began.',label:'Local legends · Voices wanted'},
+  {title:'Markets, makers and family memories',lead:'Àdìrẹ, everyday invention, music, market women, foodways and first-hand stories.',label:'Community histories · Voices wanted'},
+  {title:'Àlọ́, riddles and moonlight tales',lead:'Stories with twists, questions to answer aloud, and the ending nobody expected.',label:'Folklore · Storytelling traditions'},
+  {title:'History people still argue about',lead:'Courage, difficult choices and surprising accounts that change depending on the teller.',label:'Competing histories · Perspectives'}
+];
+---
+<Site title="Stories & Living Memories" description="Enter a living Yorùbá world of folktales, local mysteries, family memories and cultural storytelling." active="Stories">
+  <header class="wrap tales-hero">
+    <p class="kicker">PRIVATE EDITORIAL PREVIEW · STORIES & LIVING MEMORIES</p>
+    <h1>Everyone knows a story.<br/><em>Who tells it differently?</em></h1>
+    <p class="lead">Follow a mystery, laugh at a trick, meet a remembered hero, or discover a telling you never knew. This is a home for the stories people carry, the versions families remember, and the retellings that keep them alive.</p>
+    <div class="tales-actions"><a class="button" href="/tales/laughing-mask/">Begin our first tale</a><a class="button secondary" href="/figures/">Meet the figures behind the stories</a></div>
+    <p class="fine">A telling is presented as a telling—not a verdict on history or belief. New contributions are not yet enabled.</p>
+  </header>
+  <section class="wrap tales-featured" aria-labelledby="first-tale">
+    <div><p class="kicker">A CULTURAL MYSTERY · ORIGINAL FICTION</p>
+      <h2 id="first-tale">Who Was the Laughing Mask Talking About?</h2>
+      <p>One twelve-second video. A rumour racing through a town. Two young investigators determined to discover what everybody thinks they know. What could possibly go wrong?</p>
+      <a class="tales-inline-link" href="/tales/laughing-mask/">Read the complete six-chapter story →</a>
+      <p class="fine">Original fiction inspired by questions people ask about Gẹ̀lẹ̀dẹ́.</p>
+    </div>
+    <div class="tales-art-swatch" aria-hidden="true"><span>Àlọ́</span><span>?</span></div>
+  </section>
+  <section class="wrap tales-live" aria-labelledby="fresh-tales">
+    <p class="kicker">SEVEN MORE STORIES · FIRST PRIVATE READING EDITION</p>
+    <h2 id="fresh-tales">Follow the question.</h2>
+    <p class="lead">Seven complete tales of cleverness, courage, thunder, rivalry and the ways people carry different versions. Choose a story and step inside.</p>
+    <div class="tales-new-grid">{livingEpisodes.map((e,index)=><article class:list={['tales-new-card',index%2===0?'theme-crossroads':'theme-name']}>
+      <p class="kicker">{e.world}</p>
+      <h3><a href={episodeHref(e.slug)}>{e.name}</a></h3>
+      <p>{e.deck}</p>
+      <p class="fine">{e.genre} · Six chapters · {e.body.words} words</p>
+      <a class="tales-inline-link" href={episodeHref(e.slug)}>Enter the story →</a>
+    </article>)}</div>
+  </section>
+  <section class="wrap tales-live" aria-labelledby="warriors-legends">
+    <p class="kicker">WARRIORS · HEROINES · RIVALRIES · MYSTERIES</p>
+    <h2 id="warriors-legends">Whose story do you know?</h2>
+    <p class="lead">Meet a powerful Ìyálóde, follow a disputed royal legend, or enter a forest mystery. Explore 30 dramatic story leads and the different kinds of telling behind them—from historical memory to sacred tradition and imaginative folklore.</p>
+    <a class="tales-inline-link" href="/tales/legendary-figures/">Explore Warriors, Heroines &amp; Legendary Mysteries →</a>
+    <p class="fine">Private editorial preview: these are story introductions, not completed or independently authenticated community accounts.</p>
+  </section>
+  <aside class="wrap tales-invite" aria-labelledby="profile-discovery"><p class="kicker">WHO IS BEHIND THE STORY?</p><h2 id="profile-discovery">Find out what communities believe.</h2><p>Hear what people say about Èṣù, Olódùmarè and other òrìṣà and heroes. Explore the stories and beliefs behind the names.</p><a class="tales-inline-link" href="/figures/">Explore Beliefs &amp; Figures →</a></aside><section class="wrap tales-lanes" aria-labelledby="explore-tales">
+    <p class="kicker">A WORLD OF STORIES TO EXPLORE</p>
+    <h2 id="explore-tales">What fascinates you?</h2>
+    <div class="tales-grid">{shelves.map(s=><article class="tales-lane">
+      <p class="kicker">{s.label}</p><h3>{s.title}</h3><p>{s.lead}</p>
+      <p class="fine">Explore the story collection above and return as new tellings are developed</p>
+    </article>)}</div>
+  </section>
+  <aside class="wrap tales-invite" aria-label="Community participation roadmap">
+    <p class="kicker">YOUR VERSION MATTERS</p><h2>Did you hear a different ending?</h2>
+    <p>One town may remember a tale differently from another. We want to hear those voices without erasing either version. Contributors will eventually be able to share a family story, correct a detail or send a first-hand account—with permission.</p>
+    <p class="fine">This prototype has no working submission form or public comments. Secure moderation, rights and child-safe privacy protections must be completed before collecting real accounts.</p>
+    <a class="tales-inline-link" href="/community/">Explore existing read-only community leads →</a>
+  </aside>
+</Site>

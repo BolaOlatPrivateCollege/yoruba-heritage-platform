@@ -1,19 +1,20 @@
 ---
 import '../styles/site.css';
+import '../styles/heritage-visuals.css';
 interface Props {title:string;description?:string;active?:string}
-const {title,description='Àṣà & Ìtàn — source-linked Yorùbá heritage readings.',active=''}=Astro.props;
-const nav=[['/','Overview'],['/articles/','Library'],['/stories/','Stories'],['/collections/sacred/','Sacred World'],['/collections/research/','Research'],['/sources/','Sources'],['/search/','Search'],['/learning/','Learning'],['/learning/quiz/','Quiz'],['/learning/ifa-matrix/','Ifá explorer']];
+const {title,description='Àṣà & Ìtàn — Yorùbá stories, beliefs and living community memories.',active=''}=Astro.props;
+const nav=[['/','Overview'],['/tales/','Stories'],['/figures/','Beliefs & Figures'],['/places/','Places'],['/community/','Community'],['/learning/','Learning'],['/research/','Research']];
 ---
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="robots" content="noindex,nofollow"/><meta name="theme-color" content="#0d1d21"/><title>{title} · Àṣà & Ìtàn</title></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="edition">READING FOUNDATION <span>Engineering preview · research drafts</span></div>
-<header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="Àṣà & Ìtàn home"><span lang="yo">Àṣà <i>&</i> Ìtàn</span><small>THE YORÙBÁ HERITAGE ARCHIVE</small></a>
+<div class="edition">STORIES & LIVING MEMORY <span>Private engineering preview · contributions not live</span></div>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="Àṣà & Ìtàn home"><span lang="yo">Àṣà <i>&</i> Ìtàn</span><small>YORÙBÁ STORIES · BELIEFS · VOICES</small></a>
 <nav class="desktop-nav" aria-label="Main sections">{nav.map(([href,label])=><a href={href} aria-current={active===label?'page':undefined}>{label}</a>)}</nav>
 <details class="mobile-menu"><summary>Explore sections</summary><nav aria-label="Mobile sections">{nav.map(([href,label])=><a href={href} aria-current={active===label?'page':undefined}>{label}</a>)}</nav></details></div></header>
 <main id="main" tabindex="-1"><slot/></main>
-<footer><div><a class="brand" href="/" lang="yo">Àṣà & Ìtàn</a><p>History is not one voice.</p><p class="muted">Evidence, attribution and community context remain visible.</p></div><nav aria-label="Archive resources"><a href="/learning/">Learning overview</a><a href="/community/">Community-history leads</a><a href="/legacy-links/">Legacy link mapping</a><a href="/about/">Sources & editorial limits</a></nav><p class="fine">Claims unreviewed · Rights unknown<br/>Read-only engineering preview.<br/>No live community submissions.</p></footer>
+<footer><div><a class="brand" href="/" lang="yo">Àṣà & Ìtàn</a><p>History is not one voice.</p><p class="muted">Every community has a story worth hearing.</p></div><nav aria-label="Explore the website"><a href="/tales/">Stories</a><a href="/figures/">Beliefs &amp; Figures</a><a href="/places/">Places</a><a href="/community/">Community Voices</a><a href="/learning/">Learning</a><a href="/research/">Research</a></nav><p class="fine">Private, read-only preview.<br/>Community submissions are not live.</p></footer>
 <script>
   document.querySelectorAll<HTMLDetailsElement>('.mobile-menu').forEach(menu=>menu.addEventListener('keydown',event=>{
     if(event.key==='Escape'&&menu.open){menu.open=false;menu.querySelector('summary')?.focus();}

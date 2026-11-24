@@ -103,7 +103,8 @@ test('journeys contain actual distinct readings, useful introductions and valid 
     for(const step of j.steps){const r=journeyStep(step);assert.ok(r.title);assert.ok(r.minutes>0);assert.ok(existsSync(resolve(dist,'.'+r.href,'index.html')));assert.ok(step.why.length>30);}
   }
   for(const story of stories){const $=html(story.id);assert.equal($(`.story-next a[href="/stories/${story.next}/"]`).length,1);}
-  const home=load(readFileSync(resolve(dist,'index.html'),'utf8'));assert.equal(home('.story-card').length,4);assert.equal(home('.reader-journey').length,4);
+  const research=load(readFileSync(resolve(dist,'research','index.html'),'utf8'));assert.equal(research('.story-card').length,4);assert.equal(research('.reader-journey').length,4);
+  const home=load(readFileSync(resolve(dist,'index.html'),'utf8'));assert.equal(home('.story-card').length,0);assert.equal(home('.reader-journey').length,0);
 });
 
 test('original illustration provenance, hashes, local image sources and explicit non-documentary captions remain intact',()=>{

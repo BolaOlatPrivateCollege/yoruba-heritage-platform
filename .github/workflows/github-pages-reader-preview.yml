@@ -1,0 +1,85 @@
+name: GitHub Pages reader preview (owner-initiated only)
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish_confirmation:
+        description: 'For PUBLIC deployment enter PUBLISH_PUBLIC. Any other value only validates the build.'
+        required: true
+        default: 'BUILD_ONLY'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages-reader-preview
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.4'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install locked dependencies
+        working-directory: web
+        run: npm ci
+      - name: Check types, reader tests and package
+        working-directory: web
+        run: |
+          npm run check
+          npm run build
+          npm test
+      - name: Convert paths for project Pages
+        working-directory: web
+        env:
+          GITHUB_PAGES_BASE: ${{ github.event.repository.name }}
+        run: node scripts/prepare-pages-base.mjs
+      - name: Audit and sanitise public reader output
+        working-directory: web
+        env:
+          GITHUB_PAGES_BASE: ${{ github.event.repository.name }}
+        run: node scripts/audit-pages-public.mjs
+      - name: Inspect generated output for private or server files
+        working-directory: web
+        run: |
+          test -f dist/index.html
+          test -f dist/tales/index.html
+          ! find dist -type f \( -name '*.sql' -o -name '.env*' -o -name '*private-key*' -o -name '*.pem' \) | grep -q .
+          test ! -d dist/admin
+          test ! -d dist/api
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reader-pages-build
+          path: web/dist/
+          retention-days: 7
+  publish:
+    if: ${{ github.event.inputs.publish_confirmation == 'PUBLISH_PUBLIC' && github.ref == 'refs/heads/main' }}
+    needs: validate
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/download-artifact@v4
+        with:
+          name: reader-pages-build
+          path: ./site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+      - id: deployment
+        uses: actions/deploy-pages@v4

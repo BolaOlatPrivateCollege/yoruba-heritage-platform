@@ -1,9 +1,33 @@
 ---
 import Site from '../../layouts/Site.astro';
-import {places,regions} from '../../lib/regions';
 import '../../styles/regions.css';
+const communities=[
+  {id:'abeokuta',name:'Abẹ́òkúta',question:'What stories were told about the rock, the markets and the people who made a home here?',call:'Stories of a town, its families and the choices people remember'},
+  {id:'ibadan',name:'Ìbàdàn',question:'Which family memories, titles, names and remarkable people did you grow up hearing about?',call:'Memories of leadership, markets and everyday life'},
+  {id:'ile-ife',name:'Ilé-Ifẹ̀',question:'Which version of Ilé-Ifẹ̀’s beginnings did the people in your community tell?',call:'Origins, names, sacred traditions and different tellings'},
+  {id:'oyo',name:'Ọ̀yọ́',question:'Which stories of kingship, journeys and ancestors are remembered in your home?',call:'Royal stories and the voices behind them'}
+];
 ---
-<Site title="Places & Perspectives" active="Stories"><header class="wrap page-head regional-header"><a href="/stories/">Stories &amp; journeys</a><p class="kicker">LOCAL HISTORIES · DIFFERENT PERSPECTIVES</p><h1>Places &amp;<br/><em>Perspectives</em></h1><p class="lead">Begin with a town. Follow a record. Let each place keep its own history.</p><p class="regional-status">Research drafts · private review only · public release not granted</p></header>
-<section class="wrap section place-grid" aria-label="Town-specific readings">{places.map(p=><article class="place-card" id={p.id}><p class="kicker">{p.storyId?'DOCUMENTARY STORY PILOT':'PRESERVED ARCHIVE READING'}</p><h2 lang="yo">{p.name}</h2><p>{p.context}</p>{p.storyId&&regions.filter(s=>s.id===p.storyId).map(s=><a class="place-story-link" href={`/places/${s.id}/`}>{s.title}</a>)}<a href={`/articles/${p.articleId}/#section-${p.section}`}>Read the original {p.name} section</a><p class="fine">{p.storyId?'New story awaits independent editorial, community, language and rights review.':'Original research draft; this link does not imply newly verified history.'}</p></article>)}</section>
-<figure class="wrap regional-figure"><img src="/editorial/representation-reading.svg" width="1200" height="600" alt="Three conceptual reading questions: who proposes a charge, who is represented, and who approves it. This is not a historical institutional diagram."/><figcaption>Original conceptual illustration. No historical map, building, person or constitutional procedure is reconstructed.</figcaption></figure>
-<aside class="wrap notice"><h2>A place name is not a source.</h2><p>Regional accuracy requires a named record and a clear scope. The new Abẹ́òkúta reading follows selected documents; the Ìbàdàn link returns to the preserved library. No new origin story or authenticated oral testimony is claimed.</p><a href="/articles/know-governance/#section-1">Explore the original governance research draft</a></aside></Site>
+<Site title="Places & Their Stories" description="Explore Yorùbá towns through local legends, family memories and the different stories people pass down." active="Places">
+  <header class="wrap page-head regional-header">
+    <p class="kicker">TOWNS · FAMILY MEMORIES · LOCAL LEGENDS</p>
+    <h1>Every place<br/><em>remembers.</em></h1>
+    <p class="lead">A town may have more than one story about its beginnings. One person remembers a market, another a journey, another a name passed down by an elder. Which version did you hear?</p>
+    <p class="fine">These are conversation starters, not newly collected testimonies. The private preview does not yet receive public submissions.</p>
+  </header>
+  <section class="wrap section place-grid" aria-label="Explore towns and their stories">
+    {communities.map(p=><article class="place-card" id={p.id}>
+      <p class="kicker">A COMMUNITY TO LISTEN TO</p>
+      <h2 lang="yo">{p.name}</h2>
+      <p>{p.call}</p><p>{p.question}</p>
+      <p class="fine">Local tellings and permissioned community contributions are being gathered.</p>
+    </article>)}
+  </section>
+  <aside class="wrap notice">
+    <p class="kicker">YOUR PLACE, YOUR VERSION</p>
+    <h2>What story is missing from this map of memories?</h2>
+    <p>We want to hear from people who know their towns and neighbourhoods: the tale behind a name, a story told at home, a festival someone attended, a market that changed, or an alternative account that deserves a place beside another.</p>
+    <p class="fine">No public submission form is active yet. Tellers’ permission and safe moderation will be required before a contribution appears.</p>
+    <a href="/community/">Learn about Community Voices →</a>
+  </aside>
+</Site>

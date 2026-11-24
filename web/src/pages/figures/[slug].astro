@@ -1,0 +1,160 @@
+---
+import Site from '../../layouts/Site.astro';
+import {heritageFigures,figureHref,type CulturalFigure} from '../../lib/heritage-figures';
+import {esuLivingProfile as esu} from '../../lib/esu-living-profile';
+import {detailedSacredProfiles} from '../../lib/detailed-sacred-profiles';
+import {oduduwaLivingProfile} from '../../lib/oduduwa-living-profile';
+import {ogunLivingProfile} from '../../lib/ogun-living-profile';
+import {sangoLivingProfile} from '../../lib/sango-living-profile';
+import {osunLivingProfile} from '../../lib/osun-living-profile';
+import {yemojaLivingProfile} from '../../lib/yemoja-living-profile';
+import {oyaLivingProfile} from '../../lib/oya-living-profile';
+import {olokunLivingProfile} from '../../lib/olokun-living-profile';
+import {obaLivingProfile} from '../../lib/oba-living-profile';
+import {osanyinLivingProfile} from '../../lib/osanyin-living-profile';
+import {orisaOkoLivingProfile} from '../../lib/orisa-oko-living-profile';
+import {erinleLivingProfile} from '../../lib/erinle-living-profile';
+import {moremiLivingProfile} from '../../lib/moremi-living-profile';
+import '../../styles/figures.css';
+import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
+import {existsSync} from 'node:fs';
+import {resolve} from 'node:path';
+export function getStaticPaths(){return heritageFigures.map(f=>({params:{slug:f.slug},props:{figure:f}}));}
+interface Props{figure:CulturalFigure}
+const {figure:f}=Astro.props;
+const isEsu=f.slug==='esu';
+const detailed=f.slug==='oduduwa'?oduduwaLivingProfile:f.slug==='ogun'?ogunLivingProfile:f.slug==='sango'?sangoLivingProfile:f.slug==='osun'?osunLivingProfile:f.slug==='yemoja'?yemojaLivingProfile:f.slug==='oya'?oyaLivingProfile:f.slug==='olokun'?olokunLivingProfile:f.slug==='oba'?obaLivingProfile:f.slug==='osanyin'?osanyinLivingProfile:f.slug==='orisa-oko'?orisaOkoLivingProfile:f.slug==='erinle'?erinleLivingProfile:f.slug==='moremi-ajasoro'?moremiLivingProfile:detailedSacredProfiles[f.slug];
+const neighbours=heritageFigures.filter(other=>other.slug!==f.slug&&other.kind===f.kind).slice(0,3);
+const artCandidate=approvedFigureIllustrations[f.slug];
+// GitHub Pages is static: only output links after the files have actually been uploaded.
+const art=artCandidate&&existsSync(resolve(process.cwd(),'public','images',artCandidate.filename))?artCandidate:undefined;
+---
+<Site title={isEsu?'Èṣù — Messenger, Crossroads and Choice':f.name+' — Yorùbá beliefs and cultural memory'} description={isEsu?esu.lead:(detailed?.lead??f.role)+'. Stories, beliefs and community perspectives.'} active="Beliefs & Figures">
+  <article class="wrap figure-detail">
+    <header class="figure-detail-head">
+      <a href="/figures/">← Beliefs, Òrìṣà &amp; Historical Figures</a>
+      <p class="kicker">{f.kind.toUpperCase()} · LIVING CULTURAL KNOWLEDGE</p>
+      <h1 lang="yo">{isEsu?'Èṣù':f.name}</h1>
+      <p class="lead">{isEsu?esu.lead:(detailed?.lead??f.role)}</p>
+      {isEsu?<p class="figure-opening">{esu.invitation}</p>:<p class="figure-opening">{detailed?.intro??'What do people in your town, household and community say about this name? Begin with its roles and stories, then discover how others understand it.'}</p>}
+      {detailed?<p class="figure-alias"><strong>Names and related forms:</strong> <span>{detailed.aliases}</span></p>:f.relatedTerms.length>0&&<p class="figure-alias"><strong>Other related words and names:</strong> <span lang="yo">{f.relatedTerms.join(' · ')}</span></p>}
+      {isEsu&&<nav aria-label="Explore Èṣù" class="figure-jump">
+        <a href="#roles">Key roles</a><a href="#name-meaning">The name</a>
+        <a href="#devil">Èṣù and “devil”</a><a href="#other-names">Other names</a><a href="#share-voice">Your account</a>
+      </nav>}
+    </header>
+    {art&&<figure class="figure-artwork">
+      <img src={`/images/${art.filename}`} width={art.width} height={art.height} alt={art.alt} loading="lazy" decoding="async"/>
+      <figcaption>{art.caption}</figcaption>
+    </figure>}
+    {isEsu?
+    <div class="figure-article figure-article-living">
+      <section id="roles" aria-labelledby="roles-heading">
+        <p class="kicker">KEY ROLES &amp; MEANINGS</p>
+        <h2 id="roles-heading">Who is Èṣù in Yorùbá spirituality?</h2>
+        <p class="figure-section-opening">Èṣù is far more than a figure in a folktale. His roles touch communication, sacred duty, decisions, order and the unexpected. These are the meanings people discuss when they tell stories about Èṣù.</p>
+        <div class="figure-role-grid">{esu.roles.map(role=><article class="figure-role" id={role.id}>
+          <h3>{role.title}</h3><p>{role.body}</p><p class="figure-role-question">{role.conversation}</p>
+        </article>)}</div>
+      </section>
+      <section id="name-meaning" aria-labelledby="name-heading">
+        <p class="kicker">THE NAME AND ITS MEANINGS</p>
+        <h2 id="name-heading">{esu.language.title}</h2>
+        <p>{esu.language.text}</p>
+        <p class="figure-discussion-prompt">{esu.language.prompt}</p>
+      </section>
+      <section id="devil" aria-labelledby="devil-heading">
+        <p class="kicker">A NAME THAT STARTS A CONVERSATION</p>
+        <h2 id="devil-heading">{esu.translation.title}</h2>
+        <p>{esu.translation.opening}</p><p>{esu.translation.story}</p><p>{esu.translation.closer}</p>
+      </section>
+      <section id="other-names" aria-labelledby="other-names-heading">
+        <p class="kicker">NAMES YOU MAY HAVE HEARD</p>
+        <h2 id="other-names-heading">{esu.names.title}</h2>
+        <div class="figure-name-grid">{esu.names.items.map(item=><div class="figure-name">
+          <h3 lang="yo">{item.name}</h3><p>{item.note}</p>
+        </div>)}</div>
+      </section>
+      <section id="misunderstandings" aria-labelledby="misunderstandings-heading">
+        <p class="kicker">LET'S TALK ABOUT IT</p>
+        <h2 id="misunderstandings-heading">What different people say about Èṣù</h2>
+        <div class="figure-myths">{esu.waysPeopleSpeak.map(item=><div class="figure-myth">
+          <h3>{item.topic}</h3><p>{item.voices}</p>
+        </div>)}</div>
+      </section>
+      <aside class="figure-story" aria-label="Related Èṣù folktale adaptation">
+        <p class="kicker">ONE TALE, MANY VERSIONS</p>
+        <h2>Two friends. One hat. Two different truths.</h2>
+        <p>Read our imaginative adaptation of the well-known Èṣù hat story. Then ask your family or community which version they know.</p>
+        <a href="/tales/esu-hat-two-views/">Read the hat story →</a>
+      </aside>
+      <section id="share-voice" class="figure-voices" aria-labelledby="share-heading">
+        <p class="kicker">YOUR COMMUNITY'S VOICE</p>
+        <h2 id="share-heading">{esu.discussion.title}</h2>
+        <p>{esu.discussion.lead}</p>
+        <ol class="figure-discussion-list">{esu.discussion.prompts.map(q=><li>{q}</li>)}</ol>
+        <p class="fine">{esu.discussion.note} This private preview does not collect submissions or personal details yet.</p>
+        <p><a href="/community/share/">Try a private example of telling your version →</a></p>
+      </section>
+    </div>
+    :detailed?
+    <div class="figure-article figure-article-living figure-article-detailed">
+      <nav aria-label="Explore this profile" class="figure-jump">{detailed.sections.map(section=><a href={'#'+section.id}>{section.heading}</a>)}<a href="#oral-tellings">Stories and variants</a><a href="#references">Sources and limits</a></nav>
+      {detailed.sections.map(section=><section id={section.id} aria-labelledby={section.id+'-heading'}>
+        <p class="kicker">LIVING TRADITIONS · DIFFERENT VOICES</p>
+        <h2 id={section.id+'-heading'}>{section.heading}</h2>
+        {section.paragraphs.map(paragraph=><p>{paragraph}</p>)}
+        {section.points&&<div class="figure-role-grid">{section.points.map(point=><article class="figure-role"><h3>{point.term}</h3><p>{point.explanation}</p></article>)}</div>}
+      </section>)}
+      <section id="oral-tellings" aria-labelledby="oral-tellings-heading">
+        <p class="kicker">STORIES PEOPLE TELL · NOT VERIFIED TRANSCRIPTS</p>
+        <h2 id="oral-tellings-heading">Stories and their different versions</h2>
+        {detailed.tales.map(tale=><article class="figure-tradition"><h3>{tale.title}</h3><p>{tale.account}</p><p class="fine">{tale.context}</p></article>)}
+      </section>
+      <section id="references" aria-labelledby="references-heading">
+        <p class="kicker">SOURCE AND COMMUNITY ACCOUNTABILITY</p>
+        <h2 id="references-heading">Where this account comes from</h2>
+        {detailed.notes.map(note=><p>{note}</p>)}
+        <ul class="figure-references">{detailed.references.map(reference=><li><a href={reference.url} rel="noopener noreferrer">{reference.title}</a><span class="fine"> — {reference.scope}</span></li>)}</ul>
+      </section>
+      <section class="figure-voices" id="share-voice" aria-labelledby="share-voice-heading">
+        <p class="kicker">WHAT DID YOUR COMMUNITY SAY?</p><h2 id="share-voice-heading">One name, many remembered tellings</h2>
+        <ol class="figure-discussion-list">{detailed.questions.map(question=><li>{question}</li>)}</ol>
+        <p class="fine">The site does not collect or publish submissions yet. Family, elder and practitioner accounts require attribution, consent and review.</p>
+        <a href="/community/">Read the community participation policy →</a>
+      </section>
+    </div>
+    :
+    <div class="figure-article">
+      <section aria-labelledby="who-is-this">
+        <p class="kicker">MEET THIS NAME</p><h2 id="who-is-this">Understanding {f.name}</h2>
+        <p>{f.beliefs[0]}</p>
+        <p class="figure-scope"><strong>Places and traditions connected with this name:</strong> {f.scope}</p>
+      </section>
+      {f.beliefs.length>1&&<section aria-labelledby="traditional-accounts">
+        <p class="kicker">WHAT PEOPLE TELL</p>
+        <h2 id="traditional-accounts">Roles and beliefs</h2>
+        {f.beliefs.slice(1).map(text=><p>{text}</p>)}
+      </section>}
+      <section aria-labelledby="different-versions">
+        <p class="kicker">OTHER WAYS OF TELLING IT</p>
+        <h2 id="different-versions">Different community accounts</h2><p>{f.differences}</p>
+      </section>
+      {f.storyHref&&<aside class="figure-story" aria-label="Related fictional learning story">
+        <p class="kicker">A STORY TO ENJOY</p><h2>Read a tale connected with this name</h2>
+        <p>Stories spark questions about the beliefs people have passed on. Invented dialogue and scenes are clearly identified as fiction.</p>
+        <a href={f.storyHref}>Read the imaginative tale →</a>
+      </aside>}
+      <section class="figure-voices" id="share-voice" aria-labelledby="share-voice-heading">
+        <p class="kicker">YOUR COMMUNITY'S VOICE</p><h2 id="share-voice-heading">What were you told?</h2>
+        <p>{f.question}</p>
+        <p>Different tellers may remember different versions. We want to hear those accounts in their own voices—with permission and respect for the person who shared them.</p>
+        <p class="fine">This private preview is read-only. Community contributions are not enabled yet.</p>
+        <p><a href="/community/share/">Practise adding your version (nothing submitted) →</a></p>
+      </section>
+    </div>}
+    {neighbours.length>0&&<nav aria-label="Related cultural profiles" class="figure-related">
+      <h2>Discover another name</h2><div>{neighbours.map(other=><a href={figureHref(other.slug)}>{other.name} →</a>)}</div>
+    </nav>}
+  </article>
+</Site>

@@ -1,0 +1,47 @@
+---
+import Site from '../../layouts/Site.astro';
+import ArticleCards from '../../components/ArticleCards.astro';
+import StoryCards from '../../components/StoryCards.astro';
+import ReaderJourneys from '../../components/ReaderJourneys.astro';
+import {archive,collections} from '../../lib/archive';
+import '../../styles/stories.css';
+---
+<Site title="Research & Documentary Archive" description="Research articles, source records, historical comparisons, evidence assessments and original documentary stories in a separate reader space." active="Research">
+  <header class="wrap page-head">
+    <p class="kicker">RESEARCH · DOCUMENTATION · SOURCES</p>
+    <h1>Research &amp; Documentary Archive</h1>
+    <p class="lead">This is the dedicated place for documented sources, scholarly viewpoints, evidence assessment and questions of historical verification. The Stories, Beliefs and Community sections tell living accounts without verdicts about what people should believe.</p>
+    <p class="fine">This research space remains a private editorial preview. Original archive text and source records have not been changed.</p>
+  </header>
+  <section class="wrap section" aria-labelledby="research-stories">
+    <div class="section-title"><div><p class="kicker">DOCUMENTARY EDITION</p><h2 id="research-stories">Documentary stories</h2></div></div>
+    <StoryCards featured/>
+    <p class="home-story-link"><a class="text-link" href="/stories/">All documentary stories and reading journeys →</a></p>
+  </section>
+  <section class="wrap section" aria-labelledby="research-journeys">
+    <div class="section-title"><div><p class="kicker">SOURCE-LED READING</p><h2 id="research-journeys">Research journeys</h2></div></div>
+    <ReaderJourneys/>
+  </section>
+  <section class="wrap section" aria-labelledby="research-collections">
+    <div class="section-title"><div><p class="kicker">PRESERVED COLLECTIONS</p><h2 id="research-collections">Collections and evidence</h2></div></div>
+    <div class="collection-grid">{collections.map((c,i)=><a class="collection" href={'/collections/'+c.id+'/'}><span class="kicker">0{i+1} / {c.articles.length} readings</span><h3>{c.title}</h3><p>{c.intro}</p><span class="text-link">Open collection ↗</span></a>)}</div>
+  </section>
+  <section class="wrap section" aria-labelledby="research-records">
+    <div class="section-title"><div><p class="kicker">HISTORICAL DOCUMENTATION</p><h2 id="research-records">Explore the original articles</h2></div><a class="text-link" href="/articles/">All 113 archive articles →</a></div>
+    <ArticleCards articles={['how-we-know','ile-ife','heritage'].map(id=>archive.articles.find(a=>a.id===id)!)}/>
+  </section>
+  <section class="wrap section" aria-labelledby="research-links">
+    <h2 id="research-links">Research resources</h2>
+    <div class="collection-grid">
+      <a class="collection" href="/sources/"><h3>Source library</h3><p>Inspected material, bibliographic records and provenance.</p></a>
+      <a class="collection" href="/collections/sacred/"><h3>Sacred World documentation</h3><p>Source-led cultural analysis and contested interpretations.</p></a>
+      <a class="collection" href="/stories/"><h3>Documentary narratives</h3><p>Preserved research-rich editions and original narration transcripts.</p></a>
+      <a class="collection" href="/places/abeokuta-tax-and-representation/"><h3>Abẹ́òkúta documentary</h3><p>A regional historical reading with inspected records.</p></a>
+      <a class="collection" href="/search/"><h3>Search the archive</h3><p>Find entries and original research notes.</p></a>
+      <a class="collection" href="/research/community-leads/"><h3>Community-history provenance</h3><p>Original source-linked leads and editorial status records.</p></a>
+      <a class="collection" href="/about/"><h3>Methods and editorial limits</h3><p>How research drafts, supporting claims and rights are handled.</p></a>
+      <a class="collection" href="/learning/quiz/"><h3>Archived research quiz</h3><p>Original 15-question answer key and associated source notes.</p></a>
+      <a class="collection" href="/learning/ifa-matrix/"><h3>Ifá mathematical comparison</h3><p>A modern model of the archived label set and its research context.</p></a>
+    </div>
+  </section>
+</Site>
