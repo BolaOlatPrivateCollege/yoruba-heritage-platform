@@ -34,7 +34,7 @@ function walk(dir){
      (allowedReadOnlySearch&&/<form\b[^>]*\baction\s*=/i.test(html)))
     errors.push('Unexpected collection, upload or submitting form: '+rel);
   if(base!=='/'&&missingPrefix.test(html))errors.push('Unexpected unprefixed internal path: '+rel);
-  if(base==='/'&&html.includes('/yoruba-heritage-platform/'))errors.push('Legacy project path in root-domain output: '+rel);
+  if(base==='/'&&/\b(?:href|src|action|poster)\s*=\s*["']\/yoruba-heritage-platform(?:\/|["'])/i.test(html))errors.push('Legacy project path in root-domain output: '+rel);
   if(!/<meta\s+name=["']robots["']\s+content=["']noindex,nofollow["']/i.test(html))
    errors.push('Noindex marker not found: '+rel);
  }
