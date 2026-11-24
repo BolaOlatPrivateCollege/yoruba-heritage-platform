@@ -174,7 +174,27 @@ const obaSacredProfile:CulturalFigure={
   {title:'University of Kansas study of variations of Ọbà traditions',url:'https://kuscholarworks.ku.edu/server/api/core/bitstreams/5b3a2aa0-08f0-43fc-95c8-6ac4c58b6cd5/content'}
  ]
 };
-export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,obaSacredProfile,...heroes];
+const osanyinSacredProfile:CulturalFigure={
+ slug:'osanyin',name:'Òsányìn',kind:'Òrìṣà and sacred figure',
+ scope:'Yorùbá medicinal-plant, forest and healing traditions; related diaspora accounts',
+ role:'Sacred knowledge of ewé, forests, healing and responsible gathering of plants',
+ beliefs:[
+  'Òsányìn is linked with medicinal leaves, herbal specialists and sacred forest knowledge in Yorùbá traditions.',
+  'The iron herbalist’s staff with bird motifs is recorded in museum collections, with regional and artistic variation.',
+  'The field that could not be weeded and the scattered gourd are oral story families, not documented historical events.'
+ ],
+ differences:'Stories about Òsányìn, Ọ̀rúnmìlà and Àrọ̀ni vary. Sacred plant uses do not make any untested preparation medically safe.',
+ question:'Which accounts do elders or herbalists in your community share about Òsányìn?',
+ mistaken:'Every herbal medicine is safe because it is sacred or natural.',
+ clarification:'Traditional knowledge should be documented respectfully while medical safety and efficacy are evaluated independently.',
+ relatedTerms:['ewé','àgbo','oníṣègùn','ọ̀pá Òsányìn','Àrọ̀ni'],
+ status:'Detailed editorial draft; local custodial testimony required',
+ sources:[
+  {title:'Smithsonian — Ọ̀pá Ọ̀sanyìn (herbalist staff)',url:'https://africa.si.edu/collection/object/nmafa_2014-31-1'},
+  {title:'Yoruba folk medicine study',url:'https://psnnjp.org/index.php/home/article/view/182'}
+ ]
+};
+export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,obaSacredProfile,osanyinSacredProfile,...heroes];
 const slugs=new Set(heritageFigures.map(x=>x.slug));
 if(slugs.size!==heritageFigures.length)throw new Error('Duplicate cultural figure ID');
 export function figureHref(slug:string){
