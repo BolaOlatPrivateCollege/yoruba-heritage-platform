@@ -6,8 +6,8 @@ import {approvedFigureIllustrations as art} from '../src/lib/approved-figure-ill
 const root=resolve(import.meta.dirname,'../..');
 const read=p=>readFileSync(resolve(root,p),'utf8');
 
-test('six owner-approved images have individual truthful descriptions and exact filenames',()=>{
- assert.deepEqual(Object.keys(art).sort(),['obatala','oduduwa','ogun','orunmila','osun','sango']);
+test('fifteen supplied images have individual truthful descriptions and exact filenames',()=>{
+ assert.deepEqual(Object.keys(art).sort(),['erinle','esu','moremi-ajasoro','oba','obatala','oduduwa','ogun','olokun','orisa-oko','orunmila','osanyin','osun','oya','sango','yemoja']);
  for(const [slug,item] of Object.entries(art)){
   assert.match(item.filename,/^[a-z0-9-]+\.webp$/);
   assert.ok(item.width>=600&&item.height>=600);

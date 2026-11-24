@@ -9,7 +9,7 @@ test('Beliefs and Figures is accessible from homepage and new story library',asy
   await page.getByRole('navigation',{name:'Main sections'}).getByRole('link',{name:'Beliefs & Figures'}).click();
   await expect(page).toHaveURL(/\/figures\/$/);
   await expect(page.getByRole('heading',{level:1})).toContainText('Who are the figures');
-  await expect(page.locator('.figure-card')).toHaveCount(27);
+  await expect(page.locator('.figure-card')).toHaveCount(28);
   await expect(page.locator('meta[name=robots]')).toHaveAttribute('content','noindex,nofollow');
   await expect(page.locator('form,input[type=file],textarea')).toHaveCount(0);
   await expect(page.locator('.figures-context')).toContainText('What did you grow up hearing?');
@@ -55,3 +55,29 @@ for(const width of [320,390,1440]){
     }
   });
 }
+
+test('all fifteen uploaded illustrations load in the directory and their own profiles',async({page})=>{
+  const slugs=['esu','orunmila','obatala','oduduwa','ogun','sango','osun','yemoja','oya','olokun','oba','osanyin','orisa-oko','erinle','moremi-ajasoro'];
+  await page.goto('/figures/');
+  for(const slug of slugs){
+    const image=page.locator(`.figure-card a[href="/figures/${slug}/"] img`);
+    await expect(image).toHaveCount(1);
+    const src=await image.getAttribute('src');
+    expect(src).toMatch(/^\/images\/.+\.webp$/);
+    expect((await page.request.get(src!)).ok()).toBe(true);
+  }
+  for(const slug of slugs){
+    await page.goto(`/figures/${slug}/`);
+    const image=page.locator('.figure-artwork img');
+    await image.scrollIntoViewIfNeeded();
+    await expect(image).toHaveCount(1);
+    await expect.poll(()=>image.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>0)).toBe(true);
+  }
+  for(const slug of ['esu-hat-two-views','moremi-fire-in-the-reeds','sango-when-thunder-answered']){
+    await page.goto(`/tales/${slug}/`);
+    const image=page.locator('article.tale-reader figure img[src^="/images/"]');
+    await expect(image).toHaveCount(1);
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(()=>image.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>0)).toBe(true);
+  }
+});
