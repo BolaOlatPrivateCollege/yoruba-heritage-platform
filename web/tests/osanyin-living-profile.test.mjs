@@ -20,5 +20,5 @@ test('documented iron staff variation and medical boundaries remain explicit',()
  assert.match(prose,/sixteen/);
  assert.match(p.intro,/not automatically safe/);
  assert.match(p.notes.join(' '),/not medical guidance/);
- assert.match(p.notes.join(' '),/No figure illustration is approved/);
+ assert.match(p.notes.join(' '),/original sepia Òsányìn illustration was approved/);
 });
