@@ -2,6 +2,11 @@
 import Site from '../../layouts/Site.astro';
 import {livingEpisodes,episodeHref} from '../../lib/living-episodes';
 import '../../styles/tales.css';
+import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
+import {existsSync} from 'node:fs';
+import {resolve} from 'node:path';
+const coverMap:Record<string,string>={'esu-hat-two-views':'esu','moremi-fire-in-the-reeds':'moremi-ajasoro','sango-when-thunder-answered':'sango'};
+const coverFor=(slug:string)=>{const a=approvedFigureIllustrations[coverMap[slug]??''];return a&&existsSync(resolve(process.cwd(),'public','images',a.filename))?a:undefined;};
 const shelves=[
   {title:'Ìjàpá and the tricksters',lead:'Laugh at an impossible promise, a lost feast, or a clever plan that backfires.',label:'Folktales · Versions wanted'},
   {title:'Sacred names and many meanings',lead:'Olódùmarè, Èṣù, Ọ̀ṣun, and the accounts different generations grew up hearing.',label:'Living beliefs · Voices wanted'},
@@ -29,16 +34,17 @@ const shelves=[
     <div class="tales-art-swatch" aria-hidden="true"><span>Àlọ́</span><span>?</span></div>
   </section>
   <section class="wrap tales-live" aria-labelledby="fresh-tales">
-    <p class="kicker">SEVEN MORE STORIES · FIRST PRIVATE READING EDITION</p>
+    <p class="kicker">{livingEpisodes.length} MORE STORIES · FIRST PRIVATE READING EDITION</p>
     <h2 id="fresh-tales">Follow the question.</h2>
-    <p class="lead">Seven complete tales of cleverness, courage, thunder, rivalry and the ways people carry different versions. Choose a story and step inside.</p>
-    <div class="tales-new-grid">{livingEpisodes.map((e,index)=><article class:list={['tales-new-card',index%2===0?'theme-crossroads':'theme-name']}>
+    <p class="lead">{livingEpisodes.length} complete tales of cleverness, courage, thunder, rivalry and the ways people carry different versions. Choose a story and step inside.</p>
+    <div class="tales-new-grid">{livingEpisodes.map((e,index)=>{const a=coverFor(e.slug);return <article class:list={['tales-new-card',index%2===0?'theme-crossroads':'theme-name']}>
+      {a&&<figure style="margin:0 0 1rem"><a href={episodeHref(e.slug)}><img src={`/images/${a.filename}`} alt={a.alt} width={a.width} height={a.height} loading="lazy" decoding="async" style="width:100%;height:220px;object-fit:contain;background:#241f1a"/></a><figcaption class="fine">AI-generated figure illustration</figcaption></figure>}
       <p class="kicker">{e.world}</p>
       <h3><a href={episodeHref(e.slug)}>{e.name}</a></h3>
       <p>{e.deck}</p>
-      <p class="fine">{e.genre} · Six chapters · {e.body.words} words</p>
+      <p class="fine">{e.genre} · Six chapters · {e.body.words} words · {Math.ceil(e.body.words/200)} min read</p>
       <a class="tales-inline-link" href={episodeHref(e.slug)}>Enter the story →</a>
-    </article>)}</div>
+    </article>})}</div>
   </section>
   <section class="wrap tales-live" aria-labelledby="warriors-legends">
     <p class="kicker">WARRIORS · HEROINES · RIVALRIES · MYSTERIES</p>
