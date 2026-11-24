@@ -1,5 +1,9 @@
 ---
 import Site from '../../layouts/Site.astro';
+import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
+import {existsSync} from 'node:fs';
+import {resolve} from 'node:path';
+const availableArt=(slug:string)=>{const a=approvedFigureIllustrations[slug];return a&&existsSync(resolve(process.cwd(),'public','images',a.filename))?a:undefined;};
 import {heritageFigures,figureHref} from '../../lib/heritage-figures';
 import '../../styles/figures.css';
 const groups=[
@@ -21,13 +25,14 @@ const groups=[
     const figures=heritageFigures.filter(f=>group.predicate(f.kind));
     return <section class="wrap figure-section" id={group.id} aria-labelledby={group.id+'-heading'}>
       <div class="figure-section-head"><p class="kicker">{figures.length} PROFILES</p><h2 id={group.id+'-heading'}>{group.title}</h2><p>{group.description}</p></div>
-      <div class="figure-grid">{figures.map(f=><article class="figure-card">
+      <div class="figure-grid">{figures.map(f=>{const a=availableArt(f.slug);return <article class="figure-card">
+        {a&&<figure style="margin:0 0 1rem"><a href={figureHref(f.slug)}><img src={`/images/${a.filename}`} alt={a.alt} width={a.width} height={a.height} loading="lazy" decoding="async" style="width:100%;height:auto;aspect-ratio:4/5;object-fit:contain;background:#241f1a"/></a><figcaption class="fine">Artistic interpretation</figcaption></figure>}
         <p class="kicker">{f.kind}</p>
         <h3><a lang="yo" href={figureHref(f.slug)}>{f.name}</a></h3>
         <p>{f.role}</p>
         <p class="figure-card-location">{f.scope}</p>
         <a class="figure-link" href={figureHref(f.slug)}>Read who this is →</a>
-      </article>)}</div>
+      </article>})}</div>
     </section>
   })}
   <aside class="wrap figure-community">
