@@ -19,8 +19,8 @@ test('Mọremí reader builds full community-aware profile without a duplicate s
 test('Ugbò identity, Olúorogbo sacrifice and visual provenance remain qualified',()=>{
  const prose=p.sections.flatMap(s=>s.paragraphs).join(' ');
  assert.match(prose,/modern Igbo ethnic groups of southeastern Nigeria/);
- assert.match(prose,/not a dated eyewitness battle report/);
- assert.match(prose,/not.*parents should imitate/);
+ assert.match(prose,/not be presented as a dated eyewitness battle report/);
+ assert.match(prose,/not described here.*parents should imitate/);
  assert.match(p.notes.join(' '),/not an archival portrait/);
  const approval=readFileSync(new URL('../../docs/MOREMI_ILLUSTRATION_REVIEW.md',import.meta.url),'utf8');
  assert.match(approval,/Owner approved the new original sepia illustration/);
