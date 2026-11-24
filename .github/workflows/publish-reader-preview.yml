@@ -28,10 +28,10 @@ jobs:
       - name: Check out approved static reader candidate
         uses: actions/checkout@v4
         with:
-          ref: 2f6902aaae9121845f5eb69e2d08eb287b45eea7
+          ref: 187458fde47f0d64d3bd683a5d3296476e6d2390
           persist-credentials: false
       - name: Confirm candidate pin
-        run: test "$(git rev-parse HEAD)" = "2f6902aaae9121845f5eb69e2d08eb287b45eea7"
+        run: test "$(git rev-parse HEAD)" = "187458fde47f0d64d3bd683a5d3296476e6d2390"
       - name: Install Node
         uses: actions/setup-node@v4
         with:
@@ -41,17 +41,20 @@ jobs:
       - name: Rebuild and audit static Pages package
         working-directory: web
         env:
-          GITHUB_PAGES_BASE: yoruba-heritage-platform
+          GITHUB_PAGES_BASE: '/'
         run: |
           npm ci
           npm run check
           npm run build
           npm test
-          node scripts/prepare-pages-base.mjs
           node scripts/audit-pages-public.mjs
           test ! -f dist/community/share/index.html
           test -f dist/tales/index.html
           test -f dist/index.html
+          test -f dist/figures/index.html
+          test -d dist/_astro
+          grep -q 'href="/_astro/' dist/index.html
+          ! grep -q '/yoruba-heritage-platform/_astro/' dist/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
