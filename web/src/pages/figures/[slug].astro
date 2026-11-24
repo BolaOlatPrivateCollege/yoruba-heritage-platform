@@ -43,6 +43,7 @@ const art=artCandidate&&existsSync(resolve(process.cwd(),'public','images',artCa
         <a href="#devil">Èṣù and “devil”</a><a href="#other-names">Other names</a><a href="#share-voice">Your account</a>
       </nav>}
     </header>
+    {f.slug==='orunmila'&&<aside class="figure-story"><h2>Understanding Ifá</h2><p>Explore the instruments, readings, oral literature and mathematics of Ifá.</p><a href="/learning/ifa/">Visit the Ifá Knowledge Centre →</a></aside>}
     {art&&<figure class="figure-artwork">
       <img src={`/images/${art.filename}`} width={art.width} height={art.height} alt={art.alt} loading="lazy" decoding="async"/>
       <figcaption>{art.caption}</figcaption>
