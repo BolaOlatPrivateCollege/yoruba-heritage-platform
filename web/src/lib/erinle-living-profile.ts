@@ -86,7 +86,6 @@ export const erinleLivingProfile:LivingSacredProfile={
   {title:'The Metropolitan Museum of Art — Shrine figure for Erinlẹ̀ of Ilobu',url:'https://www.metmuseum.org/art/collection/search/844650',scope:'Local hunter and settlement story, river transformation and annual festival practices'},
   {title:'North Carolina Museum of Art — Ọ̀pá Èrìnlẹ̀',url:'https://learn.ncartmuseum.org/artwork/erinle-staff-opa-erinle/',scope:'Independently catalogued iron bird staff and ritual symbolism'},
   {title:'Smithsonian National Museum of African Art — Herbalist’s staff',url:'https://africa.si.edu/collection/object/nmafa_2005-6-416',scope:'Documented links between bird-topped staffs, Òsányìn and Èrìnlẹ̀'},
-  {title:'La Quête du Sens dans le Symbolisme Yoruba: Le Cas d’Erinle',url:'https://doi.org/10.1163/156852791X00042',scope:'Scholarly discussion of river/hunter iconography, ritual staff and contested narratives'},
-  {title:'Ilobu History — Ilobu Descendants Union Diaspora',url:'https://www.idudiaspora.org/ilobu-history/',scope:'Community-origin lead for local identity and historical testimony; audit source derivation and exclude prohibited derivative claims'}
+  {title:'La Quête du Sens dans le Symbolisme Yoruba: Le Cas d’Erinle',url:'https://doi.org/10.1163/156852791X00042',scope:'Scholarly discussion of river/hunter iconography, ritual staff and contested narratives'}
  ]
 };
