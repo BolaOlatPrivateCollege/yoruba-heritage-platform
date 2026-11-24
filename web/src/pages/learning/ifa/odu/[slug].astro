@@ -1,9 +1,11 @@
 ---
 import Site from '../../../../layouts/Site.astro';
 import OduSignature from '../../../../components/OduSignature.astro';
+import {principalGuides} from '../../../../lib/principal-odu-guide';
 import {oduLibrary,oduHref,type OduEntry} from '../../../../lib/odu-library';
 export function getStaticPaths(){return oduLibrary.map(o=>({params:{slug:o.slug},props:{o}}));}
 const {o}=Astro.props as {o:OduEntry};
+const guide=o.principal?principalGuides[o.slug]:undefined;
 const reverse=oduLibrary.find(x=>x.right.slug===o.left.slug&&x.left.slug===o.right.slug)!;
 ---
 <Site title={o.name+' — Odù reference'} active="Learning">
@@ -16,7 +18,18 @@ const reverse=oduLibrary.find(x=>x.right.slug===o.left.slug&&x.left.slug===o.rig
 <dl class="glossary"><div><dt>Right column (first)</dt><dd>{o.right.name} · <code>{o.right.code}</code></dd></div><div><dt>Left column (second)</dt><dd>{o.left.name} · <code>{o.left.code}</code></dd></div><div><dt>Educational eight-bit encoding</dt><dd><code>{o.bits}</code></dd></div><div><dt>Decimal equivalent</dt><dd>{o.decimal} (not traditional seniority)</dd></div></dl>
 <p>{o.principal?'Both columns match, forming a principal signature.':'The columns differ. Reversing their order gives a distinct configuration.'}</p>
 {!o.principal&&<p><a href={oduHref(reverse.slug)}>Explore reversed pairing: {reverse.name}</a></p>}
-<h2>Oral literature and interpretation</h2><p>Attributed ẹsẹ Ifá, translations, traditional aliases and contextual interpretations are not yet available in this entry. They require permission, documented sources and practitioner review. No generic blessing, warning or prescription is assigned to this signature.</p>
+{guide&&<section aria-labelledby="guide-title" class="principal-guide">
+<h2 id="guide-title">Literary and philosophical introduction</h2>
+<p class="notice"><strong>Editorial introduction based on the site owner's supplied material.</strong> The themes, narrative leads, name variants and associations below are awaiting specific source and practitioner review. They do not establish universal meanings or a lineage's reading.</p>
+<h3>Names and introductory themes</h3><p lang="yo">{guide.aliases}</p><p>{guide.theme}</p>
+<h3>Ìtàn — Narrative leads</h3><p>{guide.narrative}</p>
+<h3>Ethical reflection</h3><p>{guide.reflection}</p>
+<h3>Ire and Ibi — Contexts to investigate</h3><dl class="glossary"><div><dt>Ire</dt><dd>{guide.ire}</dd></div><div><dt>Ibi / Ayẹ̀wò</dt><dd>{guide.ibi}</dd></div></dl><p>These are themes from the supplied reference, not forecasts or outcomes assigned to a cast.</p>
+<h3>Associated sacred figures and concepts</h3><p>{guide.associations}</p>
+<h3>Ẹbọ and consultation</h3><p>Ritual prescriptions depend on the relevant verse, context and practitioner tradition. No fixed offering is assigned to this sign.</p>
+<h3>Question for reflection</h3><p>How might the ethical reflection above apply to a real decision? What would a named practitioner or family tradition add or interpret differently?</p>
+</section>}
+<h2>Ẹsẹ Ifá — Oral literature</h2><p>{guide?'The supplied literary extracts and translations are retained in an editorial review register. They are not published here as authenticated verses because exact sources, context and permission remain unresolved.':'Attributed ẹsẹ Ifá, translations, traditional aliases and contextual interpretations are not yet available in this entry.'} No generic blessing, warning or prescription is assigned to this signature.</p>
 <h2>Provenance</h2><p>Signature transcribed from the owner-supplied principal Odù tables. The combined pattern is generated from these component signatures. The reference has not yet been independently authenticated by a named practitioner or lineage.</p>
 <p>Single = 1, double = 0 is our educational encoding. This page is not a personal reading.</p>
 <p><a href="/learning/ifa/">Learn about Ifá readings and instruments</a> · <a href="/figures/orunmila/">Meet Ọ̀rúnmìlà</a></p>
