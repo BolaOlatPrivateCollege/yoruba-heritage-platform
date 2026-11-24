@@ -73,3 +73,9 @@
 .figure-discussion-list{padding-left:1.5rem;max-width:62ch}
 .figure-discussion-list li{line-height:1.75;margin:.9rem 0}
 @media(max-width:650px){.figure-role-grid,.figure-name-grid{grid-template-columns:1fr}.figure-role{padding:1.25rem}.figure-opening{font-size:1rem}.figure-article-living .figure-section-opening{font-size:1rem}}
+
+/* Approved original illustrations; captions keep creative art separate from actual archival evidence. */
+.figure-artwork{width:min(680px,100%);margin:0 auto 3.2rem;border:1px solid var(--line);background:var(--panel)}
+.figure-artwork img{display:block;width:100%;max-height:720px;height:auto;object-fit:contain;background:#241f1a}
+.figure-artwork figcaption{font-size:.79rem;line-height:1.6;color:var(--muted);padding:1rem 1.25rem;border-top:1px solid var(--line)}
+@media(max-width:650px){.figure-artwork{margin-bottom:2rem}.figure-artwork img{max-height:none}.figure-artwork figcaption{padding:.9rem 1rem}}
