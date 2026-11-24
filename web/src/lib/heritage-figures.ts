@@ -156,7 +156,25 @@ const additionalSacred:CulturalFigure[]=[
   ]
  }
 ];
-export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,...heroes];
+const obaSacredProfile:CulturalFigure={
+ slug:'oba',name:'Ọbà',kind:'Òrìṣà and sacred figure',scope:'Yorùbá Ọbà River traditions and related diaspora accounts',
+ role:'Sacred river, devotion, suffering, renewal and dignity',
+ beliefs:[
+  'Ọbà is associated with the river of her name in Yorùbá sacred traditions, and is more than a character in a marital rivalry story.',
+  'Some accounts connect her with Ṣàngó and Ọ̀ṣun through a painful story about trust and the injury of an ear.',
+  'Different communities and diaspora lineages tell divergent versions; other associations include healing, fertility and renewal.'
+ ],
+ differences:'The wording, moral and outcome of the ear story vary. Do not treat one narrative as a verified origin of the river or a complete sacred biography.',
+ question:'What would local Ọbà River communities and custodians tell us about her own sacred identity?',
+ mistaken:'Ọbà is only the wife in the story about a severed ear.',
+ clarification:'Ọbà is also an independent sacred figure associated with a river and living traditions.',
+ relatedTerms:['Ọbà River','Ṣàngó','Ọ̀ṣun'],status:'Rich cultural profile in draft; locally attributed testimony needed',
+ sources:[
+  {title:'Water in Yorùbá (Southwest Nigeria) religious belief and practices',url:'https://link.springer.com/article/10.1007/s44282-024-00054-8'},
+  {title:'University of Kansas study of variations of Ọbà traditions',url:'https://kuscholarworks.ku.edu/server/api/core/bitstreams/5b3a2aa0-08f0-43fc-95c8-6ac4c58b6cd5/content'}
+ ]
+};
+export const heritageFigures:CulturalFigure[]=[...sacred,...additionalSacred,obaSacredProfile,...heroes];
 const slugs=new Set(heritageFigures.map(x=>x.slug));
 if(slugs.size!==heritageFigures.length)throw new Error('Duplicate cultural figure ID');
 export function figureHref(slug:string){
