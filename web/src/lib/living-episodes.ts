@@ -114,6 +114,17 @@ const manifest:EpisodeSpec[]=[
     world:'Living tales · Ọ̀ṣun',
     question:'What accounts of Ọ̀ṣun, water, wisdom and cooperation did you learn from your family or community?',
     manuscript:'osun-when-the-world-forgot-her.md'
+  },
+  {
+    slug:'yemoja-river-that-remembered',
+    label:'Yemọja · Water and memory',
+    name:'Yemọja: The River That Remembered',
+    deck:'A young girl discovers that a river holds generations of memories and that caring for her community means learning to listen.',
+    genre:'Original literary fiction inspired by Yemọja traditions',
+    fictionalStatus:'All characters, dialogue, flood and community events are imagined. Inspired by Yemọja and associations with water, motherhood and nurture, not a transmitted sacred narrative or historical account.',
+    world:'Living tales · Yemọja',
+    question:'What accounts of Yemọja, rivers, care and community memory did you learn from your family or community?',
+    manuscript:'yemoja-the-river-that-remembered.md'
   }
 ];
 export const livingEpisodes:LivingEpisode[]=manifest.map(entry=>{
