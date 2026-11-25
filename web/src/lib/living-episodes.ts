@@ -125,6 +125,17 @@ const manifest:EpisodeSpec[]=[
     world:'Living tales · Yemọja',
     question:'What accounts of Yemọja, rivers, care and community memory did you learn from your family or community?',
     manuscript:'yemoja-the-river-that-remembered.md'
+  },
+  {
+    slug:'oya-before-the-wind-changed',
+    label:'Ọya · Courage and change',
+    name:'Ọya: Before the Wind Changed',
+    deck:'When displaced traders arrive and a storm threatens her town, a young girl discovers that courage means more than winning an argument.',
+    genre:'Original literary fiction inspired by Ọya traditions',
+    fictionalStatus:'The town, characters, storm and conversations are imagined. Inspired by Ọya and associations with wind, transformation and courage, not a transmitted sacred narrative or historical reconstruction.',
+    world:'Living tales · Ọya',
+    question:'What accounts of Ọya, wind, change and courage did you learn from your family or community?',
+    manuscript:'oya-before-the-wind-changed.md'
   }
 ];
 export const livingEpisodes:LivingEpisode[]=manifest.map(entry=>{
