@@ -136,6 +136,17 @@ const manifest:EpisodeSpec[]=[
     world:'Living tales · Ọya',
     question:'What accounts of Ọya, wind, change and courage did you learn from your family or community?',
     manuscript:'oya-before-the-wind-changed.md'
+  },
+  {
+    slug:'olokun-secrets-beneath-the-water',
+    label:'Olókun · Wealth and mystery',
+    name:'Olókun: The Secrets Beneath the Water',
+    deck:'A stranger promises a fortune beneath the water. Two curious children discover that the most valuable treasure may be the knowledge nobody can own.',
+    genre:'Original literary fiction inspired by Olókun traditions',
+    fictionalStatus:'The settlement, characters, discoveries and dialogue are imagined. Inspired by Olókun and associations with deep waters, wealth and mystery, not a transmitted sacred narrative or historical reconstruction.',
+    world:'Living tales · Olókun',
+    question:'What accounts of Olókun, deep waters, wealth and hidden knowledge did you learn from your family or community?',
+    manuscript:'olokun-the-secrets-beneath-the-water.md'
   }
 ];
 export const livingEpisodes:LivingEpisode[]=manifest.map(entry=>{
