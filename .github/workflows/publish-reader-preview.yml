@@ -28,10 +28,10 @@ jobs:
       - name: Check out approved static reader candidate
         uses: actions/checkout@v4
         with:
-          ref: ac1169c27c1a30ed5a6bc3f972196ea7a187cafa
+          ref: ab2ce4cb6b12d7f3190205394d0479d3737a369b
           persist-credentials: false
       - name: Confirm candidate pin
-        run: test "$(git rev-parse HEAD)" = "ac1169c27c1a30ed5a6bc3f972196ea7a187cafa"
+        run: test "$(git rev-parse HEAD)" = "ab2ce4cb6b12d7f3190205394d0479d3737a369b"
       - name: Install Node
         uses: actions/setup-node@v4
         with:
