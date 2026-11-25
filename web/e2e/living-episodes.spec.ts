@@ -11,12 +11,13 @@ const episodes=[
   {slug:'timi-gbonka-two-champions',title:'Tìmì and Gbónká: The Duel That Would Not End'},
   {slug:'ogun-path-nobody-could-open',title:'Ògún: The Path Nobody Could Open'},
   {slug:'osun-when-the-world-forgot-her',title:'Ọ̀ṣun: When the World Forgot Her'},
-  {slug:'yemoja-river-that-remembered',title:'Yemọja: The River That Remembered'}
+  {slug:'yemoja-river-that-remembered',title:'Yemọja: The River That Remembered'},
+  {slug:'oya-before-the-wind-changed',title:'Ọya: Before the Wind Changed'}
 ];
 
-test('the library offers ten complete linked stories and preserves Gẹ̀lẹ̀dẹ́',async({page})=>{
+test('the library offers eleven complete linked stories and preserves Gẹ̀lẹ̀dẹ́',async({page})=>{
   await page.goto('/tales/');
-  await expect(page.locator('.tales-new-card')).toHaveCount(10);
+  await expect(page.locator('.tales-new-card')).toHaveCount(11);
   await expect(page.getByRole('link',{name:'Read the complete six-chapter story'})).toHaveAttribute('href','/tales/laughing-mask/');
   for(const e of episodes){
     await expect(page.locator('.tales-new-card h3').getByRole('link',{name:e.title})).toHaveAttribute('href','/tales/'+e.slug+'/');
