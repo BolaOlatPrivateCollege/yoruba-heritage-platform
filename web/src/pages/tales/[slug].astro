@@ -1,5 +1,6 @@
 ---
 import Site from '../../layouts/Site.astro';
+import {illustratedOgun} from '../../lib/ogun-story-art';
 import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
 import {existsSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -11,7 +12,8 @@ interface Props {episode:LivingEpisode}
 const {episode:e}=Astro.props;
 const tale=e.body;
 const storyArt:Record<string,string>={'esu-hat-two-views':'esu','moremi-fire-in-the-reeds':'moremi-ajasoro','sango-when-thunder-answered':'sango','ogun-path-nobody-could-open':'ogun','osun-when-the-world-forgot-her':'osun','yemoja-river-that-remembered':'yemoja','olokun-secrets-beneath-the-water':'olokun'};
-const art=availableArt(storyArt[e.slug]??'');
+const illustrated=illustratedOgun(e.slug);
+const art=illustrated?.cover??availableArt(storyArt[e.slug]??'');
 const nextStory=livingEpisodes[(livingEpisodes.findIndex(item=>item.slug===e.slug)+1)%livingEpisodes.length]??e;
 const relatedFigure=e.slug==='olokun-secrets-beneath-the-water'?{href:'/figures/olokun/',name:'Olókun'}:e.slug==='oya-before-the-wind-changed'?{href:'/figures/oya/',name:'Ọya'}:e.slug==='yemoja-river-that-remembered'?{href:'/figures/yemoja/',name:'Yemọja'}:e.slug==='osun-when-the-world-forgot-her'?{href:'/figures/osun/',name:'Ọ̀ṣun'}:e.slug==='ogun-path-nobody-could-open'?{href:'/figures/ogun/',name:'Ògún'}:e.slug==='esu-hat-two-views'?{href:'/figures/esu/',name:'Èṣù'}:e.slug==='olodumare-many-meanings'?{href:'/figures/olodumare/',name:'Olódùmarè'}:null;
 ---
@@ -33,6 +35,7 @@ const relatedFigure=e.slug==='olokun-secrets-beneath-the-water'?{href:'/figures/
     <div class="tale-paper">
       {tale.chapters.map((chapter,index)=><section class="tale-chapter" id={chapter.id}>
         <p class="kicker">CHAPTER {chapter.number} / 6</p><h2>{chapter.title}</h2>
+        {illustrated&&illustrated.chapters[index]&&<figure class="tale-scene" style="margin:1.5rem 0"><img src={'/images/'+illustrated.chapters[index]!.filename} alt={illustrated.chapters[index]!.alt} width={1600} height={900} loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:8px"/><figcaption class="fine">{illustrated.chapters[index]!.caption}</figcaption></figure>}
         {chapter.passages.map(p=><p>{p.segments.map(s=>s.strong?<strong>{s.text}</strong>:s.italic?<em>{s.text}</em>:s.text)}</p>)}
         <nav class="tale-chapter-next" aria-label={`Navigation after chapter ${chapter.number}`}>
           {index>0&&<a href={`#${tale.chapters[index-1]?.id}`} aria-label={`Previous chapter: ${tale.chapters[index-1]?.title}`}>← Previous chapter</a>}
