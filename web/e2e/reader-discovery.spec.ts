@@ -21,8 +21,8 @@ test('daily discovery has a readable non-JavaScript fallback',async({browser})=>
  await expect(page.locator('[data-daily-item]:visible')).toHaveCount(2);
  }finally{await context.close();}
 });
-test('story library includes five illustrated cards and reading estimates',async({page})=>{
+test('story library includes six illustrated cards and reading estimates',async({page})=>{
  await page.goto('/tales/');
- await expect(page.locator('.tales-new-card img')).toHaveCount(5);
+ await expect(page.locator('.tales-new-card img')).toHaveCount(6);
  for(const card of await page.locator('.tales-new-card').all())await expect(card).toContainText('min read');
 });
