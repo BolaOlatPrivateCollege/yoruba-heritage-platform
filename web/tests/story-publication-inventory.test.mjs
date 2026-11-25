@@ -28,7 +28,10 @@ test('private public-release inventory contains each reader story and all five a
 });
 
 test('every new full-length story has 6 chapters, visible attribution and no claimed historic certification',()=>{
- assert.deepEqual(livingEpisodes.map(e=>e.slug),expected);
+ assert.deepEqual(livingEpisodes.slice(0,expected.length).map(e=>e.slug),expected);
+ assert.equal(new Set(livingEpisodes.map(e=>e.slug)).size,livingEpisodes.length);
+ const additions=read('docs/story-first/READER_EXPANSION_INVENTORY.md');
+ for(const episode of livingEpisodes.slice(expected.length))assert.ok(additions.includes('/tales/'+episode.slug+'/'),'missing expansion inventory: '+episode.slug);
  for(const episode of livingEpisodes){
   assert.equal(episode.body.chapters.length,6);
   assert.ok(episode.body.words>=1200,episode.slug);

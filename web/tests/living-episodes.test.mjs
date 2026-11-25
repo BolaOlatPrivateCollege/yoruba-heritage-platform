@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {livingEpisodes,episodeHref} from '../src/lib/living-episodes.ts';
 
-test('seven complete tales keep distinct genres, stable IDs and 6 rich chapters each',()=>{
-  assert.deepEqual(livingEpisodes.map(x=>x.slug),['esu-hat-two-views','olodumare-many-meanings','ijapa-feast-nobody-could-finish','moremi-fire-in-the-reeds','lisabi-farmers-promise','sango-when-thunder-answered','timi-gbonka-two-champions']);
-  assert.equal(new Set(livingEpisodes.map(x=>x.slug)).size,7);
+test('nine complete tales keep distinct genres, stable IDs and 6 rich chapters each',()=>{
+  assert.deepEqual(livingEpisodes.map(x=>x.slug),['esu-hat-two-views','olodumare-many-meanings','ijapa-feast-nobody-could-finish','moremi-fire-in-the-reeds','lisabi-farmers-promise','sango-when-thunder-answered','timi-gbonka-two-champions','ogun-path-nobody-could-open','osun-when-the-world-forgot-her']);
+  assert.equal(new Set(livingEpisodes.map(x=>x.slug)).size,9);
   for(const e of livingEpisodes){
     assert.equal(e.body.title,e.name);
     assert.ok(e.body.words>=1200,e.slug+': full length');
@@ -31,9 +31,9 @@ test('only known static episode IDs are allowed',()=>{
   assert.throws(()=>episodeHref('nonexistent'),/Unknown story ID/);
   assert.throws(()=>episodeHref('../private-data'),/Unknown story ID/);
 });
-test('five added manuscripts are full, openly literary tellings and are not silent historical claims',()=>{
+test('seven added manuscripts are full, openly literary tellings and are not silent historical claims',()=>{
  const added=livingEpisodes.slice(2);
- assert.equal(added.length,5);
+ assert.equal(added.length,7);
  for(const episode of added){
   assert.match(episode.genre,/fiction|retelling/i,episode.slug);
   assert.match(episode.fictionalStatus,/invented|invention|imagined|invents/i,episode.slug);

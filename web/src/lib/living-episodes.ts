@@ -92,6 +92,28 @@ const manifest:EpisodeSpec[]=[
     world:'Rivalries · Tìmì and Gbónká',
     question:'What happens to Tìmì and Gbónká in the version you have heard?',
     manuscript:'timi-gbonka-two-champions.md'
+  },
+  {
+    slug:'ogun-path-nobody-could-open',
+    label:'Ògún · Iron and responsibility',
+    name:'Ògún: The Path Nobody Could Open',
+    deck:'When the forest swallows the market road, a young blacksmith must discover whether strength alone can open a way forward.',
+    genre:'Original literary fiction inspired by Ògún traditions',
+    fictionalStatus:'All characters, conversations and events are imagined. The story is inspired by associations with iron, skilled work and opening paths, not a transmitted sacred narrative or historical reconstruction.',
+    world:'Living tales · Ògún',
+    question:'What did your family teach you about Ògún, iron, skilled work and the responsibility of opening paths?',
+    manuscript:'ogun-the-path-nobody-could-open.md'
+  },
+  {
+    slug:'osun-when-the-world-forgot-her',
+    label:'Ọ̀ṣun · Wisdom and cooperation',
+    name:'Ọ̀ṣun: When the World Forgot Her',
+    deck:'A village builds a magnificent market but overlooks the people who understand its river. One young messenger must help the council learn to listen.',
+    genre:'Original literary fiction inspired by Ọ̀ṣun traditions',
+    fictionalStatus:'All characters, dialogue and events are imagined. Inspired by associations with rivers, care and feminine sacred authority, not an authenticated Ifá verse, transmitted sacred narrative or historical account.',
+    world:'Living tales · Ọ̀ṣun',
+    question:'What accounts of Ọ̀ṣun, water, wisdom and cooperation did you learn from your family or community?',
+    manuscript:'osun-when-the-world-forgot-her.md'
   }
 ];
 export const livingEpisodes:LivingEpisode[]=manifest.map(entry=>{
