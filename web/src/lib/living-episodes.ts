@@ -147,6 +147,17 @@ const manifest:EpisodeSpec[]=[
     world:'Living tales · Olókun',
     question:'What accounts of Olókun, deep waters, wealth and hidden knowledge did you learn from your family or community?',
     manuscript:'olokun-the-secrets-beneath-the-water.md'
+  },
+  {
+    slug:'ijapa-sky-kings-invitation',
+    label:'Ìjàpá · Trickery and generosity',
+    name:"Ìjàpá and the Sky King's Invitation",
+    deck:'A tortoise borrows wings, a royal invitation and a very clever name. At the feast above the clouds, his own trick becomes his biggest problem.',
+    genre:'Original imaginative folktale inspired by Yorùbá Ìjàpá traditions and sky-feast motifs',
+    fictionalStatus:'The particular invitation, dialogue, contest and ending are literary inventions. The Sky King is an invented folktale character, not Olódùmarè. This is not a transcription of an inherited version.',
+    world:'Trickster tales · Ìjàpá',
+    question:'How do people in your family tell stories of Ìjàpá, borrowed feathers or a feast in the sky?',
+    manuscript:'ijapa-and-the-sky-kings-invitation.md'
   }
 ];
 export const livingEpisodes:LivingEpisode[]=manifest.map(entry=>{
