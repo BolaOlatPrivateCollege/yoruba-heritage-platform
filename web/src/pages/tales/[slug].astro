@@ -1,5 +1,7 @@
 ---
 import Site from '../../layouts/Site.astro';
+import {illustratedOgun} from '../../lib/ogun-story-art';
+import {narratedOgun} from '../../lib/ogun-story-audio';
 import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
 import {existsSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -11,7 +13,9 @@ interface Props {episode:LivingEpisode}
 const {episode:e}=Astro.props;
 const tale=e.body;
 const storyArt:Record<string,string>={'esu-hat-two-views':'esu','moremi-fire-in-the-reeds':'moremi-ajasoro','sango-when-thunder-answered':'sango','ogun-path-nobody-could-open':'ogun','osun-when-the-world-forgot-her':'osun','yemoja-river-that-remembered':'yemoja','olokun-secrets-beneath-the-water':'olokun'};
-const art=availableArt(storyArt[e.slug]??'');
+const illustrated=illustratedOgun(e.slug);
+const narration=narratedOgun(e.slug);
+const art=illustrated?.cover??availableArt(storyArt[e.slug]??'');
 const nextStory=livingEpisodes[(livingEpisodes.findIndex(item=>item.slug===e.slug)+1)%livingEpisodes.length]??e;
 const relatedFigure=e.slug==='olokun-secrets-beneath-the-water'?{href:'/figures/olokun/',name:'Olókun'}:e.slug==='oya-before-the-wind-changed'?{href:'/figures/oya/',name:'Ọya'}:e.slug==='yemoja-river-that-remembered'?{href:'/figures/yemoja/',name:'Yemọja'}:e.slug==='osun-when-the-world-forgot-her'?{href:'/figures/osun/',name:'Ọ̀ṣun'}:e.slug==='ogun-path-nobody-could-open'?{href:'/figures/ogun/',name:'Ògún'}:e.slug==='esu-hat-two-views'?{href:'/figures/esu/',name:'Èṣù'}:e.slug==='olodumare-many-meanings'?{href:'/figures/olodumare/',name:'Olódùmarè'}:null;
 ---
@@ -30,9 +34,18 @@ const relatedFigure=e.slug==='olokun-secrets-beneath-the-water'?{href:'/figures/
       </nav>
     </header>
     {art&&<figure style="max-width:560px;margin:1rem auto 2rem"><img src={`/images/${art.filename}`} alt={art.alt} width={art.width} height={art.height} loading="lazy" decoding="async" style="width:100%;height:auto"/><figcaption class="fine">{art.caption}</figcaption></figure>}
+    {narration&&<section class="tale-listen" aria-labelledby="listen-heading" style="margin:1rem auto 2rem;max-width:720px">
+      <h2 id="listen-heading">Listen to the story</h2>
+      <p>AI narration · Olu – Nigerian English Storyteller (ElevenLabs) · 10 min 1 sec</p>
+      <p>Listen to any chapter using its player below. Enable continuous listening to advance automatically after each chapter.</p>
+      <div data-listen-settings hidden><label><input type="checkbox" data-continuous/> Continue to the next chapter automatically</label><p><label>Playback speed <select data-speed><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label></p><p role="status" data-listen-status></p></div>
+      <a href="#chapter-1">Begin Chapter 1</a>
+    </section>}
     <div class="tale-paper">
       {tale.chapters.map((chapter,index)=><section class="tale-chapter" id={chapter.id}>
         <p class="kicker">CHAPTER {chapter.number} / 6</p><h2>{chapter.title}</h2>
+        {illustrated&&illustrated.chapters[index]&&<figure class="tale-scene" style="margin:1.5rem 0"><img src={'/images/'+illustrated.chapters[index]!.filename} alt={illustrated.chapters[index]!.alt} width={1600} height={900} loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:8px"/><figcaption class="fine">{illustrated.chapters[index]!.caption}</figcaption></figure>}
+        {narration&&narration[index]&&<div class="tale-audio" style="margin:1rem 0"><p><strong>Listen to Chapter {chapter.number}</strong></p><audio controls preload="none" data-chapter-audio aria-label={'Listen to '+chapter.title} style="width:100%;max-width:100%" src={narration[index]!.src}>Your browser does not support audio playback. <a href={narration[index]!.src}>Open chapter audio</a>.</audio></div>}
         {chapter.passages.map(p=><p>{p.segments.map(s=>s.strong?<strong>{s.text}</strong>:s.italic?<em>{s.text}</em>:s.text)}</p>)}
         <nav class="tale-chapter-next" aria-label={`Navigation after chapter ${chapter.number}`}>
           {index>0&&<a href={`#${tale.chapters[index-1]?.id}`} aria-label={`Previous chapter: ${tale.chapters[index-1]?.title}`}>← Previous chapter</a>}
@@ -52,7 +65,22 @@ const relatedFigure=e.slug==='olokun-secrets-beneath-the-water'?{href:'/figures/
       {relatedFigure&&<p><a href={relatedFigure.href}>Explore different accounts of {relatedFigure.name} →</a></p>}
       <p class="kicker">THE NEXT TALE</p>
       <p><a href={`/tales/${nextStory.slug}/`}>{nextStory.name} →</a></p>
-      <p class="fine">This written version has no matching narrated audio yet.</p>
+      <p class="fine">{narration?"This story includes AI-generated English narration supplied by the site owner.":"This written version has no matching narrated audio yet."}</p>
     </footer>
   </article>
 </Site>
+<script>
+ const tracks=Array.from(document.querySelectorAll<HTMLAudioElement>('[data-chapter-audio]'));
+ const settings=document.querySelector<HTMLElement>('[data-listen-settings]');
+ const continuous=document.querySelector<HTMLInputElement>('[data-continuous]');
+ const speed=document.querySelector<HTMLSelectElement>('[data-speed]');
+ const status=document.querySelector<HTMLElement>('[data-listen-status]');
+ if(tracks.length&&settings&&continuous&&speed&&status){
+  settings.hidden=false;
+  speed.addEventListener('change',()=>{for(const t of tracks)t.playbackRate=Number(speed.value);});
+  tracks.forEach((track,i)=>{
+   track.addEventListener('play',()=>{for(const other of tracks)if(other!==track)other.pause();track.playbackRate=Number(speed.value);status.textContent='Playing chapter '+(i+1)+' of '+tracks.length;});
+   track.addEventListener('ended',()=>{if(!continuous.checked)return;const next=tracks[i+1];if(next){next.play().catch(()=>{status.textContent='Select play on the next chapter to continue.';});}else status.textContent='You have reached the end of the story.';});
+  });
+ }
+</script>
