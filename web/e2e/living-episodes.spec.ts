@@ -1,5 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
+import {narratedOgun} from '../src/lib/ogun-story-audio';
+import {illustratedOgun} from '../src/lib/ogun-story-art';
 mkdirSync('screenshots',{recursive:true});
 const episodes=[
   {slug:'esu-hat-two-views',title:'The Hat That Divided the Road'},
@@ -31,7 +33,19 @@ for(const e of episodes){
     await expect(page.locator('.tale-chapter')).toHaveCount(6);
     await expect(page.locator('.tale-disclosure')).toContainText(/not|no literal|invented|invents|imagined/i);
     await expect(page.locator('.tale-outro')).toContainText('No submission, personal data or audio is collected');
-    await expect(page.locator('main form, main input, main audio')).toHaveCount(0);
+    const narrated=narratedOgun(e.slug);
+    await expect(page.locator('main form, main input:not([data-continuous])')).toHaveCount(0);
+    await expect(page.locator('main audio')).toHaveCount(narrated?6:0);
+    await expect(page.locator('.tale-scene')).toHaveCount(illustratedOgun(e.slug)?6:0);
+    if(narrated){
+      await expect(page.locator('[data-continuous]')).not.toBeChecked();
+      for(const [i,track] of narrated.entries()){
+        const audio=page.locator('main audio').nth(i);
+        await expect(audio).toHaveAttribute('src',track.src);
+        await expect(audio).toHaveAttribute('preload','none');
+        expect((await page.request.get(track.src)).ok()).toBe(true);
+      }
+    }
     await expect(page.locator('meta[name=robots]')).toHaveAttribute('content','noindex,nofollow');
     await expect(page.locator('.tale-paper')).not.toContainText('Bibliography');
     await expect(page.locator('.tale-chapter').last()).not.toBeEmpty();
