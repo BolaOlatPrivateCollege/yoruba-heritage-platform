@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import {mkdirSync} from 'node:fs';
+import {mkdirSync,existsSync} from 'node:fs';
 import {narratedOgun} from '../src/lib/ogun-story-audio';
 import {illustratedOgun} from '../src/lib/ogun-story-art';
 mkdirSync('screenshots',{recursive:true});
@@ -35,7 +35,14 @@ for(const e of episodes){
     await expect(page.locator('.tale-outro')).toContainText('No submission, personal data or audio is collected');
     const narrated=narratedOgun(e.slug);
     await expect(page.locator('main form, main input:not([data-continuous])')).toHaveCount(0);
-    await expect(page.locator('main audio')).toHaveCount(narrated?6:0);
+    const fullOsun=e.slug==='osun-when-the-world-forgot-her'&&existsSync('public/audio/stories/osun/osun-full-narration.mp3');
+    await expect(page.locator('main audio')).toHaveCount(narrated?6:fullOsun?1:0);
+    if(fullOsun){
+      const player=page.locator('main audio');
+      await expect(player).toHaveAttribute('src','/audio/stories/osun/osun-full-narration.mp3');
+      await expect(player).toHaveAttribute('preload','none');
+      expect((await page.request.get('/audio/stories/osun/osun-full-narration.mp3')).ok()).toBe(true);
+    }
     await expect(page.locator('.tale-scene')).toHaveCount(illustratedOgun(e.slug)?6:0);
     if(narrated){
       await expect(page.locator('[data-continuous]')).not.toBeChecked();
