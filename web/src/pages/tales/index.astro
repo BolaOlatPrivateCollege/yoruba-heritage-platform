@@ -1,6 +1,7 @@
 ---
 import Site from '../../layouts/Site.astro';
 import {illustratedOgun} from '../../lib/ogun-story-art';
+import {illustratedOsun} from '../../lib/osun-story-art';
 import {livingEpisodes,episodeHref} from '../../lib/living-episodes';
 import '../../styles/tales.css';
 import {approvedFigureIllustrations} from '../../lib/approved-figure-illustrations';
@@ -38,7 +39,7 @@ const shelves=[
     <p class="kicker">{livingEpisodes.length} MORE STORIES · FIRST PRIVATE READING EDITION</p>
     <h2 id="fresh-tales">Follow the question.</h2>
     <p class="lead">{livingEpisodes.length} complete tales of cleverness, courage, thunder, rivalry and the ways people carry different versions. Choose a story and step inside.</p>
-    <div class="tales-new-grid">{livingEpisodes.map((e,index)=>{const a=illustratedOgun(e.slug)?.cover??coverFor(e.slug);return <article class:list={['tales-new-card',index%2===0?'theme-crossroads':'theme-name']}>
+    <div class="tales-new-grid">{livingEpisodes.map((e,index)=>{const a=illustratedOgun(e.slug)?.cover??illustratedOsun(e.slug)?.cover??coverFor(e.slug);return <article class:list={['tales-new-card',index%2===0?'theme-crossroads':'theme-name']}>
       {a&&<figure style="margin:0 0 1rem"><a href={episodeHref(e.slug)}><img src={`/images/${a.filename}`} alt={a.alt} width={a.width} height={a.height} loading="lazy" decoding="async" style="width:100%;height:220px;object-fit:contain;background:#241f1a"/></a><figcaption class="fine">AI-generated illustration</figcaption></figure>}
       <p class="kicker">{e.world}</p>
       <h3><a href={episodeHref(e.slug)}>{e.name}</a></h3>
