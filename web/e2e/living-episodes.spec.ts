@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import {mkdirSync,existsSync} from 'node:fs';
 import {narratedOgun} from '../src/lib/ogun-story-audio';
 import {illustratedOgun} from '../src/lib/ogun-story-art';
+import {illustratedOsun} from '../src/lib/osun-story-art';
 mkdirSync('screenshots',{recursive:true});
 const episodes=[
   {slug:'esu-hat-two-views',title:'The Hat That Divided the Road'},
@@ -43,7 +44,17 @@ for(const e of episodes){
       await expect(player).toHaveAttribute('preload','none');
       expect((await page.request.get('/audio/stories/osun/osun-full-narration.mp3')).ok()).toBe(true);
     }
-    await expect(page.locator('.tale-scene')).toHaveCount(illustratedOgun(e.slug)?6:0);
+    const illustrated=illustratedOgun(e.slug)??illustratedOsun(e.slug);
+    await expect(page.locator('.tale-scene')).toHaveCount(illustrated?6:0);
+    if(illustrated){
+      for(const [i,scene] of illustrated.chapters.entries()){
+        const img=page.locator('.tale-scene img').nth(i);
+        await expect(img).toHaveAttribute('src','/images/'+scene.filename);
+        await expect(img).toHaveAttribute('alt',scene.alt);
+        expect((await page.request.get('/images/'+scene.filename)).ok()).toBe(true);
+      }
+      expect((await page.request.get('/images/'+illustrated.cover.filename)).ok()).toBe(true);
+    }
     if(narrated){
       await expect(page.locator('[data-continuous]')).not.toBeChecked();
       for(const [i,track] of narrated.entries()){
